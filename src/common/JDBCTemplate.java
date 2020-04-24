@@ -73,7 +73,7 @@ public class JDBCTemplate {
       }
    }
    
-   //preparedStatement는 statement의 후손 클래스
+   //preparedStatement는 statement의 후손클래스
    //같이 처리가 가능하다.
    public void close(Statement stmt) {
       
