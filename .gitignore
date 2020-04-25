@@ -83,6 +83,11 @@ local.properties
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
+
+### Java-Web ###
+## ignoring target file
+target/
+
 # Package Files #
 *.war
 *.nar
