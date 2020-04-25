@@ -4,6 +4,6 @@
 
 #hello java!
 
-1.java
-2.javascript
-3.oracle
+김성민 README.md
+
+이거보면 뒤진다.
