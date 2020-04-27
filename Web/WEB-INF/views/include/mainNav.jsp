@@ -65,7 +65,7 @@
       <!-- Heading -->
       <div class="sidebar-heading" id="mypage-font-size">
       <i class="far fa-id-card"></i>
-       	My Page
+       	Main Page
       </div>
       <br>
 
@@ -73,7 +73,7 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" >
           <i class="fas fa-user-circle"></i>
-          <span>개인정보 수정</span>
+          <span>Simple view</span>
         </a>
         
       </li>
@@ -82,7 +82,7 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" >
           <i class="fas fa-key"></i>
-          <span>비밀번호 수정</span>
+          <span>Detail view</span>
         </a>
       </li>
       <hr class="sidebar-divider">
@@ -90,23 +90,7 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" >
           <i class="fas fa-pencil-alt"></i>
-          <span>습관 히스토리</span>
-        </a>
-      </li>
-      <hr class="sidebar-divider">
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" >
-          <i class="far fa-list-alt"></i>
-          <span>타이틀 목록</span>
-        </a>
-      </li>
-      <hr class="sidebar-divider">
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" >
-         <i class="fas fa-user-alt-slash"></i>
-          <span>회원 탈퇴</span>
+          <span>Calender view</span>
         </a>
       </li>
 
