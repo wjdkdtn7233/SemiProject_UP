@@ -1,8 +1,10 @@
 package common.frontController;
 
 import java.util.HashMap;
+
 import common.exception.Status404;
 import up.index.controller.IndexController;
+import up.member.controller.MemberController;
 
 public class HandlerMapping {
 
@@ -11,6 +13,7 @@ public class HandlerMapping {
 	public HandlerMapping() {
 		list = new HashMap<String, Controller>();
 		list.put("index", new IndexController());
+		list.put("member", new MemberController());
 	}
 
 	public Controller getController(String[] uriArr) throws Status404 {
@@ -39,8 +42,11 @@ public class HandlerMapping {
 			break;
 		case "member":
 			switch (uriArr[3]) {
-			case "join.do":
-				methodName = "join";
+			case "login.do":
+				methodName = "login";
+				break;
+			case "register.do":
+				methodName = "register";
 				break;
 			default:
 				throw new Status404("uri를 다시 확인 해주세요!");

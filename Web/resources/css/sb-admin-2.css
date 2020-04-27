@@ -2565,7 +2565,8 @@ fieldset:disabled a.btn {
 
 .btn-primary {
     color: #fff;
-    background-color: #4e73df;
+    background-color: #
+;
     border-color: #4e73df;
 }
 
@@ -2598,6 +2599,46 @@ fieldset:disabled a.btn {
 .btn-primary:not(:disabled):not(.disabled):active:focus,
 .btn-primary:not(:disabled):not(.disabled).active:focus,
 .show>.btn-primary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(105, 136, 228, 0.5);
+}
+
+
+/* kakao 로그인 버튼 */
+.btn-kakao {
+    color: #fff;
+    background-color: #f6c23e;
+    border-color: #f6c23e;
+}
+
+.btn-kakao:hover {
+    color: #fff;
+    background-color: #2e59d9;
+    border-color: #2653d4;
+}
+
+.btn-kakao:focus,
+.btn-kakao.focus {
+    box-shadow: 0 0 0 0.2rem rgba(105, 136, 228, 0.5);
+}
+
+.btn-kakao.disabled,
+.btn-kakao:disabled {
+    color: #fff;
+    background-color: #f6c23e;
+    border-color: #f6c23e;
+}
+
+.btn-kakao:not(:disabled):not(.disabled):active,
+.btn-kakao:not(:disabled):not(.disabled).active,
+.show>.btn-kakao.dropdown-toggle {
+    color: #fff;
+    background-color: #2653d4;
+    border-color: #244ec9;
+}
+
+.btn-kakao:not(:disabled):not(.disabled):active:focus,
+.btn-kakao:not(:disabled):not(.disabled).active:focus,
+.show>.btn-kakao.dropdown-toggle:focus {
     box-shadow: 0 0 0 0.2rem rgba(105, 136, 228, 0.5);
 }
 
@@ -6536,10 +6577,10 @@ a.close.disabled {
     align-items: center;
     justify-content: center;
     width: 15%;
-    color: #fff;
+    color: black;
     text-align: center;
     opacity: 0.5;
-    transition: opacity 0.15s ease;
+    transition: opacity 0.5s ease;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -6607,7 +6648,7 @@ a.close.disabled {
     margin-left: 3px;
     text-indent: -999px;
     cursor: pointer;
-    background-color: #fff;
+    background-color: #000;
     background-clip: padding-box;
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
