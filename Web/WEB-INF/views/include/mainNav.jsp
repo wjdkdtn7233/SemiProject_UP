@@ -54,8 +54,8 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">UP</h6>
-            <a class="collapse-item" href="buttons.html">메인페이지</a>
-            <a class="collapse-item" href="buttons.html">마이페이지</a>
+            <a class="collapse-item" href="../my">메인페이지</a>
+            <a class="collapse-item" href="../mypage/myPage.jsp">마이페이지</a>
             <a class="collapse-item" href="buttons.html">습관등록 및 수정</a>
             
           </div>
