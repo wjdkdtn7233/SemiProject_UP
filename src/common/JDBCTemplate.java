@@ -18,7 +18,7 @@ public class JDBCTemplate {
       
       driver = "oracle.jdbc.driver.OracleDriver";
       url = "jdbc:oracle:thin:@localhost:1521:xe";
-      user = "UP";
+      user = "up";
       password = "test11";
    }
    

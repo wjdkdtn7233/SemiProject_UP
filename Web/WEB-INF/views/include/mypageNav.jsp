@@ -35,7 +35,7 @@
 	<!-- Sidebar - Brand -->
 	<a
 		class="sidebar-brand d-flex align-items-center justify-content-center"
-		href="../index/index.html">
+		href="/up/index/index.do">
 		<div class="sidebar-brand-icon logo-size-wrapper">
 			<img class="logo-size"
 				src="https://cdn.discordapp.com/attachments/704300026628800522/704300563189334036/upLogo_remove_background.png" />
@@ -70,8 +70,8 @@
 			data-parent="#accordionSidebar">
 			<div class="bg-white py-2 collapse-inner rounded">
 				<h6 class="collapse-header">UP</h6>
-				<a class="collapse-item" href="../index/index.jsp">메인페이지</a> <a
-					class="collapse-item" href="../mypage/myPage.jsp">마이페이지</a> <a
+				<a class="collapse-item" href="/up/index/index.do">메인페이지</a> <a
+					class="collapse-item" href="/up/mypage/mypage.do">마이페이지</a> <a
 					class="collapse-item" href="../mypage/myPage.jsp">습관등록 및 수정</a>
 
 			</div>
@@ -86,31 +86,31 @@
 
 	<!-- Nav Item - Pages Collapse Menu -->
 	<li class="nav-item"><a class="nav-link collapsed"
-		href="../mypage/infoPwdCheck.jsp"> <i class="fas fa-user-circle"></i>
+		href="/up/mypage/infopwdcheck.do"> <i class="fas fa-user-circle"></i>
 			<span>개인정보 수정</span>
 	</a></li>
 	<hr class="sidebar-divider">
 	<!-- Nav Item - Utilities Collapse Menu -->
 	<li class="nav-item"><a class="nav-link collapsed"
-		href="../mypage/pwPwdCheck.jsp"> <i class="fas fa-key"></i> <span>비밀번호
+		href="/up/mypage/pwpwdcheck.do"> <i class="fas fa-key"></i> <span>비밀번호
 				수정</span>
 	</a></li>
 	<hr class="sidebar-divider">
 	<!-- Nav Item - Utilities Collapse Menu -->
 	<li class="nav-item"><a class="nav-link collapsed"
-		href="../mypage/habitHistory.jsp"> <i class="fas fa-pencil-alt"></i>
+		href="/up/mypage/habithistory.do"> <i class="fas fa-pencil-alt"></i>
 			<span>습관 히스토리</span>
 	</a></li>
 	<hr class="sidebar-divider">
 	<!-- Nav Item - Utilities Collapse Menu -->
 	<li class="nav-item"><a class="nav-link collapsed"
-		href="../mypage/titleList.jsp"> <i class="far fa-list-alt"></i> <span>타이틀
+		href="/up/mypage/titlelist.do"> <i class="far fa-list-alt"></i> <span>타이틀
 				목록</span>
 	</a></li>
 	<hr class="sidebar-divider">
 	<!-- Nav Item - Utilities Collapse Menu -->
 	<li class="nav-item"><a class="nav-link collapsed"
-		href="../mypage/memberWithdrawal.jsp"> <i
+		href="/up/mypage/memberwithdrawal.do"> <i
 			class="fas fa-user-alt-slash"></i> <span>회원 탈퇴</span>
 	</a></li>
 

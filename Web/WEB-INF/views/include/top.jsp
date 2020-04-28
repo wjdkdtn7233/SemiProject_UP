@@ -157,7 +157,7 @@
          <div
             class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
             aria-labelledby="userDropdown">
-            <a class="dropdown-item" href="../index/myPage.jsp"> <i
+            <a class="dropdown-item" href="/up/mypage/mypage.do"> <i
                class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> MyPage
             </a> <a class="dropdown-item" href="#"> <i
                class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Settings

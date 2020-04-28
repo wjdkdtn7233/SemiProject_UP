@@ -5,6 +5,7 @@ import java.util.HashMap;
 import common.exception.Status404;
 import up.index.controller.IndexController;
 import up.member.controller.MemberController;
+import up.mypage.controller.MyPageController;
 
 public class HandlerMapping {
 
@@ -14,6 +15,7 @@ public class HandlerMapping {
 		list = new HashMap<String, Controller>();
 		list.put("index", new IndexController());
 		list.put("member", new MemberController());
+		list.put("mypage", new MyPageController());
 	}
 
 	public Controller getController(String[] uriArr) throws Status404 {
@@ -35,6 +37,9 @@ public class HandlerMapping {
 			switch (uriArr[3]) {
 			case "index.do":
 				methodName = "index";
+				break;
+			case "detail.do":
+				methodName = "detail";
 				break;
 			default:
 				throw new Status404("uri를 다시 확인 해주세요!");
@@ -66,6 +71,29 @@ public class HandlerMapping {
 			case "mypage.do":
 				methodName = "myPage";
 				break;
+			case "infopwdcheck.do":
+				methodName = "infoPwdCheck";
+				break;	
+			case "pwpwdcheck.do":
+				methodName = "pwPwdCheck";
+				break;
+			case "habithistory.do":
+				methodName = "habitHistory";
+				break;
+			case "titlelist.do":
+				methodName = "titleList";
+				break;
+			case "memberwithdrawal.do":
+				methodName = "memberWithdrawal";
+				break;
+			case "infomodify.do":
+				methodName = "infoModify";
+				break;	
+			case "passwordmodify.do":
+				methodName = "passwordModify";
+				break;
+			default:
+				throw new Status404("uri를 다시 확인 해주세요!");	
 			}
 			break;
 		case "book":
