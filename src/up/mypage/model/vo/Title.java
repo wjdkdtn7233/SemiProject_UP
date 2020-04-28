@@ -10,18 +10,19 @@ public class Title implements Serializable {
 	 */
 	private static final long serialVersionUID = 225237288261572118L;
 
-	// Ÿ��Ʋ �ڵ�
+	// 타이틀 코드
 	private int tCode;
 
-	// Ÿ��Ʋ ��
+	// 타이틀 이름
 	private String tName;
 
-	// Ÿ��Ʋ �ڸ�Ʈ
+	// 타이틀 코멘트
 	private String tComment;
 
-	// Ÿ��Ʋ ����
+	// 타이틀 조건
 	private String tCondition;
 	
+	//타이틀 컬러
 	private String tColor;
 	
 	public Title() {

@@ -11,28 +11,28 @@ public class History implements Serializable {
 	private static final long serialVersionUID = -8189386267839666466L;
 
 
-	// �����丮 ��ȣ
+	//히스토리 번호
 	private int hisNo;
 
-	// ��ī�װ� ��
+	// 습관 서브카테고리
 	private String hisSubcategory;
 
-	// ��������
+	// 습관 시작 날
 	private Date hisStartdate;
 
-	// ��������
+	//습관 끝난 날
 	private Date hisEndDate;
 
-	// �޼���
+	// 습관 달성률
 	private int hisPercent;
 
-	// ī�װ� �ڵ�
+	// 습관 카테고리 이름
 	private String cName;
 
-	// ����� ���̵�
+	// 유저 아이디
 	private String mId;
 
-	// ���� ��ȣ
+	// 습관 번호
 	private int hNo;
 
 	public History() {
