@@ -79,6 +79,16 @@
 												</tr>
 											</tfoot>
 											<tbody>
+											<c:forEach var="historyList" items="${data.historyList}">
+												<tr>
+													<td>${historyList.hisNo}</td>
+													<td>${historyList.cName}</td>
+													<td>${historyList.hisSubcategory}</td>
+													<td>${historyList.hisStartdate}</td>
+													<td>${historyList.hisEndDate}</td>
+													<td>${historyList.hisPercent}%</td>
+												</tr>
+											</c:forEach>
 												<tr>
 													<td>1</td>
 													<td>운동</td>
@@ -87,72 +97,6 @@
 													<td>20.04.01</td>
 													<td>78%</td>
 												</tr>
-												<tr>
-													<td>2</td>
-													<td>독서</td>
-													<td>하루에 두시간만!!</td>
-													<td>20.02.03</td>
-													<td>20.04.01</td>
-													<td>78%</td>
-												</tr>
-												<tr>
-													<td>3</td>
-													<td>독서</td>
-													<td>하루에 두시간만!!</td>
-													<td>20.02.04</td>
-													<td>20.04.01</td>
-													<td>100%</td>
-												</tr>
-												<tr>
-													<td>4</td>
-													<td>금연</td>
-													<td>하루에 두시간만!!</td>
-													<td>20.02.05</td>
-													<td>20.04.01</td>
-													<td>78%</td>
-												</tr>
-												<tr>
-													<td>5</td>
-													<td>금연</td>
-													<td>하루에 두시간만!!</td>
-													<td>20.02.06</td>
-													<td>20.04.01</td>
-													<td>10%</td>
-												</tr>
-												<tr>
-													<td>6</td>
-													<td>운동</td>
-													<td>하루에 두시간만!!</td>
-													<td>20.01.01</td>
-													<td>20.04.01</td>
-													<td>5%</td>
-												</tr>
-												<tr>
-													<td>7</td>
-													<td>금주</td>
-													<td>하루에 두시간만!!</td>
-													<td>20.01.01</td>
-													<td>20.04.01</td>
-													<td>22%</td>
-												</tr>
-												<tr>
-													<td>8</td>
-													<td>금주</td>
-													<td>하루에 두시간만!!</td>
-													<td>20.02.01</td>
-													<td>20.04.01</td>
-													<td>58%</td>
-												</tr>
-												<tr>
-													<td>9</td>
-													<td>금주</td>
-													<td>하루에 두시간만!!</td>
-													<td>20.02.01</td>
-													<td>20.04.01</td>
-													<td>60%</td>
-												</tr>
-												
-
 											</tbody>
 										</table>
 									</div>

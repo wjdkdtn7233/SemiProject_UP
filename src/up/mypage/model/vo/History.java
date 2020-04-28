@@ -11,35 +11,35 @@ public class History implements Serializable {
 	private static final long serialVersionUID = -8189386267839666466L;
 
 
-	// È÷½ºÅä¸® ¹øÈ£
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ä¸® ï¿½ï¿½È£
 	private int hisNo;
 
-	// ºÎÄ«Å×°í¸® ¸í
+	// ï¿½ï¿½Ä«ï¿½×°ï¿½ ï¿½ï¿½
 	private String hisSubcategory;
 
-	// ½ÃÀÛÀÏÀÚ
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	private Date hisStartdate;
 
-	// Á¾·áÀÏÀÚ
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	private Date hisEndDate;
 
-	// ´Þ¼º·ü
+	// ï¿½Þ¼ï¿½ï¿½ï¿½
 	private int hisPercent;
 
-	// Ä«Å×°í¸® ÄÚµå
-	private int cCode;
+	// Ä«ï¿½×°ï¿½ ï¿½Úµï¿½
+	private String cName;
 
-	// »ç¿ëÀÚ ¾ÆÀÌµð
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½
 	private String mId;
 
-	// ½À°ü ¹øÈ£
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£
 	private int hNo;
 
 	public History() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public History(int hisNo, String hisSubcategory, Date hisStartdate, Date hisEndDate, int hisPercent, int cCode,
+	public History(int hisNo, String hisSubcategory, Date hisStartdate, Date hisEndDate, int hisPercent, String cName,
 			String mId, int hNo) {
 		super();
 		this.hisNo = hisNo;
@@ -47,7 +47,7 @@ public class History implements Serializable {
 		this.hisStartdate = hisStartdate;
 		this.hisEndDate = hisEndDate;
 		this.hisPercent = hisPercent;
-		this.cCode = cCode;
+		this.cName = cName;
 		this.mId = mId;
 		this.hNo = hNo;
 	}
@@ -92,12 +92,12 @@ public class History implements Serializable {
 		this.hisPercent = hisPercent;
 	}
 
-	public int getCCode() {
-		return cCode;
+	public String getCName() {
+		return cName;
 	}
 
-	public void setCCode(int cCode) {
-		this.cCode = cCode;
+	public void setCName(String cName) {
+		this.cName = cName;
 	}
 
 	public String getMId() {
@@ -119,7 +119,7 @@ public class History implements Serializable {
 	@Override
 	public String toString() {
 		return "History [hisNo=" + hisNo + ", hisSubcategory=" + hisSubcategory + ", hisStartdate=" + hisStartdate
-				+ ", hisEndDate=" + hisEndDate + ", hisPercent=" + hisPercent + ", cCode=" + cCode + ", mId=" + mId
+				+ ", hisEndDate=" + hisEndDate + ", hisPercent=" + hisPercent + ", cName=" + cName + ", mId=" + mId
 				+ ", hNo=" + hNo + "]";
 	}
 

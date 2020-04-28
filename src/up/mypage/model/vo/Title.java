@@ -2,7 +2,7 @@ package up.mypage.model.vo;
 
 import java.io.Serializable;
 
-//Å¸ÀÌÆ² 
+//Å¸ï¿½ï¿½Æ² 
 public class Title implements Serializable {
 
 	/**
@@ -10,33 +10,35 @@ public class Title implements Serializable {
 	 */
 	private static final long serialVersionUID = 225237288261572118L;
 
-	// Å¸ÀÌÆ² ÄÚµå
+	// Å¸ï¿½ï¿½Æ² ï¿½Úµï¿½
 	private int tCode;
 
-	// Å¸ÀÌÆ² ¸í
+	// Å¸ï¿½ï¿½Æ² ï¿½ï¿½
 	private String tName;
 
-	// Å¸ÀÌÆ² ÄÚ¸àÆ®
+	// Å¸ï¿½ï¿½Æ² ï¿½Ú¸ï¿½Æ®
 	private String tComment;
 
-	// Å¸ÀÌÆ² Á¶°Ç
+	// Å¸ï¿½ï¿½Æ² ï¿½ï¿½ï¿½ï¿½
 	private String tCondition;
 	
+	private String tColor;
 	
 	public Title() {
 		// TODO Auto-generated constructor stub
 	}
 	
 
-	public Title(int tCode, String tName, String tComment, String tCondition) {
+	public Title(int tCode, String tName, String tComment, String tCondition,String tColor) {
 		super();
 		this.tCode = tCode;
 		this.tName = tName;
 		this.tComment = tComment;
 		this.tCondition = tCondition;
+		this.tColor = tColor;
 	}
 
-
+	
 	public int getTCode() {
 		return tCode;
 	}
@@ -69,12 +71,25 @@ public class Title implements Serializable {
 		this.tCondition = tCondition;
 	}
 
+	
+
+	public String getTColor() {
+		return tColor;
+	}
+
+
+	public void setTColor(String tColor) {
+		this.tColor = tColor;
+	}
+
 
 	@Override
 	public String toString() {
 		return "Title [tCode=" + tCode + ", tName=" + tName + ", tComment=" + tComment + ", tCondition=" + tCondition
-				+ "]";
+				+ ", tColor=" + tColor + "]";
 	}
+
+	
 
 	
 	
