@@ -2,7 +2,6 @@ package up.mypage.model.vo;
 
 import java.io.Serializable;
 
-//Ÿ��Ʋ 
 public class Title implements Serializable {
 
 	/**
