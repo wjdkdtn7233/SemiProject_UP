@@ -103,32 +103,32 @@
 							<div class="col-xl-12 col-lg-7">
 								<div class="iconWrapper shadow">
 									<div class="col-xl col-md-3 col-lg-3 col-sm-3">
-										<a href="infoPwdCheck.jsp"><div id="icon-size">
+										<a href="/up/mypage/infopwdcheck.do"><div id="icon-size">
 											<i class="fas fa-user-circle mb-3"></i>
 											<div class="print-informationModify">개인정보 수정</div>
 
 										</div></a>
 									</div>
 									<div class="col-xl col-md-3 col-lg-3 col-sm-3">
-										<a href="pwPwdCheck.jsp"><div id="icon-size">
+										<a href="/up/mypage/pwpwdcheck.do"><div id="icon-size">
 											<i class="fas fa-key mb-3"></i>
 											<div class="print-informationModify">비밀번호 수정</div>
 										</div></a>
 									</div>
 									<div class="col-xl col-md-3 col-lg-3 col-sm-3">
-										<a href="habitHistory.jsp"><div id="icon-size">
+										<a href="/up/mypage/habithistory.do"><div id="icon-size">
 											<i class="fas fa-pencil-alt mb-3"></i>
 											<div class="print-informationModify">습관히스토리</div>
 										</div></a>
 									</div>
 									<div class="col-xl col-md-3 col-lg-3 col-sm-3">
-										<a href="titleList.jsp"><div id="icon-size">
+										<a href="/up/mypage/titlelist.do"><div id="icon-size">
 											<i class="far fa-list-alt mb-3"></i>
 											<div class="print-informationModify">타이틀 목록</div>
 										</div></a>
 									</div>
 									<div class="col-xl col-md-3 col-lg-3 col-sm-3">
-										<a href="memberWithdrawal.jsp"><div id="icon-size">
+										<a href="/up/mypage/memberwithdrawal.do"><div id="icon-size">
 											<i class="fas fa-user-alt-slash mb-3"></i>
 											<div class="print-informationModify">회원 탈퇴</div>
 										</div></a>

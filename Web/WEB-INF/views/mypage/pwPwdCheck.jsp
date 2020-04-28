@@ -30,7 +30,7 @@
 										<input type="password" class="form-control form-control-user"
 											id="exampleInputPassword" placeholder="Password">
 									</div>
-									<a href="passwordModify.jsp"
+									<a href="/up/mypage/passwordmodify.do"
 										class="btn btn-primary btn-user btn-block"> 확인 </a>
 								</div>
 							</div>

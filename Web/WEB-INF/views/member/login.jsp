@@ -107,7 +107,7 @@
 											</div>
 										</div>
 										<!-- login 성공 시 index(메인 페이지)로 -->
-										<a href="index.html"
+										<a href="/up/index/index.do"
 											class="btn btn-primary btn-user btn-block"> Login </a>
 										<a href="index.html"
 											class="btn btn-kakao btn-user btn-block"> KAKAO Login </a>
