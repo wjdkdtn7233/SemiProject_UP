@@ -38,6 +38,9 @@ public class HandlerMapping {
 			case "index.do":
 				methodName = "index";
 				break;
+			case "detail.do":
+				methodName = "detail";
+				break;
 			default:
 				throw new Status404("uri를 다시 확인 해주세요!");
 			}

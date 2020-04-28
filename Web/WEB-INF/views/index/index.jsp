@@ -56,7 +56,7 @@
 											aria-labelledby="dropdownMenuLink">
 											<div class="dropdown-header">선택 :</div>
 											<a class="dropdown-item" href="#">전체</a> <a
-												class="dropdown-item" href="#">습관</a>
+												class="dropdown-item" href="#">카테고리</a>
 										</div>
 									</div>
 
@@ -197,13 +197,7 @@
 			<!-- End of Main Content -->
 
 			<!-- Footer -->
-			<footer class="sticky-footer bg-white">
-				<div class="container my-auto">
-					<div class="copyright text-center my-auto">
-						<span>Copyright &copy; Your Website 2019</span>
-					</div>
-				</div>
-			</footer>
+			<%@ include file="../include/footer.jsp" %>
 			<!-- End of Footer -->
 
 		</div>

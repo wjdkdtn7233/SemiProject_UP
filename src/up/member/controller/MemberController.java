@@ -7,7 +7,6 @@ import common.frontController.ModelAndView;
 
 public class MemberController implements Controller{
 	
-	
 	/**
 	 *	1. MethodName: login
 	 *	2. ClassName: MemberController.java

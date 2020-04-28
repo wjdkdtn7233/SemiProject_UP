@@ -70,7 +70,7 @@
 			data-parent="#accordionSidebar">
 			<div class="bg-white py-2 collapse-inner rounded">
 				<h6 class="collapse-header">UP</h6>
-				<a class="collapse-item" href="../my">메인페이지</a> <a
+				<a class="collapse-item" href="/up/index/index.do">메인페이지</a> <a
 					class="collapse-item" href="/up/mypage/mypage.do">마이페이지</a> <a
 					class="collapse-item" href="buttons.html">습관등록 및 수정</a>
 
@@ -85,17 +85,17 @@
 	<br>
 
 	<!-- Nav Item - Pages Collapse Menu -->
-	<li class="nav-item"><a class="nav-link collapsed" href="#">
+	<li class="nav-item"><a class="nav-link collapsed" href="/up/index/index.do">
 			<i class="fas fa-user-circle"></i> <span>Simple view</span>
 	</a></li>
 	<hr class="sidebar-divider">
 	<!-- Nav Item - Utilities Collapse Menu -->
-	<li class="nav-item"><a class="nav-link collapsed" href="#">
+	<li class="nav-item"><a class="nav-link collapsed" href="/up/index/detail.do">
 			<i class="fas fa-key"></i> <span>Detail view</span>
 	</a></li>
 	<hr class="sidebar-divider">
 	<!-- Nav Item - Utilities Collapse Menu -->
-	<li class="nav-item"><a class="nav-link collapsed" href="#">
+	<li class="nav-item"><a class="nav-link collapsed" href="/up/index/calendar.do">
 			<i class="fas fa-pencil-alt"></i> <span>Calender view</span>
 	</a></li>
 
