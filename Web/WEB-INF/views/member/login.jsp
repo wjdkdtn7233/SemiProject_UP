@@ -1,14 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
 
@@ -24,27 +21,30 @@
 <!-- Custom styles for this template-->
 <link href="/up/resources/css/sb-admin-2.min.css" rel="stylesheet">
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+
 <style>	
 	.carousel-inner > .carousel-item {
 		padding-top : 50%;
 	}
 	
-	
 	#logo > img {
 		width:8%;
 		height:8%;
+		padding-bottom:5%;
+	}
+	
+	#kakao-login {
+		color:#fff;
+		background-color:#f6c23e;
 	}
 </style>
 </head>
+
 <body class="bg-gradient-primary">
-
 	<div class="container">
-
 		<!-- Outer Row -->
 		<div class="row justify-content-center">
-
 			<div class="col-xl-10 col-lg-12 col-md-9">
-
 				<div class="card o-hidden border-0 shadow-lg my-5">
 					<div class="card-body p-0">
 						<!-- Nested Row within Card Body -->
@@ -94,7 +94,7 @@
 										<div class="form-group">
 											<input type="email" class="form-control form-control-user"
 												id="exampleInputEmail" aria-describedby="emailHelp"
-												placeholder="Enter Email Address...">
+												placeholder="Enter your ID...">
 										</div>
 										<div class="form-group">
 											<input type="password" class="form-control form-control-user"
@@ -109,7 +109,7 @@
 										<!-- login 성공 시 index(메인 페이지)로 -->
 										<a href="index.html"
 											class="btn btn-primary btn-user btn-block"> Login </a>
-										<a href="index.html"
+										<a href="index.html" id="kakao-login"
 											class="btn btn-kakao btn-user btn-block"> KAKAO Login </a>
 										<!-- <a class="btn btn-user btn-block" id="kakao-login-btn">
 											<img src="/up/resources/img/kakao_login_btn_simple_medium.png">
@@ -117,30 +117,25 @@
 									</form>
 									<hr>
 									<div class="text-center">
-										<a class="small" href="forgot-id.html">ID 찾기</a> <a
-											class="small" href="forgot-password.html">비밀번호 찾기</a>
+										<a class="small" href="forgotid.do">ID 찾기</a>
+										<a class="small" href="forgotpwd.do">비밀번호 찾기</a>
 									</div>
 									<div class="text-center">
-										<a class="small" href="register.html">회원가입</a>
+										<a class="small" href="register.do">회원가입</a>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-
 				<div class="text-center" id="logo">
 					<img src="/up/resources/img/upLogo.png"/>
+					<br>
 				</div>
-			
 			</div>
-
 		</div>
-
 	</div>
-	<footer class="sticky-footer">
-		<div class="copyright" style="color:#36b9cc; text-align:center;">Copyright 2020 <strong>UP</strong></div>
-	</footer>
+	<%@include file="../include/footer.jsp"%>
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="/up/resources/vendor/jquery/jquery.min.js"></script>

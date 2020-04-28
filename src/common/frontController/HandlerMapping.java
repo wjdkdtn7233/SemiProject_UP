@@ -48,6 +48,15 @@ public class HandlerMapping {
 			case "register.do":
 				methodName = "register";
 				break;
+			case "forgotid.do":
+				methodName = "forgotId";
+				break;
+			case "forgotpwd.do":
+				methodName = "forgotPwd";
+				break;
+			case "emailcheck.do":
+				methodName = "emailCheck";
+				break;
 			default:
 				throw new Status404("uri를 다시 확인 해주세요!");
 			}
