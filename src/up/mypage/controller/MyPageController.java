@@ -64,18 +64,27 @@ public class MyPageController implements Controller {
 	  * @작성일 : 2020. 4. 28.
 	  * @작성자 : 정상훈
 	  * @변경이력 : 완료
-	  * @Method 설명 : tb_title 에 data를 꺼내와 titleList.jsp에 뿌려준다.
+	  * @Method 설명 : tb_title 의 data를 꺼내와 titleList.jsp에 뿌려준다.
 	  * @param request
 	  * @return ModelAndView
 	  */
 	public ModelAndView titleList(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
-		mav.setView("mypage/titleList");
+		mav.setView("mypage/titleLihst");
 		mav.addObject("titleList", ms.selectTitleList());
 		return mav;
 		
 	}
 
+	/**
+	  * @Method Name : infoPwdCheck
+	  * @작성일 : 2020. 4. 29.
+	  * @작성자 : 정상훈
+	  * @변경이력 : 이거 로그인정보 세션객체에 담기면  infoPwdCheck.jsp  하단 script부분 완성해주면됨
+	  * @Method 설명 : infoPwdCheck.jsp 로 이동.
+	  * @param request
+	  * @return ModelAndView
+	  */
 	public ModelAndView infoPwdCheck(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		// Member m = (Member) request.getSession().getAttribute("loginInfo");
@@ -84,6 +93,15 @@ public class MyPageController implements Controller {
 		return mav;
 	}
 
+	/**
+	  * @Method Name : pwPwdCheck
+	  * @작성일 : 2020. 4. 29.
+	  * @작성자 : 정상훈
+	  * @변경이력 : 이거 로그인정보 세션객체에 담기면  pwPwdCheck.jsp  하단 script부분 완성해주면됨
+	  * @Method 설명 : pwPwdCheck.jsp 로 이동
+	  * @param request
+	  * @return ModelAndView
+	  */
 	public ModelAndView pwPwdCheck(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		// Member m = (Member) request.getSession().getAttribute("loginInfo");

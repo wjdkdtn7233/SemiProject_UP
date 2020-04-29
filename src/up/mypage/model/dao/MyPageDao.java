@@ -1,5 +1,7 @@
 package up.mypage.model.dao;
 
+
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -84,5 +86,21 @@ public class MyPageDao {
 		}
 		
 		return titleList;
+	}
+	
+	public int updateInfomation(Connection conn /*,Member m*/) throws SQLException{
+		
+		int res = 0;
+		PreparedStatement pstm = null;
+		
+		String sql = "update tb_member set ";
+		try {
+			pstm = conn.prepareStatement(sql);
+		}finally {
+			jdt.close(pstm);
+		}
+		
+		
+		return res;
 	}
 }

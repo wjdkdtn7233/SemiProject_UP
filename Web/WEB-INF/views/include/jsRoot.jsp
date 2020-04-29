@@ -14,6 +14,10 @@
    <!-- Page level plugins -->
    <script src="/up/resources/vendor/datatables/jquery.dataTables.min.js"></script>
    <script src="/up/resources/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+<<<<<<< HEAD
 
    <!-- Page level custom scripts -->
    <script src="/up/resources/js/demo/datatables-demo.js"></script>
+=======
+	
+>>>>>>> c8ad91ec63880e852fefb5905b722308d280b74f
