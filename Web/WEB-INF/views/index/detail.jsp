@@ -73,47 +73,112 @@
 					</div>
 					<!-- detail-content -->
 
+					<!-- card-start -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
 							<h5 class="m-0 font-weight-bold text-primary text-center">습관1</h5>
 						</div>
 						<div class="card-body">
-							<div class="col-xl-3 col-md-6 mb-4">
-								<div class="card border-left-info shadow h-100 py-2">
-									<div class="card-body">
-										<div class="row no-gutters align-items-center">
-											<div class="col mr-2">
-												<div
-													class="text-xs font-weight-bold text-info text-uppercase mb-1">습관1</div>
-												<div class="row no-gutters align-items-center">
-													<div class="col-auto">
-														<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-													</div>
-													<div class="col">
-														<div class="progress progress-sm mr-2">
-															<div class="progress-bar bg-info" role="progressbar"
-																style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-																aria-valuemax="100"></div>
+							<div class="row py-4">
+								<div class="col-xl-6 col-md-6 mb-6">
+									<div class="card border-left-info shadow h-100 py-2">
+										<div class="card-body">
+											<div class="row no-gutters align-items-center py-2">
+												<div class="col mr-2">
+													<div
+														class="text-xs font-weight-bold text-success text-uppercase mb-1">달성율</div>
+													<div class="row no-gutters align-items-center">
+														<div class="col-auto">
+															<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+														</div>
+														<div class="col">
+															<div class="progress progress-sm mr-2">
+																<div class="progress-bar bg-success" role="progressbar"
+																	style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+																	aria-valuemax="100"></div>
+															</div>
 														</div>
 													</div>
 												</div>
+												<div class="col-auto">
+													<i class="fas fa-laugh-beam fa-2x text-gray-300"></i>
+												</div>
 											</div>
-											<div class="col-auto">
-												<a href="#" class="btn btn-success btn-circle"> <i
-													class="fas fa-check"></i>
-												</a>
+											<div class="row no-gutters align-items-center py-2">
+												<div class="col mr-2">
+													<div
+														class="text-xs font-weight-bold text-danger text-uppercase mb-1">실패율</div>
+													<div class="row no-gutters align-items-center">
+														<div class="col-auto">
+															<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+														</div>
+														<div class="col">
+															<div class="progress progress-sm mr-2">
+																<div class="progress-bar bg-danger" role="progressbar"
+																	style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+																	aria-valuemax="100"></div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="col-auto">
+													<i class="fas fa-tired fa-2x text-gray-300"></i>
+												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-								<div class="col-lg-12">
-									<div class="card">
+
+								<div class="col-xl-6 col-md-6 mb-6">
+									<div class="card border-left-info shadow h-100 py-2">
 										<div class="card-body">
-											<h4 class="card-title">Bar Chart</h4>
-											<div id="morris-bar-chart"></div>
+											<h1 class="h5">습관 시작일 : 2020년 01월 03일</h1>
+											<h1 class="h5 py-2">습관 종료일 : 2020년 12월 31일</h1>
+											<h1 class="h5">
+												종료일까지 <span class="h2">D - 365 </span>일 남음
+											</h1>
 										</div>
 									</div>
 								</div>
+
+							</div>
+							<!-- card end -->
+
+							<!-- Bar Chart -->
+							<div class="var">
+								<div class="card shadow mb-4">
+									<div class="card-header py-3">
+										<h6 class="m-0 font-weight-bold text-primary">Bar Chart</h6>
+									</div>
+									<div class="card-body">
+										<div class="chart-bar">
+											<canvas id="myBarChart"></canvas>
+										</div>
+										<hr>
+										Styling for the bar chart can be found in the
+										<code>/up/resources/js/demo/chart-bar-demo.js</code>
+										file.
+									</div>
+								</div>
+							</div>
+							<div class="var">
+									<div class="card shadow mb-4">
+										<!-- Card Header - Dropdown -->
+										<div class="card-header py-3">
+											<h6 class="m-0 font-weight-bold text-primary">Donut
+												Chart</h6>
+										</div>
+										<!-- Card Body -->
+										<div class="card-body">
+											<div class="chart-pie pt-4">
+												<canvas id="myPieChart"></canvas>
+											</div>
+											<hr>
+											Styling for the donut chart can be found in the
+											<code>/js/demo/chart-pie-demo.js</code>
+											file.
+										</div>
+									</div>
 							</div>
 						</div>
 					</div>
@@ -163,15 +228,13 @@
 	</div>
 
 	<%@ include file="../include/jsRoot.jsp"%>
+
 	<!-- Page level plugins -->
 	<script src="/up/resources/vendor/chart.js/Chart.min.js"></script>
 
 	<!-- chartjsp scripts -->
-	<script src="/up/resources/js/demo/chart-area-demo.js"></script>
 	<script src="/up/resources/js/demo/chart-pie-demo.js"></script>
-
-	<!-- Page level custom scripts -->
-	<script src="/up/resources/js/demo/datatables-demo.js"></script>
+	<script src="/up/resources/js/demo/chart-bar-demo.js"></script>
 </body>
 
 </html>

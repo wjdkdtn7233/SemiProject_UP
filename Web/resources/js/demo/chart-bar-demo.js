@@ -30,40 +30,48 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 // Bar Chart Example
 var ctx = document.getElementById("myBarChart");
 var myBarChart = new Chart(ctx, {
-  type: 'bar',
-  data: {
-    labels: ["January", "February", "March", "April", "May", "June"],
-    datasets: [{
-      label: "Revenue",
-      backgroundColor: "#4e73df",
-      hoverBackgroundColor: "#2e59d9",
-      borderColor: "#4e73df",
-      data: [4215, 5312, 6251, 7841, 9821, 14984],
-    }],
-  },
-  options: {
-    maintainAspectRatio: false,
-    layout: {
-      padding: {
-        left: 10,
-        right: 25,
-        top: 25,
-        bottom: 0
-      }
-    },
+	type: 'bar',
+	data: {
+		labels: ["January", "February", "March", "April", "May", "June"],
+		datasets: [{
+			label: "success",
+			backgroundColor: "#4e73df",
+			hoverBackgroundColor: "#2e59d9",
+			borderColor: "#4e73df",
+			data: [4215, 5312, 6251, 7841, 9821, 14984]
+		},{
+			label: "fail",
+			backgroundColor: "#F7464A",
+			overBackgroundColor: "#fb314a",
+			borderColor: "#F7464A",
+			data: [4215, 5312, 6251, 7841, 9821, 14984]
+		}]
+//		datasets-end
+	},
+//  data-end
+	options: {
+		maintainAspectRatio: false,
+		layout: {
+			padding: {
+				left: 10,
+				right: 25,
+				top: 25,
+				bottom: 0
+			}
+		},
     scales: {
-      xAxes: [{
+    	xAxes: [{
         time: {
-          unit: 'month'
+        	unit: 'month'
         },
         gridLines: {
-          display: false,
-          drawBorder: false
+        	display: true,
+        	drawBorder: true
         },
         ticks: {
-          maxTicksLimit: 6
+        	maxTicksLimit: 6
         },
-        maxBarThickness: 25,
+        	maxBarThickness: 25,
       }],
       yAxes: [{
         ticks: {

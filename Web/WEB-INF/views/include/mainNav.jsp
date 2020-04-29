@@ -13,18 +13,20 @@
 	color: white;
 	font-size: 15pt;
 }
-.logo-size-wrapper{
+
+.logo-size-wrapper {
 	height: 60px;
 	width: 60px;
 	background: white;
 	border-radius: 100%;
 }
+
 .logo-size {
 	height: 50px;
 	width: 50px;
 	object-fit: cover;
-	position:relative;
-	top:9px;
+	position: relative;
+	top: 9px;
 }
 </style>
 <!-- Sidebar -->
@@ -85,18 +87,21 @@
 	<br>
 
 	<!-- Nav Item - Pages Collapse Menu -->
-	<li class="nav-item"><a class="nav-link collapsed" href="/up/index/index.do">
-			<i class="fas fa-user-circle"></i> <span>Simple view</span>
+	<li class="nav-item"><a class="nav-link collapsed"
+		href="/up/index/index.do"> <i class="fas fa-user-circle"></i> <span>Simple
+				view</span>
 	</a></li>
 	<hr class="sidebar-divider">
 	<!-- Nav Item - Utilities Collapse Menu -->
-	<li class="nav-item"><a class="nav-link collapsed" href="/up/index/detail.do">
-			<i class="fas fa-key"></i> <span>Detail view</span>
+	<li class="nav-item"><a class="nav-link collapsed"
+		href="/up/index/detail.do"> <i class="fas fa-key"></i> <span>Detail
+				view</span>
 	</a></li>
 	<hr class="sidebar-divider">
 	<!-- Nav Item - Utilities Collapse Menu -->
-	<li class="nav-item"><a class="nav-link collapsed" href="/up/index/calendar.do">
-			<i class="fas fa-pencil-alt"></i> <span>Calender view</span>
+	<li class="nav-item"><a class="nav-link collapsed"
+		href="/up/index/calendar.do"> <i class="fas fa-pencil-alt"></i> <span>Calender
+				view</span>
 	</a></li>
 
 	<!-- Divider -->
