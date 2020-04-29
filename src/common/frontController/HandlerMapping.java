@@ -62,6 +62,9 @@ public class HandlerMapping {
 			case "emailcheck.do":
 				methodName = "emailCheck";
 				break;
+			case "welcome.do":
+				methodName = "welcome";
+				break;
 			default:
 				throw new Status404("uri를 다시 확인 해주세요!");
 			}
@@ -96,8 +99,6 @@ public class HandlerMapping {
 				throw new Status404("uri를 다시 확인 해주세요!");	
 			}
 			break;
-		case "book":
-			break;
 		case "use":
 			break;
 		case "notice":
@@ -112,6 +113,7 @@ public class HandlerMapping {
 		default:
 			throw new Status404("uri를 다시 확인해주세요!");
 		}
+		
 		return methodName;
 	}
 

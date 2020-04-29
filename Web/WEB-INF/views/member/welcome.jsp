@@ -12,7 +12,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>FINDING ID</title>
+<title>WELCOME!!</title>
 
 <!-- Custom fonts for this template-->
 <link href="/up/resources/vendor/fontawesome-free/css/all.min.css"
@@ -25,18 +25,25 @@
 <link href="/up/resources/css/sb-admin-2.min.css" rel="stylesheet">
 
 <style>
-	#logo > img {
-		width:8%;
-		height:8%;
-		padding-bottom:5%;
-	}
+#logo {
+	width: 20%;
+	height: 20%;
+}
+
+i {
+	border:1px solid black;
+	width: 70%;
+	height: 70%;
+	text-align: center;
+}
+
 </style>
 </head>
 <body class="bg-gradient-primary">
 	<div class="container">
 		<!-- Outer Row -->
 		<div class="row justify-content-center">
-
+			
 			<div class="col-xl-10 col-lg-12 col-md-9">
 
 				<div class="card o-hidden border-0 shadow-lg my-5">
@@ -47,27 +54,13 @@
 							<div class="col-lg-8">
 								<div class="p-5">
 									<div class="text-center">
-										<h1 class="h4 text-gray-900 mb-2">회원 ID를 잊어버리셨나요?</h1>
-										<p class="mb-4">회원가입 당시 입력하셨던 이메일 주소를 작성해주세요. </p>
-										<p class="mb-4">만약 보내기 클릭 후에도 메일이 도착하지 않았다면, 작성하신 이메일 주소를 확인하고 다시 이메일 보내기를 클릭하세요 </p>
+										<h1 class="h5 text-gray-700 mb-2">정신 없는 현대인의 바른 습관 권장 사이트</h1>
+										 <h1 class="h5 text-gray-700 mb-2"><img id="logo" src="/up/resources/img/upLogo.png"/>에 오신 것을 환영합니다.</h1>
 									</div>
-									<form class="user">
-										<div class="form-group">
-											<input type="email" class="form-control form-control-user"
-												id="userEmail" aria-describedby="emailHelp"
-												placeholder="Enter your Email Address...">
-										</div>
-										<a href="login.do" class="btn btn-primary btn-user btn-block">
-											메일 보내기
-										</a>
-									</form>
-									<hr>
-									<div class="text-center">
-										<a class="small" href="register.do">회원가입</a>
-									</div>
-									<div class="text-center">
-										<a class="small" href="login.do">이미 회원가입을 하셨나요?</a>
-									</div>
+									<i class="fas fa-user-circle"></i>
+									<div class="text-center">test 님, 반갑습니다!</div>
+									<div class="text-center">로그인 페이지로 이동합니다.</div>
+									<button class="btn btn-primary" id="move">이동</button>
 								</div>
 							</div>
 						</div>
@@ -79,9 +72,7 @@
 		</div>
 
 	</div>
-	<div class="text-center" id="logo">
-		<img src="/up/resources/img/upLogo.png"/>
-	</div>
+
 	<%@include file="../include/footer.jsp"%>
 
 	<!-- Bootstrap core JavaScript-->

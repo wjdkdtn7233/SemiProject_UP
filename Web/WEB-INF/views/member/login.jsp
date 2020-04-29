@@ -58,11 +58,11 @@
 											<div class="h6 text-center text-gray-900"><strong>test name</strong></div>
 										</div>
 										<div class="carousel-item">
-											<div class="h5 text-center text-gray-700">test sentences1111</div>
+											<div class="h5 text-center text-gray-700">test sentences2222</div>
 											<div class="h6 text-center text-gray-900"><strong>test name</strong></div>
 										</div>
 										<div class="carousel-item">
-											<div class="h5 text-center text-gray-700">test sentences1111</div>
+											<div class="h5 text-center text-gray-700">test sentences3333</div>
 											<div class="h6 text-center text-gray-900"><strong>test name</strong></div>
 										</div>
 										<!-- 왼쪽 오른쪽 화살표 버튼 -->
@@ -109,7 +109,8 @@
 										<!-- login 성공 시 index(메인 페이지)로 -->
 										<a href="/up/index/index.do"
 											class="btn btn-primary btn-user btn-block"> Login </a>
-										<a href="index.html" id="kakao-login"
+										<a href="https://kauth.kakao.com//oauth/authorize?client_id=10b61cc7b083067886d7c41cfbc11f24&redirect_uri=http://localhost:8787/up/member/kakaoLogin.jsp&response_type=code" 
+											id="kakao-login"
 											class="btn btn-kakao btn-user btn-block"> KAKAO Login </a>
 										<!-- <a class="btn btn-user btn-block" id="kakao-login-btn">
 											<img src="/up/resources/img/kakao_login_btn_simple_medium.png">
@@ -145,7 +146,7 @@
 	<script src="/up/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 	<!-- Custom scripts for all pages-->
-	<script src="js/sb-admin-2.min.js"></script>
+	<script src="/up/resources/js/sb-admin-2.min.js"></script>
 
 	<!-- kakao 로그인 -->
 	<script type='text/javascript'>
@@ -156,13 +157,34 @@
 		Kakao.Auth.createLoginButton({
 			container : '#kakao-login-btn',
 			success : function(authObj) {
+				console.log(authObj.scope);
+	            console.log(authObj.access_token);
 				alert(JSON.stringify(authObj));
+				alert("데이터 획득 성공");
+				
+				Kakao.API.request({
+		               url: '/v2/user/me',
+		               success: function (response) {
+		                  console.log(response.properties.nickname);
+		                  console.log(response.kakao_account.profile.nickname);
+		                  console.log(response.kakao_account.profile.profile_image_url);
+		                  console.log(response.kakao_account.email);
+		                  console.log(response.kakao_account.age_range);
+		                  console.log(response.kakao_account.gender);
+		                  console.log(response.connected_at);
+		                  
+		               },
+		               fail: function (error) {
+		                  console.log(error);
+		               }
+		            });
 			},
 			fail : function(err) {
 				alert(JSON.stringify(err));
+				alert("데이터 획득 실패");
 			}
 		});
-		//]]>
+		
 	</script>
 </body>
 </html>

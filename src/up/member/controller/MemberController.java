@@ -94,5 +94,13 @@ public class MemberController implements Controller {
 		
 		return mav;
 	}
+	
+	public ModelAndView welcome(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		System.out.println("----Running in MemeberController----");
+		mav.setView("member/welcome");
+		
+		return mav;
+	}
 
 }
