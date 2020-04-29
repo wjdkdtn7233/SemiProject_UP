@@ -27,11 +27,13 @@
 								<div class="card-header">개인정보 확인을 위해 비밀번호를 입력해주세요.</div>
 								<div class="card-body">
 									<div class="form-group">
+									<form action="/up/mypage/passwordmodify.do" method="post" onsubmit="return formCheck();">
 										<input type="password" class="form-control form-control-user"
 											id="exampleInputPassword" placeholder="Password">
 									</div>
-									<a href="/up/mypage/passwordmodify.do"
-										class="btn btn-primary btn-user btn-block"> 확인 </a>
+									<input type="submit" value="확인"
+										class="btn btn-primary btn-user btn-block"> </a>
+									</form>	
 								</div>
 							</div>
 						</div>
@@ -44,7 +46,23 @@
 			</a>
 		</div>
 	</div>
-
+	<script>
+	 function formCheck(){
+			
+			var pwd = document.querySelector('#exampleInputPassword').value;
+			if(pwd == ''){
+				alert('비밀번호를 입력해주세요.');
+				return false;
+			}
+	
+			//로그인 세션값 가져와서 입력된 패스워드와 비교
+			/* if (${sessionScope.loginInfo.MPassword} == pwd) {
+				return true;
+			} */
+			
+			return true;
+		}
+	</script>
 
 	<%@ include file="../include/jsRoot.jsp"%>
 </body>

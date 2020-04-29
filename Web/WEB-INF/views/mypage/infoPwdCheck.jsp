@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <style>
@@ -25,13 +26,18 @@
 						<div class="col-5 ">
 							<div class="card border-left-primary">
 								<div class="card-header">개인정보 확인을 위해 비밀번호를 입력해주세요.</div>
+								
 								<div class="card-body">
+								<form action="/up/mypage/infomodify.do" method="post" onsubmit="return formCheck();">
 									<div class="form-group">
-										<input type="password" class="form-control form-control-user"
-											id="exampleInputPassword" placeholder="Password">
+									
+										<input type="password" class="form-control form-control-user checkPwd"
+											id="exampleInputPassword" placeholder="Password"/>
 									</div>
-									<a href="/up/mypage/infomodify.do"
-										class="btn btn-primary btn-user btn-block"> 확인 </a>
+									<input
+										class="btn btn-primary btn-user btn-block" type="submit" value="확인">
+									
+									</form>
 								</div>
 							</div>
 						</div>
@@ -45,6 +51,32 @@
 		</div>
 	</div>
 
+<script src="https://code.jquery.com/jquery-3.5.0.js" integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+
+
+
+	  
+	  function formCheck(){
+			
+			var pwd = document.querySelector('#exampleInputPassword').value;
+			if(pwd == ''){
+				alert('비밀번호를 입력해주세요.');
+				return false;
+			}
+	
+			//로그인 세션값 가져와서 입력된 패스워드와 비교
+			/* if (${sessionScope.loginInfo.MPassword} == pwd) {
+				return true;
+			} */
+			
+			return true;
+		}
+
+	
+
+</script>
 <%@ include file="../include/jsRoot.jsp" %>
+
 </body>
 </html>

@@ -15,4 +15,4 @@
    <!-- Page level plugins -->
    <script src="/up/resources/vendor/datatables/jquery.dataTables.min.js"></script>
    <script src="/up/resources/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
+	
