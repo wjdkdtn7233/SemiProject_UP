@@ -70,7 +70,7 @@ public class MyPageController implements Controller {
 	  */
 	public ModelAndView titleList(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
-		mav.setView("mypage/titleLihst");
+		mav.setView("mypage/titleList");
 		mav.addObject("titleList", ms.selectTitleList());
 		return mav;
 		
@@ -110,9 +110,20 @@ public class MyPageController implements Controller {
 		return mav;
 	}
 
+	/**
+	  * @Method Name : infoModify
+	  * @작성일 : 2020. 5. 1.
+	  * @작성자 : 정상훈
+	  * @변경이력 : 서비스 다오 만들다맘 , 멤버테이블에 대표 타이틀 필요할듯
+	  * @Method 설명 : 개인정보 변경하여 멤버테이블에 update 시켜준다.
+	  * @param request
+	  * @return ModelAndView
+	  */
+	
 	public ModelAndView infoModify(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		// Member m = (Member) request.getSession().getAttribute("loginInfo");
+		mav.addObject("tList", ms.selectUserTitle());
 		mav.setView("mypage/infoModify");
 
 		return mav;

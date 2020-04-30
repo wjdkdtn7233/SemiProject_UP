@@ -121,12 +121,12 @@
 															</div>
 														</div>
 														<div class="row mb-3">
-															<div class="col-12 text-gray-900">
-																<span>comment -> </span><span class="ml-3">${tList.TComment}</span>
+															<div class="col-12 text-gray-900 text-center">
+																<span>${tList.TComment}</span>
 															</div>
 														</div>
 														<div class="row mb-3 ">
-															<div class="col-12 text-gray-900">
+															<div class="col-12 text-gray-900 text-center">
 																<span>습득조건 -> </span><span class="ml-3">${tList.TCondition}</span>
 															</div>
 														</div>
