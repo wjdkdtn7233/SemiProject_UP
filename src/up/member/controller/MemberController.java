@@ -12,7 +12,7 @@ import up.member.model.vo.Member;
  * @FileName : MemberController.java
  * @Project : semiproject_0.1
  * @Date : 2020. 4. 28.
- * @작성자 : Hyeyeon
+ * @작성자 : 박혜연
  * @변경이력 :
  * @프로그램설명 : member jsp folder 기능(로그인, 회원가입, ID체크, email체크)
  */
@@ -30,7 +30,6 @@ public class MemberController implements Controller {
 	 */
 	public ModelAndView login(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
-		System.out.println("----Running in MemeberController----");
 		mav.setView("member/login");
 
 		return mav;
@@ -39,14 +38,14 @@ public class MemberController implements Controller {
 	/**
 	 * @MethodName: loginImple
 	 * @ClassName: MemberController.java
-	 * @변경이력:
+	 * @변경이력: 카카오톡 로그인 미완료
 	 * @Comment: login 페이지에서 로그인 버튼 클릭 시, DB와 연결하여 확인 후 index로 넘기는 기능
 	 * @작성자: 박혜연
 	 * @작성일: 2020. 4. 30.
 	 */
 	public ModelAndView loginImple(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
-		
+
 		String id = request.getParameter("userId");
 		String pwd = request.getParameter("userPwd");
 		Member m = ms.loginImple(id, pwd);
@@ -61,55 +60,50 @@ public class MemberController implements Controller {
 			mav.addObject("isSuccess", "false");
 			mav.setView("member/login");
 		}
-		
-		System.out.println("----Running in MemeberController----");
-
 		return mav;
 	}
 
 	/**
 	 * @MethodName: register
 	 * @ClassName: MemberController.java
-	 * @변경이력: 로고, footer 추가
+	 * @변경이력: 완료
 	 * @Comment: 회원가입 페이지 // ID체크, 비밀번호체크 js 설정 필요
 	 * @작성자: 박혜연
 	 * @작성일: 2020. 4. 28.
 	 */
 	public ModelAndView register(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
-		System.out.println("----Running in MemeberController----");
 		mav.setView("member/register");
 
 		return mav;
 	}
 
 	/**
-	 *	@MethodName: idCheck
-	 *	@ClassName: MemberController.java
-	 *	@변경이력: 
-	 *	@Comment: register의 id 체크와 ms.idCheck 연결
-	 *	@작성자: 박혜연
-	 *	@작성일: 2020. 4. 30.
-	*/
+	 * @MethodName: idCheck
+	 * @ClassName: MemberController.java
+	 * @변경이력: 완료
+	 * @Comment: register의 id 체크와 ms.idCheck 연결
+	 * @작성자: 박혜연
+	 * @작성일: 2020. 4. 30.
+	 */
 	public ModelAndView idCheck(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
-		
+
 		String userId = ms.idCheck(request.getParameter("userId"));
-		
+
 		mav.setView("ajax");
 		mav.addObject("userId", userId);
-		
+
 		System.out.println(request.getParameter("userId"));
-		System.out.println("----Running in MemeberController----");
-		
+
 		return mav;
 	}
-	
+
 	/**
 	 * @MethodName: emailCheck
 	 * @ClassName: MemberController.java
-	 * @변경이력:
-	 * @Comment:
+	 * @변경이력:완료
+	 * @Comment: 회원가입 시, 확인용 메일 발송
 	 * @작성자: 박혜연
 	 * @작성일: 2020. 4. 28.
 	 */
@@ -117,35 +111,43 @@ public class MemberController implements Controller {
 		ModelAndView mav = new ModelAndView();
 		int result = 0;
 		Member m = new Member();
-		
+
 		m.setUserId(request.getParameter("userId"));
 		m.setUserPwd(request.getParameter("userPwd"));
 		m.setUserName(request.getParameter("userName"));
 		m.setUserNickName(request.getParameter("userNickName"));
 		m.setUserEmail(request.getParameter("userEmail"));
-		
-		//회원 이메일로 등록 요청 메일 발송
+
+		// 회원 이메일로 등록 요청 메일 발송
 		ms.regEmailCheck(m);
-		
+
 		mav.setView("member/emailCheck");
 
 		return mav;
 	}
-	
+
+	/**
+	 * @MethodName: insertMember
+	 * @ClassName: MemberController.java
+	 * @변경이력: 완료
+	 * @Comment: 회원등록
+	 * @작성자: 박혜연
+	 * @작성일: 2020. 5. 1.
+	 */
 	public ModelAndView insertMember(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		int result = 0;
 		Member m = new Member();
-		
+
 		m.setUserId(request.getParameter("userId"));
 		m.setUserPwd(request.getParameter("userPwd"));
 		m.setUserName(request.getParameter("userName"));
 		m.setUserNickName(request.getParameter("userNickName"));
 		m.setUserEmail(request.getParameter("userEmail"));
-		
+
 		result = ms.insertMember(m);
-		//회원 이메일로 등록 요청 메일 발송
-		if(result >= 1) {
+		// 회원 이메일로 등록 요청 메일 발송
+		if (result >= 1) {
 			// 변경된 sql 구문이 있다면
 			mav.setView("member/welcome");
 		} else {
@@ -156,12 +158,17 @@ public class MemberController implements Controller {
 
 		return mav;
 	}
-	
-	
-	
+
+	/**
+	 * @MethodName: welcome
+	 * @ClassName: MemberController.java
+	 * @변경이력: 완료
+	 * @Comment: 회원가입 이메일 최종 확인 후 welcome 페이지 연결
+	 * @작성자: 박혜연
+	 * @작성일: 2020. 5. 1.
+	 */
 	public ModelAndView welcome(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
-		System.out.println("----Running in MemeberController----");
 		mav.setView("member/welcome");
 
 		return mav;
@@ -170,8 +177,8 @@ public class MemberController implements Controller {
 	/**
 	 * @MethodName: forgotId
 	 * @ClassName: MemberController.java
-	 * @변경이력:
-	 * @Comment: 아이디 찾기 페이지 // email sending 연결 필요
+	 * @변경이력: 완료
+	 * @Comment: 아이디 찾기 페이지
 	 * @작성자: 박혜연
 	 * @작성일: 2020. 4. 28.
 	 */
@@ -179,6 +186,24 @@ public class MemberController implements Controller {
 		ModelAndView mav = new ModelAndView();
 		System.out.println("----Running in MemeberController----");
 		mav.setView("member/forgotId");
+
+		return mav;
+	}
+
+	/**
+	 * @MethodName: findId
+	 * @ClassName: MemberController.java
+	 * @변경이력: 완료
+	 * @Comment: id 찾기 기능
+	 * @작성자: 박혜연
+	 * @작성일: 2020. 5. 1.
+	 */
+	public ModelAndView findId(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		
+		ms.findid(request.getParameter("userEmail"));
+		
+		mav.setView("member/login");
 
 		return mav;
 	}
@@ -193,11 +218,26 @@ public class MemberController implements Controller {
 	 */
 	public ModelAndView forgotPwd(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
-		System.out.println("----Running in MemeberController----");
+		
 		mav.setView("member/forgotPwd");
 
 		return mav;
 	}
 
+	/**
+	 * @MethodName: findPwd
+	 * @ClassName: MemberController.java
+	 * @변경이력:
+	 * @Comment: 비밀번호 찾기 기능 (이메일 연결 필요)
+	 * @작성자: 박혜연
+	 * @작성일: 2020. 5. 1.
+	 */
+	public ModelAndView findPwd(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		System.out.println("----Running in MemeberController----");
+		
+		mav.setView("member/login");
 
+		return mav;
+	}
 }
