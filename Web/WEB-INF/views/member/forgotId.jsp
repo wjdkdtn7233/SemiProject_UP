@@ -51,15 +51,15 @@
 										<p class="mb-4">회원가입 당시 입력하셨던 이메일 주소를 작성해주세요. </p>
 										<p class="mb-4">만약 보내기 클릭 후에도 메일이 도착하지 않았다면, 작성하신 이메일 주소를 확인하고 다시 이메일 보내기를 클릭하세요 </p>
 									</div>
-									<form class="user">
+									<form class="user" action="<%=request.getContextPath()%>/member/findid.do">
 										<div class="form-group">
 											<input type="email" class="form-control form-control-user"
-												id="userEmail" aria-describedby="emailHelp"
+												id="userEmail" name="userEmail" aria-describedby="emailHelp"
 												placeholder="Enter your Email Address...">
 										</div>
-										<a href="login.do" class="btn btn-primary btn-user btn-block">
+										<button class="btn btn-primary btn-user btn-block">
 											메일 보내기
-										</a>
+										</button>
 									</form>
 									<hr>
 									<div class="text-center">

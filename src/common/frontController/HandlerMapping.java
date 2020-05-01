@@ -68,8 +68,14 @@ public class HandlerMapping {
 			case "forgotid.do":
 				methodName = "forgotId";
 				break;
+			case "findid.do":
+				methodName = "findId";
+				break;
 			case "forgotpwd.do":
 				methodName = "forgotPwd";
+				break;
+			case "findpwd.do":
+				methodName = "findPwd";
 				break;
 			case "welcome.do":
 				methodName = "welcome";

@@ -42,7 +42,7 @@ public class MemberDao {
 				result.setUserName(rs.getString(3));
 				result.setUserEmail(rs.getString(4));
 				result.setUserNickName(rs.getString(5));
-				
+
 			}
 		} finally {
 			jdt.close(rs);
@@ -59,7 +59,7 @@ public class MemberDao {
 	 * @throws SQLException
 	 * @MethodName: insertMember
 	 * @ClassName: MemberDao.java
-	 * @변경이력: into 오타 수정
+	 * @변경이력: 완료
 	 * @Comment: 회원 등록 기능
 	 * @작성자: 박혜연
 	 * @작성일: 2020. 4. 30.
@@ -75,19 +75,20 @@ public class MemberDao {
 			pstm.setString(1, m.getUserId());
 			pstm.setString(2, m.getUserPwd());
 			pstm.setString(3, m.getUserName());
-			pstm.setString(4, m.getUserNickName());
-			pstm.setString(5, m.getUserEmail());
+			pstm.setString(4, m.getUserEmail());
+			pstm.setString(5, m.getUserNickName());
 			
+
 			result = pstm.executeUpdate();
-			
+
 		} finally {
 			jdt.close(pstm);
 		}
-		
+
 		System.out.println(result);
 
 		return result;
-	} 
+	}
 
 	/**
 	 * @MethodName: idCheck
@@ -116,6 +117,76 @@ public class MemberDao {
 			jdt.close(stmt);
 		}
 
+		return result;
+	}
+
+	/**
+	 * @throws SQLException
+	 * @MethodName: findId
+	 * @ClassName: MemberDao.java
+	 * @변경이력: 완료
+	 * @Comment: id 찾기
+	 * @작성자: 박혜연
+	 * @작성일: 2020. 5. 1.
+	 */
+	public Member findId(Connection con, String userEmail) throws SQLException {
+		Member result = null;
+
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+
+		String sql = "select m_id, m_pass, m_name, m_email, m_nickname from tb_member where m_email = ?";
+		
+		try {
+			pstm = con.prepareStatement(sql);
+			pstm.setString(1, userEmail);
+			
+			rs = pstm.executeQuery();
+			
+			while(rs.next()) {
+				result = new Member();
+				result.setUserId(rs.getString(1));
+				result.setUserPwd(rs.getString(2));
+				result.setUserName(rs.getString(3));
+				result.setUserEmail(rs.getString(4));
+				result.setUserNickName(rs.getString(5));
+			}
+			
+		} finally {
+			jdt.close(rs);
+			jdt.close(pstm);
+		}
+		return result;
+	}
+	
+	public Member findPwd(Connection con, String userId, String userEmail) throws SQLException {
+		Member result = null;		
+
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+
+		String sql = "select m_id, m_pass, m_name, m_email, m_nickname from tb_member where m_email = ?";
+		
+		try {
+			pstm = con.prepareStatement(sql);
+			pstm.setString(1, userEmail);
+			
+			rs = pstm.executeQuery();
+			
+			while(rs.next()) {
+				result = new Member();
+				result.setUserId(rs.getString(1));
+				result.setUserPwd(rs.getString(2));
+				result.setUserName(rs.getString(3));
+				result.setUserEmail(rs.getString(4));
+				result.setUserNickName(rs.getString(5));
+			}
+			
+		} finally {
+			jdt.close(rs);
+			jdt.close(pstm);
+		}
+		
 		return result;
 	}
 

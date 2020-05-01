@@ -51,15 +51,15 @@
 										<p class="mb-4">회원 가입을 위해 확인 메일이 발송되었습니다. </p>
 										<p class="mb-4">수신 메일의 링크를 클릭하면 회원가입이 완료됩니다. 메일이 도착하지 않았다면 이메일 주소를 확인하거나 다시 한 번 발송 버튼을 클릭해주세요. </p>
 									</div>
-									<form class="user">
+									<form class="user" action="<%=request.getContextPath()%>/member/emailcheck.do">
 										<div class="form-group">
 											<input type="email" class="form-control form-control-user"
 												id="userEmail" aria-describedby="emailHelp"
 												placeholder=<%=request.getParameter("userEmail")%>>
 										</div>
-										<a href="emailcheck.do" class="btn btn-primary btn-user btn-block">
+										<button class="btn btn-primary btn-user btn-block">
 											메일 보내기
-										</a>
+										</button>
 									</form>
 									<hr>
 									<div class="text-center">

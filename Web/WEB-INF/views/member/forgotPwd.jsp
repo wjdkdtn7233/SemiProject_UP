@@ -12,7 +12,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>FINDING ID</title>
+<title>FINDING PASSWORD</title>
 
 <!-- Custom fonts for this template-->
 <link href="/up/resources/vendor/fontawesome-free/css/all.min.css"
@@ -52,20 +52,21 @@
 										<p class="mb-4">만약 보내기 클릭 후에도 메일이 도착하지 않았다면, 작성하신 이메일 주소를
 											확인하고 다시 이메일 보내기를 클릭하세요</p>
 									</div>
-									<form class="user">
+									<form class="user" action="<%=request.getContextPath()%>/member/findpwd.do">
 										<div class="form-group">
 											<input type="text" class="form-control form-control-user"
-												id="userId" aria-describedby="emailHelp"
+												id="userId" name="userId" aria-describedby="emailHelp"
 												placeholder="Enter your ID..."/>
 										</div>
 										<div class="form-group">
 											<input
 												type="email" class="form-control form-control-user"
-												id="userEmail" aria-describedby="emailHelp"
+												id="userEmail" name="userEmail" aria-describedby="emailHelp"
 												placeholder="Enter your Email Address..."/>
 										</div>
-										<a href="login.do" class="btn btn-primary btn-user btn-block">
-											메일 보내기 </a>
+										<button class="btn btn-primary btn-user btn-block">
+											메일 보내기
+										</button>
 									</form>
 									<hr>
 									<div class="text-center">
