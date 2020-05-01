@@ -1,7 +1,9 @@
 package common.frontController;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Arrays;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,6 +21,7 @@ public class DispatcherServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		String[] uriArr = request.getRequestURI().split("/");
 		System.out.println(Arrays.toString(uriArr));
 
@@ -28,6 +31,11 @@ public class DispatcherServlet extends HttpServlet {
 
 		// view로 전송
 		if (mav.getView().equals("ajax")) {
+			
+			PrintWriter pw = response.getWriter();
+			String res = (String) mav.getData().get("userId");
+			pw.write(res);
+			
 		} else if (mav.getView().equals("file")) {
 			
 		} else {

@@ -50,17 +50,26 @@ public class HandlerMapping {
 			case "login.do":
 				methodName = "login";
 				break;
+			case "loginimple.do":
+				methodName = "loginImple";
+				break;
+			case "idcheck.do":
+				methodName = "idCheck";
+				break;
 			case "register.do":
 				methodName = "register";
+				break;
+			case "emailcheck.do":
+				methodName = "emailCheck";
+				break;
+			case "insert.do":
+				methodName = "insertMember";
 				break;
 			case "forgotid.do":
 				methodName = "forgotId";
 				break;
 			case "forgotpwd.do":
 				methodName = "forgotPwd";
-				break;
-			case "emailcheck.do":
-				methodName = "emailCheck";
 				break;
 			case "welcome.do":
 				methodName = "welcome";
