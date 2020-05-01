@@ -31,9 +31,16 @@
 }
 
 i {
-	border:1px solid black;
-	width: 70%;
-	height: 70%;
+	font-size:10rem;
+	margin-left:35%;
+	margin-bottom:5%;
+	text-align: center;
+	color:#36b9cc;]
+}
+
+#move {
+	margin-top:2%;
+	margin-left:44%;
 	text-align: center;
 }
 
@@ -60,7 +67,7 @@ i {
 									<i class="fas fa-user-circle"></i>
 									<div class="text-center">test 님, 반갑습니다!</div>
 									<div class="text-center">로그인 페이지로 이동합니다.</div>
-									<button class="btn btn-primary" id="move">이동</button>
+									<a href="login.do"><button class="btn btn-primary" id="move">이동</button></a>
 								</div>
 							</div>
 						</div>

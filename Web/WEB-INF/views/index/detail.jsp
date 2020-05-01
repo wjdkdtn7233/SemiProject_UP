@@ -24,17 +24,19 @@
 				<!-- container-fluid -->
 				<div class="container-fluid">
 					<div
-						class="row d-sm-flex align-items-center justify-content-around mb-4">
-						<div class="col-sm-8 col-md-8 col-lg-10">
-							<h1 class="h3 mb-0 text-gray-800">Detail view</h1>
-						</div>
-						<div class="input-group-btn col-sm-4 col-md-4 col-lg-2">
-							<div class="customize-input">
-								<select
-									class="custom-select form-control bg-white custom-radius custom-shadow border-1">
-									<option selected>가나다</option>
-									<option value="1">카테고리</option>
-								</select>
+						class="d-sm-flex align-items-center justify-content-between mb-4">
+						<h1 class="h3 mb-0 text-gray-800">Detail view</h1>
+						<div class="input-group-btn">
+							<button type="button" class="btn btn-primary dropdown-toggle"
+								data-toggle="dropdown" aria-expanded="false">
+								가나다 <span class="caret"></span>
+							</button>
+							<div
+								class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+								aria-labelledby="dropdownMenuLink">
+								<div class="dropdown-header">선택 :</div>
+								<a class="dropdown-item" href="#">가나다</a> <a
+									class="dropdown-item" href="#">달성도</a>
 							</div>
 						</div>
 					</div>
@@ -43,29 +45,25 @@
 							<!-- /btn-group -->
 							<!-- Topbar Search -->
 
-							<form class="navbar-search navbar-left">
-								<div class="row justify-content-around">
-									<div class="input-group col-sm-3 col-md-3 col-lg-3">
-										<div class="input-group-btn m-4">
-											<div class="customize-input">
-												<select
-													class="custom-select form-control bg-white custom-radius custom-shadow border-1">
-													<option selected>전체</option>
-													<option value="1">습관</option>
-												</select>
-											</div>
+							<form class="navbar-search">
+								<div class="input-group">
+									<div class="input-group-btn">
+										<div class="customize-input">
+											<select
+												class="custom-select form-control bg-white custom-radius custom-shadow border-1">
+												<option selected>전체</option>
+												<option value="1">습관</option>
+											</select>
 										</div>
-										<input type="text"
-											class="form-control bg-light border-0 small"
-											placeholder="내용을 입력해주세요." aria-label="Search"
-											aria-describedby="basic-addon2">
 									</div>
-									<div class="col-sm-3 col-md-3 col-lg-3">
-										<div class="input-group-append">
-											<button class="btn btn-primary" type="button">
-												<i class="fas fa-search fa-sm"></i>
-											</button>
-										</div>
+									&nbsp; <input type="text"
+										class="form-control bg-light border-0 small"
+										placeholder="내용을 입력해주세요." aria-label="Search"
+										aria-describedby="basic-addon2">
+									<div class="input-group-append">
+										<button class="btn btn-primary" type="button">
+											<i class="fas fa-search fa-sm"></i>
+										</button>
 									</div>
 								</div>
 							</form>
@@ -162,23 +160,22 @@
 								</div>
 							</div>
 							<div class="var">
-									<div class="card shadow mb-4">
-										<!-- Card Header - Dropdown -->
-										<div class="card-header py-3">
-											<h6 class="m-0 font-weight-bold text-primary">Donut
-												Chart</h6>
-										</div>
-										<!-- Card Body -->
-										<div class="card-body">
-											<div class="chart-pie pt-4">
-												<canvas id="myPieChart"></canvas>
-											</div>
-											<hr>
-											Styling for the donut chart can be found in the
-											<code>/js/demo/chart-pie-demo.js</code>
-											file.
-										</div>
+								<div class="card shadow mb-4">
+									<!-- Card Header - Dropdown -->
+									<div class="card-header py-3">
+										<h6 class="m-0 font-weight-bold text-primary">Donut Chart</h6>
 									</div>
+									<!-- Card Body -->
+									<div class="card-body">
+										<div class="chart-pie pt-4">
+											<canvas id="myPieChart"></canvas>
+										</div>
+										<hr>
+										Styling for the donut chart can be found in the
+										<code>/js/demo/chart-pie-demo.js</code>
+										file.
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
