@@ -66,8 +66,9 @@
 			}
 	
 			//로그인 세션값 가져와서 입력된 패스워드와 비교
-			/* if (${sessionScope.loginInfo.MPassword} == pwd) {
-				return true;
+			/* if (${sessionScope.loginInfo.MPassword} != pwd) {
+				alert('비밀번호가 틀렸습니다.');
+				return false;
 			} */
 			
 			return true;

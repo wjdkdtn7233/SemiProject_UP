@@ -1,7 +1,5 @@
 package up.mypage.model.dao;
 
-
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -64,7 +62,7 @@ public class MyPageDao {
 		PreparedStatement pstm = null;
 
 		ResultSet rs = null;
-		
+
 		String sql = "select * from tb_title";
 
 		try {
@@ -77,41 +75,42 @@ public class MyPageDao {
 				title.setTComment(rs.getString(3));
 				title.setTCondition(rs.getString(4));
 				title.setTColor(rs.getString(5));
-				
+
 				titleList.add(title);
 			}
 
 		} finally {
 			jdt.close(rs, pstm);
 		}
-		
+
 		return titleList;
 	}
-	
-	public int updateInfomation(Connection conn /*,Member m*/) throws SQLException{
-		
+
+	public int updateInfomation(String title, String nick, Connection conn /* ,Member m */) throws SQLException {
+
 		int res = 0;
 		PreparedStatement pstm = null;
-		
-		String sql = "update tb_member set ";
+
+		String sql = "update tb_member set m_maintitle=?, m_nickname=? where m_id='wjdkdtn'";
 		try {
 			pstm = conn.prepareStatement(sql);
-		}finally {
+			pstm.setString(1, title);
+			pstm.setString(2, nick);
+			res = pstm.executeUpdate();
+		} finally {
 			jdt.close(pstm);
 		}
-		
-		
+
 		return res;
 	}
-	
-	
-	public List<Title> selectUserTitle(/*Member m,*/Connection conn) throws SQLException{
+
+	public List<Title> selectUserTitle(/* Member m, */Connection conn) throws SQLException {
 		List<Title> tList = new ArrayList<>();
 
 		PreparedStatement pstm = null;
 
 		ResultSet rs = null;
-		
+
 		String sql = "select mt.t_code, t.t_name, t.t_color from tb_member  m inner join tb_m_title mt on(m.m_id=mt.m_id) inner join tb_title t on(mt.t_code=t.t_code) where m.m_id = 'wjdkdtn'";
 
 		try {
@@ -129,9 +128,61 @@ public class MyPageDao {
 		} finally {
 			jdt.close(rs, pstm);
 		}
-		
-	
-		
+
 		return tList;
+	}
+
+	public int updatePassword(String newPwd, String id, Connection conn) throws SQLException {
+
+		int res = 0;
+		PreparedStatement pstm = null;
+
+		String sql = "update tb_member set m_pass=? where m_id=? ";
+
+		try {
+			pstm = conn.prepareStatement(sql);
+			pstm.setString(1, newPwd);
+			pstm.setString(2, id);
+			res = pstm.executeUpdate();
+		} finally {
+			jdt.close(pstm);
+		}
+
+		return res;
+	}
+
+	public int updateLeaveYN(Connection conn/* Member m */) throws SQLException {
+		int res = 0;
+		PreparedStatement pstm = null;
+
+		String sql = "update tb_member set leave_yn='y' where m_id=?";
+
+		try {
+			pstm = conn.prepareStatement(sql);
+			/* pstm.setString(1, m.getMId); */
+			res = pstm.executeUpdate();
+		} finally {
+			jdt.close(pstm);
+		}
+
+		return res;
+	}
+
+	public int updateFileName(String ofn,String rfn,Connection conn/*,Member m*/) throws SQLException {
+		int res = 0;
+		PreparedStatement pstm = null;
+
+		String sql = "update tb_member set ORIGINAL_FILEPATH=? , RENAME_FILEPATH=? where m_id='wjdkdtn'";
+
+		try {
+			pstm = conn.prepareStatement(sql);
+			pstm.setString(1, ofn);
+			pstm.setString(2, rfn);
+			res = pstm.executeUpdate();
+		} finally {
+			jdt.close(pstm);
+		}
+
+		return res;
 	}
 }

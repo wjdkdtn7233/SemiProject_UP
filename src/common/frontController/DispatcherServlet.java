@@ -24,18 +24,21 @@ public class DispatcherServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String[] uriArr = request.getRequestURI().split("/");
 		System.out.println(Arrays.toString(uriArr));
+		
+
 
 		Controller ctr = hm.getController(uriArr);
 		String methodName = hm.getMethod(uriArr);
 		ModelAndView mav = ha.excute(ctr, methodName, request);
-
 		// view로 전송
 		if (mav.getView().equals("ajax")) {
 			
+
 			PrintWriter pw = response.getWriter();
 			String res = (String) mav.getData().get("userId");
 			pw.write(res);
 			
+
 		} else if (mav.getView().equals("file")) {
 			
 		} else {

@@ -104,12 +104,25 @@ public class HandlerMapping {
 			case "memberwithdrawal.do":
 				methodName = "memberWithdrawal";
 				break;
+			case "deletemember.do":
+				methodName = "deleteMember";
+				break;	
 			case "infomodify.do":
 				methodName = "infoModify";
-				break;	
+				break;
+			case "infoupdate.do":
+				methodName = "infoUpdate";
+				break;
 			case "passwordmodify.do":
 				methodName = "passwordModify";
 				break;
+			case "pwdcheck.do":
+				methodName = "pwdCheck";
+				break;
+			case "uploadprofileimage.do":
+				methodName = "uploadProfileImage";
+				break;		
+				
 			default:
 				throw new Status404("uri를 다시 확인 해주세요!");	
 			}

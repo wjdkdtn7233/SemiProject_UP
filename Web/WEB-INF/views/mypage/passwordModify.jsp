@@ -36,6 +36,7 @@
 							</div>
 
 						</div>
+						<form action="/up/mypage/pwdcheck.do" method="post" onsubmit="return validata();">
 						<div class="cardbody ">
 
 							<div class="row mb-4 mt-5">
@@ -67,8 +68,9 @@
 								</div>
 								<div class="col-3 ml-0 pl-0">
 									<div class="form-group">
-										<input type="password" class="form-control form-control-user"
-											id="exampleInputPassword" placeholder="Password">
+										<input type="password"
+											class="form-control form-control-user inputPwd1"
+											id="exampleInputPassword" placeholder="Password" name="newPwd"/>
 									</div>
 								</div>
 							</div>
@@ -81,30 +83,28 @@
 								</div>
 								<div class="col-3 ml-0 pl-0">
 									<div class="form-group">
-										<input type="password" class="form-control form-control-user"
-											id="exampleInputPassword" placeholder="Password">
+										<input type="password"
+											class="form-control form-control-user inputPwd2"
+											id="exampleInputPassword" placeholder="Password"/>
 									</div>
 								</div>
 								<!-- 비밀번호 틀렸다는 경고창 div -->
-								<div class="col-4 ml-3 px-2">
-									<button class="btn btn-danger btn-icon-split">
-										<span class="icon text-white-50"> <i
-											class="fas fa-trash"></i>
-										</span> <span class="text">Passwords do not match</span>
-									</button>
+								<div class="col-5 ml-3 px-2">
+										 <span class="text-white text center bg-danger" id="info"></span>
 									<!-- 이 버튼이 뜨고 누르면 적혀있던 password가 지워짐 -->
 								</div>
 							</div>
 							<!-- 저장 버튼 저장완료되면 alert창 띄우고 마이페이지 메인으로 이동 -->
 							<div class="row  mb-4">
 								<div class="col-4 ml-5 pl-5">
-									<a href="#" class="btn btn-success btn-icon-split"> <span
+									<button  class="btn btn-success btn-icon-split" id="submitBtn" type="submit"> <span
 										class="icon text-white-50"> <i class="fas fa-check"></i>
 									</span> <span class="text">Password Modified Completed</span>
-									</a>
+									</button>
 								</div>
 							</div>
 						</div>
+						</form>
 					</div>
 
 
@@ -124,6 +124,60 @@
 	</div>
 
 
-	<%@ include file="../include/jsRoot.jsp" %>
+	<%@ include file="../include/jsRoot.jsp"%>
+	<script src="https://code.jquery.com/jquery-3.5.0.js"
+		integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
+		crossorigin="anonymous"></script>
+	<script type="text/javascript">
+		function validata() {
+			//?=.* 어느자리에 있든? 
+			var input1 = $('.inputPwd1');
+			var input2 = $('.inputPwd2');
+
+			var regExpPw = /(?=.*\d{1,50})(?=.*[~`!@#$%\^&*()-+=]{1,50})(?=.*[a-zA-Z]{1,50}).{8,50}$/;
+			$('.inputPwd1').on('click', function() {
+				$('#info').html("");
+			});
+
+			$('.inputPwd2').on('click', function() {
+				$('#info').html("");
+			});
+			
+
+			function chk(re, e, msg) {
+
+				if (re.test(e.val())) {
+
+					return true;
+				} else {
+					$('#info').html("<i class='fas fa-exclamation-triangle'></i>" +msg);
+					e.value = "";
+					e.focus();
+					return false;
+				}
+			}
+
+			//닉네임 검사
+			if (!chk(regExpPw, input1, "비밀번호는 영문,숫자,특수기호를 포함한 8자리 이상으로 입력해주세요.")) {
+				return false;
+			}
+
+			if (!chk(regExpPw, input2, "비밀번호는 영문,숫자,특수기호를 포함한 8자리 이상으로 입력해주세요.")) {
+				return false;
+			}
+
+			if (input1.val() != input2.val()) {
+				$('#info').html("<i class='fas fa-exclamation-triangle'></i>" +"입력한 비밀번호가 서로 맞지 않습니다.");
+				return false;
+			}
+			
+			/* if( input1.val() == 현재 사용중인 비밀번호 ){
+				alert('현재 사용중인 비밀번호와 같습니다.');
+				return false;
+			} */
+			
+			return true;
+		}
+	</script>
 </body>
 </html>

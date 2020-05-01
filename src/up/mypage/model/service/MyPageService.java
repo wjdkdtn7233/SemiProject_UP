@@ -1,6 +1,7 @@
 package up.mypage.model.service;
 
 
+import java.lang.reflect.Member;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -90,14 +91,18 @@ public class MyPageService {
 	  * @return int
 	  */
 	
-	public int updateInfomation(String nick, String email, String titleName) {
+	public int updateInfomation(String title,String nick) {
 		int res = 0;
 		Connection conn = null;
 		conn = jdt.getConnection();
 		try {
-			mdao.updateInfomation(conn);
+			res = mdao.updateInfomation(title, nick, conn);
+			if(res >= 1) {
+				jdt.commit(conn);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			jdt.rollback(conn);
 		}finally {
 			jdt.close(conn);
 		}
@@ -127,8 +132,101 @@ public class MyPageService {
 			e.printStackTrace();
 		}finally {
 			jdt.close(conn);
+			
 		}
 		
 		return tList;
+	}
+	
+	
+	/**
+	  * @Method Name : updatePassword
+	  * @작성일 : 2020. 5. 1.
+	  * @작성자 : 정상훈
+	  * @변경이력 : 완성
+	  * @Method 설명 : 새로운 비밀번호로  update 시켜주는 메소드
+	  * @param newPwd
+	  * @param id
+	  * @return int
+	  */
+	
+	public int updatePassword(String newPwd,String id) {
+		int res = 0;
+		Connection conn = null;
+		conn = jdt.getConnection();
+		try {
+			res = mdao.updatePassword(newPwd,id,conn);
+			if(res >= 1) {
+				jdt.commit(conn);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			jdt.rollback(conn);
+		}finally {
+			jdt.close(conn);
+		}
+		
+		
+		return res;
+	}
+	
+	
+	/**
+	  * @Method Name : updateLeaveYN
+	  * @작성일 : 2020. 5. 1.
+	  * @작성자 : 정상훈
+	  * @변경이력 : 
+	  * @Method 설명 : leave_yn 값을 y로 변경
+	  * @return
+	  */
+	
+	public int updateLeaveYN(/*Member m*/) {
+		int res = 0;
+		Connection conn = null;
+		conn = jdt.getConnection();
+		try {
+			res = mdao.updateLeaveYN(conn);
+			if(res >= 1) {
+				jdt.commit(conn);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			jdt.rollback(conn);
+		}finally {
+			jdt.close(conn);
+		}
+		
+		
+		return res;
+	}
+	
+	/**
+	  * @Method Name : updateFileName
+	  * @작성일 : 2020. 5. 1.
+	  * @작성자 : 정상훈
+	  * @변경이력 : 
+	  * @Method 설명 : 프로필 사진 origin 파일이름 , rename 파일이름 DB에 저장 
+	  * @return int
+	  */
+	
+	public int updateFileName(/*Member m*/String ofn,String rfn) {
+		int res = 0;
+		
+		Connection conn = null;
+		conn = jdt.getConnection();
+		try {
+			res = mdao.updateFileName(ofn, rfn, conn);
+			if(res >= 1) {
+				jdt.commit(conn);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			jdt.rollback(conn);
+		}finally {
+			jdt.close(conn);
+		}
+		
+		return res;
 	}
 }
