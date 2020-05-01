@@ -40,8 +40,8 @@ CREATE TABLE TB_HABIT (
     H_START_DATE    DATE,
     H_END_DATE      DATE,
     H_SELECTDAY     VARCHAR2(100 CHAR),
-    H_GOAL_MONEY    NUMBER(14),
-    H_GOAL_TIME     NUMBER(5),
+    H_MONEY         NUMBER(10),
+    H_TIME          NUMBER(5),
     C_CODE          NUMBER(5) NOT NULL,
     M_ID            VARCHAR2(100 CHAR) NOT NULL
 );
