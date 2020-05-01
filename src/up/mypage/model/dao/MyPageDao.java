@@ -10,6 +10,7 @@ import java.util.List;
 import com.sun.mail.handlers.message_rfc822;
 
 import common.JDBCTemplate;
+import up.member.model.vo.Member;
 import up.mypage.model.vo.History;
 import up.mypage.model.vo.Title;
 
@@ -17,7 +18,7 @@ public class MyPageDao {
 
 	JDBCTemplate jdt = JDBCTemplate.getInstance();
 
-	public List<History> selectHabitHistory(/* Member m */Connection conn) throws SQLException {
+	public List<History> selectHabitHistory(Connection conn,Member m) throws SQLException {
 
 		int count = 1;
 		List<History> historyList = new ArrayList<>();
@@ -31,7 +32,7 @@ public class MyPageDao {
 
 		try {
 			pstm = conn.prepareStatement(sql);
-			pstm.setString(1, ""/* m.getID */);
+			pstm.setString(1, m.getUserId());
 			rs = pstm.executeQuery();
 			while (rs.next()) {
 
@@ -104,23 +105,25 @@ public class MyPageDao {
 		return res;
 	}
 
-	public List<Title> selectUserTitle(/* Member m, */Connection conn) throws SQLException {
+	public List<Title> selectUserTitle(Connection conn,Member m) throws SQLException {
 		List<Title> tList = new ArrayList<>();
 
 		PreparedStatement pstm = null;
 
 		ResultSet rs = null;
 
-		String sql = "select mt.t_code, t.t_name, t.t_color from tb_member  m inner join tb_m_title mt on(m.m_id=mt.m_id) inner join tb_title t on(mt.t_code=t.t_code) where m.m_id = 'wjdkdtn'";
+		String sql = "select mt.t_code, t.t_name, t.t_color from tb_member  m inner join tb_m_title mt on(m.m_id=mt.m_id) inner join tb_title t on(mt.t_code=t.t_code) where m.m_id =?";
 
 		try {
 			pstm = conn.prepareStatement(sql);
+			pstm.setString(1, m.getUserId());
 			rs = pstm.executeQuery();
 			while (rs.next()) {
 				Title title = new Title();
 				title.setTCode(rs.getInt(1));
 				title.setTName(rs.getString(2));
 				title.setTColor(rs.getString(3));
+				
 
 				tList.add(title);
 			}
@@ -151,15 +154,15 @@ public class MyPageDao {
 		return res;
 	}
 
-	public int updateLeaveYN(Connection conn/* Member m */) throws SQLException {
+	public int updateLeaveYN(Connection conn,Member m ) throws SQLException {
 		int res = 0;
 		PreparedStatement pstm = null;
 
-		String sql = "update tb_member set leave_yn='y' where m_id=?";
+		String sql = "update tb_member set leave_yn='Y' where m_id=?";
 
 		try {
 			pstm = conn.prepareStatement(sql);
-			/* pstm.setString(1, m.getMId); */
+			pstm.setString(1, m.getUserId());
 			res = pstm.executeUpdate();
 		} finally {
 			jdt.close(pstm);

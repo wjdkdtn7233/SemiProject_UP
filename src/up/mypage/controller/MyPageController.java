@@ -2,7 +2,6 @@ package up.mypage.controller;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Member;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.security.interfaces.RSAKey;
@@ -20,6 +19,7 @@ import common.frontController.Controller;
 import common.frontController.ModelAndView;
 import common.util.FileUtil;
 import common.vo.UploadFile;
+import up.member.model.vo.Member;
 import up.mypage.model.service.MyPageService;
 
 /**
@@ -67,8 +67,8 @@ public class MyPageController implements Controller {
 	 */
 	public ModelAndView habitHistory(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
-		// Member m = (Member) request.getSession().getAttribute("loginInfo");
-		mav.addObject("historyList", ms.selectHabitHistory(/* m */));
+		Member m = (Member) request.getSession().getAttribute("loginInfo");
+		mav.addObject("historyList", ms.selectHabitHistory(m));
 		mav.setView("mypage/habitHistory");
 		
 		return mav;
@@ -137,8 +137,8 @@ public class MyPageController implements Controller {
 	
 	public ModelAndView infoModify(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
-		// Member m = (Member) request.getSession().getAttribute("loginInfo");
-		mav.addObject("tList", ms.selectUserTitle());
+		Member m = (Member) request.getSession().getAttribute("loginInfo");
+		mav.addObject("tList", ms.selectUserTitle(m));
 		mav.setView("mypage/infoModify");
 
 		return mav;
@@ -261,15 +261,16 @@ public class MyPageController implements Controller {
 	
 	public ModelAndView pwdCheck(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
+		Member m = (Member) request.getSession().getAttribute("loginInfo");
 		
 		String newPwd = request.getParameter("newPwd");
+		String id = m.getUserId();
 		
-		String id = "";
-		System.out.println(newPwd);
 		int res =  ms.updatePassword(newPwd, id);
 		
 		if(res >= 1) {
-			
+			m.setUserPwd(newPwd);
+			request.getSession().setAttribute("loginInfo", m);
 			mav.setView("common/result");
 			mav.addObject("url", "/up/mypage/mypage.do");
 			mav.addObject("alertMsg", "비밀번호 수정에 성공하였습니다.");
@@ -311,14 +312,15 @@ public class MyPageController implements Controller {
 	
 	public ModelAndView deleteMember(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
-		// Member m = (Member) request.getSession().getAttribute("loginInfo");
+	    Member m = (Member) request.getSession().getAttribute("loginInfo");
 		
 		int res = 0;
 		
-		res = ms.updateLeaveYN(/*Member m*/);
+		res = ms.updateLeaveYN(m);
 		
 		if(res >= 1) {
-			
+			m.setUserLeaveYN("Y");
+			request.getSession().setAttribute("loginInfo", m);
 			mav.setView("common/result");
 			mav.addObject("url", "/up/mypage/goodbye.do");
 			mav.addObject("alertMsg", "회원탈퇴처리가 성공적으로 완료되었습니다.");

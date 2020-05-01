@@ -61,7 +61,7 @@
 										<span class="text text-gray-900 mr-5 font-weight-bold">ID</span>
 									</div>
 									<div class="col-8 ml-0 pl-0">
-										<span class="text text-gray-900 h5 ">wjdkdtn</span>
+										<span class="text text-gray-900 h5 ">${sessionScope.loginInfo.userId}</span>
 									</div>
 								</div>
 
@@ -88,7 +88,7 @@
 
 									</div>
 									<div class="col-2 ml-0 pl-0">
-										<span class="text text-gray-900 mr-5">정상훈 </span>
+										<span class="text text-gray-900 mr-5">${sessionScope.loginInfo.userName}</span>
 									</div>
 								</div>
 								<div class="row  mb-2">
@@ -101,7 +101,7 @@
 										<div class="form-group ">
 											<input type="text" id="inputNickName"
 												class="form-control form-control-user" name="nick"
-												value="huni" placeholder="Enter a nickname to change" />
+												value="${sessionScope.loginInfo.userNickName}" placeholder="Enter a nickname to change" />
 										</div>
 									</div>
 								</div>
@@ -118,7 +118,7 @@
 												id="exampleInputEmail" value="wjdkdtn7233@naver.com"
 												placeholder="Enter email to change"
 												aria-describedby="emailHelp" name="email"> -->
-											<span class="text text-gray-900 mr-5">wjdkdtn7233@naver.com
+											<span class="text text-gray-900 mr-5">${sessionScope.loginInfo.userEmail}
 											</span>
 										</div>
 									</div>

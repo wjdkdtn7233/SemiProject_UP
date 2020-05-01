@@ -1,13 +1,14 @@
 package up.mypage.model.service;
 
 
-import java.lang.reflect.Member;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import common.JDBCTemplate;
+import up.member.model.vo.Member;
 import up.mypage.model.dao.MyPageDao;
 import up.mypage.model.vo.History;
 import up.mypage.model.vo.Title;
@@ -26,7 +27,7 @@ public class MyPageService {
 	  * @return List<History>
 	  */
 	
-	public List<History> selectHabitHistory(/* Member m */) {
+	public List<History> selectHabitHistory(Member m) {
 
 		List<History> historyList = new ArrayList<>();
 
@@ -35,7 +36,7 @@ public class MyPageService {
 		conn = jdt.getConnection();
 
 		try {
-			historyList = mdao.selectHabitHistory(conn);
+			historyList = mdao.selectHabitHistory(conn,m);
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -121,12 +122,12 @@ public class MyPageService {
 	  * @return List<Title>
 	  */
 	
-	public List<Title> selectUserTitle(/*Member m*/){
+	public List<Title> selectUserTitle(Member m){
 		List<Title> tList = new ArrayList<>();
 		Connection conn = null;
 		conn = jdt.getConnection();
 		try {
-			tList = mdao.selectUserTitle(conn);
+			tList = mdao.selectUserTitle(conn,m);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -181,12 +182,12 @@ public class MyPageService {
 	  * @return
 	  */
 	
-	public int updateLeaveYN(/*Member m*/) {
+	public int updateLeaveYN(Member m) {
 		int res = 0;
 		Connection conn = null;
 		conn = jdt.getConnection();
 		try {
-			res = mdao.updateLeaveYN(conn);
+			res = mdao.updateLeaveYN(conn,m);
 			if(res >= 1) {
 				jdt.commit(conn);
 			}

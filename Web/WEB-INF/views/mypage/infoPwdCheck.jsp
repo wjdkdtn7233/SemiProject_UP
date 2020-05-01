@@ -21,7 +21,7 @@
 			<div id="content">
 				<%@ include file="../include/top.jsp"%>
 				<div class="container-fluid size11">
-
+					<span class="h2  text-gray-900">개인정보수정</span>
 					<div
 						class="row align-items-center justify-content-center h-100 px-3 ml-3 mb-5 text-primary  font-weight-bold text-center text-border-weight">
 						<div class="col-5 ">
@@ -29,14 +29,14 @@
 								<div class="card-header">개인정보 확인을 위해 비밀번호를 입력해주세요.</div>
 								
 								<div class="card-body">
-								<form action="/up/mypage/infomodify.do" method="post" onsubmit="return formCheck();">
+								<form action="/up/mypage/infomodify.do" method="post" onsubmit="return validata();">
 									<div class="form-group">
 									
 										<input type="password" class="form-control form-control-user checkPwd"
 											id="exampleInputPassword" placeholder="Password"/>
 									</div>
-									<input
-										class="btn btn-primary btn-user btn-block" type="submit" value="확인">
+									<button
+										class="btn btn-primary btn-user btn-block" type="submit">확인</button>
 									
 									</form>
 								</div>
@@ -52,33 +52,30 @@
 		</div>
 	</div>
 
-<script src="https://code.jquery.com/jquery-3.5.0.js" integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc=" crossorigin="anonymous"></script>
-<script type="text/javascript">
 
-
-
-	  
-	  function formCheck(){
+<%@ include file="../include/jsRoot.jsp" %>
+<script src="https://code.jquery.com/jquery-3.5.0.js"
+		integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
+		crossorigin="anonymous"></script>
+	<script type="text/javascript">
+		function validata() {
 			
-			var pwd = document.querySelector('#exampleInputPassword').value;
-			if(pwd == ''){
-				alert('비밀번호를 입력해주세요.');
+			var userpwd = '${sessionScope.loginInfo.userPwd}';
+			var  pw = $('.checkPwd');
+			
+			if ( pw.val() == "") {
+				alert('비밀번호를 입력해 주세요.');
 				return false;
 			}
-	
-			//로그인 세션값 가져와서 입력된 패스워드와 비교
-			if (${sessionScope.loginInfo.userPwd} != pwd) {
-				alert('비밀번호가 틀렸습니다.');
+
+			if ( pw.val() != userpwd) {
+				alert('비밀번호가 맞지 않습니다. 다시 입력해주세요.');
 				return false;
-			} 
-			
+			}
+
 			return true;
 		}
-
-	
-
-</script>
-<%@ include file="../include/jsRoot.jsp" %>
+	</script>
 
 </body>
 </html>
