@@ -33,13 +33,12 @@ public class DispatcherServlet extends HttpServlet {
 		// view로 전송
 		if (mav.getView().equals("ajax")) {
 			
-<<<<<<< HEAD
-=======
+
 			PrintWriter pw = response.getWriter();
 			String res = (String) mav.getData().get("userId");
 			pw.write(res);
 			
->>>>>>> c75afb6cb98c3905af409b3783a9bd7246c988a7
+
 		} else if (mav.getView().equals("file")) {
 			
 		} else {
