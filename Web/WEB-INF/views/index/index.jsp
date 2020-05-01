@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<%@ include file="../include/header.jsp" %>
+<%@ include file="../include/header.jsp"%>
 
 <body id="page-top">
 
@@ -18,7 +18,7 @@
 			<!-- Main Content -->
 			<div id="content">
 
-				<%@ include file="../include/top.jsp" %>
+				<%@ include file="../include/top.jsp"%>
 				<!-- End of Topbar -->
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
@@ -47,20 +47,16 @@
 							<form class="navbar-search">
 								<div class="input-group">
 									<div class="input-group-btn">
-										<button type="button" class="btn btn-default dropdown-toggle"
-											data-toggle="dropdown" aria-expanded="false">
-											전체 <span class="caret"></span>
-										</button>
-										<div
-											class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-											aria-labelledby="dropdownMenuLink">
-											<div class="dropdown-header">선택 :</div>
-											<a class="dropdown-item" href="#">전체</a> <a
-												class="dropdown-item" href="#">카테고리</a>
+										<div class="customize-input">
+											<select
+												class="custom-select form-control bg-white custom-radius custom-shadow border-1">
+												<option selected>전체</option>
+												<option value="1">습관</option>
+											</select>
 										</div>
 									</div>
-
-									<input type="text" class="form-control bg-light border-0 small"
+									&nbsp; <input type="text"
+										class="form-control bg-light border-0 small"
 										placeholder="내용을 입력해주세요." aria-label="Search"
 										aria-describedby="basic-addon2">
 									<div class="input-group-append">
@@ -197,7 +193,7 @@
 			<!-- End of Main Content -->
 
 			<!-- Footer -->
-			<%@ include file="../include/footer.jsp" %>
+			<%@ include file="../include/footer.jsp"%>
 			<!-- End of Footer -->
 
 		</div>
