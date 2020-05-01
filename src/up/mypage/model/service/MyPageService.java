@@ -1,5 +1,6 @@
 package up.mypage.model.service;
 
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -93,9 +94,41 @@ public class MyPageService {
 		int res = 0;
 		Connection conn = null;
 		conn = jdt.getConnection();
+		try {
+			mdao.updateInfomation(conn);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			jdt.close(conn);
+		}
 		
-		jdt.close(conn);
 		
 		return res;
+	}
+	
+	
+	/**
+	  * @Method Name : selectUserTitle
+	  * @작성일 : 2020. 5. 1.
+	  * @작성자 : 정상훈
+	  * @변경이력 : session 로그인 정보 멤버객체를 보내줘 쿼리 수정하면 된다.
+	  * @Method 설명 : 유저가 현재 가지고 있는 타이틀 목록을 꺼내와준다.
+	  * @return List<Title>
+	  */
+	
+	public List<Title> selectUserTitle(/*Member m*/){
+		List<Title> tList = new ArrayList<>();
+		Connection conn = null;
+		conn = jdt.getConnection();
+		try {
+			tList = mdao.selectUserTitle(conn);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			jdt.close(conn);
+		}
+		
+		return tList;
 	}
 }

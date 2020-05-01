@@ -103,4 +103,35 @@ public class MyPageDao {
 		
 		return res;
 	}
+	
+	
+	public List<Title> selectUserTitle(/*Member m,*/Connection conn) throws SQLException{
+		List<Title> tList = new ArrayList<>();
+
+		PreparedStatement pstm = null;
+
+		ResultSet rs = null;
+		
+		String sql = "select mt.t_code, t.t_name, t.t_color from tb_member  m inner join tb_m_title mt on(m.m_id=mt.m_id) inner join tb_title t on(mt.t_code=t.t_code) where m.m_id = 'wjdkdtn'";
+
+		try {
+			pstm = conn.prepareStatement(sql);
+			rs = pstm.executeQuery();
+			while (rs.next()) {
+				Title title = new Title();
+				title.setTCode(rs.getInt(1));
+				title.setTName(rs.getString(2));
+				title.setTColor(rs.getString(3));
+
+				tList.add(title);
+			}
+
+		} finally {
+			jdt.close(rs, pstm);
+		}
+		
+	
+		
+		return tList;
+	}
 }
