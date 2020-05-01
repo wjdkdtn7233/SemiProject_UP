@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <style>
@@ -66,10 +67,10 @@
 			}
 	
 			//로그인 세션값 가져와서 입력된 패스워드와 비교
-			/* if (${sessionScope.loginInfo.MPassword} != pwd) {
+			if (${sessionScope.loginInfo.userPwd} != pwd) {
 				alert('비밀번호가 틀렸습니다.');
 				return false;
-			} */
+			} 
 			
 			return true;
 		}

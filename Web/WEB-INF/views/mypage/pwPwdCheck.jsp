@@ -27,12 +27,12 @@
 								<div class="card-header">개인정보 확인을 위해 비밀번호를 입력해주세요.</div>
 								<div class="card-body">
 									<div class="form-group">
-									<form action="/up/mypage/passwordmodify.do" method="post" onsubmit="return formCheck();">
+									<form action="/up/mypage/passwordmodify.do" method="post" onsubmit="return validata();">
 										<input type="password" class="form-control form-control-user"
 											id="exampleInputPassword" placeholder="Password">
 									</div>
 									<input type="submit" value="확인"
-										class="btn btn-primary btn-user btn-block"> </a>
+										class="btn btn-primary btn-user btn-block">
 									</form>	
 								</div>
 							</div>
@@ -47,7 +47,7 @@
 		</div>
 	</div>
 	<script>
-	 function formCheck(){
+	 function validata(){
 			
 			var pwd = document.querySelector('#exampleInputPassword').value;
 			if(pwd == ''){
@@ -56,10 +56,10 @@
 			}
 	
 			//로그인 세션값 가져와서 입력된 패스워드와 비교
-			/* if (${sessionScope.loginInfo.MPassword} != pwd) {
+			if (${sessionScope.loginInfo.userPwd} != pwd) {
 				alert('비밀번호가 틀렸습니다.');
 				return false;
-			} */
+			} 
 			
 			return true;
 		}

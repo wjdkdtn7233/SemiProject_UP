@@ -27,7 +27,7 @@ public class MemberDao {
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 
-		String sql = "select m_id, m_pass, m_name, m_email, m_nickname from tb_member where m_id = ? and m_pass = ?";
+		String sql = "select * from tb_member where m_id = ? and m_pass = ?";
 
 		try {
 			pstm = con.prepareStatement(sql);
@@ -42,6 +42,12 @@ public class MemberDao {
 				result.setUserName(rs.getString(3));
 				result.setUserEmail(rs.getString(4));
 				result.setUserNickName(rs.getString(5));
+				result.setUserTitleCode(rs.getInt(6));
+				result.setUserLoginCnt(rs.getInt(7));
+				result.setUserJoinDate(rs.getDate(8));
+				result.setUserLeaveYN(rs.getString(9));
+				result.setOriginFile(rs.getString(10));
+				result.setRenameFile(rs.getString(11));
 
 			}
 		} finally {
