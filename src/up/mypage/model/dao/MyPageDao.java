@@ -188,4 +188,29 @@ public class MyPageDao {
 
 		return res;
 	}
+	
+	public Title getTitle(Member m,Connection conn) throws SQLException {
+		Title t = new Title();
+		PreparedStatement pstm = null;
+		ResultSet rs =null;
+		
+		String sql = "select t.t_name,t.t_color from tb_member  m inner join tb_title  t on(m.REPRESENTATION_TITLE = t.t_code) where m_id =?" ;
+		try {
+			pstm = conn.prepareStatement(sql);
+			pstm.setString(1, m.getUserId());
+			rs = pstm.executeQuery();
+
+			if (rs.next()) {
+				t.setTCode(m.getUserTitleCode());
+				t.setTName(rs.getString(1));
+				t.setTColor(rs.getString(2));
+			}
+		}finally {
+			jdt.close(rs,pstm);
+		}
+		
+		
+		return t;
+	}
+	
 }

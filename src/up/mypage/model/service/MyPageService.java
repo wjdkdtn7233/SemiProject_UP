@@ -230,4 +230,23 @@ public class MyPageService {
 		
 		return res;
 	}
+	
+	
+	public Title getTitle(Member m) {
+		Title t = new Title();
+		
+		Connection conn = null;
+
+		conn = jdt.getConnection();
+		try {
+			t = mdao.getTitle(m, conn);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			jdt.close(conn);
+		}
+		
+		return t;
+	}
 }

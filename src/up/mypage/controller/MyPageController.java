@@ -21,6 +21,7 @@ import common.util.FileUtil;
 import common.vo.UploadFile;
 import up.member.model.vo.Member;
 import up.mypage.model.service.MyPageService;
+import up.mypage.model.vo.Title;
 
 /**
   * @FileName : MyPageController.java
@@ -375,6 +376,13 @@ public class MyPageController implements Controller {
 	  	}
 	      
 		return mav;
+	}
+	
+	
+	public void getTitle(HttpServletRequest request) {
+		Member m = (Member) request.getSession().getAttribute("loginInfo");
+		Title title = ms.getTitle(m);
+		request.getSession().setAttribute("representationTitle", title);
 	}
 	
 }

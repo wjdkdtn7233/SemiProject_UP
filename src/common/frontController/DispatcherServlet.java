@@ -37,7 +37,6 @@ public class DispatcherServlet extends HttpServlet {
 			PrintWriter pw = response.getWriter();
 			String res = (String) mav.getData().get("userId");
 			pw.write(res);
-			
 
 		} else if (mav.getView().equals("file")) {
 			

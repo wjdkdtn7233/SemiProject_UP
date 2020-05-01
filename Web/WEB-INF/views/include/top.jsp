@@ -39,7 +39,7 @@
                </div>
             </form>
          </div></li>
-
+		<span class="text-center " style="background:${sessionScope.representationTitle.TColor}"> ${sessionScope.representationTitle.TName }</span>
       <!-- Nav Item - Alerts -->
       <li class="nav-item dropdown no-arrow mx-1"><a
          class="nav-link dropdown-toggle" href="#" id="alertsDropdown"
@@ -199,3 +199,4 @@
 	</div>
 
 </nav>
+

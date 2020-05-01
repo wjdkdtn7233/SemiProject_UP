@@ -7,6 +7,7 @@ import common.frontController.Controller;
 import common.frontController.ModelAndView;
 import up.member.model.service.MemberService;
 import up.member.model.vo.Member;
+import up.mypage.controller.MyPageController;
 
 /**
  * @FileName : MemberController.java
@@ -54,6 +55,9 @@ public class MemberController implements Controller {
 
 			HttpSession session = request.getSession();
 			session.setAttribute("loginInfo", m);
+			//유저가 로그인 하는동안  타이틀 네임 / 컬러 띄워주는 메소드
+			MyPageController mc = new MyPageController();
+			mc.getTitle(request);
 			mav.setView("index/index");
 
 		} else {

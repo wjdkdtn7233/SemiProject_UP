@@ -89,6 +89,9 @@ public class HandlerMapping {
 			case "mypage.do":
 				methodName = "myPage";
 				break;
+			case "gettitle.do":
+				methodName = "getTitle";
+				break;	
 			case "infopwdcheck.do":
 				methodName = "infoPwdCheck";
 				break;	
