@@ -82,63 +82,64 @@
 								</div>
 							</div>
 							<!-- 비밀번호 입력 -->
-							<div class="row  mb-4">
-								<div class="col-2 ml-5 pl-5">
-									<span class="text text-gray-900 mr-5 font-weight-bold">PASSWORD
-									</span>
+							<form action="/up/mypage/deletemember.do" method="post"
+								onsubmit="return validata();">
+								<div class="row  mb-4">
+									<div class="col-2 ml-5 pl-5">
+										<span class="text text-gray-900 mr-5 font-weight-bold">PASSWORD
+										</span>
 
-								</div>
-								<div class="col-3 ml-0 pl-0">
-									<div class="form-group">
-										<input type="password" class="form-control form-control-user"
-											id="exampleInputPassword" placeholder="Password">
 									</div>
-								</div>
-							</div>
-							<!-- 비밀번호 확인 -->
-							<div class="row  mb-4">
-								<div class="col-2 ml-5 pl-5">
-									<span class="text text-gray-900 mr-5 font-weight-bold">REPEAT
-										PASSWORD </span>
-
-								</div>
-								<div class="col-3 ml-0 pl-0">
-									<div class="form-group">
-										<input type="password" class="form-control form-control-user"
-											id="exampleInputPassword" placeholder="Password">
-									</div>
-								</div>
-								<!-- 비밀번호 틀렸다는 경고창 div -->
-								<div class="col-4 ml-3 px-2">
-									<button class="btn btn-danger btn-icon-split">
-										<span class="icon text-white-50"> <i
-											class="fas fa-trash"></i>
-										</span> <span class="text">Passwords do not match</span>
-									</button>
-									<!-- 이 버튼이 뜨고 누르면 적혀있던 password가 지워짐 -->
-								</div>
-							</div>
-							<div class="row  mb-4 justify-content-center">
-								<div class="col-4 mr-5">
-									<div class="form-group">
-										<div class="custom-control custom-checkbox small">
-											<input type="checkbox" class="custom-control-input"
-												id="customCheck"> <label
-												class="custom-control-label h6" for="customCheck">Do
-												you agree to withdraw from membership?</label>
+									<div class="col-3 ml-0 pl-0">
+										<div class="form-group">
+											<input type="password"
+												class="form-control form-control-user inputPwd1"
+												id="exampleInputPassword" placeholder="Password">
 										</div>
 									</div>
 								</div>
-							</div>
-							<!-- 저장 버튼 저장완료되면 alert창 띄우고 마이페이지 메인으로 이동 -->
-							<div class="row  mb-4">
-								<div class="col-4 ml-5 pl-5">
-									<a href="#" class="btn btn-success btn-icon-split"> <span
-										class="icon text-white-50"> <i class="fas fa-check"></i>
-									</span> <span class="text">Membership Withdrawal</span>
-									</a>
+								<!-- 비밀번호 확인 -->
+								<div class="row  mb-4">
+									<div class="col-2 ml-5 pl-5">
+										<span class="text text-gray-900 mr-5 font-weight-bold">REPEAT
+											PASSWORD </span>
+
+									</div>
+									<div class="col-3 ml-0 pl-0">
+										<div class="form-group">
+											<input type="password"
+												class="form-control form-control-user inputPwd2"
+												id="exampleInputPassword" placeholder="Password">
+										</div>
+									</div>
+									<!-- 비밀번호 틀렸다는 경고창 div -->
+									<div class="col-4 ml-3 px-2">
+										<span class="text-white bg-danger" id="info"></span>
+										<!-- 이 버튼이 뜨고 누르면 적혀있던 password가 지워짐 -->
+									</div>
 								</div>
-							</div>
+								<div class="row  mb-4 justify-content-center">
+									<div class="col-4 mr-5">
+										<div class="form-group">
+											<div class="custom-control custom-checkbox small">
+												<input type="checkbox" class="custom-control-input"
+													id="customCheck"> <label
+													class="custom-control-label h6" for="customCheck">Do
+													you agree to withdraw from membership?</label>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- 저장 버튼 저장완료되면 alert창 띄우고 마이페이지 메인으로 이동 -->
+								<div class="row  mb-4">
+									<div class="col-4 ml-5 pl-5">
+										<button class="btn btn-success btn-icon-split" type="submit"> <span
+											class="icon text-white-50"> <i class="fas fa-check"></i>
+										</span> <span class="text">Membership Withdrawal</span>
+										</button>
+									</div>
+								</div>
+							</form>
 						</div>
 					</div>
 
@@ -159,6 +160,57 @@
 	</div>
 
 
-	<%@ include file="../include/jsRoot.jsp" %>
+	<%@ include file="../include/jsRoot.jsp"%>
+	<%@ include file="../include/jsRoot.jsp"%>
+	<script src="https://code.jquery.com/jquery-3.5.0.js"
+		integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
+		crossorigin="anonymous"></script>
+	<script type="text/javascript">
+		function validata() {
+
+			var pwd1 = $('.inputPwd1');
+			var pwd2 = $('.inputPwd2');
+
+			pwd1.on('click', function() {
+				$('#info').html("");
+			});
+			pwd2.on('click', function() {
+				$('#info').html("");
+			});
+
+			if (pwd1.val() == '') {
+				$('#info').html(
+						"<i class='fas fa-exclamation-triangle'></i>"
+								+ " 비밀번호를 입력해주세요.");
+				return false;
+			}
+			if (pwd1.val() != pwd2.val()) {
+				$('#info').html(
+						"<i class='fas fa-exclamation-triangle'></i>"
+								+ " 입력한 비밀번호가 서로 일치하지 않습니다.");
+				return false;
+			}
+			
+			//로그인 세션값 가져와서 입력된 패스워드와 비교
+			/* if (${sessionScope.loginInfo.MPassword} != pwd.val()) {
+				$('#info').html(
+						"<i class='fas fa-exclamation-triangle'></i>"
+								+ " 입력한 비밀번호가 틀렸습니다. ");
+				return false;
+			} */
+		
+
+			if (!$('#customCheck').is(':checked')) {
+				$('#info').html(
+						"<i class='fas fa-exclamation-triangle'></i>"
+								+ " 동의란에 체크가 되어있지 않습니다.");
+				return false;
+			}
+
+			
+
+			return true;
+		}
+	</script>
 </body>
 </html>

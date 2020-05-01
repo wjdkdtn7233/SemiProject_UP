@@ -19,15 +19,18 @@ public class DispatcherServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		String[] uriArr = request.getRequestURI().split("/");
 		System.out.println(Arrays.toString(uriArr));
+		
+
 
 		Controller ctr = hm.getController(uriArr);
 		String methodName = hm.getMethod(uriArr);
 		ModelAndView mav = ha.excute(ctr, methodName, request);
-
 		// view로 전송
 		if (mav.getView().equals("ajax")) {
+			
 		} else if (mav.getView().equals("file")) {
 			
 		} else {

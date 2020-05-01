@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -36,24 +37,24 @@
 							</div>
 
 						</div>
-						<form action="/up/mypage/mypage.do"  method="post" enctype="multipart/form-data"
-							onsubmit="return validata();">
-							<div class="cardbody ">
-								<div class="row   py-5">
-									<div
-										class="col-2 d-flex align-items-center justify-content-end pl-2">
-										<img class="img-profile size1 rounded-circle"
-											src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
 
-									</div>
+						<div class="cardbody ">
+						<form action="/up/mypage/infoupdate.do" method="post" enctype="multipart/form-data" onsubmit="return validata();">
+							<div class="row   py-5">
+								<div
+									class="col-2 d-flex align-items-center justify-content-end pl-2">
+									<img class="img-profile size1 rounded-circle"
+										src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
 
-									<div class="col-3 justify-content-start align-self-end">
-										<button class="btn btn-primary ">Change profile picture
-										<input  type="file" style="display:none"/>
-										</button>
-										
-									</div>
 								</div>
+								
+								<div class="col-3 justify-content-start align-self-end">
+									<input type="file" name="profile"/>
+									<span class="text-white bg-danger">${data.alertMsg}</span>
+									<button class="btn btn-primary " type="submit">Change profile picture</button>
+								</div>
+								
+							</div>
 
 								<div class="row mb-4">
 									<div class="col-2 ml-5 pl-5">
@@ -63,6 +64,7 @@
 										<span class="text text-gray-900 h5 ">wjdkdtn</span>
 									</div>
 								</div>
+
 								<div class="row  mb-4">
 									<div class="col-2 ml-5 pl-5">
 										<span class="text text-gray-900 mr-5 font-weight-bold">TITLE
@@ -98,12 +100,12 @@
 									<div class="col-2 ml-0 pl-0">
 										<div class="form-group ">
 											<input type="text" id="inputNickName"
-												class="form-control form-control-user" value="huni"
-												placeholder="Enter a nickname to change"
-												aria-describedby="emailHelp" name="nick">
+												class="form-control form-control-user" name="nick"
+												value="huni" placeholder="Enter a nickname to change" />
 										</div>
 									</div>
 								</div>
+
 								<div class="row  mb-4">
 									<div class="col-2 ml-5 pl-5">
 										<span class="text text-gray-900 mr-5 font-weight-bold">EMAIL
@@ -112,10 +114,12 @@
 									</div>
 									<div class="col-3 ml-0 pl-0">
 										<div class="form-group ">
-											<input type="email" class="form-control form-control-user"
+											<!-- <input type="email" class="form-control form-control-user"
 												id="exampleInputEmail" value="wjdkdtn7233@naver.com"
 												placeholder="Enter email to change"
-												aria-describedby="emailHelp" name="email">
+												aria-describedby="emailHelp" name="email"> -->
+											<span class="text text-gray-900 mr-5">wjdkdtn7233@naver.com
+											</span>
 										</div>
 									</div>
 									<div class="col-5 ml-3">
@@ -131,9 +135,10 @@
 										</button>
 									</div>
 								</div>
+							</form>
 
-							</div>
-						</form>
+						</div>
+
 					</div>
 
 
@@ -165,14 +170,8 @@
 			//닉네임에 특수문자가 있는지 검사
 			var regExpNick2 = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi;
 
-			var regExpEmail = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
-
 			$('#inputNickName').on('click', function() {
-				$('#infoNick').text("");
-			});
-
-			$('#exampleInputEmail').on('click', function() {
-				$('#infoNick').text("");
+				$('#infoNick').html("");
 			});
 
 			function chk(re, e, msg) {
@@ -181,7 +180,7 @@
 
 					return true;
 				} else {
-					$('#infoNick').text(msg);
+					$('#infoNick').html("<i class='fas fa-exclamation-triangle'></i>" + msg);
 					e.value = "";
 					e.focus();
 					return false;
@@ -190,7 +189,7 @@
 
 			//닉네임 특수문자 검사
 			if (chk(regExpNick2, nick, "")) {
-				$('#infoNick').text("닉네임에 특수문자를 포함시킬 수 없습니다.");
+				$('#infoNick').html("<i class='fas fa-exclamation-triangle'></i>" +"닉네임에 특수문자를 포함시킬 수 없습니다.");
 				return false;
 			}
 
@@ -199,12 +198,7 @@
 					"닉네임은 영문/한글 과 숫자를 포함하여 3자 에서 15자 이내로 기입해주세요.")) {
 				return false;
 			}
-			//이메일 형식인지 검사
-			if (!chk(regExpEmail, email, "이메일 형식이 아닙니다.")) {
-				return false;
-			}
 
-			alert('개인정보 수정이 완료되었습니다!')
 			return true;
 		}
 	</script>
