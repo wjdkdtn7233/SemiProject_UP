@@ -39,19 +39,21 @@
 						</div>
 
 						<div class="cardbody ">
-						<form action="/up/mypage/infoupdate.do" method="post" enctype="multipart/form-data" onsubmit="return validata();">
+						<form action="/up/mypage/infoupdate.do" id="frm" method="post" enctype="multipart/form-data">
 							<div class="row   py-5">
 								<div
-									class="col-2 d-flex align-items-center justify-content-end pl-2">
+									class="col-2 d-flex align-items-center justify-content-end pl-2" id="pictureHere">
+						
 									<img class="img-profile size1 rounded-circle"
-										src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+										src="/up/resources/upload/${sessionScope.loginInfo.renameFile}">
 
 								</div>
 								
 								<div class="col-3 justify-content-start align-self-end">
-									<input type="file" name="profile"/>
+									<input type="file" name="profile" id="userPicture"/>
 									<span class="text-white bg-danger">${data.alertMsg}</span>
-									<button class="btn btn-primary " type="submit">Change profile picture</button>
+									<button class="btn btn-primary " type="button" id="basicPicture">기본이미지로 변경</button>
+									<input type="hidden"  name="basicPicture" id="basicInput"/>
 								</div>
 								
 							</div>
@@ -128,7 +130,7 @@
 								</div>
 								<div class="row  mb-4">
 									<div class="col-4 ml-5 pl-5">
-										<button class="btn btn-success btn-icon-split" type="submit">
+										<button type="submit" class="btn btn-success btn-icon-split">
 											<span class="icon text-white-50"> <i
 												class="fas fa-check"></i>
 											</span> <span class="text">Information Modified Completed</span>
@@ -161,46 +163,106 @@
 		integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
 		crossorigin="anonymous"></script>
 	<script type="text/javascript">
-		function validata() {
-			//?=.* 어느자리에 있든? 
-			var nick = $('#inputNickName');
-			var email = $('#exampleInputEmail');
-			//닉네임 검사
-			var regExpNick = /^(?=.*\d{1,15})(?=.*[가-힣a-zA-Z]{1,15}).{3,15}$/;
-			//닉네임에 특수문자가 있는지 검사
-			var regExpNick2 = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi;
+		
+	
+	//안내문이 뜨고 다시 닉네임을 수정하기 위해 닉네임 인풋태그를 눌렀을때 안내문을 지워주는 역할
+	$('#inputNickName').on('click', function() {
+		$('#infoNick').html("");
+	});	
+	
+	
+	$('#frm').submit(function(){
+		//?=.* 어느자리에 있든? 
+		var nick = $('#inputNickName');
+		var email = $('#exampleInputEmail');
+		//닉네임 검사
+		var regExpNick = /^(?=.*\d{1,15})(?=.*[가-힣a-zA-Z]{1,15}).{3,15}$/;
+		//닉네임에 특수문자가 있는지 검사
+		var regExpNick2 = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi;
 
-			$('#inputNickName').on('click', function() {
-				$('#infoNick').html("");
-			});
+		
 
-			function chk(re, e, msg) {
+		function chk(re, e, msg) {
 
-				if (re.test(e.val())) {
+			if (re.test(e.val())) {
 
-					return true;
-				} else {
-					$('#infoNick').html("<i class='fas fa-exclamation-triangle'></i>" + msg);
-					e.value = "";
-					e.focus();
-					return false;
-				}
-			}
-
-			//닉네임 특수문자 검사
-			if (chk(regExpNick2, nick, "")) {
-				$('#infoNick').html("<i class='fas fa-exclamation-triangle'></i>" +"닉네임에 특수문자를 포함시킬 수 없습니다.");
+				return true;
+			} else {
+				$('#infoNick').html("<i class='fas fa-exclamation-triangle'></i>" + msg);
+				e.value = "";
+				e.focus();
 				return false;
 			}
-
-			//닉네임 검사
-			if (!chk(regExpNick, nick,
-					"닉네임은 영문/한글 과 숫자를 포함하여 3자 에서 15자 이내로 기입해주세요.")) {
-				return false;
-			}
-
-			return true;
 		}
+
+		//닉네임 특수문자 검사
+		if (chk(regExpNick2, nick, "")) {
+			$('#infoNick').html("<i class='fas fa-exclamation-triangle'></i>" +"닉네임에 특수문자를 포함시킬 수 없습니다.");
+			return false;
+		}
+		
+		if (!chk(regExpNick, nick,  //닉네임 검사
+				"닉네임은 영문/한글 과 숫자를 포함하여 3자 에서 15자 이내로 기입해주세요.")) {
+			return false;
+		}
+		
+		return true;
+	});
+	
+		
+	 	
+	 
+		$('#userPicture').on('change',function (e) {
+	        var get_file = e.target.files;
+	        console.log(get_file);
+	        var image = document.createElement('img');
+	        
+	        var reader = new FileReader();
+	        
+	        /* reader 시작시 함수 구현 */
+	        reader.onload = (function (aImg) {
+	            console.log(1);
+	 
+	            return function (e) {
+	                console.log(3);
+	                /* base64 인코딩 된 스트링 데이터 */
+	                aImg.src = e.target.result
+	            }
+	        })(image)
+	 
+	        if(get_file){
+	            /* 
+	                get_file[0] 을 읽어서 read 행위가 종료되면 loadend 이벤트가 트리거 되고 
+	                onload 에 설정했던 return 으로 넘어간다.
+	                이와 함게 base64 인코딩 된 스트링 데이터가 result 속성에 담겨진다.
+	            */
+	            reader.readAsDataURL(get_file[0]);
+	            console.log(2);
+	        }
+	        //이미지를 넣어주면 기본이미지의 value값은 초기화
+	        $('#basicInput').val("");
+	        //이미지가 보여지는 곳에 원래 사진 삭제
+	        $('#pictureHere').html("");
+	        //이미지 모양 클래스 추가
+	        image.setAttribute('class','img-profile size1 rounded-circle');
+	        //이미지 보여지는 공간에 업로드한 이미지 넣기
+	        $('#pictureHere').html(image);
+	        
+	    })
+		
+		//기본이미지 변경 버튼 눌렀을떄
+		$('#basicPicture').on('click',function(){
+			//첨부파일에 있는 파일 리스트 초기화 - 이거 안하면 기본이미지 버튼 눌렀다가 원래박혔던 사진 넣을라해도 안넣어짐 
+			$('#userPicture').val("");
+			//이미지가 보여지는 곳에 원래 사진 삭제
+			$('#pictureHere').html("");
+			//기본이미지 넣기
+			$('#pictureHere').html('<img class="img-profile size1 rounded-circle" src="/up/resources/upload/unnamed.jpg">');
+			//유저가 기본이미지로 정했다는 값 서블릿으로 넘겨주기
+			$('#basicInput').val("unnamed.jpg");
+			
+		});
+		
 	</script>
 
 </body>

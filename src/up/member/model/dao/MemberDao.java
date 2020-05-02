@@ -74,7 +74,7 @@ public class MemberDao {
 		int result = 0;
 		PreparedStatement pstm = null;
 
-		String sql = "insert into tb_member values(?,?,?,?,?,0,0,sysdate,'N',null,null)";
+		String sql = "insert into tb_member values(?,?,?,?,?,0,0,sysdate,'N',unnamed.jsp,unnamed.jsp)";
 
 		try {
 			pstm = con.prepareStatement(sql);

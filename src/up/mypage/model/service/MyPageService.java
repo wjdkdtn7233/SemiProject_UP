@@ -92,12 +92,12 @@ public class MyPageService {
 	  * @return int
 	  */
 	
-	public int updateInfomation(String title,String nick) {
+	public int updateInfomation(String title,String nick,Member m) {
 		int res = 0;
 		Connection conn = null;
 		conn = jdt.getConnection();
 		try {
-			res = mdao.updateInfomation(title, nick, conn);
+			res = mdao.updateInfomation(title, nick, conn, m);
 			if(res >= 1) {
 				jdt.commit(conn);
 			}
@@ -211,13 +211,13 @@ public class MyPageService {
 	  * @return int
 	  */
 	
-	public int updateFileName(/*Member m*/String ofn,String rfn) {
+	public int updateFileName(String ofn,String rfn,String id) {
 		int res = 0;
 		
 		Connection conn = null;
 		conn = jdt.getConnection();
 		try {
-			res = mdao.updateFileName(ofn, rfn, conn);
+			res = mdao.updateFileName(ofn, rfn,id, conn);
 			if(res >= 1) {
 				jdt.commit(conn);
 			}
