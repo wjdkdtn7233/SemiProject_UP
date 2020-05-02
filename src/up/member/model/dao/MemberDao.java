@@ -55,8 +55,6 @@ public class MemberDao {
 			jdt.close(pstm);
 		}
 
-		System.out.println("---test running in MemberDao---");
-
 		return result;
 
 	}
@@ -83,15 +81,12 @@ public class MemberDao {
 			pstm.setString(3, m.getUserName());
 			pstm.setString(4, m.getUserEmail());
 			pstm.setString(5, m.getUserNickName());
-			
 
 			result = pstm.executeUpdate();
 
 		} finally {
 			jdt.close(pstm);
 		}
-
-		System.out.println(result);
 
 		return result;
 	}
@@ -142,14 +137,14 @@ public class MemberDao {
 		ResultSet rs = null;
 
 		String sql = "select m_id, m_pass, m_name, m_email, m_nickname from tb_member where m_email = ?";
-		
+
 		try {
 			pstm = con.prepareStatement(sql);
 			pstm.setString(1, userEmail);
-			
+
 			rs = pstm.executeQuery();
-			
-			while(rs.next()) {
+
+			while (rs.next()) {
 				result = new Member();
 				result.setUserId(rs.getString(1));
 				result.setUserPwd(rs.getString(2));
@@ -157,42 +152,96 @@ public class MemberDao {
 				result.setUserEmail(rs.getString(4));
 				result.setUserNickName(rs.getString(5));
 			}
-			
+
 		} finally {
 			jdt.close(rs);
 			jdt.close(pstm);
 		}
 		return result;
 	}
-	
+
+	/**
+	 * @MethodName: findPwd
+	 * @ClassName: MemberDao.java
+	 * @변경이력: 완료
+	 * @Comment: 입력받은 id, email 가진 회원 DB 전달
+	 * @작성자: 박혜연
+	 * @작성일: 2020. 5. 2.
+	 */
 	public Member findPwd(Connection con, String userId, String userEmail) throws SQLException {
-		Member result = null;		
+		Member result = null;
+
+		char[] random = new char[] { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
+				'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
+				'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Y', 'Z', '1', '2', '3', '4', '5', '6', '7', '8',
+				'9', '0', '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '=', '+' };
+
+		String newPwd = "";
+		int ranNum = 0;
+
+		for (int i = 0; i < 9; i++) {
+			ranNum = (int) (Math.random() * random.length);
+			newPwd += random[ranNum];
+		}
 
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 
-		String sql = "select m_id, m_pass, m_name, m_email, m_nickname from tb_member where m_email = ?";
-		
+		String sql = "select m_id, m_pass, m_name, m_email, m_nickname from tb_member where m_id = ? and m_email = ?";
+
+		int res = changePwd(con, userEmail, newPwd);
+
 		try {
-			pstm = con.prepareStatement(sql);
-			pstm.setString(1, userEmail);
-			
-			rs = pstm.executeQuery();
-			
-			while(rs.next()) {
-				result = new Member();
-				result.setUserId(rs.getString(1));
-				result.setUserPwd(rs.getString(2));
-				result.setUserName(rs.getString(3));
-				result.setUserEmail(rs.getString(4));
-				result.setUserNickName(rs.getString(5));
+
+			if (res >= 1) {
+				pstm = con.prepareStatement(sql);
+				pstm.setString(1, userId);
+				pstm.setString(2, userEmail);
+
+				rs = pstm.executeQuery();
+
+				while (rs.next()) {
+					result = new Member();
+					result.setUserId(rs.getString(1));
+					result.setUserPwd(rs.getString(2));
+					result.setUserName(rs.getString(3));
+					result.setUserEmail(rs.getString(4));
+					result.setUserNickName(rs.getString(5));
+				}
 			}
-			
+
 		} finally {
 			jdt.close(rs);
 			jdt.close(pstm);
 		}
-		
+
+		return result;
+	}
+
+	/**
+	 * @MethodName: changePwd
+	 * @ClassName: MemberDao.java
+	 * @변경이력: 완료
+	 * @Comment: 임시 비밀번호 저장
+	 * @작성자: 박혜연
+	 * @작성일: 2020. 5. 3.
+	 */
+	public int changePwd(Connection con, String userEmail, String newPwd) throws SQLException {
+		int result = 0;
+
+		PreparedStatement pstm = null;
+
+		String sql = "update tb_member set m_pass = ? where m_email = ?";
+		try {
+			pstm = con.prepareStatement(sql);
+			pstm.setString(1, newPwd);
+			pstm.setString(2, userEmail);
+
+			result = pstm.executeUpdate();
+		} finally {
+			jdt.close(pstm);
+		}
+
 		return result;
 	}
 

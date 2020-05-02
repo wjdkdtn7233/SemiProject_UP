@@ -161,13 +161,13 @@ public class MemberService {
 	}
 
 	/**
-	 *	@MethodName: findid
-	 *	@ClassName: MemberService.java
-	 *	@변경이력: 완료
-	 *	@Comment: ID 찾기 기능
-	 *	@작성자: 박혜연
-	 *	@작성일: 2020. 5. 1.
-	*/
+	 * @MethodName: findid
+	 * @ClassName: MemberService.java
+	 * @변경이력: 완료
+	 * @Comment: ID 찾기 기능
+	 * @작성자: 박혜연
+	 * @작성일: 2020. 5. 1.
+	 */
 	public void findid(String userEmail) {
 		Member result = new Member();
 		Connection con = jdt.getConnection();
@@ -193,12 +193,13 @@ public class MemberService {
 			try {
 				Message msg = new MimeMessage(session);
 				msg.setFrom(new InternetAddress("admin@up.com", "운영자"));
-				msg.addRecipient(Message.RecipientType.TO, new InternetAddress(result.getUserEmail(), result.getUserId()));
+				msg.addRecipient(Message.RecipientType.TO,
+						new InternetAddress(result.getUserEmail(), result.getUserId()));
 				msg.setSubject(result.getUserNickName() + "님, 회원 ID을 보내드립니다.");
 
 				String htmlBody = "<form action='http://localhost:8787/up/member/login.do' method='post'>"
-						+ "<h3>회원 ID를 잊으셨나요?</h3>"
-						+ "<pre>" + result.getUserNickName() + "님의 회원 ID는 <strong id='userId'>" + result.getUserId() + "</strong> 입니다.</pre>"
+						+ "<h3>회원 ID를 잊으셨나요?</h3>" + "<pre>" + result.getUserNickName()
+						+ "님의 회원 ID는 <strong id='userId'>" + result.getUserId() + "</strong> 입니다.</pre>"
 						+ "<button type='submit'>로그인 하기</button></form>";
 				Multipart mp = new MimeMultipart();
 
@@ -220,19 +221,75 @@ public class MemberService {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
-	 *	@MethodName: findPwd
-	 *	@ClassName: MemberService.java
-	 *	@변경이력: 
-	 *	@Comment: 입력받은 이메일 주소로 임시 비밀번호 발송 및 DB 회원정보 중 비밀번호 변경
-	 *	@작성자: 박혜연
-	 *	@작성일: 2020. 5. 1.
-	*/
+	 * @MethodName: findPwd
+	 * @ClassName: MemberService.java
+	 * @변경이력: 완료
+	 * @Comment: 입력받은 이메일 주소로 임시 비밀번호 발송 및 DB 회원정보 중 비밀번호 변경
+	 * @작성자: 박혜연
+	 * @작성일: 2020. 5. 1.
+	 */
 	public void findPwd(String userId, String userEmail) {
 		Member result = new Member();
-		
-		
+		int res = 0;
+		Connection con = jdt.getConnection();
+		try {
+			result = md.findPwd(con, userId, userEmail);
+
+			PasswordAuthentication pa = new PasswordAuthentication("eternita9210", "qkrahdcl92@");
+
+			Properties prop = System.getProperties();
+			prop.put("mail.smtp.starttls.enable", "true");
+			prop.put("mail.smtp.host", "smtp.gmail.com");
+			prop.put("mail.smtp.auth", "true");
+			prop.put("mail.stmp.port", "587");
+
+			Session session = Session.getDefaultInstance(prop, new Authenticator() {
+				@Override
+				protected PasswordAuthentication getPasswordAuthentication() {
+					return pa;
+				}
+			});
+
+			try {
+				Message msg = new MimeMessage(session);
+				msg.setFrom(new InternetAddress("admin@up.com", "운영자"));
+				msg.addRecipient(Message.RecipientType.TO,
+						new InternetAddress(result.getUserEmail(), result.getUserId()));
+				msg.setSubject(result.getUserId() + "님, 임시 비밀번호를 보내드립니다.");
+
+				String htmlBody = "<form action='http://localhost:8787/up/member/login.do' method='post'>"
+						+ "<h3>회원 비밀번호를 잊으셨나요?</h3>" + "<pre>" + result.getUserId() + "님의 임시 비밀번호는 <strong id='newPwd'>"
+						+ result.getUserPwd() + "</strong> 입니다.</pre>" + "<button type='submit'>로그인 하기</button></form>";
+				Multipart mp = new MimeMultipart();
+
+				MimeBodyPart htmlPart = new MimeBodyPart();
+				htmlPart.setContent(htmlBody, "text/html; charset=UTF-8");
+				mp.addBodyPart(htmlPart);
+
+				msg.setContent(mp);
+
+				Transport.send(msg);
+
+			} catch (AddressException e) {
+				// ...
+			} catch (MessagingException e) {
+				// ...
+			} catch (UnsupportedEncodingException e) {
+				// ...
+			}
+
+			con.commit();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		}
 	}
 
 }

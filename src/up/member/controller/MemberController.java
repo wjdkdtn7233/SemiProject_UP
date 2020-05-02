@@ -39,7 +39,7 @@ public class MemberController implements Controller {
 	/**
 	 * @MethodName: loginImple
 	 * @ClassName: MemberController.java
-	 * @변경이력: 카카오톡 로그인 미완료
+	 * @변경이력: 회원탈퇴 시, 로그인 제한 (5/2 완료) // 카카오톡 로그인 미완료
 	 * @Comment: login 페이지에서 로그인 버튼 클릭 시, DB와 연결하여 확인 후 index로 넘기는 기능
 	 * @작성자: 박혜연
 	 * @작성일: 2020. 4. 30.
@@ -52,14 +52,18 @@ public class MemberController implements Controller {
 		Member m = ms.loginImple(id, pwd);
 
 		if (m != null) {
-
-			HttpSession session = request.getSession();
-			session.setAttribute("loginInfo", m);
-			//유저가 로그인 하는동안  타이틀 네임 / 컬러 띄워주는 메소드
-			MyPageController mc = new MyPageController();
-			mc.getTitle(request);
-			mav.setView("index/index");
-
+			if (m.getUserLeaveYN().equals("N") || m.getUserLeaveYN().equals("n")) {
+				// leave_yn 이 y면 로그인 불가
+				HttpSession session = request.getSession();
+				session.setAttribute("loginInfo", m);
+				// 유저가 로그인 하는동안 타이틀 네임 / 컬러 띄워주는 메소드
+				MyPageController mc = new MyPageController();
+				mc.getTitle(request);
+				mav.setView("index/index");
+			} else {
+				mav.addObject("isSuccess", "false");
+				mav.setView("member/login");
+			}
 		} else {
 			mav.addObject("isSuccess", "false");
 			mav.setView("member/login");
@@ -71,7 +75,7 @@ public class MemberController implements Controller {
 	 * @MethodName: register
 	 * @ClassName: MemberController.java
 	 * @변경이력: 완료
-	 * @Comment: 회원가입 페이지 // ID체크, 비밀번호체크 js 설정 필요
+	 * @Comment: 회원가입 페이지 // ID체크, 비밀번호체크 js 설정
 	 * @작성자: 박혜연
 	 * @작성일: 2020. 4. 28.
 	 */
@@ -188,7 +192,6 @@ public class MemberController implements Controller {
 	 */
 	public ModelAndView forgotId(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
-		System.out.println("----Running in MemeberController----");
 		mav.setView("member/forgotId");
 
 		return mav;
@@ -204,9 +207,9 @@ public class MemberController implements Controller {
 	 */
 	public ModelAndView findId(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
-		
+
 		ms.findid(request.getParameter("userEmail"));
-		
+
 		mav.setView("member/login");
 
 		return mav;
@@ -215,14 +218,14 @@ public class MemberController implements Controller {
 	/**
 	 * @MethodName: forgotPwd
 	 * @ClassName: MemberController.java
-	 * @변경이력:
+	 * @변경이력: 완료
 	 * @Comment: 비밀번호 찾기 페이지 // email sending 연결 필요
 	 * @작성자: 박혜연
 	 * @작성일: 2020. 4. 28.
 	 */
 	public ModelAndView forgotPwd(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
-		
+
 		mav.setView("member/forgotPwd");
 
 		return mav;
@@ -231,15 +234,16 @@ public class MemberController implements Controller {
 	/**
 	 * @MethodName: findPwd
 	 * @ClassName: MemberController.java
-	 * @변경이력:
+	 * @변경이력: 완료
 	 * @Comment: 비밀번호 찾기 기능 (이메일 연결 필요)
 	 * @작성자: 박혜연
 	 * @작성일: 2020. 5. 1.
 	 */
 	public ModelAndView findPwd(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
-		System.out.println("----Running in MemeberController----");
-		
+
+		ms.findPwd(request.getParameter("userId"), request.getParameter("userEmail"));
+
 		mav.setView("member/login");
 
 		return mav;

@@ -65,7 +65,7 @@ i {
 										 <h1 class="h5 text-gray-700 mb-2"><img id="logo" src="/up/resources/img/upLogo.png"/>에 오신 것을 환영합니다.</h1>
 									</div>
 									<i class="fas fa-user-circle"></i>
-									<div class="text-center">test 님, 반갑습니다!</div>
+									<div class="text-center"><%=request.getParameter("userId") %> 님, 반갑습니다!</div>
 									<div class="text-center">로그인 페이지로 이동합니다.</div>
 									<a href="login.do"><button class="btn btn-primary" id="move">이동</button></a>
 								</div>

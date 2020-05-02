@@ -188,22 +188,15 @@
 						alert(JSON.stringify(authObj));
 						alert("데이터 획득 성공");
 
-						Kakao.API
-								.request({
+						Kakao.API.request({
 									url : '/v2/user/me',
 									success : function(response) {
-										console
-												.log(response.properties.nickname);
-										console
-												.log(response.kakao_account.profile.nickname);
-										console
-												.log(response.kakao_account.profile.profile_image_url);
-										console
-												.log(response.kakao_account.email);
-										console
-												.log(response.kakao_account.age_range);
-										console
-												.log(response.kakao_account.gender);
+										console.log(response.properties.nickname);
+										console.log(response.kakao_account.profile.nickname);
+										console.log(response.kakao_account.profile.profile_image_url);
+										console.log(response.kakao_account.email);
+										console.log(response.kakao_account.age_range);
+										console.log(response.kakao_account.gender);
 										console.log(response.connected_at);
 
 									},
