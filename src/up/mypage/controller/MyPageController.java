@@ -1,16 +1,20 @@
 package up.mypage.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.security.interfaces.RSAKey;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Enumeration;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
+import org.eclipse.jdt.internal.compiler.ast.AND_AND_Expression;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -122,7 +126,8 @@ public class MyPageController implements Controller {
 		ModelAndView mav = new ModelAndView();
 		// Member m = (Member) request.getSession().getAttribute("loginInfo");
 		mav.setView("mypage/pwPwdCheck");
-
+		String uploadPath =  request.getServletContext().getRealPath("resources\\upload");
+		System.out.println(uploadPath);
 		return mav;
 	}
 
@@ -149,51 +154,63 @@ public class MyPageController implements Controller {
 	  * @Method Name : infoUpdate
 	  * @작성일 : 2020. 5. 1.
 	  * @작성자 : 정상훈
-	  * @변경이력 : 서비스 다오 만들다말았음 , 멤버테이블에 대표 타이틀 필요할듯
-	  * @Method 설명 : 개인정보 변경하여 멤버테이블에 update 시켜준다.
+	  * @변경이력 : 완성
+	  * @Method 설명 : 개인정보 변경하여 멤버테이블에 update 시켜준다(닉네임,대표타이틀,프로필사진).
 	  * @param request
 	  * @return ModelAndView
+	 * @throws IOException 
 	 * @throws UnsupportedEncodingException 
 	  */
 	
-	public ModelAndView infoUpdate(HttpServletRequest request){
+	public ModelAndView infoUpdate(HttpServletRequest request) throws IOException{
 		ModelAndView mav = new ModelAndView();
-		// Member m = (Member) request.getSession().getAttribute("loginInfo");
+		Member m = (Member) request.getSession().getAttribute("loginInfo");
 		
 		int res = 0;
-		
-		
-		
-		
-		String uploadPath =  request.getServletContext().getRealPath("upload");
-	     String fileName1 = "";
-	     String orgfileName1 = "";
-	     String title = "";	
-			String nick = "";
-	     
-	      try {
+		String uploadPath =  request.getServletContext().getRealPath("/") + "resources/upload";
+		int size = 	1024 * 1024 * 10;
+		String fileName = "";
+	    String orgfileName = "";
+	    String title = "";
+	    String nick = "";
+	    String basicPicture =  "";
+	  
 	  		MultipartRequest multi = new MultipartRequest( // MultipartRequest 인스턴스 생성(cos.jar의 라이브러리)
 	  				request, 
 	  				uploadPath, // 파일을 저장할 디렉토리 지정
-	  				1024 * 1024 * 10, // 첨부파일 최대 용량 설정(bite) / 10KB / 용량 초과 시 예외 발생
+	  				size, // 첨부파일 최대 용량 설정(bite) / 10KB / 용량 초과 시 예외 발생
 	  				"utf-8",// 인코딩 방식 지정
-	  				new DefaultFileRenamePolicy() // 중복 파일 처리(동일한 파일명이 업로드되면 뒤에 숫자 등을 붙여 중복 회피)
-	  				
-	  		);
+	  				new DefaultFileRenamePolicy()); // 중복 파일 처리(동일한 파일명이 업로드되면 뒤에 숫자 등을 붙여 중복 회피)
+	  	
+		
+	  		
 	  		
 	  	
 	  		
-	  		fileName1 = multi.getFilesystemName("profile"); // name=file1의 업로드된 시스템 파일명을 구함(중복된 파일이 있으면, 중복 처리 후 파일 이름)
-			orgfileName1 = multi.getOriginalFileName("profile"); // name=file1의 업로드된 원본파일 이름을 구함(중복 처리 전 이름)
+	  		basicPicture = multi.getParameter("basicPicture");
+	  		fileName = multi.getFilesystemName("profile"); // name=file1의 업로드된 시스템 파일명을 구함(중복된 파일이 있으면, 중복 처리 후 파일 이름)
+			orgfileName = multi.getOriginalFileName("profile"); // name=file1의 업로드된 원본파일 이름을 구함(중복 처리 전 이름)
 			title = multi.getParameter("title");
 			nick = multi.getParameter("nick");
+			System.out.println(title+nick);
 		
-			File file = multi.getFile("profile");
+			res = ms.updateInfomation(title,  nick, m);
+			if(basicPicture != null) {
+				ms.updateFileName(basicPicture,basicPicture,m.getUserId());
+			}else {
+				ms.updateFileName(orgfileName, fileName,m.getUserId());
+			}
 			
-			res = ms.updateInfomation(title,  nick);
 			
-			if(res >= 1) {
-				
+			
+			if(res >= 1 ) {
+				//유저가 바꾼 닉네임, 파일 이름 로그인 세션에 다시 바꿔서 저장한다.
+ 				m.setUserNickName(nick);
+				m.setOriginFile(orgfileName);
+				m.setRenameFile(fileName);
+				request.getSession().setAttribute("loginInfo", m);
+				//대표타이틀도 바꿨으니 다시 초기화
+				getTitle(request);
 				mav.setView("common/result");
 				mav.addObject("url", "/up/mypage/mypage.do");
 				mav.addObject("alertMsg", "개인정보 수정에 성공하였습니다.");
@@ -202,35 +219,12 @@ public class MyPageController implements Controller {
 				mav.addObject("back", "back");
 				mav.setView("common/result");
 			}
-			
-			/*File originFile = new File(uploadPath + "\\" + fileName1);
-			res = ms.updateFileName(orgfileName1, fileName1);
-			if(res > 0) {
-				System.out.println("전송완료");
-			}else {
-				System.out.println("전송실패");
-			}*/
-			
-			
-	      }catch (Exception e) {
-	  		e.getStackTrace();
-	  		
-	  	}
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-
-		return mav;
+	     return mav;
 	}
+	
+	
 
 	/**
 	  * @Method Name : passwordModify
@@ -322,6 +316,8 @@ public class MyPageController implements Controller {
 		if(res >= 1) {
 			m.setUserLeaveYN("Y");
 			request.getSession().setAttribute("loginInfo", m);
+			//회원탈퇴하면서 세션 무효화
+			request.getSession().invalidate();
 			mav.setView("common/result");
 			mav.addObject("url", "/up/mypage/goodbye.do");
 			mav.addObject("alertMsg", "회원탈퇴처리가 성공적으로 완료되었습니다.");
@@ -335,54 +331,24 @@ public class MyPageController implements Controller {
 	}
 	
 	
-	public ModelAndView uploadProfileImage(HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView();
-		int res = 0;
-		String uploadPath =  request.getServletContext().getRealPath("upload");
-	     String fileName1 = "";
-	     String orgfileName1 = "";
-	     
-	     
-	      try {
-	  		MultipartRequest multi = new MultipartRequest( // MultipartRequest 인스턴스 생성(cos.jar의 라이브러리)
-	  				request, 
-	  				uploadPath, // 파일을 저장할 디렉토리 지정
-	  				1024 * 1024 * 10, // 첨부파일 최대 용량 설정(bite) / 10KB / 용량 초과 시 예외 발생
-	  				"utf-8",// 인코딩 방식 지정
-	  				new DefaultFileRenamePolicy() // 중복 파일 처리(동일한 파일명이 업로드되면 뒤에 숫자 등을 붙여 중복 회피)
-	  				
-	  		);
-	  		
-	  	
-	  		
-	  		fileName1 = multi.getFilesystemName("profile"); // name=file1의 업로드된 시스템 파일명을 구함(중복된 파일이 있으면, 중복 처리 후 파일 이름)
-			orgfileName1 = multi.getOriginalFileName("profile"); // name=file1의 업로드된 원본파일 이름을 구함(중복 처리 전 이름)
-			
-		
-		
-			
-			/*File originFile = new File(uploadPath + "\\" + fileName1);
-			res = ms.updateFileName(orgfileName1, fileName1);
-			if(res > 0) {
-				System.out.println("전송완료");
-			}else {
-				System.out.println("전송실패");
-			}*/
-			mav.setView("common/result");
-			mav.addObject("back", "back");
-	      }catch (Exception e) {
-	  		e.getStackTrace();
-	  		mav.setView("file");
-	  	}
-	      
-		return mav;
-	}
 	
+	
+	
+	/**
+	  * @Method Name : getTitle
+	  * @작성일 : 2020. 5. 3.
+	  * @작성자 : 정상훈
+	  * @변경이력 : 완성
+	  * @Method 설명 : 유저의 대표타이틀의 컬러와 네임을 가져온다.
+	  * @param request
+	  */
 	
 	public void getTitle(HttpServletRequest request) {
 		Member m = (Member) request.getSession().getAttribute("loginInfo");
 		Title title = ms.getTitle(m);
 		request.getSession().setAttribute("representationTitle", title);
+		
+		
 	}
 	
 }

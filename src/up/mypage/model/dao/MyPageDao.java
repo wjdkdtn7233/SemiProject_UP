@@ -1,5 +1,6 @@
 package up.mypage.model.dao;
 
+import java.security.interfaces.RSAKey;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -87,16 +88,18 @@ public class MyPageDao {
 		return titleList;
 	}
 
-	public int updateInfomation(String title, String nick, Connection conn /* ,Member m */) throws SQLException {
+	public int updateInfomation(String title, String nick, Connection conn ,Member m ) throws SQLException {
 
 		int res = 0;
 		PreparedStatement pstm = null;
 
-		String sql = "update tb_member set m_maintitle=?, m_nickname=? where m_id='wjdkdtn'";
+		String sql = "update tb_member set representation_title=?, m_nickname=? where m_id=?";
 		try {
+			int titleCode = selectTitleCode(title,conn,pstm);
 			pstm = conn.prepareStatement(sql);
-			pstm.setString(1, title);
+			pstm.setInt(1, titleCode);
 			pstm.setString(2, nick);
+			pstm.setString(3, m.getUserId());
 			res = pstm.executeUpdate();
 		} finally {
 			jdt.close(pstm);
@@ -104,6 +107,30 @@ public class MyPageDao {
 
 		return res;
 	}
+	
+	private int selectTitleCode(String title,Connection conn,PreparedStatement pstm) throws SQLException {
+		
+		int res = 0;
+		
+		ResultSet rs = null;
+		
+		String sql = "select t_code from tb_title where t_name =? ";
+		
+		try {
+			
+		
+		pstm = conn.prepareStatement(sql);
+		pstm.setString(1, title);
+		rs = pstm.executeQuery();
+		if(rs.next()) {
+			res = rs.getInt(1);
+		}
+		}finally {
+			jdt.close(rs);
+		}
+		return res;
+	}
+	
 
 	public List<Title> selectUserTitle(Connection conn,Member m) throws SQLException {
 		List<Title> tList = new ArrayList<>();
@@ -171,16 +198,17 @@ public class MyPageDao {
 		return res;
 	}
 
-	public int updateFileName(String ofn,String rfn,Connection conn/*,Member m*/) throws SQLException {
+	public int updateFileName(String ofn,String rfn,String id,Connection conn) throws SQLException {
 		int res = 0;
 		PreparedStatement pstm = null;
 
-		String sql = "update tb_member set ORIGINAL_FILEPATH=? , RENAME_FILEPATH=? where m_id='wjdkdtn'";
+		String sql = "update tb_member set ORIGINAL_FILEPATH=? , RENAME_FILEPATH=? where m_id=?";
 
 		try {
 			pstm = conn.prepareStatement(sql);
 			pstm.setString(1, ofn);
 			pstm.setString(2, rfn);
+			pstm.setString(3, id);
 			res = pstm.executeUpdate();
 		} finally {
 			jdt.close(pstm);

@@ -122,9 +122,6 @@ public class HandlerMapping {
 			case "pwdcheck.do":
 				methodName = "pwdCheck";
 				break;
-			case "uploadprofileimage.do":
-				methodName = "uploadProfileImage";
-				break;		
 				
 			default:
 				throw new Status404("uri를 다시 확인 해주세요!");	
