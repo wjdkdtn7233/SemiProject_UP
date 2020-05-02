@@ -154,8 +154,8 @@ public class MyPageController implements Controller {
 	  * @Method Name : infoUpdate
 	  * @작성일 : 2020. 5. 1.
 	  * @작성자 : 정상훈
-	  * @변경이력 : 서비스 다오 만들다말았음 , 멤버테이블에 대표 타이틀 필요할듯
-	  * @Method 설명 : 개인정보 변경하여 멤버테이블에 update 시켜준다.
+	  * @변경이력 : 완성
+	  * @Method 설명 : 개인정보 변경하여 멤버테이블에 update 시켜준다(닉네임,대표타이틀,프로필사진).
 	  * @param request
 	  * @return ModelAndView
 	 * @throws IOException 
@@ -204,11 +204,12 @@ public class MyPageController implements Controller {
 			
 			
 			if(res >= 1 ) {
-				
-				m.setUserNickName(nick);
+				//유저가 바꾼 닉네임, 파일 이름 로그인 세션에 다시 바꿔서 저장한다.
+ 				m.setUserNickName(nick);
 				m.setOriginFile(orgfileName);
 				m.setRenameFile(fileName);
 				request.getSession().setAttribute("loginInfo", m);
+				//대표타이틀도 바꿨으니 다시 초기화
 				getTitle(request);
 				mav.setView("common/result");
 				mav.addObject("url", "/up/mypage/mypage.do");
@@ -223,13 +224,7 @@ public class MyPageController implements Controller {
 	     return mav;
 	}
 	
-	public ModelAndView infoModifyImple(HttpServletRequest request, int res,Member m,String title,String nick) {
-		ModelAndView mav = new ModelAndView();
-		
-		
-	      
-		return mav;
-	}
+	
 
 	/**
 	  * @Method Name : passwordModify
@@ -338,6 +333,15 @@ public class MyPageController implements Controller {
 	
 	
 	
+	
+	/**
+	  * @Method Name : getTitle
+	  * @작성일 : 2020. 5. 3.
+	  * @작성자 : 정상훈
+	  * @변경이력 : 완성
+	  * @Method 설명 : 유저의 대표타이틀의 컬러와 네임을 가져온다.
+	  * @param request
+	  */
 	
 	public void getTitle(HttpServletRequest request) {
 		Member m = (Member) request.getSession().getAttribute("loginInfo");
