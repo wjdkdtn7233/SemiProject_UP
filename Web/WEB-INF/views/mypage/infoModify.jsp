@@ -14,6 +14,29 @@
 	height: 7rem;
 	width: 7rem;
 }
+
+.btn-file{
+            position: relative;
+            overflow: hidden;
+        }
+.btn-file input[type=file] {
+            position: absolute;
+            top: 0;
+                right: 0;
+            min-width: 100%;
+            min-height: 100%;
+            font-size: 100px;
+            text-align: right;
+            filter: alpha(opacity=0);
+            opacity: 0;
+            outline: none;
+            background: white;
+            cursor: inherit;
+            display: block;
+        }
+
+
+
 </style>
 <%@ include file="../include/header.jsp"%>
 <body id="page-top">
@@ -50,11 +73,13 @@
 								</div>
 								
 								<div class="col-3 justify-content-start align-self-end">
-									<input type="file" name="profile" id="userPicture"/>
-									<span class="text-white bg-danger">${data.alertMsg}</span>
-									<button class="btn btn-primary " type="button" id="basicPicture">기본이미지로 변경</button>
+									<label for="userPicture" class="btn btn-info btn-file">프로필사진 변경
+									<input type="file" name="profile" id="userPicture" style="display: none;"/>
+									</label>
+									<button class="btn btn-warning mb-2" type="button" id="basicPicture">기본이미지로 변경</button>
 									<input type="hidden"  name="basicPicture" id="basicInput"/>
 								</div>
+								
 								
 							</div>
 
@@ -188,7 +213,7 @@
 
 				return true;
 			} else {
-				$('#infoNick').html("<i class='fas fa-exclamation-triangle'></i>" + msg);
+				$('#infoNick').html(msg);
 				e.value = "";
 				e.focus();
 				return false;
@@ -202,7 +227,7 @@
 		}
 		
 		if (!chk(regExpNick, nick,  //닉네임 검사
-				"닉네임은 영문/한글 과 숫자를 포함하여 3자 에서 15자 이내로 기입해주세요.")) {
+				"<i class='fas fa-exclamation-triangle'></i>닉네임은 영문/한글 과 숫자를 포함하여 3자 에서 15자 이내로 기입해주세요.")) {
 			return false;
 		}
 		

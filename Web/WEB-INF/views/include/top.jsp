@@ -39,7 +39,13 @@
                </div>
             </form>
          </div></li>
-		<span class="text-center " style="background:${sessionScope.representationTitle.TColor}"> ${sessionScope.representationTitle.TName }</span>
+        <li class="nav-item dropdown no-arrow  d-flex align-items-center">
+        <span id="ment" class=" font-weight-bold font-italic h6 text-gray-900 mr-3">당신은 </span>
+        	<span class="btn  text-white text-center font-weight-bold font-italic h3" id="check111" style="background:${sessionScope.representationTitle.TColor}; width:150px;">${sessionScope.representationTitle.TName}</span>
+        	
+        
+        </li>
+		
       <!-- Nav Item - Alerts -->
       <li class="nav-item dropdown no-arrow mx-1"><a
          class="nav-link dropdown-toggle" href="#" id="alertsDropdown"
@@ -145,7 +151,7 @@
       </li>
 
       <div class="topbar-divider d-none d-sm-block"></div>
-
+	
       <!-- Nav Item - User Information -->
       <li class="nav-item dropdown no-arrow"><a
          class="nav-link dropdown-toggle" href="#" id="userDropdown"
@@ -162,8 +168,7 @@
             </a> <a class="dropdown-item" href="/up/mypage/infopwdcheck.do"> <i
                class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Settings
             </a> <a class="dropdown-item" href="#"> <i
-               class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> Activity
-               Log
+               class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> Habit
             </a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#" data-toggle="modal"
@@ -199,4 +204,13 @@
 	</div>
 
 </nav>
+<script src="https://code.jquery.com/jquery-3.5.0.js"
+		integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
+		crossorigin="anonymous"></script>
+<script>
+	
 
+	
+	
+
+</script>
