@@ -40,10 +40,9 @@
             </form>
          </div></li>
         <li class="nav-item dropdown no-arrow  d-flex align-items-center">
-        <span id="ment" class=" font-weight-bold font-italic h6 text-gray-900 mr-3">당신은 </span>
-        	<span class="btn  text-white text-center font-weight-bold font-italic h3" id="check111" style="background:${sessionScope.representationTitle.TColor}; width:150px;">${sessionScope.representationTitle.TName}</span>
-        	
         
+        <span id="ment" class=" font-weight-bold font-italic h6 text-gray-900 mr-3">당신은 </span>
+        <span class="btn  text-white text-center font-weight-bold font-italic h3" id="check111" style="background:${sessionScope.representationTitle.TColor}; width:150px;">${sessionScope.representationTitle.TName}</span>
         </li>
 		
       <!-- Nav Item - Alerts -->
