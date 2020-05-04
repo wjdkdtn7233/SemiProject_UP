@@ -13,20 +13,18 @@
 	color: white;
 	font-size: 15pt;
 }
-
-.logo-size-wrapper {
+.logo-size-wrapper{
 	height: 60px;
 	width: 60px;
 	background: white;
 	border-radius: 100%;
 }
-
 .logo-size {
 	height: 50px;
 	width: 50px;
 	object-fit: cover;
-	position: relative;
-	top: 9px;
+	position:relative;
+	top:9px;
 }
 </style>
 <!-- Sidebar -->
@@ -65,44 +63,39 @@
 	<hr class="sidebar-divider">
 	<!-- Nav Item - Pages Collapse Menu -->
 	<li class="nav-item"><a class="nav-link collapsed" href="#"
-		data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
-		aria-controls="collapseTwo"> <i class="fas fa-home"></i> <span>MENU</span>
-	</a>
-		<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-			data-parent="#accordionSidebar">
-			<div class="bg-white py-2 collapse-inner rounded">
-				<h6 class="collapse-header">UP</h6>
-				<a class="collapse-item" href="/up/index/index.do">메인페이지</a> <a
-					class="collapse-item" href="/up/mypage/mypage.do">마이페이지</a> <a
-					class="collapse-item" href="/up/habit/habitpage.do">습관등록 및 수정</a>
+      data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+      aria-controls="collapseTwo"> <i class="fas fa-home"></i> <span>MENU</span>
+   </a>
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+         data-parent="#accordionSidebar">
+         <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">UP</h6>
+            <a class="collapse-item" href="/up/index/index.do">메인페이지</a> <a
+               class="collapse-item" href="/up/mypage/mypage.do">마이페이지</a> <a
+               class="collapse-item" href="/up/habit/habitpage.do">습관등록 및 수정</a>
 
-			</div>
-		</div></li>
+         </div>
+      </div></li>	
+	
 	<br>
 	<br>
 	<!-- Heading -->
 	<div class="sidebar-heading" id="mypage-font-size">
-		<i class="far fa-id-card"></i> Main Page
+		<i class="far fa-id-card"></i> Habit Page
 	</div>
 	<br>
 
 	<!-- Nav Item - Pages Collapse Menu -->
 	<li class="nav-item"><a class="nav-link collapsed"
-		href="/up/index/index.do"> <i class="fas fa-user-circle"></i> <span>Simple
-				view</span>
+		href="/up/mypage/infopwdcheck.do"> <i class="fas fa-user-circle"></i>
+			<span>습관 등록</span>
 	</a></li>
 	<hr class="sidebar-divider">
 	<!-- Nav Item - Utilities Collapse Menu -->
 	<li class="nav-item"><a class="nav-link collapsed"
-		href="/up/index/detail.do"> <i class="fas fa-key"></i> <span>Detail
-				view</span>
+		href="/up/mypage/pwpwdcheck.do"> <i class="fas fa-key"></i> <span>습관 수정</span>
 	</a></li>
-	<hr class="sidebar-divider">
-	<!-- Nav Item - Utilities Collapse Menu -->
-	<li class="nav-item"><a class="nav-link collapsed"
-		href="/up/index/calendar.do"> <i class="fas fa-pencil-alt"></i> <span>Calender
-				view</span>
-	</a></li>
+	
 
 	<!-- Divider -->
 	<hr class="sidebar-divider">
@@ -115,4 +108,3 @@
 
 
 </ul>
-<!-- End of Sidebar -->

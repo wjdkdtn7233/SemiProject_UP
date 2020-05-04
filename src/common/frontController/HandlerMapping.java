@@ -3,6 +3,7 @@ package common.frontController;
 import java.util.HashMap;
 
 import common.exception.Status404;
+import up.habit.controller.HabitController;
 import up.index.controller.IndexController;
 import up.member.controller.MemberController;
 import up.mypage.controller.MyPageController;
@@ -16,6 +17,7 @@ public class HandlerMapping {
 		list.put("index", new IndexController());
 		list.put("member", new MemberController());
 		list.put("mypage", new MyPageController());
+		list.put("habit", new HabitController());
 	}
 
 	public Controller getController(String[] uriArr) throws Status404 {
@@ -127,7 +129,12 @@ public class HandlerMapping {
 				throw new Status404("uri를 다시 확인 해주세요!");	
 			}
 			break;
-		case "use":
+		case "habit":
+			switch (uriArr[3]) {
+			case "habitpage.do":
+				methodName = "habitPage";
+				break;
+			}
 			break;
 		case "notice":
 			switch (uriArr[3]) {

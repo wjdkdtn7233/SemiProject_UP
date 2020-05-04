@@ -58,7 +58,7 @@
 									</span>
 								</div>
 								<div class="col-3 ml-0 pl-0">
-									<span class="text text-gray-900 h5 ">wjdkdtn</span>
+									<span class="text text-gray-900 h5 ">${sessionScope.loginInfo.userId}</span>
 								</div>
 							</div>
 
@@ -69,7 +69,7 @@
 
 								</div>
 								<div class="col-2 ml-0 pl-0">
-									<span class="text text-gray-900 mr-5">정상훈 </span>
+									<span class="text text-gray-900 mr-5">${sessionScope.loginInfo.userName}</span>
 								</div>
 							</div>
 							<div class="row  mb-4">
@@ -79,7 +79,7 @@
 
 								</div>
 								<div class="col-3 ml-0 pl-0">
-									<span class="text text-gray-900 mr-5">wjdkdtn7233@naver.com
+									<span class="text text-gray-900 mr-5">${sessionScope.loginInfo.userEmail}
 									</span>
 								</div>
 							</div>
