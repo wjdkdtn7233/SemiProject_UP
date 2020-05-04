@@ -175,6 +175,17 @@ public class MyPageController implements Controller {
 		String nick = "";
 		String basicPicture = "";
 
+		// 파일의 경로 + 파일명
+		String filePath = uploadPath + "/" + m.getOriginFile();
+		String filePath2 = uploadPath+ "/" + m.getRenameFile();
+		System.out.println(filePath);
+		System.out.println(filePath2);
+		File deleteFile = new File(filePath);
+		File deleteFile2 = new File(filePath2);
+
+		// 파일이 존재하는지 체크 존재할경우 true, 존재하지않을경우 false
+		
+
 		MultipartRequest multi = new MultipartRequest( // MultipartRequest 인스턴스 생성(cos.jar의 라이브러리)
 				request, uploadPath, // 파일을 저장할 디렉토리 지정
 				size, // 첨부파일 최대 용량 설정(bite) / 10KB / 용량 초과 시 예외 발생
@@ -188,27 +199,47 @@ public class MyPageController implements Controller {
 		nick = multi.getParameter("nick");
 		System.out.println(fileName + "잘 나오냐" + orgfileName);
 
-		
-		//기본이미지라면
+		// 기본이미지라면
 		if (basicPicture.equals("unnamed.jpg")) {
 			ms.updateFileName(basicPicture, basicPicture, m.getUserId());
-			//로그인 세션에 유저의 현재 프로필 사진네임을 다시 셋팅해준다.
+			// 로그인 세션에 유저의 현재 프로필 사진네임을 다시 셋팅해준다.
+			if (!m.getOriginFile().equals("unnamed.jpg")) {
+				if (deleteFile2.exists()) {
+
+					// 파일을 삭제합니다.
+					deleteFile2.delete();
+					System.out.println("파일을 삭제하였습니다.");
+
+				}else {
+					System.out.println("파일이 존재하지 않습니다.");
+				}
+			}
 			m.setOriginFile(basicPicture);
 			m.setRenameFile(basicPicture);
-		//기본이미지가 아니고 받아온 파일의 이름이 null이 아니라면	
-		} else if(orgfileName != null){
+			// 기본이미지가 아니고 받아온 파일의 이름이 null이 아니라면
+		} else if (orgfileName != null) {
 			ms.updateFileName(orgfileName, fileName, m.getUserId());
-			//로그인 세션에 유저의 현재 프로필 사진네임을 다시 셋팅해준다.
+			// 로그인 세션에 유저의 현재 프로필 사진네임을 다시 셋팅해준다.
+			if (!m.getOriginFile().equals("unnamed.jpg")) {
+				if (deleteFile2.exists()) {
+
+					// 파일을 삭제합니다.
+					deleteFile2.delete();
+					System.out.println("파일을 삭제하였습니다.");
+
+				}else {
+					System.out.println("파일이 존재하지 않습니다.");
+				}
+			}
 			m.setOriginFile(orgfileName);
 			m.setRenameFile(fileName);
 		}
 
 		res = ms.updateInfomation(title, nick, m);
-		
+
 		if (res >= 1) {
 			// 유저가 바꾼 닉네임, 파일 이름 로그인 세션에 다시 바꿔서 저장한다.
 			m.setUserNickName(nick);
-			
 
 			request.getSession().setAttribute("loginInfo", m);
 			// 대표타이틀도 바꿨으니 다시 초기화

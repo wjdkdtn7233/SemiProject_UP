@@ -72,7 +72,7 @@ public class MemberDao {
 		int result = 0;
 		PreparedStatement pstm = null;
 
-		String sql = "insert into tb_member values(?,?,?,?,?,0,sysdate,'N','unnamed.jpg','unnamed.jpg',0)";
+		String sql = "insert into tb_member values(?,?,?,?,?,0,0,sysdate,'N','unnamed.jpg','unnamed.jpg')";
 
 		try {
 			pstm = con.prepareStatement(sql);

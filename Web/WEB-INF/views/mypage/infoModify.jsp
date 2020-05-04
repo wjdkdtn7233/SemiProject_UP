@@ -74,7 +74,7 @@
 								
 								<div class="col-3 justify-content-start align-self-end">
 									<label for="userPicture" class="btn btn-info btn-file">프로필사진 변경
-									<input type="file" name="profile" id="userPicture" style="display: none;"/>
+									<input type="file" name="profile" id="userPicture" accept="image/jpg,image/jpeg,image/png,image/gif,image/bmp" style="display: none;"/>
 									</label>
 									<button class="btn btn-warning mb-2" type="button" id="basicPicture">기본이미지로 변경</button>
 									<input type="hidden"  name="basicPicture" id="basicInput"/>
@@ -238,7 +238,35 @@
 	 	
 	 
 		$('#userPicture').on('change',function (e) {
-	        var get_file = e.target.files;
+			
+			 var get_file = e.target.files;
+			
+			var pathpoint = get_file[0].name.lastIndexOf('.');
+
+			var filepoint = get_file[0].name.substring(pathpoint+1,get_file[0].name.length);
+
+			var filetype = filepoint.toLowerCase();
+			
+			console.log(filetype);
+
+			if(filetype=='jpg' || filetype=='gif' || filetype=='png' || filetype=='jpeg' || filetype=='bmp') {
+
+				// 정상적인 이미지 확장자 파일인 경우
+
+			} else {
+
+				alert('이미지만 첨부 할 수 있습니다.');
+
+				$('#userPicture').val("");
+
+				return false;
+
+			} 
+
+	
+						
+			
+	      
 	        console.log(get_file);
 	        var image = document.createElement('img');
 	        
