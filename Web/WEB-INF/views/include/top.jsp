@@ -209,7 +209,11 @@
 		crossorigin="anonymous"></script>
 <script>
 	
-
+	var titleCode = ${sessionScope.loginInfo.userTitleCode};
+	if(titleCode == 0){
+		$('#ment').text("");
+		$('#check111').hide();
+	}
 	
 	
 
