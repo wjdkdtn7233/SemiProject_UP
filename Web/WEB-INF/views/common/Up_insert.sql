@@ -58,6 +58,7 @@ COMMIT;
 
 -- 명언 삭제 
 DELETE FROM TB_WISE; --명언
+
 COMMIT;
 
 --명언 삽입
@@ -100,4 +101,13 @@ INSERT INTO TB_WISE VALUES (S_W_CODE.nextval, '네가 집착하는 것 외에 �
 INSERT INTO TB_WISE VALUES (S_W_CODE.nextval, '생활은 습관이 짜낸 천에 불과하다.');
 INSERT INTO TB_WISE VALUES (S_W_CODE.nextval, '습관은 버리기는 쉽지만 다시 들이기는 어렵다.');
 
+COMMIT;
+
+-- 멤버 삭제 
+DELETE FROM TB_MEMBER; --명언
+
+COMMIT;
+-- 멤버 생성
+
+INSERT INTO TB_MEMBER VALUES('smkim','qwer1234!','김성민','smina2005@naver.com','성민',0,0,sysdate,'N','unnamed.jpg','unnamed.jpg');
 COMMIT;
