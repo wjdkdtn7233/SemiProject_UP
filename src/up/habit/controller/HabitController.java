@@ -15,4 +15,12 @@ public class HabitController implements Controller{
 		
 		return mav;
 	}
+	
+	public ModelAndView habitRegistration(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		mav.setView("habit/habitRegistration");
+		
+		
+		return mav;
+	}
 }

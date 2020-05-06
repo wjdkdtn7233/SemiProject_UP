@@ -214,17 +214,14 @@
 <script>
 	
 <%request.getSession().setMaxInactiveInterval(60*20);%>
-	var loginInfo = '${sessionScope.loginInfo}';
+	var loginInfo = '${sessionScope.loginInfo}'
 
 	if (!loginInfo) {
 		alert('20분간 요청이 없어 로그아웃 되셨습니다.');
 		location.href = "/up/member/login.do";
-	}
+	
 
-	var titleCode = $
-	{
-		sessionScope.loginInfo.userTitleCode
-	};
+	var titleCode = ${sessionScope.loginInfo.userTitleCode};
 	if (titleCode == 0) {
 		$('#ment').text("");
 		$('#check111').hide();
