@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="up.member.controller.MemberController"%>
+<%@ page import="java.util.List"%>
+<%
+	
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,6 +45,41 @@
 	color: #fff;
 	background-color: #f6c23e;
 }
+
+#kakao-register:hover {
+	color: #fff;
+	background-color: #f5b616;
+}
+
+strong {
+	color: #DFB84E;
+}
+
+i {
+	position: relative;
+	left: 0.5rem;
+	right: 0.5rem;
+}
+
+#quotetest_l {
+	position: relative;
+	left: 3.5rem;
+	top: 5rem;
+	font-size: 250%;
+}
+
+#quotetest_r {
+	position: absolute;
+	top: 21rem;
+	left: 21.5rem;
+	font-size: 250%;
+}
+
+#wiseList {
+	padding-left:25px;
+	padding-right:25px;
+}
+
 </style>
 </head>
 
@@ -55,29 +96,26 @@
 							<div class="col-lg-6 d-none d-lg-block">
 								<div id="demo" class="carousel slide" data-ride="carousel">
 									<div class="carousel-inner">
-										<!-- 슬라이드 쇼 -->
+										<i id="quotetest_l" class="fas fa-quote-left"
+											style="color: #DFB84E"></i>
 										<div class="carousel-item active">
 											<!--가로-->
-											<div class="h5 text-center text-gray-700">test
-												sentences1111</div>
-											<div class="h6 text-center text-gray-900">
-												<strong>test name</strong>
+											<div id="wiseList" class="h5 text-center text-gray-700">
+											</div>
+											<div class="h6 text-center">
+												<strong>Welcome to UP</strong>
 											</div>
 										</div>
-										<div class="carousel-item">
-											<div class="h5 text-center text-gray-700">test
-												sentences2222</div>
-											<div class="h6 text-center text-gray-900">
-												<strong>test name</strong>
+										<c:forEach items="${data.wiseList}" var="wiseList">
+											<div class="carousel-item">
+												<!--가로-->
+												<div id="wiseList" class="h6 text-center text-gray-600">
+													${wiseList}</div>
+												<div class="h6 text-center text-gray-900">
+													<strong>- 오늘의 명언 -</strong>
+												</div>
 											</div>
-										</div>
-										<div class="carousel-item">
-											<div class="h5 text-center text-gray-700">test
-												sentences3333</div>
-											<div class="h6 text-center text-gray-900">
-												<strong>test name</strong>
-											</div>
-										</div>
+										</c:forEach>
 										<!-- 왼쪽 오른쪽 화살표 버튼 -->
 										<a class="carousel-control-prev" href="#demo"
 											data-slide="prev"> <span
@@ -89,15 +127,9 @@
 											<!-- <span>Next</span> -->
 										</a>
 										<!-- / 화살표 버튼 끝 -->
-										<!-- 인디케이터 -->
-										<ul class="carousel-indicators">
-											<li data-target="#demo" data-slide-to="0" class="active"></li>
-											<!--0번부터시작-->
-											<li data-target="#demo" data-slide-to="1"></li>
-											<li data-target="#demo" data-slide-to="2"></li>
-										</ul>
-										<!-- 인디케이터 끝 -->
 									</div>
+									<i id="quotetest_r" class="fas fa-quote-right"
+										style="color: #DFB84E"></i>
 								</div>
 								<!-- 명언 슬라이드 끝 -->
 							</div>
@@ -129,17 +161,15 @@
 										<!-- login 성공 시 index(메인 페이지)로 -->
 										<button type="submit"
 											class="btn btn-primary btn-user btn-block">Login</button>
-										<a
-											href="https://kauth.kakao.com//oauth/authorize?client_id=10b61cc7b083067886d7c41cfbc11f24&redirect_uri=http://localhost:8787/up/member/kakaoLogin.jsp&response_type=code"
-											id="kakao-login" class="btn btn-kakao btn-user btn-block">
-											KAKAO Login </a>
+										<a onclick="kakaoLogin()" id="kakao-login"
+											class="btn btn-kakao btn-user btn-block">KAKAO Login </a>
 										<!-- <a class="btn btn-user btn-block" id="kakao-login-btn">
 											<img src="/up/resources/img/kakao_login_btn_simple_medium.png">
 										</a> -->
 									</form>
 									<hr>
 									<div class="text-center">
-										<a class="small" href="forgotid.do">ID 찾기</a> <a class="small"
+										<a class="small" href="forgotid.do">ID 찾기 |</a> <a class="small"
 											href="forgotpwd.do">비밀번호 찾기</a>
 									</div>
 									<div class="text-center">
@@ -170,46 +200,58 @@
 
 	<!-- kakao 로그인 -->
 	<script type='text/javascript'>
-	
 		<c:if test= "${data.isSuccess == 'false'}">;
 		alert('로그인에 실패하였습니다. 아이디 또는 비밀번호를 확인하세요.')
 		</c:if>
 
-		//<![CDATA[
-		// 사용할 앱의 JavaScript 키를 설정
-		Kakao.init('cc9504f39ca30003c636d3126203e161');
-		// 카카오 로그인 버튼을 생성
-		Kakao.Auth
-				.createLoginButton({
-					container : '#kakao-login-btn',
-					success : function(authObj) {
-						console.log(authObj.scope);
-						console.log(authObj.access_token);
-						alert(JSON.stringify(authObj));
-						alert("데이터 획득 성공");
+		function kakaoLogin() {
+			// 사용할 앱의 JavaScript 키를 설정
+			Kakao.init('cc9504f39ca30003c636d3126203e161');
+			// 카카오 로그인 버튼을 생성
+			Kakao.Auth.login({
+				success : function(v) {
+					console.log(v.scope);
+					console.log(v.access_token);
+					alert(JSON.stringify(v));
+					alert("데이터 획득 성공");
+					Kakao.API.request({
+						url : '/v2/user/me',
+						success : function(res) {
+							//access_token : 사용자 토큰
+							//refresh_token : 새로고침 토큰
+							//properties.nickname : 사용자 이름
+							//properties.id : 고유 아이디
+							//kakao_account.profile.nickname : 사용자 이름
+							//kakao_account.profile.profile_image_url : 프로필 이미지
+							//kakao_account.email : 사용자 이메일
+							//connected_at : 로그인 시간
+							var id = res.id;
 
-						Kakao.API.request({
-									url : '/v2/user/me',
-									success : function(response) {
-										console.log(response.properties.nickname);
-										console.log(response.kakao_account.profile.nickname);
-										console.log(response.kakao_account.profile.profile_image_url);
-										console.log(response.kakao_account.email);
-										console.log(response.kakao_account.age_range);
-										console.log(response.kakao_account.gender);
-										console.log(response.connected_at);
+							$.ajax({
+								url : "/up/member/kakaologin.do",
+								type : 'POST',
+								data : {
+									"id" : id,
+								},
+								success : function(data) {
+									alert("성공");
+									alert(data);
+								}
 
-									},
-									fail : function(error) {
-										console.log(error);
-									}
-								});
-					},
-					fail : function(err) {
-						alert(JSON.stringify(err));
-						alert("데이터 획득 실패");
-					}
-				});
+							});
+
+						},
+						fail : function(error) {
+							console.log(error);
+						}
+					});
+				},
+				fail : function(err) {
+					alert(JSON.stringify(err));
+					alert("카카오톡 로그인 실패");
+				}
+			});
+		};
 	</script>
 </body>
 </html>

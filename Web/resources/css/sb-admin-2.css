@@ -2617,8 +2617,8 @@ fieldset:disabled a.btn {
 
 .btn-kakao:hover {
     color: #fff;
-    background-color: #2e59d9;
-    border-color: #2653d4;
+    background-color: #edb424;
+    border-color: #edb424;
 }
 
 .btn-kakao:focus,
@@ -2637,8 +2637,8 @@ fieldset:disabled a.btn {
 .btn-kakao:not(:disabled):not(.disabled).active,
 .show>.btn-kakao.dropdown-toggle {
     color: #fff;
-    background-color: #2653d4;
-    border-color: #244ec9;
+    background-color: #edb424;
+    border-color: #edb424;
 }
 
 .btn-kakao:not(:disabled):not(.disabled):active:focus,

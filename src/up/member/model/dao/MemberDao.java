@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import common.JDBCTemplate;
 import up.member.model.vo.Member;
@@ -33,6 +35,50 @@ public class MemberDao {
 			pstm = con.prepareStatement(sql);
 			pstm.setString(1, userId);
 			pstm.setString(2, userPwd);
+			rs = pstm.executeQuery();
+
+			while (rs.next()) {
+				result = new Member();
+				result.setUserId(rs.getString(1));
+				result.setUserPwd(rs.getString(2));
+				result.setUserName(rs.getString(3));
+				result.setUserEmail(rs.getString(4));
+				result.setUserNickName(rs.getString(5));
+				result.setUserTitleCode(rs.getInt(6));
+				result.setUserLoginCnt(rs.getInt(7));
+				result.setUserJoinDate(rs.getDate(8));
+				result.setUserLeaveYN(rs.getString(9));
+				result.setOriginFile(rs.getString(10));
+				result.setRenameFile(rs.getString(11));
+
+			}
+		} finally {
+			jdt.close(rs);
+			jdt.close(pstm);
+		}
+
+		return result;
+
+	}
+	
+	/**
+	 *	@MethodName: kakaoImple
+	 *	@ClassName: MemberDao.java
+	 *	@변경이력: 
+	 *	@Comment: 카카오 로그인 용
+	 *	@작성자: 박혜연
+	 *	@작성일: 2020. 5. 6.
+	*/
+	public Member kakaoImple(Connection con, String userId) throws SQLException {
+		Member result = null;
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+
+		String sql = "select * from tb_member where m_id = ?";
+
+		try {
+			pstm = con.prepareStatement(sql);
+			pstm.setString(1, userId);
 			rs = pstm.executeQuery();
 
 			while (rs.next()) {
@@ -240,6 +286,35 @@ public class MemberDao {
 			result = pstm.executeUpdate();
 		} finally {
 			jdt.close(pstm);
+		}
+
+		return result;
+	}
+
+	/**
+	 *	@MethodName: wise
+	 *	@ClassName: MemberDao.java
+	 *	@변경이력: 
+	 *	@Comment: DB 내 명언 글귀 담기
+	 *	@작성자: 박혜연
+	 *	@작성일: 2020. 5. 4.
+	*/
+	public List<String> wise(Connection con) throws SQLException {
+		List<String> result = new ArrayList<>();
+
+		Statement stmt = null;
+		ResultSet rs = null;
+		String sql = "select w_text from tb_wise";
+
+		try {
+			stmt = con.createStatement();
+			rs = stmt.executeQuery(sql);
+			
+			while(rs.next()) {
+				result.add(rs.getString(1));
+			}
+		} finally {
+			jdt.close(rs, stmt);
 		}
 
 		return result;

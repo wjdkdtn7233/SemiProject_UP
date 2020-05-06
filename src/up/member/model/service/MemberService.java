@@ -3,6 +3,8 @@ package up.member.model.service;
 import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import javax.mail.Authenticator;
@@ -48,6 +50,30 @@ public class MemberService {
 			jdt.close(con);
 		}
 
+		return result;
+	}
+	
+	/**
+	 *	@MethodName: kakaoImple
+	 *	@ClassName: MemberService.java
+	 *	@변경이력: 
+	 *	@Comment: 카카오 로그인 용
+	 *	@작성자: 박혜연
+	 *	@작성일: 2020. 5. 6.
+	*/
+	public Member kakaoImple(String userId) {
+		Member result = new Member();
+		Connection con = jdt.getConnection();
+
+		try {
+			result = md.kakaoImple(con, userId);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			jdt.close(con);
+		}
+
+		System.out.println(result);
 		return result;
 	}
 
@@ -106,7 +132,7 @@ public class MemberService {
 	public void regEmailCheck(Member m) {
 
 		// 구글 smtp 서버를 사용하기 위한 인증 정보
-		PasswordAuthentication pa = new PasswordAuthentication("eternita9210", "qkrahdcl92@");
+		PasswordAuthentication pa = new PasswordAuthentication("ksungmin2015", "tjd951als");
 
 		// 사용할 smtp 서버 설정
 		// smtp: send mail transfer protocol
@@ -175,7 +201,7 @@ public class MemberService {
 		try {
 			result = md.findId(con, userEmail);
 
-			PasswordAuthentication pa = new PasswordAuthentication("eternita9210", "qkrahdcl92@");
+			PasswordAuthentication pa = new PasswordAuthentication("ksungmin2015", "tjd951als");
 
 			Properties prop = System.getProperties();
 			prop.put("mail.smtp.starttls.enable", "true");
@@ -237,7 +263,7 @@ public class MemberService {
 		try {
 			result = md.findPwd(con, userId, userEmail);
 
-			PasswordAuthentication pa = new PasswordAuthentication("eternita9210", "qkrahdcl92@");
+			PasswordAuthentication pa = new PasswordAuthentication("ksungmin2015", "tjd951als");
 
 			Properties prop = System.getProperties();
 			prop.put("mail.smtp.starttls.enable", "true");
@@ -290,6 +316,19 @@ public class MemberService {
 				e1.printStackTrace();
 			}
 		}
+	}
+	
+	public List<String> wise() {
+		List<String> result = new ArrayList<>();
+		Connection con = jdt.getConnection();
+		
+		try {
+			result = md.wise(con);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 
 }
