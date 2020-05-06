@@ -29,7 +29,7 @@ CREATE SEQUENCE S_W_CODE INCREMENT BY 1 START WITH 1 MAXVALUE 99999 NOCYCLE NOCA
 
 --데이터 삽입/삭제
 --타이틀 삭제
-DELETE FROM TB_TITLE; --명언
+DELETE FROM TB_TITLE;
 COMMIT;
 
 --타이틀 삽입
@@ -57,7 +57,7 @@ INSERT INTO TB_TITLE VALUES (S_T_CODE.nextval, '독서왕', '평생습관이 되
 COMMIT;
 
 -- 명언 삭제 
-DELETE FROM TB_WISE; --명언
+DELETE FROM TB_WISE;
 COMMIT;
 
 --명언 삽입
@@ -101,3 +101,31 @@ INSERT INTO TB_WISE VALUES (S_W_CODE.nextval, '생활은 습관이 짜낸 천에
 INSERT INTO TB_WISE VALUES (S_W_CODE.nextval, '습관은 버리기는 쉽지만 다시 들이기는 어렵다.');
 
 COMMIT;
+
+--카테고리 삭제
+DELETE FROM TB_CATEGORY;
+COMMIT;
+
+--카테고리 삽입
+INSERT INTO TB_CATEGORY VALUES (S_C_CODE.nextval, '금연');
+INSERT INTO TB_CATEGORY VALUES (S_C_CODE.nextval, '금주');
+INSERT INTO TB_CATEGORY VALUES (S_C_CODE.nextval, '독서');
+INSERT INTO TB_CATEGORY VALUES (S_C_CODE.nextval, '운동');
+COMMIT;
+
+-- 멤버 삭제 
+DELETE FROM TB_MEMBER;
+
+COMMIT;
+-- 멤버 생성
+
+INSERT INTO TB_MEMBER VALUES('smkim','qwer1234!','김성민','smina2005@naver.com','성민1',0,0,sysdate,'N','unnamed.jpg','unnamed.jpg');
+COMMIT;
+
+insert into tb_m_title values ('smkim',1);
+insert into tb_m_title values ('smkim',2);
+insert into tb_m_title values ('smkim',3);
+insert into tb_m_title values ('smkim',4);
+insert into tb_m_title values ('smkim',5);
+insert into tb_m_title values ('smkim',6);
+commit;
