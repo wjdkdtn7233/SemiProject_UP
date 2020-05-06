@@ -219,7 +219,7 @@
 	if (!loginInfo) {
 		alert('20분간 요청이 없어 로그아웃 되셨습니다.');
 		location.href = "/up/member/login.do";
-	
+	}
 
 	var titleCode = ${sessionScope.loginInfo.userTitleCode};
 	if (titleCode == 0) {
