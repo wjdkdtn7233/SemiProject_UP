@@ -28,6 +28,11 @@
 	position: relative;
 	top: 9px;
 }
+
+.size2 {
+	height: 6rem;
+	width: 6rem;
+}
 </style>
 <!-- Sidebar -->
 <ul
@@ -63,6 +68,22 @@
 
 	<!-- Divider -->
 	<hr class="sidebar-divider">
+	<li
+		class="nav-item  d-flex justify-content-center align-items-center mb-3">
+
+		<span
+		class="btn  text-white text-center font-weight-bold font-italic h3"
+		id="check111"
+		style="background:${sessionScope.representationTitle.TColor}; width:150px;">${sessionScope.representationTitle.TName}</span>
+	</li>
+	<li class="nav-item d-flex  justify-content-center mb-3"><img
+		class="img-profile rounded-circle size2"
+		src="/up/resources/upload/${sessionScope.loginInfo.renameFile}">
+	</li>
+	<li
+		class="nav-item d-flex  justify-content-center  h4 font-weight-bold"><span
+		class="text-center text-white ">${sessionScope.loginInfo.userNickName}님
+	</span></li>
 	<!-- Nav Item - Pages Collapse Menu -->
 	<li class="nav-item"><a class="nav-link collapsed" href="#"
 		data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
@@ -74,7 +95,7 @@
 				<h6 class="collapse-header">UP</h6>
 				<a class="collapse-item" href="/up/index/index.do">메인페이지</a> <a
 					class="collapse-item" href="/up/mypage/mypage.do">마이페이지</a> <a
-					class="collapse-item" href="/up/habit/habitpage.do">습관등록 및 수정</a>
+					class="collapse-item" href="/up/habit/habitpage.do">습관등록 및 삭제</a>
 
 			</div>
 		</div></li>
@@ -115,4 +136,13 @@
 
 
 </ul>
+<script src="https://code.jquery.com/jquery-3.5.0.js"
+	integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
+	crossorigin="anonymous"></script>
+<script>
+	var titleCode = ${sessionScope.loginInfo.userTitleCode};
+	if (titleCode == 0) {
+		$('#check111').hide();
+	}
+</script>
 <!-- End of Sidebar -->

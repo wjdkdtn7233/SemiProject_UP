@@ -134,6 +134,9 @@ public class HandlerMapping {
 			case "habitpage.do":
 				methodName = "habitPage";
 				break;
+			case "habitregistration.do":
+				methodName = "habitRegistration";
+				break;	
 			}
 			break;
 		case "notice":
