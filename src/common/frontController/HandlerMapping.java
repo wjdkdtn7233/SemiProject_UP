@@ -140,7 +140,16 @@ public class HandlerMapping {
 			case "habitregistration.do":
 				methodName = "habitRegistration";
 				break;	
+			
+			case "habitremove.do":
+				methodName = "habitRemove";
+				break;	
+			
+			case "deletehabit.do":
+				methodName = "deleteHabit";
+				break;	
 			}
+			
 			break;
 		case "notice":
 			switch (uriArr[3]) {

@@ -116,7 +116,7 @@
 	<hr class="sidebar-divider">
 	<!-- Nav Item - Utilities Collapse Menu -->
 	<li class="nav-item"><a class="nav-link collapsed"
-		href="/up/habit/habitregistration.do"> <i class="fas fa-key"></i> <span>습관
+		href="/up/habit/habitremove.do"> <i class="fas fa-key"></i> <span>습관
 				삭제</span>
 	</a></li>
 

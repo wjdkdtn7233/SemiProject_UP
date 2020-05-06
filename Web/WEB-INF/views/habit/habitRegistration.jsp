@@ -101,11 +101,10 @@
 									</div>
 									<div class="col-2">
 										<select class="custom-select" id="selectCategory" name="selectCategory">
-											<option class="text-gray-900 " >운동</option>
-											<option class="text-gray-900 " >금주</option>
 											<option class="text-gray-900 " >금연</option>
-											<option class="text-gray-900 " >공부</option>
+											<option class="text-gray-900 " >금주</option>
 											<option class="text-gray-900 " >독서</option>
+											<option class="text-gray-900 " >운동</option>
 										</select>
 									</div>	
 								</div>
@@ -124,6 +123,7 @@
                                 		<div class="card  border-bottom-info" style="height:70px">
 											<div class="card-body">
 												<span class="font-weight-bold text-gray-900" id="searchStartDate"></span>
+												<input type="hidden" name="searchStartDate" id="searchStartDate1" />
 											</div>
 										</div>
 
@@ -137,6 +137,7 @@
 										<div class="card border-bottom-info" style="height:70px">
 											<div class="card-body ">
 												<span class="font-weight-bold text-gray-900" id="searchEndDate"></span>
+												<input type="hidden" name="searchEndDate" id="searchEndDate1"/>
 											</div>
 										</div>
                 						
@@ -208,7 +209,7 @@
 											<label class="custom-control-label" for="jb-checkbox6">토</label>
 										</div>
 									</div>
-									<input type="hidden" id="selectDay" />
+									<input type="hidden" name="selectDay" id="selectDay"/>
 								</div>
 								<div class="row d-flex align-items-center justify-content-start text-center  mb-5 " id="otherHere">
 									<div class="col-2">
@@ -304,7 +305,7 @@
 		
 		selectValue.on('click',function(){
 			
-			if(selectValue.val()=="운동"||selectValue.val()=="독서"||selectValue.val()=="공부"){
+			if(selectValue.val()=="운동"||selectValue.val()=="독서"){
 				$('#money1, #money2, #money3').css('display','none');
 				$('#goalTime1, #goalTime2, #goalTime3').css('display','block');
 				
@@ -390,7 +391,7 @@
 			$('#selectDay').val('selectDay');
 			console.log(selectDay);
 			
-			if(selectValue.val()=="운동"||selectValue.val()=="독서"||selectValue.val()=="공부"){
+			if(selectValue.val()=="운동"||selectValue.val()=="독서"){
 				if (!chk(regExpNumber, goalTime2, 
 				"<i class='fas fa-exclamation-triangle'></i>숫자만 기입해 주세요.")) {
 					console.log(goalTime2);
@@ -455,6 +456,8 @@
         	
             $('#searchStartDate').text(getFormatDate(today2));
             $('#searchEndDate').text(getFormatDate(today));
+            $('#searchStartDate1').val(getFormatDate(today2));
+            $('#searchEndDate1').val(getFormatDate(today));
 
          }
     </script>

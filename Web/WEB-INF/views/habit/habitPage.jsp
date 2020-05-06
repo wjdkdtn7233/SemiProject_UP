@@ -87,15 +87,21 @@
 							<div class="card-body">
 								<div
 									class="row d-flex align-items-center justify-content-around text-center h-100">
-									<div class="col-4" id="icon-size">
+									<div class="col-4">
 									<a href="/up/habit/habitregistration.do">
+										<div id="icon-size">
 										<i class="fas fa-folder-plus"></i>
 										<div class="text h5 mt-3">습관 등록</div>
+										</div>
 									</a>
 									</div>
-									<div class="col-4" id="icon-size">
+									<div class="col-4">
+									<a href="/up/habit/habitremove.do">
+									<div id="icon-size">
 										<i class="fas fa-tools"></i>
 										<div class="text h5 mt-3">습관 삭제</div>
+									</div>	
+									</a>
 									</div>
 
 								</div>
