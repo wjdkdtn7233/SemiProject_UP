@@ -7,6 +7,7 @@
 	
 %>
 
+<%request.getSession().invalidate();%>
 <!DOCTYPE html>
 <html>
 <head>

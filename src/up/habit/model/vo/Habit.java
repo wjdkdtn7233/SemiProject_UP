@@ -1,4 +1,4 @@
-package up.index.model.vo;
+package up.habit.model.vo;
 
 import java.io.Serializable;
 import java.sql.Date;

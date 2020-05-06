@@ -49,4 +49,21 @@ public class IndexController implements Controller  {
 		
 		return mav;
 	}
+	
+	
+	/**
+	  * @Method Name : calendar
+	  * @작성일 : 2020. 5. 5.
+	  * @작성자 : 김성민
+	  * @변경이력 : 
+	  * @Method 설명 : Calendar view 페이지로 연결시켜줍니다.
+	  * @param request
+	  * @return ModelAndView
+	  */
+	public ModelAndView calendar(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		mav.setView("index/calendar");
+		
+		return mav;
+	}
 }

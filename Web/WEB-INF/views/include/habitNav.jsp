@@ -99,31 +99,27 @@
 
 			</div>
 		</div></li>
+
 	<br>
 	<br>
 	<!-- Heading -->
 	<div class="sidebar-heading" id="mypage-font-size">
-		<i class="far fa-id-card"></i> Main Page
+		<i class="far fa-id-card"></i> Habit Page
 	</div>
 	<br>
 
 	<!-- Nav Item - Pages Collapse Menu -->
 	<li class="nav-item"><a class="nav-link collapsed"
-		href="/up/index/index.do"> <i class="fas fa-user-circle"></i> <span>Simple
-				view</span>
+		href="/up/habit/habitregistration.do"> <i class="fas fa-user-circle"></i>
+			<span>습관 등록</span>
 	</a></li>
 	<hr class="sidebar-divider">
 	<!-- Nav Item - Utilities Collapse Menu -->
 	<li class="nav-item"><a class="nav-link collapsed"
-		href="/up/index/detail.do"> <i class="fas fa-key"></i> <span>Detail
-				view</span>
+		href="/up/habit/habitregistration.do"> <i class="fas fa-key"></i> <span>습관
+				삭제</span>
 	</a></li>
-	<hr class="sidebar-divider">
-	<!-- Nav Item - Utilities Collapse Menu -->
-	<li class="nav-item"><a class="nav-link collapsed"
-		href="/up/index/calendar.do"> <i class="fas fa-pencil-alt"></i> <span>Calender
-				view</span>
-	</a></li>
+
 
 	<!-- Divider -->
 	<hr class="sidebar-divider">
@@ -145,4 +141,3 @@
 		$('#check111').hide();
 	}
 </script>
-<!-- End of Sidebar -->

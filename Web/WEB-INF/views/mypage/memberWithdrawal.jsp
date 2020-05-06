@@ -58,7 +58,7 @@
 									</span>
 								</div>
 								<div class="col-3 ml-0 pl-0">
-									<span class="text text-gray-900 h5 ">wjdkdtn</span>
+									<span class="text text-gray-900 h5 ">${sessionScope.loginInfo.userId}</span>
 								</div>
 							</div>
 
@@ -69,7 +69,7 @@
 
 								</div>
 								<div class="col-2 ml-0 pl-0">
-									<span class="text text-gray-900 mr-5">정상훈 </span>
+									<span class="text text-gray-900 mr-5">${sessionScope.loginInfo.userName}</span>
 								</div>
 							</div>
 							<div class="row  mb-4">
@@ -79,7 +79,7 @@
 
 								</div>
 								<div class="col-3 ml-0 pl-0">
-									<span class="text text-gray-900 mr-5">wjdkdtn7233@naver.com
+									<span class="text text-gray-900 mr-5">${sessionScope.loginInfo.userEmail}
 									</span>
 								</div>
 							</div>
@@ -174,11 +174,11 @@
 						<span aria-hidden="true">×</span>
 					</button>
 				</div>
-				<div class="modal-body">지금 회원탈퇴를 하시게되면 다시 되돌릴 수 없습니다.<br>취소버튼을 누르시면 마이페이지로 돌아갑니다.</div>
+				<div class="modal-body">지금 회원탈퇴를 하시게되면 다시 되돌릴 수 없습니다.</div>
 				<div class="modal-footer">
-					<button class="btn btn-secondary" onclick="checkBox()" type="button"
+					<button class="btn btn-secondary" onclick="checkTrue()" type="button"
 						data-dismiss="modal">Yes</button>
-					<a class="btn btn-primary" href="/up/mypage/mypage.do">Cancel</a>
+					<button class="btn btn-primary" type="button" onclick="checkFalse()" data-dismiss="modal">Cancel</a>
 				</div>
 			</div>
 		</div>
@@ -198,8 +198,13 @@
 		integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
 		crossorigin="anonymous"></script>
 	<script type="text/javascript">
-		function checkBox(){
+		function checkTrue(){
 			$('#customCheck').prop('checked',true);
+			$('#info').html("");
+		}
+		
+		function checkFalse(){
+			$('#customCheck').prop('checked',false);
 			$('#info').html("");
 		}
 	

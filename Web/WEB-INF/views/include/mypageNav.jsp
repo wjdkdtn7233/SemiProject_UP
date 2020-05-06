@@ -13,18 +13,25 @@
 	color: white;
 	font-size: 15pt;
 }
-.logo-size-wrapper{
+
+.logo-size-wrapper {
 	height: 60px;
 	width: 60px;
 	background: white;
 	border-radius: 100%;
 }
+
 .logo-size {
 	height: 50px;
 	width: 50px;
 	object-fit: cover;
-	position:relative;
-	top:9px;
+	position: relative;
+	top: 9px;
+}
+
+.size2 {
+	height: 6rem;
+	width: 6rem;
 }
 </style>
 <!-- Sidebar -->
@@ -61,22 +68,38 @@
 
 	<!-- Divider -->
 	<hr class="sidebar-divider">
+	<li
+		class="nav-item  d-flex justify-content-center align-items-center mb-3">
+
+		<span
+		class="btn  text-white text-center font-weight-bold font-italic h3"
+		id="check111"
+		style="background:${sessionScope.representationTitle.TColor}; width:150px;">${sessionScope.representationTitle.TName}</span>
+	</li>
+	<li class="nav-item d-flex  justify-content-center mb-3"><img
+		class="img-profile rounded-circle size2"
+		src="/up/resources/upload/${sessionScope.loginInfo.renameFile}">
+	</li>
+	<li
+		class="nav-item d-flex  justify-content-center  h4 font-weight-bold"><span
+		class="text-center text-white ">${sessionScope.loginInfo.userNickName}님
+	</span></li>
 	<!-- Nav Item - Pages Collapse Menu -->
 	<li class="nav-item"><a class="nav-link collapsed" href="#"
-      data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
-      aria-controls="collapseTwo"> <i class="fas fa-home"></i> <span>MENU</span>
-   </a>
-      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-         data-parent="#accordionSidebar">
-         <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">UP</h6>
-            <a class="collapse-item" href="/up/index/index.do">메인페이지</a> <a
-               class="collapse-item" href="/up/mypage/mypage.do">마이페이지</a> <a
-               class="collapse-item" href="/up/index/myPage.jsp">습관등록 및 수정</a>
+		data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+		aria-controls="collapseTwo"> <i class="fas fa-home"></i> <span>MENU</span>
+	</a>
+		<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+			data-parent="#accordionSidebar">
+			<div class="bg-white py-2 collapse-inner rounded">
+				<h6 class="collapse-header">UP</h6>
+				<a class="collapse-item" href="/up/index/index.do">메인페이지</a> <a
+					class="collapse-item" href="/up/mypage/mypage.do">마이페이지</a> <a
+					class="collapse-item" href="/up/habit/habitpage.do">습관등록 및 삭제</a>
 
-         </div>
-      </div></li>	
-	
+			</div>
+		</div></li>
+
 	<br>
 	<br>
 	<!-- Heading -->
@@ -123,6 +146,14 @@
 	<div class="text-center d-none d-md-inline">
 		<button class="rounded-circle border-0" id="sidebarToggle"></button>
 	</div>
-
+	<script src="https://code.jquery.com/jquery-3.5.0.js"
+		integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
+		crossorigin="anonymous"></script>
+	<script>
+		var titleCode = ${sessionScope.loginInfo.userTitleCode};
+		if (titleCode == 0) {
+			$('#check111').hide();
+		}
+	</script>
 
 </ul>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>bin page</title>
+    <link rel="stylesheet" href="/up/resources/vendor/datepicker/datepicker.min.css">
+    <style>
+        .datepicker-container {
+            font-family: 'Helvetica', '나눔고딕', '맑은고딕'
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" name="" id="datepicker">
+
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="/up/resources/vendor/datepicker/datepicker.min.js"></script>
+    <script src="/up/resources/vendor/datepicker/i18n/datepicker.ko-KR.js"></script>
+    <script>
+        $(function(){
+            $("#datepicker").datepicker({
+                authoHide: true,
+                format: 'yyyy-mm-dd',
+                language: 'ko-KR',
+                weekStart: 0,
+                filter: function (date) {
+                    var disable_date = ['2019-01-15', '2019-01-20', '2019-01-25'];
+
+                    var yy = date.getFullYear();
+                    var mm = date.getMonth()+1;
+                    var dd = date.getDate();
+                    if(mm < 10){mm = "0"+ mm;}
+                    if(dd < 10){dd = "0"+ dd;}
+                    var today = yy + "-"+mm+"-"+dd;
+                    var p = disable_date.indexOf(today);
+                    return (p<0)
+                    
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
