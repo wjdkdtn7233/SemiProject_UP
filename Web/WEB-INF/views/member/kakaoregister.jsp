@@ -27,7 +27,9 @@
 <link rel="stylesheet" id="coToolbarStyle"
 	href="chrome-extension://cjabmdjcfcfdmffimndhafhblfmpjdpe/toolbar/styles/placeholder.css"
 	type="text/css">
-	
+
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+
 <style>
 #kakao-register {
 	color: #fff;
@@ -64,13 +66,9 @@
 								method="post" onsubmit="return validate();">
 								<div class="form-group row">
 									<div class="col-sm-4 mb-3 mb-sm-0">
-										<input type="text" class="form-control form-control-user"
-											id="userId" name="userId" placeholder="* ID">
+										<input type="hidden" class="form-control form-control-user"
+											id="userId" name="userId" value="">
 									</div>
-									<span class="col-sm-2"
-										style="line-height: 50px; font-size: 1vw;" onclick="idCheck()">
-										<i class="fas fa-search"></i> ID CHECK </span>
-										<div id="chkIcon" style="line-height: 45px;"></div>
 								</div>
 								<div class="form-group row">
 									<div class="col-sm-4 mb-3 mb-sm-0">
@@ -99,8 +97,9 @@
 									<input type="email" class="form-control form-control-user"
 										id="userEmail" name="userEmail" placeholder="* Email Address">
 								</div>
-								<button type="submit" class="btn btn-primary btn-user"
-									style="width: 50%; margin-left: 25%">submit</button>
+								<a onclick="kakaoRegister()" id="kakao-register"
+									class="btn btn-kakao btn-user"
+									style="width: 50%; margin-left: 25%"> Register with KAKAO </a>
 							</form>
 							<hr>
 							<div class="text-center">
@@ -132,36 +131,11 @@
 		crossorigin="anonymous"></script>
 
 	<script>
-		var idCheckFlag = false;
-
 		//회원가입 성공여부
 		<c:if test= "${data.isSuccess == 'false'}">;
 		alert('회원 가입에 실패하였습니다.')
 		</c:if>
 
-		// id 중복 확인용
-		function idCheck() {
-			$.ajax({
-				url : '/up/member/idcheck.do',
-				type : 'GET',
-				data : $('#userId').serialize(),
-				// data 받아오는 것이 성공하면(success) 아래 함수 호출
-					success : function(data) {
-
-						if (data != '') {
-							// 입력한 id와 동일한 값이 있다면
-							document.querySelector('#chkIcon').innerHTML = '<div class="btn btn-danger btn-icon-split"><span class="icon text-white-50"><i class="fas fa-exclamation-triangle"></i></span><span class="text">이미 존재하는 아이디입니다.</span></div>';
-							idCheckFlag = false;
-						} else {
-							document.querySelector('#chkIcon').innerHTML = '<div class="btn btn-success btn-icon-split"><span class="icon text-white-50"><i class="fas fa-check"></i></span><span class="text">사용 가능한 아이디입니다.</span></div>';
-							idCheckFlag = true;
-						}
-
-					}
-
-				});
-		}
-		
 		// 비밀번호 확인용
 		$(function() {
 			$('#repeatPwd').keyup(function(){ 
@@ -180,7 +154,6 @@
 		// 비밀번호, 닉네임, 이메일 정규표현식
 		function validate() {
 			
-			var id = $('#userId');
 			var pw = $('#userPwd');
 			var name = $('#userName');
 			var nick = $('#userNickName');
@@ -209,11 +182,6 @@
 				}
 			}
 			
-			//아이디 중복 검사
-			if (!idCheckFlag) {
-				alert("아이디 중복 검사를 해주세요.");
-				return false;
-			}
 			//비밀번호 검사
 			//비밀번호는 영문자 숫자 기호문자의 조합으로 8글자 이상 작성해주세요.
 			if (!chk(regExpPw, pw, '비밀번호는 영문자 숫자 기호문자의 조합으로 8글자 이상 작성해주세요.')) {
@@ -241,6 +209,46 @@
 			return true;
 		}
 		
+		function kakaoRegister(){
+			// 사용할 앱의 JavaScript 키를 설정
+			Kakao.init('cc9504f39ca30003c636d3126203e161');
+			Kakao.Auth.login({
+				success : function(v) {
+					Kakao.API.request({
+						url : '/v2/user/me',
+						success : function(res) {
+							var id = res.id;
+							var name = res.properties.nickname;
+							var email = res.kakao_account.email;
+							var atoken = v.access_token;
+							var rtoken = v.refresh_token;
+							
+							$.ajax({
+								url: "/up/member/kakaoregister.do",
+								type: 'POST',
+								data: {
+									"id" : id, 
+									"name" : name, 
+									"email" : email,
+									"atoken": atoken,
+									"rtoken": rtoken
+									},
+								success: function(data) {
+									alert("성공");
+								}
+							});
+						},
+						fail : function(error) {
+							console.log(error);
+						}
+					});
+				},
+				fail : function(err) {
+					alert(JSON.stringify(err));
+					alert("카카오톡 로그인 실패");
+				}
+			});
+		};
 	</script>
 
 </body>

@@ -70,6 +70,12 @@ public class HandlerMapping {
 			case "insert.do":
 				methodName = "insertMember";
 				break;
+			case "kakaologin.do":
+				methodName = "kakaoLogin";
+				break;
+			case "kakaoregister.do":
+				methodName = "kakaoRegister";
+				break;
 			case "forgotid.do":
 				methodName = "forgotId";
 				break;
@@ -84,6 +90,9 @@ public class HandlerMapping {
 				break;
 			case "welcome.do":
 				methodName = "welcome";
+				break;
+			case "wise.do":
+				methodName = "sendWise";
 				break;
 			default:
 				throw new Status404("uri를 다시 확인 해주세요!");
