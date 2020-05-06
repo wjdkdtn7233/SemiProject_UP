@@ -35,7 +35,7 @@ i {
 	margin-left:35%;
 	margin-bottom:5%;
 	text-align: center;
-	color:#36b9cc;]
+	color:#36b9cc;
 }
 
 #move {
