@@ -15,6 +15,7 @@
 	width: 7rem;
 }
 
+
 .btn-file{
             position: relative;
             overflow: hidden;
@@ -66,7 +67,7 @@
 							<div class="row   py-5">
 								<div
 									class="col-2 d-flex align-items-center justify-content-end pl-2" id="pictureHere">
-						
+									
 									<img class="img-profile size1 rounded-circle"
 										src="/up/resources/upload/${sessionScope.loginInfo.renameFile}">
 
@@ -183,6 +184,10 @@
 		</div>
 
 	</div>
+	    <script src="/up/resources/vendor/sweetalert2/sweetalert2.all.min.js"></script>
+    <script src="/up/resources/vendor/sweetalert2/sweetalert2.all.js"></script>
+    <script src="/up/resources/vendor/sweetalert2/sweetalert2.js"></script>
+    <script src="/up/resources/vendor/sweetalert2/sweetalert2.min.js"></script>
 	<%@ include file="../include/jsRoot.jsp"%>
 	<script src="https://code.jquery.com/jquery-3.5.0.js"
 		integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
@@ -213,7 +218,6 @@
 
 				return true;
 			} else {
-				$('#infoNick').html(msg);
 				e.value = "";
 				e.focus();
 				return false;
@@ -222,12 +226,29 @@
 
 		//닉네임 특수문자 검사
 		if (chk(regExpNick2, nick, "")) {
-			$('#infoNick').html("<i class='fas fa-exclamation-triangle'></i>" +"닉네임에 특수문자를 포함시킬 수 없습니다.");
+			
+			swal({
+                title: '닉네임 확인!', // 제목
+                text: "닉네임에 특수문자를 포함시킬 수 없습니다.", // 내용
+                type: 'warning', // 종류
+                confirmButtonText: '확인',
+                confirmButtonColor: '#4e73df' // 확인버튼 표시 문구
+                
+            });
 			return false;
 		}
 		
 		if (!chk(regExpNick, nick,  //닉네임 검사
-				"<i class='fas fa-exclamation-triangle'></i>닉네임은 영문/한글 과 숫자를 포함하여 3자 에서 15자 이내로 기입해주세요.")) {
+				"")) {
+			swal({
+                title: '닉네임 확인!', // 제목
+                html: "닉네임은 영문/한글 과 숫자를 포함하여 <br>   3자 에서 15자 이내로 기입해주세요.", // 내용
+                type: 'warning', // 종류
+                confirmButtonText: '확인',
+                confirmButtonColor: '#4e73df' // 확인버튼 표시 문구
+                
+            });
+			
 			return false;
 		}
 		
@@ -255,7 +276,14 @@
 
 			} else {
 
-				alert('이미지만 첨부 할 수 있습니다.');
+				swal({
+	                title: '첨부파일 확인!', // 제목
+	                html: "이미지만 첨부할 수 있습니다.", // 내용
+	                type: 'warning', // 종류
+	                confirmButtonText: '확인',
+	                confirmButtonColor: '#4e73df' // 확인버튼 표시 문구
+	                
+	            });
 
 				$('#userPicture').val("");
 

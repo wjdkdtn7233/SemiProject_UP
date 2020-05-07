@@ -169,16 +169,16 @@
 			<div class="modal-content text-gray-900">
 				<div class="modal-header">
 					<h5 class="modal-title" id="exampleModalLabel">정말 회원탈퇴를 하시겠습니까?</h5>
-					<button class="close" type="button" data-dismiss="modal"
+					<button class="close" type="button" data-dismiss="modal"  onclick="checkFalse()"
 						aria-label="Close">
 						<span aria-hidden="true">×</span>
 					</button>
 				</div>
 				<div class="modal-body">지금 회원탈퇴를 하시게되면 다시 되돌릴 수 없습니다.</div>
 				<div class="modal-footer">
-					<button class="btn btn-secondary" onclick="checkTrue()" type="button"
+					<button class="btn  btn-primary" onclick="checkTrue()" type="button"
 						data-dismiss="modal">Yes</button>
-					<button class="btn btn-primary" type="button" onclick="checkFalse()" data-dismiss="modal">Cancel</a>
+					<button class="btn btn-secondary" type="button" onclick="checkFalse()" data-dismiss="modal">Cancel</a>
 				</div>
 			</div>
 		</div>

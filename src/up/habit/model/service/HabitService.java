@@ -14,48 +14,106 @@ import up.member.model.dao.MemberDao;
 import up.member.model.vo.Member;
 
 public class HabitService {
-	
+
 	JDBCTemplate jdt = JDBCTemplate.getInstance();
 	HabitDao hdao = new HabitDao();
+
+	/**
+	  * @Method Name : selectHabitList
+	  * @작성일 : 2020. 5. 7.
+	  * @작성자 : 정상훈
+	  * @변경이력 : 완료
+	  * @Method 설명 : 유저의 현재 habit 목록을 가져와준다.
+	  * @param m
+	  * @return List<Habit>
+	  */
 	
 	public List<Habit> selectHabitList(Member m) {
 		List<Habit> hList = new ArrayList<Habit>();
-		
+
 		Connection conn = null;
-		
+
 		conn = jdt.getConnection();
-		
+
 		try {
-			
+
 			hList = hdao.selectHabitList(conn, m);
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
+		} finally {
 			jdt.close(conn);
 		}
-		
-		
+
 		return hList;
 	}
+
+	/**
+	  * @Method Name : deleteHabit
+	  * @작성일 : 2020. 5. 7.
+	  * @작성자 : 정상훈
+	  * @변경이력 : 완료
+	  * @Method 설명 : hNo에 해당하는 Habit 정보를 삭제시킨다.
+	  * @param hNo
+	  * @return int
+	  */
 	
-	public int deleteHabit(int hNo,Member m) {
+	public int deleteHabit(int hNo) {
 		int res = 0;
 		Connection conn = null;
-		
+
 		conn = jdt.getConnection();
-		
+
 		try {
-			
-			hdao.deleteHabit(conn, hNo, m);
-			
+
+			res = hdao.deleteHabit(conn, hNo);
+			if(res >= 1) {
+				jdt.commit(conn);
+			}else {
+				jdt.rollback(conn);
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
+			jdt.rollback(conn);
+		} finally {
 			jdt.close(conn);
 		}
+		return res;
+	}
+
+	/**
+	  * @Method Name : insertNewHabit
+	  * @작성일 : 2020. 5. 7.
+	  * @작성자 : 정상훈
+	  * @변경이력 : 완료
+	  * @Method 설명 :Habit 데이터 insert
+	  * @param h
+	  * @return int
+	  */
+	
+	public int insertNewHabit( Habit h) {
+		int res = 0;
+		Connection conn = null;
+
+		conn = jdt.getConnection();
+
+		try {
+			res = hdao.insertNewHabit(conn, h);
+			if(res >= 1) {
+				jdt.commit(conn);
+			}else {
+				jdt.rollback(conn);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			jdt.rollback(conn);
+		} finally {
+			jdt.close(conn);
+		}
+
 		return res;
 	}
 }

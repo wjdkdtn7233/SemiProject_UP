@@ -9,8 +9,12 @@
 .rowWrapper {
 	width: 100%;
 	height: 700px;
-	background-color: white;
+
 	letter-spacing: 20%;
+}
+.wappers{
+	background-image: url("/up/resources/img/habit-bg1.png");
+	background-size:cover;
 }
 
 #icon-size {
@@ -47,6 +51,10 @@
 	margin: 0 auto;
 	font-size: 14pt;
 }
+.ligth-bg:hover{
+	background-image:url("/up/resources/img/light.png");
+	background-size:cover;
+}
 
 </style>
 <body id="page-top">
@@ -71,7 +79,7 @@
 
 					<!-- Content Row -->
 					<div class="rowWrapper">
-						<div class="card shadow border-left-primary h-100 w-100 ">
+						<div class="card shadow border-left-primary h-100 w-100 wappers ">
 							<div class="myPage-menu">
 								<br>
 								<div class="myPage-bottom">
@@ -91,7 +99,7 @@
 									<a href="/up/habit/habitregistration.do">
 										<div id="icon-size">
 										<i class="fas fa-folder-plus"></i>
-										<div class="text h5 mt-3">습관 등록</div>
+										<div class="text h5 mt-3 font-weight-bold">습관 등록</div>
 										</div>
 									</a>
 									</div>
@@ -99,7 +107,7 @@
 									<a href="/up/habit/habitremove.do">
 									<div id="icon-size">
 										<i class="fas fa-tools"></i>
-										<div class="text h5 mt-3">습관 삭제</div>
+										<div class="text h5 mt-3 font-weight-bold">습관 목록 및 삭제</div>
 									</div>	
 									</a>
 									</div>

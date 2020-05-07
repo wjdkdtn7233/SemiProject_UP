@@ -376,4 +376,11 @@ public class MyPageController implements Controller {
 
 	}
 
+	public ModelAndView goodBye(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		// Member m = (Member) request.getSession().getAttribute("loginInfo");
+		mav.setView("mypage/goodBye");
+
+		return mav;
+	}
 }

@@ -124,6 +124,9 @@ public class HandlerMapping {
 			case "memberwithdrawal.do":
 				methodName = "memberWithdrawal";
 				break;
+			case "goodbye.do":
+				methodName = "goodBye";
+				break;	
 			case "deletemember.do":
 				methodName = "deleteMember";
 				break;	
@@ -152,7 +155,9 @@ public class HandlerMapping {
 			case "habitregistration.do":
 				methodName = "habitRegistration";
 				break;	
-			
+			case "habitregistrationimple.do":
+				methodName = "habitRegistrationImple";
+				break;
 			case "habitremove.do":
 				methodName = "habitRemove";
 				break;	

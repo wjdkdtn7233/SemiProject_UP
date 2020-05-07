@@ -36,7 +36,7 @@
 							</div>
 
 						</div>
-						<form action="/up/mypage/pwdcheck.do" method="post" onsubmit="return validata();">
+						<form action="/up/mypage/pwdcheck.do" method="post" id="frm">
 						<div class="cardbody ">
 
 							<div class="row mb-4 mt-5">
@@ -123,61 +123,80 @@
 
 	</div>
 
-
+	  <script src="/up/resources/vendor/sweetalert2/sweetalert2.all.min.js"></script>
+    <script src="/up/resources/vendor/sweetalert2/sweetalert2.all.js"></script>
+    <script src="/up/resources/vendor/sweetalert2/sweetalert2.js"></script>
+    <script src="/up/resources/vendor/sweetalert2/sweetalert2.min.js"></script>
 	<%@ include file="../include/jsRoot.jsp"%>
 	<script src="https://code.jquery.com/jquery-3.5.0.js"
 		integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
 		crossorigin="anonymous"></script>
 	<script type="text/javascript">
-		function validata() {
-			//?=.* 어느자리에 있든? 
-			var input1 = $('.inputPwd1');
-			var input2 = $('.inputPwd2');
+	
+	$('#frm').submit(function(){
+		var input1 = $('.inputPwd1');
+		var input2 = $('.inputPwd2');
+		
+		var regExpPw = /(?=.*\d{1,50})(?=.*[~`!@#$%\^&*()-+=]{1,50})(?=.*[a-zA-Z]{1,50}).{8,50}$/;
+		
 
-			var regExpPw = /(?=.*\d{1,50})(?=.*[~`!@#$%\^&*()-+=]{1,50})(?=.*[a-zA-Z]{1,50}).{8,50}$/;
-			$('.inputPwd1').on('click', function() {
-				$('#info').html("");
-			});
+		function chk(re, e, msg) {
 
-			$('.inputPwd2').on('click', function() {
-				$('#info').html("");
-			});
-			
+			if (re.test(e.val())) {
 
-			function chk(re, e, msg) {
-
-				if (re.test(e.val())) {
-
-					return true;
-				} else {
-					$('#info').html("<i class='fas fa-exclamation-triangle'></i>" +msg);
-					e.value = "";
-					e.focus();
-					return false;
-				}
-			}
-
-			//닉네임 검사
-			if (!chk(regExpPw, input1, "비밀번호는 영문,숫자,특수기호를 포함한 8자리 이상으로 입력해주세요.")) {
+				return true;
+			} else {
+				
+				e.value = "";
+				e.focus();
 				return false;
 			}
-
-			if (!chk(regExpPw, input2, "비밀번호는 영문,숫자,특수기호를 포함한 8자리 이상으로 입력해주세요.")) {
-				return false;
-			}
-
-			if (input1.val() != input2.val()) {
-				$('#info').html("<i class='fas fa-exclamation-triangle'></i>" +"입력한 비밀번호가 서로 맞지 않습니다.");
-				return false;
-			}
-			
-			/* if( input1.val() == 현재 사용중인 비밀번호 ){
-				alert('현재 사용중인 비밀번호와 같습니다.');
-				return false;
-			} */
-			
-			return true;
 		}
+
+		//닉네임 검사
+		if (!chk(regExpPw, input1, "")) {
+			swal({
+                title: '비밀번호 확인!', // 제목
+                html: "비밀번호는 영문,숫자,특수기호를 포함한 <br> 8자리 이상으로 입력해주세요.", // 내용
+                type: 'warning', // 종류
+                confirmButtonText: '확인',
+                confirmButtonColor: '#4e73df' // 확인버튼 표시 문구
+                
+            });
+			return false;
+		}
+
+		if (!chk(regExpPw, input2, "")) {
+			swal({
+                title: '비밀번호 확인!', // 제목
+                html: "비밀번호는 영문,숫자,특수기호를 포함한 <br> 8자리 이상으로 입력해주세요.", // 내용
+                type: 'warning', // 종류
+                confirmButtonText: '확인',
+                confirmButtonColor: '#4e73df' // 확인버튼 표시 문구
+                
+            });
+			return false;
+		}
+
+		if (input1.val() != input2.val()) {
+			
+			swal({
+                title: '비밀번호 확인!', // 제목
+                html: "입력한 비밀번호가 서로 맞지 않습니다.", // 내용
+                type: 'warning', // 종류
+                confirmButtonText: '확인',
+                confirmButtonColor: '#4e73df' // 확인버튼 표시 문구
+                
+            });
+			
+			return false;
+		}
+		
+	
+		
+		return true;
+	});
+		
 	</script>
 </body>
 </html>
