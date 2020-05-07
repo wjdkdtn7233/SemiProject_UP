@@ -67,7 +67,7 @@
 								<div class="form-group row">
 									<div class="col-sm-4 mb-3 mb-sm-0">
 										<input type="hidden" class="form-control form-control-user"
-											id="userId" name="userId" value="">
+											id="userId" name="userId" value="${id}">
 									</div>
 								</div>
 								<div class="form-group row">
@@ -97,9 +97,9 @@
 									<input type="email" class="form-control form-control-user"
 										id="userEmail" name="userEmail" placeholder="* Email Address">
 								</div>
-								<a onclick="kakaoRegister()" id="kakao-register"
+								<button type="submit" id="kakao-register"
 									class="btn btn-kakao btn-user"
-									style="width: 50%; margin-left: 25%"> Register with KAKAO </a>
+									style="width: 50%; margin-left: 25%"> Register with KAKAO </button>
 							</form>
 							<hr>
 							<div class="text-center">
@@ -209,46 +209,6 @@
 			return true;
 		}
 		
-		function kakaoRegister(){
-			// 사용할 앱의 JavaScript 키를 설정
-			Kakao.init('cc9504f39ca30003c636d3126203e161');
-			Kakao.Auth.login({
-				success : function(v) {
-					Kakao.API.request({
-						url : '/v2/user/me',
-						success : function(res) {
-							var id = res.id;
-							var name = res.properties.nickname;
-							var email = res.kakao_account.email;
-							var atoken = v.access_token;
-							var rtoken = v.refresh_token;
-							
-							$.ajax({
-								url: "/up/member/kakaoregister.do",
-								type: 'POST',
-								data: {
-									"id" : id, 
-									"name" : name, 
-									"email" : email,
-									"atoken": atoken,
-									"rtoken": rtoken
-									},
-								success: function(data) {
-									alert("성공");
-								}
-							});
-						},
-						fail : function(error) {
-							console.log(error);
-						}
-					});
-				},
-				fail : function(err) {
-					alert(JSON.stringify(err));
-					alert("카카오톡 로그인 실패");
-				}
-			});
-		};
 	</script>
 
 </body>

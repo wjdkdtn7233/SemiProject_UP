@@ -1,13 +1,9 @@
 package up.member.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
-import com.google.gson.Gson;
 
 import common.frontController.Controller;
 import common.frontController.ModelAndView;
@@ -56,10 +52,12 @@ public class MemberController implements Controller {
 	 */
 	public ModelAndView loginImple(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
-
+		
 		String id = request.getParameter("userId");
 		String pwd = request.getParameter("userPwd");
+		
 		Member m = ms.loginImple(id, pwd);
+		
 
 		if (m != null) {
 			if (m.getUserLeaveYN().equals("N") || m.getUserLeaveYN().equals("n")) {
@@ -95,7 +93,17 @@ public class MemberController implements Controller {
 
 		return mav;
 	}
+	
+	public ModelAndView kakaoRegister(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		String id = request.getParameter("id");
+		request.setAttribute("id", id);
+		mav.setView("member/kakaoregister");
 
+		return mav;
+	}
+
+	
 	/**
 	 * @MethodName: idCheck
 	 * @ClassName: MemberController.java
@@ -139,6 +147,12 @@ public class MemberController implements Controller {
 
 		mav.setView("member/emailCheck");
 
+		return mav;
+	}
+	
+	public ModelAndView sendMailCheck(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		
 		return mav;
 	}
 
@@ -256,6 +270,29 @@ public class MemberController implements Controller {
 
 		return mav;
 	}
+	
+	/**
+	 *	@MethodName: kakaoIdCheck
+	 *	@ClassName: MemberController.java
+	 *	@변경이력: 
+	 *	@Comment: kakaoId 중복여부 확인
+	 *	@작성자: 박혜연
+	 *	@작성일: 2020. 5. 7.
+	*/
+	public ModelAndView kakaoIdCheck(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		
+		System.out.println(request.getParameter("id"));
+		
+		String kakaoId = ms.idCheck(request.getParameter("id"));
+		
+		System.out.println("확인용" + kakaoId);
+
+		mav.setView("ajax");
+		mav.addObject("id", kakaoId);
+		
+		return mav;
+	}
 
 	/**
 	 * @MethodName: kakaoLogin
@@ -270,11 +307,15 @@ public class MemberController implements Controller {
 
 		String id = request.getParameter("id");
 		System.out.println(id);
+		request.setAttribute("id", id);
 		Member m = ms.kakaoImple(id);
 
 		if (m != null) {
 			if (m.getUserLeaveYN().equals("N") || m.getUserLeaveYN().equals("n")) {
 				// leave_yn 이 y면 로그인 불가
+				// 로그인 시 로그인 횟수 +1
+				m.setUserLoginCnt((m.getUserLoginCnt())+1);
+				
 				HttpSession session = request.getSession();
 				session.setAttribute("loginInfo", m);
 				// 유저가 로그인 하는동안 타이틀 네임 / 컬러 띄워주는 메소드
@@ -291,57 +332,7 @@ public class MemberController implements Controller {
 			mav.addObject("url", "/up/mypage/kakaoregister.do");
 			mav.addObject("alertMsg", "등록되지 않은 회원입니다. 회원가입을 해주세요.");
 		}
-		/*
-		 * 
-		 * Gson gson = new Gson(); JsonObject jobj = new JsonObject();
-		 * jobj.addProperty("id", id); String json = gson.toJson(jobj);
-		 * 
-		 * mav.addObject("kakao", json); mav.setView("ajax");
-		 */
-
-		return mav;
-	}
-
-	public ModelAndView kakaoRegister(HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView();
-
-		int result = 0;
-		String id = request.getParameter("id");
-		String name = request.getParameter("name");
-		String email = request.getParameter("email");
-
-		Member m = new Member();
-		m.setUserId(id);
-		m.setUserPwd("kakao");
-		m.setUserName(name);
-		m.setUserNickName("");
-		m.setUserEmail(email);
-
-		result = ms.insertMember(m);
-		// 회원 이메일로 등록 요청 메일 발송
-		if (result >= 1) {
-			// 변경된 sql 구문이 있다면
-			mav.setView("member/welcome");
-		} else {
-			// 변경된 sql 구문이 없다면
-			mav.setView("member/register");
-			mav.addObject("isSuccess", "false");
-		}
-
-		return mav;
-	}
-
-	/**
-	 * @MethodName: kakaoInsert
-	 * @ClassName: MemberController.java
-	 * @변경이력:
-	 * @Comment: 카카오 로그인 회원 등록
-	 * @작성자: 박혜연
-	 * @작성일: 2020. 5. 6.
-	 */
-	public ModelAndView kakaoInsert() {
-		ModelAndView mav = new ModelAndView();
-
+		
 		return mav;
 	}
 

@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import common.frontController.Controller;
 import common.frontController.ModelAndView;
+import up.member.model.service.MemberService;
 
 /**
   * @FileName : IndexController.java
