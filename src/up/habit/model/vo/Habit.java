@@ -14,7 +14,7 @@ public class Habit implements Serializable{
     private Date hStartDate;
     private Date hEndDate;
     private String hSelectday;
-    private long hMoney;
+    private int hMoney;
     private int hTime;
     private int cCode;
     private String mId;
@@ -22,7 +22,7 @@ public class Habit implements Serializable{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Habit(int hNo, String hSubcategory, Date hStartDate, Date hEndDate, String hSelectday, long hMoney,
+	public Habit(int hNo, String hSubcategory, Date hStartDate, Date hEndDate, String hSelectday, int hMoney,
 			int hTime, int cCode, String mId) {
 		super();
 		this.hNo = hNo;
@@ -65,10 +65,10 @@ public class Habit implements Serializable{
 	public void sethSelectday(String hSelectday) {
 		this.hSelectday = hSelectday;
 	}
-	public long gethMoney() {
+	public int gethMoney() {
 		return hMoney;
 	}
-	public void sethMoney(long hMoney) {
+	public void sethMoney(int hMoney) {
 		this.hMoney = hMoney;
 	}
 	public int gethTime() {

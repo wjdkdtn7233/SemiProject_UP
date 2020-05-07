@@ -38,10 +38,10 @@ public class DispatcherServlet extends HttpServlet {
 
 			PrintWriter pw = response.getWriter();
 			String res = "";
-
+			
 			if (mav.getData().containsKey("userId")) {
 				res = (String) mav.getData().get("userId");
-			} 
+			}
 			
 			pw.write(res);
 

@@ -29,7 +29,7 @@
 						<div class="card-header">
 							<div class="row  ">
 								<div class="col-3 ">
-									<h1 class="h3 text-gray-900 ">습관 삭제</h1>
+									<h1 class="h3 text-gray-900 ">습관 목록 및 삭제</h1>
 								</div>
 
 
@@ -199,33 +199,15 @@
 		
 		document.querySelector('#deleteItem').addEventListener('click',function(){
 			
-			 
+			hNo = document.querySelector('#items'+indexNum).children[0].value;
 			 //location.href = location.href;  //새로고침
-			 
-			 
-			$.ajax({
-				url : '/up/habit/deletehabit.do',
-				type : 'GET',
-				data : document.querySelector('#items'+indexNum).children[0].serialize(),
-				// data 받아오는 것이 성공하면(success) 아래 함수 호출
-					success : function(data) {
-
-						if (data != '') {
-							// 입력한 id와 동일한 값이 있다면
-							document.querySelector('#chkIcon').innerHTML = '<div class="btn btn-danger btn-icon-split"><span class="icon text-white-50"><i class="fas fa-exclamation-triangle"></i></span><span class="text">이미 존재하는 아이디입니다.</span></div>';
-							idCheckFlag = false;
-						} else {
-							document.querySelector('#chkIcon').innerHTML = '<div class="btn btn-success btn-icon-split"><span class="icon text-white-50"><i class="fas fa-check"></i></span><span class="text">사용 가능한 아이디입니다.</span></div>';
-							idCheckFlag = true;
-						}
-
-					}
-
-				});
-			 
+			$('#hNumber').val(hNo); 
+			console.log(hNo);
 			document.querySelector('#items'+indexNum).remove();
-		
+			$('#frm').submit();
 		 });
+		
+	
 		 
 		
 	</script>

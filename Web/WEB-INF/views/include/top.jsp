@@ -168,11 +168,13 @@
 				class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 				aria-labelledby="userDropdown">
 				<a class="dropdown-item" href="/up/mypage/mypage.do"> <i
-					class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> MyPage
+					class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> My Page
 				</a> <a class="dropdown-item" href="/up/mypage/infopwdcheck.do"> <i
-					class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Settings
-				</a> <a class="dropdown-item" href="#"> <i
-					class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> Habit
+					class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> My
+					Information Modify
+				</a> <a class="dropdown-item" href="/up/habit/habitpage.do"> <i
+					class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> My Habit
+					Page
 				</a>
 				<div class="dropdown-divider"></div>
 				<a class="dropdown-item" href="#" data-toggle="modal"
@@ -201,20 +203,24 @@
 				<div class="modal-footer">
 					<button class="btn btn-secondary" type="button"
 						data-dismiss="modal">Cancel</button>
-					<button class="btn btn-primary" data-dismiss="modal" onclick="logoutClick()">Logout</a>
+					<button class="btn btn-primary" data-dismiss="modal"
+						onclick="logoutClick()">
+						Logout</a>
 				</div>
 			</div>
 		</div>
 	</div>
 
 </nav>
+
 <script src="https://code.jquery.com/jquery-3.5.0.js"
 	integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
 	crossorigin="anonymous"></script>
 <script>
 	
-<%request.getSession().setMaxInactiveInterval(60*20);%>
-	var loginInfo = '${sessionScope.loginInfo}'
+<%request.getSession().setMaxInactiveInterval(20 * 60);%>
+	var loginInfo = '${sessionScope.loginInfo.userId}';
+	console.log(loginInfo);
 
 	if (!loginInfo) {
 		alert('20분간 요청이 없어 로그아웃 되셨습니다.');
@@ -226,10 +232,8 @@
 		$('#ment').text("");
 		$('#check111').hide();
 	}
-	
-	function logoutClick(){
-		location.href="/up/member/login.do";
+
+	function logoutClick() {
+		location.href = "/up/member/login.do";
 	}
-		
-	
 </script>

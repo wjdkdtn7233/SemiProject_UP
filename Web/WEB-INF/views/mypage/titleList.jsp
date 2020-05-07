@@ -31,8 +31,11 @@
 }
 
 .indicators-color {
-	background-color: #D9E5FF !important;
+	background-image: url("/up/resources/img/titlelist-bg.png") !important;
+
+	background-size: cover;
 }
+
 </style>
 <%@ include file="../include/header.jsp"%>
 <body id="page-top">
