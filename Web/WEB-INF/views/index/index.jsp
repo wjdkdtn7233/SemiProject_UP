@@ -20,6 +20,8 @@
 <!-- Custom fonts for this template-->
 <link href="/up/resources/vendor/fontawesome-free/css/all.min.css"
 	rel="stylesheet" type="text/css">
+<link rel="stylesheet"
+	href="/up/resources/vendor/datepicker/datepicker.min.css">
 <link
 	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 	rel="stylesheet">
@@ -33,6 +35,7 @@
 <style>
 .container-fluid-background {
 	background-color: #283442;
+	font-family: '나눔고딕';
 }
 
 .indexlog {
@@ -48,6 +51,11 @@
 .gold {
 	color: #DFB84E;
 }
+
+.blue {
+	color: #283666;
+}
+
 </style>
 </head>
 
@@ -92,7 +100,7 @@
 					</div>
 					<div class="container">
 						<h1 class="h4 text-white text-center">- - - - - - - - - - - -
-							- - - -</h1>
+							- - -</h1>
 					</div>
 					<br>
 					<div class="container gold">
@@ -132,21 +140,22 @@
 						<h1 class="h5 text-center text-gray-500">
 							저희 <img class="contentlog"
 								src="https://cdn.discordapp.com/attachments/704300026628800522/704300563189334036/upLogo_remove_background.png" />
-							팀이 당신의 동기부여가 되어드리겠습니다
+							팀이 다음과 같은 기술로 당신의 동기부여가 되어드리겠습니다
 						</h1>
 					</div>
 					<br>
 					<div class="container">
 						<h1 class="h4 text-white text-center">- - - - - - - - - - - -
-							- - - -</h1>
+							- - -</h1>
 					</div>
 					<br>
 					<div class="container">
-						<div class="row">
+						<div class="row blue">
 
 							<div class="col-xl-3 col-md-6 mb-4">
 								<div class="card shadow h-100 py-2 text-center">
 									<div class="card-body">
+									<i class="fas fa-folder-plus fa-5x py-2"></i>
 										<h1 class="h4">습관</h1>
 										<h1 class="h4">등록하기</h1>
 
@@ -157,7 +166,7 @@
 								<div class="card shadow h-100 py-2 text-center">
 									<div class="card-body">
 										<i class="far fa-id-card fa-5x py-2"></i>
-										
+
 										<h1 class="h4">마이페이지</h1>
 										<h1 class="h4">확인하기</h1>
 									</div>
@@ -167,7 +176,7 @@
 								<div class="card shadow h-100 py-2 text-center">
 									<div class="card-body">
 										<i class="fas fa-chart-bar fa-5x py-2"></i>
-										
+
 										<h1 class="h4">한눈으로</h1>
 										<h1 class="h4">보기</h1>
 									</div>
@@ -176,6 +185,7 @@
 							<div class="col-xl-3 col-md-6 mb-4">
 								<div class="card shadow h-100 py-2 text-center">
 									<div class="card-body">
+									<i class="fas fa-scroll fa-5x py-2"></i>
 										<h1 class="h4">타이틀</h1>
 										<h1 class="h4">획득하기</h1>
 									</div>
@@ -187,7 +197,7 @@
 					<br>
 					<div class="container">
 						<h1 class="h4 text-white text-center">- - - - - - - - - - - -
-							- - - -</h1>
+							- - -</h1>
 					</div>
 					<br>
 					<div class="container">
@@ -197,8 +207,7 @@
 							팀이 응원합니다.
 						</h1>
 					</div>
-					<br>
-					<br>
+					<br> <br>
 				</div>
 				<!-- /.container-fluid -->
 
