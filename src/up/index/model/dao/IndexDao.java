@@ -79,9 +79,11 @@ public class IndexDao {
 				h.setmId(rs.getString(14));
 				
 				hList.add(h);
+				cList.add(c);
 			}
 			
-			
+			res.put("hList", hList);
+			res.put("cList", cList);
 			
 			
 		} finally {
