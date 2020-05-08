@@ -1,6 +1,7 @@
 package up.index.model.dao;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,7 +10,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import common.JDBCTemplate;
-import up.habit.model.vo.CurrentState;
 import up.habit.model.vo.Habit;
 
 /**
