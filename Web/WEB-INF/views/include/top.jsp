@@ -41,12 +41,10 @@
 			</div></li>
 		<li class="nav-item dropdown no-arrow  d-flex align-items-center">
 
-			<span id="ment"
-			class=" font-weight-bold font-italic h6 text-gray-900 mr-3">당신은
-		</span> <span
+			<span
 			class="btn  text-white text-center font-weight-bold font-italic h3"
 			id="check111"
-			style="background:${sessionScope.representationTitle.TColor}; width:150px;">${sessionScope.representationTitle.TName}</span>
+			style="background:${sessionScope.representationTitle.TColor}; width:200px;">${sessionScope.representationTitle.TName}</span>
 		</li>
 		<%-- Kakao share btn --%>
 		<a id="kakao-link-btn" href="javascript:sendLink()"> <img
@@ -171,19 +169,17 @@
 				class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 				aria-labelledby="userDropdown">
 				<a class="dropdown-item" href="/up/mypage/mypage.do"> <i
-					class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> My Page
+					class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 마이 페이지
 				</a> <a class="dropdown-item" href="/up/habit/finishpopup.do"> <i
-					class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> My
-					Information Modify
+					class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>개인 정보 수정
 				</a> <a class="dropdown-item" href="/up/habit/habitpage.do"> <i
-					class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> My Habit
-					Page
+					class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> 습관 페이지
 				</a>
 				<div class="dropdown-divider"></div>
 				<a class="dropdown-item" href="#" data-toggle="modal"
 					data-target="#logoutModal"> <i
 					class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-					Logout
+					로그아웃
 				</a>
 			</div></li>
 
@@ -195,20 +191,19 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+					<h5 class="modal-title" id="exampleModalLabel">로그아웃 하시겠습니까?</h5>
 					<button class="close" type="button" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">×</span>
 					</button>
 				</div>
-				<div class="modal-body">Select "Logout" below if you are ready
-					to end your current session.</div>
+				<div class="modal-body">준비가 되었으면 아래에  "로그아웃" 을 선택하십시오.</div>
 				<div class="modal-footer">
 					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal">Cancel</button>
+						data-dismiss="modal">취소</button>
 					<button class="btn btn-primary" data-dismiss="modal"
 						onclick="logoutClick()">
-						Logout</a>
+						로그아웃</a>
 				</div>
 			</div>
 		</div>

@@ -15,7 +15,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>SB Admin 2 - Dashboard</title>
+<title>[UP]현대인의 바른 습관 권장 사이트</title>
 
 <!-- Custom fonts for this template-->
 <link href="/up/resources/vendor/fontawesome-free/css/all.min.css"
