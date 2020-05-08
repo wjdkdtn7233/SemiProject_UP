@@ -209,7 +209,7 @@ i {
 
 		function kakaoLogin() {
 			// 사용할 앱의 JavaScript 키를 설정
-			Kakao.init('cc9504f39ca30003c636d3126203e161');
+			Kakao.init('7d8d8fcde6cd667c5516e3c432c6981a');
 			// 카카오 로그인 버튼을 생성
 			Kakao.Auth.login({
 				success : function(v) {
