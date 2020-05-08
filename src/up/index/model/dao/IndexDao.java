@@ -69,14 +69,14 @@ public class IndexDao {
 				c.sethNo(h.gethNo());
 				
 //				habit 데이터 모델 생성.
-				h.sethSubcategory(rs.getString(2));
-				h.sethStartDate(rs.getDate(3));
-				h.sethEndDate(rs.getDate(4));
-				h.sethSelectday(rs.getString(5));
-				h.sethMoney(rs.getInt(6));
-				h.sethTime(rs.getInt(7));
-				h.setcCode(rs.getInt(8));
-				h.setmId(rs.getString(9));
+				h.sethSubcategory(rs.getString(7));
+				h.sethStartDate(rs.getDate(8));
+				h.sethEndDate(rs.getDate(9));
+				h.sethSelectday(rs.getString(10));
+				h.sethMoney(rs.getInt(11));
+				h.sethTime(rs.getInt(12));
+				h.setcCode(rs.getInt(13));
+				h.setmId(rs.getString(14));
 				
 				hList.add(h);
 			}
