@@ -81,6 +81,7 @@ public class IndexController implements Controller {
 	 */
 	public ModelAndView calendar(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
+		
 		mav.setView("index/calendar");
 
 		return mav;

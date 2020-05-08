@@ -122,7 +122,7 @@
 	<hr class="sidebar-divider">
 	<!-- Nav Item - Utilities Collapse Menu -->
 	<li class="nav-item"><a class="nav-link collapsed"
-		href="/up/index/calendar.do"> <i class="fas fa-pencil-alt"></i> <span>Calender
+		href="/up/index/calendar.do"> <i class="far fa-calendar"></i></i> <span>Calender
 				view</span>
 	</a></li>
 
