@@ -187,7 +187,7 @@ public class MemberService {
 	public void regEmailCheck(Member m) {
 
 		// 구글 smtp 서버를 사용하기 위한 인증 정보
-		PasswordAuthentication pa = new PasswordAuthentication("ksungmin2015", "tjd951als");
+		PasswordAuthentication pa = new PasswordAuthentication("eternita9210", "!dnflahdcl1004");
 
 		//"ksungmin2015", "tjd951als"
 		
@@ -262,7 +262,7 @@ public class MemberService {
 		try {
 			result = md.findId(con, userEmail);
 
-			PasswordAuthentication pa = new PasswordAuthentication("ksungmin2015", "tjd951als");
+			PasswordAuthentication pa = new PasswordAuthentication("eternita9210", "!dnflahdcl1004");
 
 			Properties prop = System.getProperties();
 			prop.put("mail.smtp.starttls.enable", "true");
@@ -324,7 +324,7 @@ public class MemberService {
 		try {
 			result = md.findPwd(con, userId, userEmail);
 
-			PasswordAuthentication pa = new PasswordAuthentication("ksungmin2015", "tjd951als");
+			PasswordAuthentication pa = new PasswordAuthentication("eternita9210", "!dnflahdcl1004");
 
 			Properties prop = System.getProperties();
 			prop.put("mail.smtp.starttls.enable", "true");
