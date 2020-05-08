@@ -1,21 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<<<<<<< HEAD
-=======
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
->>>>>>> 282b8896071a7f791fa2f889ad5a27b4ce9d3efe
 <!DOCTYPE html>
 <html lang="en">
-
+<meta charset="UTF-8">
 <%@ include file="../include/header.jsp"%>
 
 <body id="page-top">
 
-<<<<<<< HEAD
-	
-=======
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 		<%@ include file="../include/mainNav.jsp"%>
@@ -162,7 +155,6 @@
 	</div>
 
 	<%@ include file="../include/jsRoot.jsp"%>
->>>>>>> 282b8896071a7f791fa2f889ad5a27b4ce9d3efe
 </body>
 
 </html>
