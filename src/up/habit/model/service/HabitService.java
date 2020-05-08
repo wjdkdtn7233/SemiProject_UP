@@ -3,7 +3,9 @@ package up.habit.model.service;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -93,15 +95,16 @@ public class HabitService {
 	  * @return int
 	  */
 	
-	public int insertNewHabit( Habit h) {
-		int res = 0;
+	public Map<String, Object> insertNewHabit( Habit h) {
+		
+		Map<String, Object> map = new HashMap<>();
 		Connection conn = null;
 
 		conn = jdt.getConnection();
 
 		try {
-			res = hdao.insertNewHabit(conn, h);
-			if(res >= 1) {
+			map = hdao.insertNewHabit(conn, h);
+			if((int)map.get("proRes") >= 1) {
 				jdt.commit(conn);
 			}else {
 				jdt.rollback(conn);
@@ -114,6 +117,6 @@ public class HabitService {
 			jdt.close(conn);
 		}
 
-		return res;
+		return map;
 	}
 }

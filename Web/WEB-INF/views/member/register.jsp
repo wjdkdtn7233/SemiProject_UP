@@ -124,7 +124,11 @@
 
 	<!-- Core plugin JavaScript-->
 	<script src="/up/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
-
+	<!-- alert 스크립트!  -->
+	 <script src="/up/resources/vendor/sweetalert2/sweetalert2.all.min.js"></script>
+    <script src="/up/resources/vendor/sweetalert2/sweetalert2.all.js"></script>
+    <script src="/up/resources/vendor/sweetalert2/sweetalert2.js"></script>
+    <script src="/up/resources/vendor/sweetalert2/sweetalert2.min.js"></script>
 	<!-- Custom scripts for all pages-->
 	<script src="/up/resources/js/sb-admin-2.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.5.0.js"
@@ -191,18 +195,18 @@
 			//닉네임 검사
 			var regExpNick = /^(?=.*\d{1,15})(?=.*[가-힣a-zA-Z]{1,15}).{3,15}$/;
 			//닉네임에 특수문자가 있는지 검사
-			var regExpNick2 = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi;
+			var regExpNick2 = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/;
 			//이메일 형식 검사
 			var regExpEmail = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
 
 
-			function chk(re, e, msg) {
+			function chk(re, e) {
 				if (re.test(e.val())) {
 					// 입력 시, 정규표현식에 위배되는 것이 없는 경우
 					return true;
 				} else {
 					// 정규표현식에 위배되는 경우
-					alert(msg);
+				
 					e.value = "";
 					e.focus();
 					return false;
@@ -211,25 +215,65 @@
 			
 			//아이디 중복 검사
 			if (!idCheckFlag) {
-				alert("아이디 중복 검사를 해주세요.");
+				swal({
+	                title: '아이디 확인!', // 제목
+	                text: "아이디 중복 검사를 해주세요.", // 내용
+	                type: 'warning', // 종류
+	                confirmButtonText: '확인',
+	                confirmButtonColor: '#4e73df' // 확인버튼 표시 문구
+	                
+	            });
 				return false;
 			}
 			//비밀번호 검사
 			//비밀번호는 영문자 숫자 기호문자의 조합으로 8글자 이상 작성해주세요.
-			if (!chk(regExpPw, pw, '비밀번호는 영문자 숫자 기호문자의 조합으로 8글자 이상 작성해주세요.')) {
+			if (!chk(regExpPw, pw)) {
+				swal({
+	                title: '비밀번호 확인!', // 제목
+	                text: "비밀번호는 영문자 숫자 기호문자의 조합으로 8글자 이상 작성해주세요.", // 내용
+	                type: 'warning', // 종류
+	                confirmButtonText: '확인',
+	                confirmButtonColor: '#4e73df' // 확인버튼 표시 문구
+	                
+	            });
+				return false;
+			}
+			
+			//닉네임 검사
+			if (!chk(regExpNick, nick)) {
+				swal({
+	                title: '닉네임 확인!', // 제목
+	                text: "닉네임은 영문/한글 과 숫자를 포함하여 3자 에서 15자 이내로 기입해주세요.", // 내용
+	                type: 'warning', // 종류
+	                confirmButtonText: '확인',
+	                confirmButtonColor: '#4e73df' // 확인버튼 표시 문구
+	                
+	            });
 				return false;
 			}
 			//닉네임 특수문자 검사
-			if (chk(regExpNick2, nick, "닉네임에 특수문자를 포함시킬 수 없습니다.")) {
+			if (chk(regExpNick2, nick)) {
+				swal({
+	                title: '닉네임 확인!', // 제목
+	                text: "닉네임에 특수문자를 포함시킬 수 없습니다.", // 내용
+	                type: 'warning', // 종류
+	                confirmButtonText: '확인',
+	                confirmButtonColor: '#4e73df' // 확인버튼 표시 문구
+	                
+	            });
 				return false;
 			}
-			//닉네임 검사
-			if (!chk(regExpNick, nick,
-					"닉네임은 영문/한글 과 숫자를 포함하여 3자 에서 15자 이내로 기입해주세요.")) {
-				return false;
-			}
+			
 			//이메일 형식인지 검사
-			if (!chk(regExpEmail, email, "이메일 형식이 아닙니다.")) {
+			if (!chk(regExpEmail, email)) {
+				swal({
+	                title: '이메일 확인!', // 제목
+	                text: "이메일 형식이 아닙니다.", // 내용
+	                type: 'warning', // 종류
+	                confirmButtonText: '확인',
+	                confirmButtonColor: '#4e73df' // 확인버튼 표시 문구
+	                
+	            });
 				return false;
 			}
 			
