@@ -92,10 +92,10 @@
 		<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 			data-parent="#accordionSidebar">
 			<div class="bg-white py-2 collapse-inner rounded">
-				<h6 class="collapse-header">UP</h6>
-				<a class="collapse-item" href="/up/index/index.do">메인페이지</a> <a
-					class="collapse-item" href="/up/mypage/mypage.do">마이페이지</a> <a
-					class="collapse-item" href="/up/habit/habitpage.do">습관페이지</a>
+				<h5 class="collapse-header text-gray-700">- U P - 에 오신것을 환영합니다.</h5>
+				<a class="collapse-item" href="/up/index/index.do"><i class="fas fa-desktop mr-3"></i>메인페이지</a> <a
+					class="collapse-item" href="/up/mypage/mypage.do"><i class="far fa-id-card mr-3"></i>마이페이지</a> <a
+					class="collapse-item" href="/up/habit/habitpage.do"><i class="fas fa-chart-pie mr-3"></i>습관페이지</a>
 
 			</div>
 		</div></li>
@@ -104,19 +104,19 @@
 	<br>
 	<!-- Heading -->
 	<div class="sidebar-heading" id="mypage-font-size">
-		<i class="far fa-id-card"></i> Habit Page
+		<i class="fas fa-chart-pie"></i> Habit Page
 	</div>
 	<br>
 
 	<!-- Nav Item - Pages Collapse Menu -->
 	<li class="nav-item"><a class="nav-link collapsed"
-		href="/up/habit/habitregistration.do"> <i class="fas fa-user-circle"></i>
+		href="/up/habit/habitregistration.do"> <i class="fas fa-folder-plus"></i>
 			<span>습관 등록</span>
 	</a></li>
 	<hr class="sidebar-divider">
 	<!-- Nav Item - Utilities Collapse Menu -->
 	<li class="nav-item"><a class="nav-link collapsed"
-		href="/up/habit/habitremove.do"> <i class="fas fa-key"></i> <span>습관 목록 및 삭제</span>
+		href="/up/habit/habitremove.do"><i class="fas fa-tools"></i> <span>습관 목록 및 삭제</span>
 	</a></li>
 
 
