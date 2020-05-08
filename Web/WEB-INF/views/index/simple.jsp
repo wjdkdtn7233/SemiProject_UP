@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -72,8 +74,9 @@
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
 						<h1 class="h3 mb-0 text-gray-800">오늘의 습관</h1>
-						
 					</div>
+					
+						<c:forEach var="habitList" items="${data.habitList}" varStatus="status">					
 						<div class="row">
 							<div class="col-xl-3 col-md-6 mb-4">
 								<div class="card border-left-info shadow h-100 py-2">
@@ -107,6 +110,7 @@
 								</div>
 							</div>
 						</div>
+						</c:forEach>
 				</div>
 				<!-- /.container-fluid -->
 

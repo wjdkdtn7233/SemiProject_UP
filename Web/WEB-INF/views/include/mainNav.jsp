@@ -106,12 +106,13 @@
 		<i class="far fa-id-card"></i> Main Page
 	</div>
 	<br>
-
+	
 	<!-- Nav Item - Pages Collapse Menu -->
 	<li class="nav-item"><a class="nav-link collapsed"
-		href="/up/index/index.do"> <i class="fas fa-user-circle"></i> <span>Simple
+		href="/up/index/simple.do"> <i class="fas fa-user-circle"></i> <span>Simple
 				view</span>
 	</a></li>
+	
 	<hr class="sidebar-divider">
 	<!-- Nav Item - Utilities Collapse Menu -->
 	<li class="nav-item"><a class="nav-link collapsed"
