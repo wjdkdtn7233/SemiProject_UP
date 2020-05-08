@@ -165,6 +165,9 @@ public class HandlerMapping {
 			case "deletehabit.do":
 				methodName = "deleteHabit";
 				break;	
+			case "finishpopup.do":
+				methodName = "finishPopup";
+				break;	
 			}
 			
 			break;
