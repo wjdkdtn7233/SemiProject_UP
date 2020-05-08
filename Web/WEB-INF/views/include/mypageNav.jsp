@@ -95,7 +95,7 @@
 				<h6 class="collapse-header">UP</h6>
 				<a class="collapse-item" href="/up/index/index.do">메인페이지</a> <a
 					class="collapse-item" href="/up/mypage/mypage.do">마이페이지</a> <a
-					class="collapse-item" href="/up/habit/habitpage.do">습관등록 및 삭제</a>
+					class="collapse-item" href="/up/habit/habitpage.do">습관페이지</a>
 
 			</div>
 		</div></li>

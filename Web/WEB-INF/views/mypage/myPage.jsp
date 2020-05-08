@@ -9,7 +9,8 @@
 .rowWrapper {
 	width: 100%;
 	height: 700px;
-	background-color: white;
+	background-size:cover;
+	background-image: url("/up/resources/img/mypage-bg.png");
 	letter-spacing: 20%;
 }
 
@@ -48,6 +49,7 @@
 }
 
 #icon-size:hover {
+	
 	position: relative;
 	top: 150px;
 	font-size: 7rem;
@@ -101,7 +103,7 @@
 						<br>
 						<div class="row">
 							<div class="col-xl-12 col-lg-7">
-								<div class="iconWrapper shadow">
+								<div class="iconWrapper shadow font-weight-bold">
 									<div class="col-xl col-md-3 col-lg-3 col-sm-3">
 										<a href="/up/mypage/infopwdcheck.do"><div id="icon-size">
 											<i class="fas fa-user-circle mb-3"></i>

@@ -88,7 +88,7 @@
 									</div>
 									<div class="col-5" id="icon-size">
 										
-										<input type="text" class="form-control form-control-user"  placeholder="Please enter a title"  id="titleName"/>
+										<input type="text" class="form-control form-control-user"  placeholder="Please enter a title"  name="titleName" id="titleName"/>
 									</div>
 
 								</div>
@@ -218,25 +218,25 @@
 									</div>
 									
 									
-											<div class="col-1" id="goalTime1" style="display:block">
+											<div class="col-1" id="goalTime1" style="display:none">
 												<span class="text">목표 시간</span>
 											</div>
-											<div class="col-3" id="goalTime2" style="display:block">
-												<input type="text" id="goalTime2Input" class="form-control form-control-user"  placeholder="시 단위로 적어주세요." />
+											<div class="col-3" id="goalTime2" style="display:none">
+												<input type="text" id="goalTime2Input" class="form-control form-control-user"  name="goalTime" placeholder="시 단위로 적어주세요." />
 											</div>
-											<div class="col-1 text-left" id="goalTime3"  style="display:block" >
+											<div class="col-1 text-left" id="goalTime3"  style="display:none" >
 												<span class="text-gray-900">시간</span>
 											</div>
 											
 										
 										
-											<div class="col-2" id="money1" style="display:none">
+											<div class="col-2" id="money1" style="display:block">
 												<span class="text">하루평균 절약 금액</span>
 											</div>
-											<div class="col-3" id="money2"  style="display:none">
-												<input type="text" id="money2Input" class="form-control form-control-user"  placeholder="원 단위로 금액을 입력해주세요." />
+											<div class="col-3" id="money2"  style="display:block">
+												<input type="text" id="money2Input" class="form-control form-control-user" name="goalMoney"  placeholder="원 단위로 금액을 입력해주세요." />
 											</div>
-											<div class="col-1  text-left" id="money3" style="display:none">
+											<div class="col-1  text-left" id="money3" style="display:block">
 												<span class="text-gray-900">원</span>
 											</div>
 										
@@ -286,6 +286,10 @@
 	card-header 쓰면 카드의 윗부분 분리
 -->
 	<%@ include file="../include/jsRoot.jsp"%>
+	   <script src="/up/resources/vendor/sweetalert2/sweetalert2.all.min.js"></script>
+    <script src="/up/resources/vendor/sweetalert2/sweetalert2.all.js"></script>
+    <script src="/up/resources/vendor/sweetalert2/sweetalert2.js"></script>
+    <script src="/up/resources/vendor/sweetalert2/sweetalert2.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.5.0.js"
 		integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
 		crossorigin="anonymous"></script>
@@ -307,12 +311,14 @@
 			
 			if(selectValue.val()=="운동"||selectValue.val()=="독서"){
 				$('#money1, #money2, #money3').css('display','none');
+				$('#money2Input').val("0");
 				$('#goalTime1, #goalTime2, #goalTime3').css('display','block');
 				
 			}
 			if(selectValue.val()=="금주"||selectValue.val()=="금연"){
 				$('#money1, #money2, #money3').css('display','block');
 				$('#goalTime1, #goalTime2, #goalTime3').css('display','none');
+				$('#goalTime2Input').val("0");
 			}
 		});
 	
@@ -334,7 +340,7 @@
 					return true;
 				} else {
 				
-					$('#info').html(msg);
+					
 					e.value = "";
 					e.focus();
 					return false;
@@ -342,18 +348,41 @@
 			}
 
 			if(!$('#titleName').val()){
-				$('#info').html("<i class='fas fa-exclamation-triangle'></i>Habit's title을 입력해주세요.");
+				swal({
+	                title: '확인!', // 제목
+	                html: "습관 타이틀을 입력해주세요.", // 내용
+	                type: 'warning', // 종류
+	                confirmButtonText: '확인',
+	                confirmButtonColor: '#4e73df' // 확인버튼 표시 문구
+	                
+	            });
 				return false;
 			}
 			
 			if(!$('#dateType5').is(':checked') && !$('#dateType6').is(':checked') && !$('#dateType7').is(':checked') ){
-				$('#info').html("<i class='fas fa-exclamation-triangle'></i>기간을 설정해주세요.");
+				
+				swal({
+	                title: '확인!', // 제목
+	                html: "기간을 설정해주세요.", // 내용
+	                type: 'warning', // 종류
+	                confirmButtonText: '확인',
+	                confirmButtonColor: '#4e73df' // 확인버튼 표시 문구
+	                
+	            });
 				return false;
 			}
 				
 			if(!$('#jb-checkbox').is(':checked') && !$('#jb-checkbox1').is(':checked') && !$('#jb-checkbox2').is(':checked')
 					 && !$('#jb-checkbox3').is(':checked') && !$('#jb-checkbox4').is(':checked')  && !$('#jb-checkbox5').is(':checked')  && !$('#jb-checkbox6').is(':checked')	){
-				$('#info').html("<i class='fas fa-exclamation-triangle'></i>요일을 설정해 주세요.");
+				
+				swal({
+	                title: '확인!', // 제목
+	                html: "요일을 설정해 주세요.", // 내용
+	                type: 'warning', // 종류
+	                confirmButtonText: '확인',
+	                confirmButtonColor: '#4e73df' // 확인버튼 표시 문구
+	                
+	            });
 				return false;
 			}
 			
@@ -388,19 +417,35 @@
 				selectDay += $('#jb-checkbox6').val();
 			}
 			
-			$('#selectDay').val('selectDay');
+			$('#selectDay').val(selectDay);
 			console.log(selectDay);
 			
 			if(selectValue.val()=="운동"||selectValue.val()=="독서"){
 				if (!chk(regExpNumber, goalTime2, 
-				"<i class='fas fa-exclamation-triangle'></i>숫자만 기입해 주세요.")) {
+				"")) {
+					swal({
+		                title: '확인!', // 제목
+		                html: "숫자만 기입해 주세요.", // 내용
+		                type: 'warning', // 종류
+		                confirmButtonText: '확인',
+		                confirmButtonColor: '#4e73df' // 확인버튼 표시 문구
+		                
+		            });
 					console.log(goalTime2);
+					
 				return false;
 				}
 			}else{
 				if (!chk(regExpNumber, money2,  
-				"<i class='fas fa-exclamation-triangle'></i>숫자만 기입해 주세요.")) {
-				
+				"")) {
+					swal({
+		                title: '확인!', // 제목
+		                html: "숫자만 기입해 주세요.", // 내용
+		                type: 'warning', // 종류
+		                confirmButtonText: '확인',
+		                confirmButtonColor: '#4e73df' // 확인버튼 표시 문구
+		                
+		            });
 				return false;
 				}
 			}
@@ -447,7 +492,7 @@
          		  day = "0"+day;
         	    }        //day 두자리로 저장
         	    
-         	    return  year +""+ month+""  + day;
+         	    return  year +"-"+ month+"-"  + day;
          	}
 			
          	

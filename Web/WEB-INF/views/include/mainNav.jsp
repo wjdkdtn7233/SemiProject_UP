@@ -95,7 +95,7 @@
 				<h6 class="collapse-header">UP</h6>
 				<a class="collapse-item" href="/up/index/index.do">메인페이지</a> <a
 					class="collapse-item" href="/up/mypage/mypage.do">마이페이지</a> <a
-					class="collapse-item" href="/up/habit/habitpage.do">습관등록 및 삭제</a>
+					class="collapse-item" href="/up/habit/habitpage.do">습관페이지</a>
 
 			</div>
 		</div></li>
@@ -106,12 +106,13 @@
 		<i class="far fa-id-card"></i> Main Page
 	</div>
 	<br>
-
+	
 	<!-- Nav Item - Pages Collapse Menu -->
 	<li class="nav-item"><a class="nav-link collapsed"
-		href="/up/index/index.do"> <i class="fas fa-user-circle"></i> <span>Simple
+		href="/up/index/simple.do"> <i class="fas fa-user-circle"></i> <span>Simple
 				view</span>
 	</a></li>
+	
 	<hr class="sidebar-divider">
 	<!-- Nav Item - Utilities Collapse Menu -->
 	<li class="nav-item"><a class="nav-link collapsed"

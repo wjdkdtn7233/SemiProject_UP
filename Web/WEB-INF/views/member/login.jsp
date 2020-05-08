@@ -204,6 +204,8 @@ i {
 		<c:if test= "${data.isSuccess == 'false'}">;
 		alert('로그인에 실패하였습니다. 아이디 또는 비밀번호를 확인하세요.')
 		</c:if>
+		
+		var id;
 
 		function kakaoLogin() {
 			// 사용할 앱의 JavaScript 키를 설정
@@ -211,10 +213,7 @@ i {
 			// 카카오 로그인 버튼을 생성
 			Kakao.Auth.login({
 				success : function(v) {
-					console.log(v.scope);
-					console.log(v.access_token);
-					alert(JSON.stringify(v));
-					alert("데이터 획득 성공");
+					/* alert("데이터 획득 성공"); */
 					Kakao.API.request({
 						url : '/v2/user/me',
 						success : function(res) {
@@ -226,17 +225,23 @@ i {
 							//kakao_account.profile.profile_image_url : 프로필 이미지
 							//kakao_account.email : 사용자 이메일
 							//connected_at : 로그인 시간
-							var id = res.id;
+							id = res.id;
 
 							$.ajax({
-								url : "/up/member/kakaologin.do",
+								url : "/up/member/kakaoidcheck.do",
 								type : 'POST',
 								data : {
 									"id" : id,
 								},
 								success : function(data) {
-									alert("성공");
-									alert(data);
+									/* alert(data); */
+									if(data == '') {
+										//값이 없다면 register
+										location.href="/up/member/kakaoregister.do?id=" + id;
+									} else {
+										//값이 있다면 login
+										location.href="/up/member/kakaologin.do?id=" + id;
+									}
 								}
 
 							});

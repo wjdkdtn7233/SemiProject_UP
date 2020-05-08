@@ -60,15 +60,15 @@ public class MemberDao {
 		return result;
 
 	}
-	
+
 	/**
-	 *	@MethodName: kakaoImple
-	 *	@ClassName: MemberDao.java
-	 *	@변경이력: 
-	 *	@Comment: 카카오 로그인 용
-	 *	@작성자: 박혜연
-	 *	@작성일: 2020. 5. 6.
-	*/
+	 * @MethodName: kakaoImple
+	 * @ClassName: MemberDao.java
+	 * @변경이력:
+	 * @Comment: 카카오 로그인 용
+	 * @작성자: 박혜연
+	 * @작성일: 2020. 5. 6.
+	 */
 	public Member kakaoImple(Connection con, String userId) throws SQLException {
 		Member result = null;
 		PreparedStatement pstm = null;
@@ -103,6 +103,24 @@ public class MemberDao {
 
 		return result;
 
+	}
+
+	public int plusLoginCnt(Connection con, Member m) throws SQLException {
+		int res = 0;
+		PreparedStatement pstm = null;
+
+		String sql = "update tb_member set login_cnt = login_cnt+1 where m_id = ?";
+
+		try {
+			pstm = con.prepareStatement(sql);
+			pstm.setString(1,m.getUserId());
+			
+			res = pstm.executeUpdate();
+		} finally {
+			jdt.close(pstm);
+		}
+
+		return res;
 	}
 
 	/**
@@ -292,13 +310,13 @@ public class MemberDao {
 	}
 
 	/**
-	 *	@MethodName: wise
-	 *	@ClassName: MemberDao.java
-	 *	@변경이력: 
-	 *	@Comment: DB 내 명언 글귀 담기
-	 *	@작성자: 박혜연
-	 *	@작성일: 2020. 5. 4.
-	*/
+	 * @MethodName: wise
+	 * @ClassName: MemberDao.java
+	 * @변경이력:
+	 * @Comment: DB 내 명언 글귀 담기
+	 * @작성자: 박혜연
+	 * @작성일: 2020. 5. 4.
+	 */
 	public List<String> wise(Connection con) throws SQLException {
 		List<String> result = new ArrayList<>();
 
@@ -309,8 +327,8 @@ public class MemberDao {
 		try {
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(sql);
-			
-			while(rs.next()) {
+
+			while (rs.next()) {
 				result.add(rs.getString(1));
 			}
 		} finally {

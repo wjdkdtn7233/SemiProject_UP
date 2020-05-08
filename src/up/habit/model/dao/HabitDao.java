@@ -56,18 +56,49 @@ public class HabitDao {
 		return hList;
 	}
 	
-	public int deleteHabit(Connection conn,int hNo,Member m) throws SQLException {
+	public int deleteHabit(Connection conn,int hNo) throws SQLException {
 		int res = 0;
-		PreparedStatement pstm = null;
+		
 		CallableStatement cstm = null;
-		String sql = "{call up.}";
+		String sql = "{call P_DELETE_HABIT(?)}";
 		
 		try {
 			cstm = conn.prepareCall(sql);
+			cstm.setInt(1, hNo);
+			res = cstm.executeUpdate();
+		}finally {
+			jdt.close(cstm);
+		}
+		
+		
+		
+		
+		return res;
+		
+	}
+	
+	public int insertNewHabit(Connection conn,Habit h)throws SQLException {
+		int res = 0;
+		
+		CallableStatement cstm = null;
+		
+		String sql = "{call P_INSERT_HABIT(S_H_NO.nextval,?,?,?,?,?,?,?,?)}";
+		
+		try {
+			cstm = conn.prepareCall(sql);
+			cstm.setString(1, h.gethSubcategory());
+			cstm.setDate(2, h.gethStartDate());
+			cstm.setDate(3, h.gethEndDate());
+			cstm.setString(4, h.gethSelectday());
+			cstm.setInt(5, h.gethMoney());
+			cstm.setInt(6, h.gethTime());
+			cstm.setInt(7, h.getcCode());
+			cstm.setString(8, h.getmId());
+			res = cstm.executeUpdate();
 			
 			
 		}finally {
-			jdt.close(pstm);
+			jdt.close(cstm);
 		}
 		
 		

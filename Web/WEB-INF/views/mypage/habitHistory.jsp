@@ -38,20 +38,7 @@
 						</div>
 						<div class="cardbody ">
 
-							<div class="row  mb-4 mt-4 justify-content-center">
-								<div class="col-8   justify-content-start">
-									<a href="#" class="btn btn-success btn-icon-split"> <span
-										class="text">Set the period</span>
-									</a> <span class="text  text-gray-900 ml-3 font-weight-bold">여기에
-										날짜 입력됨</span>
-
-								</div>
-								<span class="text pt-1 text-gray-900 mr-3 font-weight-bold"></span>
-								<div class="col-2 ml-0 pl-0 justify-content-end">
-
-								
-								</div>
-							</div>
+							
 							<div class="card  mb-4">
 
 								<div class="card-body">
@@ -79,15 +66,18 @@
 												</tr>
 											</tfoot>
 											<tbody>
+											<c:set var="count" value="1"/>
 											<c:forEach var="historyList" items="${data.historyList}">
+											<c:set var="no" value="${count}"/>
 												<tr>
-													<td>${historyList.hisNo}</td>
+													<td>${no}</td>
 													<td>${historyList.cName}</td>
 													<td>${historyList.hisSubcategory}</td>
 													<td>${historyList.hisStartdate}</td>
 													<td>${historyList.hisEndDate}</td>
 													<td>${historyList.hisPercent}%</td>
 												</tr>
+											<c:set var="count" value="${count+1}"/>	
 											</c:forEach>
 												<tr>
 													<td>1</td>

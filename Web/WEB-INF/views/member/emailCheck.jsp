@@ -30,6 +30,11 @@
 		height:8%;
 		padding-bottom:5%;
 	}
+	
+	#userEmail {
+		display:inline-block;
+		margin-right:-30%;
+	}
 </style>
 </head>
 <body class="bg-gradient-primary">
@@ -51,13 +56,32 @@
 										<p class="mb-4">회원 가입을 위해 확인 메일이 발송되었습니다. </p>
 										<p class="mb-4">수신 메일의 링크를 클릭하면 회원가입이 완료됩니다. 메일이 도착하지 않았다면 이메일 주소를 확인하거나 다시 한 번 발송 버튼을 클릭해주세요. </p>
 									</div>
-									<form class="user" action="<%=request.getContextPath()%>/member/emailcheck.do">
+									<form class="user" action="<%=request.getContextPath()%>/member/emailcheck.do"
+										method="post">
 										<div class="form-group">
 											<input type="email" class="form-control form-control-user"
-												id="userEmail" aria-describedby="emailHelp"
+												id="userEmail" name="userEmail" value="<%=request.getParameter("userEmail")%>" aria-describedby="emailHelp"
 												placeholder=<%=request.getParameter("userEmail")%>>
+											<span class="col-sm-2" style="line-height: 50px; font-size: 1vw;" onclick="mailCheck()">
+												<i class="fas fa-search"></i> EMAIL CHECK </span>
 										</div>
-										<button class="btn btn-primary btn-user btn-block">
+										<div class="form-group">
+											<input type="hidden" class="form-control form-control-user"
+												id="userId" name="userId" value="<%=request.getParameter("userId")%>">
+										</div>
+										<div class="form-group">
+											<input type="hidden" class="form-control form-control-user"
+												id="userPwd" name="userPwd" value="<%=request.getParameter("userPwd")%>">
+										</div>
+										<div class="form-group">
+											<input type="hidden" class="form-control form-control-user"
+												id="userName" name="userName" value="<%=request.getParameter("userName")%>">
+										</div>
+										<div class="form-group">
+											<input type="hidden" class="form-control form-control-user"
+												id="userNickName" name="userNickName" value="<%=request.getParameter("userNickName")%>">
+										</div>
+										<button type="submit" class="btn btn-primary btn-user btn-block">
 											메일 보내기
 										</button>
 									</form>
@@ -94,6 +118,13 @@
 	<!-- Custom scripts for all pages-->
 	<script src="/up/resources/js/sb-admin-2.min.js"></script>
 
+	<script>
+	
+	function mailCheck() {
+		location.href="/up/member/sendmailcheck.do";
+	}
+	
+	</script>
 
 </body>
 </html>

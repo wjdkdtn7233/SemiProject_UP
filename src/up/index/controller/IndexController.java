@@ -4,6 +4,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import common.frontController.Controller;
 import common.frontController.ModelAndView;
+<<<<<<< HEAD
+import up.index.model.service.IndexService;
+import up.member.model.vo.Member;
+=======
+import up.member.model.service.MemberService;
+>>>>>>> c1a4e67700c73c0e884c747281a047ca2fa49c3b
 
 /**
   * @FileName : IndexController.java
@@ -11,28 +17,44 @@ import common.frontController.ModelAndView;
   * @Date : 2020. 4. 28. 
   * @작성자 : 김성민
   * @변경이력 : 
-  * @프로그램 설명 : main 페이지에 보여줄 내용
+  * @프로그램 설명 : main 페이지 controller
   */
 public class IndexController implements Controller  {
 
-	
+	IndexService is = new IndexService();
 	/**
 	  * @Method Name : index
 	  * @작성일 : 2020. 4. 28.
 	  * @작성자 : 김성민
-	  * @변경이력 : 편의상 이름은 simple이 아닌 index로 설정했습니다만 변경요청시 바꾸겠습니다.
-	  * @Method 설명 : Simple view 페이지로 연결시켜줍니다.
+	  * @변경이력 : simple 페이지에서 index페이지생성해서 변경
+	  * @Method 설명 : index view 페이지로 연결시켜줍니다.
 	  * @param request
 	  * @return ModelAndView
 	  */
 	public ModelAndView index(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
-		System.out.println("인덱스 메서드 잘 실행되나~");
 		mav.setView("index/index");
 		
 		return mav;
 	}
 	
+	/**
+	  * @Method Name : simple
+	  * @작성일 : 2020. 5. 7.
+	  * @작성자 : 김성민
+	  * @변경이력 : 없음
+	  * @Method 설명 : simple view 페이지로 연결시켜줍니다.
+	  * @param request
+	  * @return ModelAndView
+	  */
+	public ModelAndView simple(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		Member m = (Member) request.getSession().getAttribute("loginInfo");
+		mav.addObject("HabitList", is.selectHabitList(m.getUserId()));
+		mav.setView("index/simple");
+		
+		return mav;
+	}
 	
 	/**
 	  * @Method Name : detail
@@ -45,8 +67,8 @@ public class IndexController implements Controller  {
 	  */
 	public ModelAndView detail(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
-		mav.setView("index/detail");
 		
+		mav.setView("index/detail");
 		return mav;
 	}
 	
