@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import common.JDBCTemplate;
+import up.habit.model.vo.CurrentState;
 import up.habit.model.vo.Habit;
 
 /**
@@ -78,9 +79,11 @@ public class IndexDao {
 				h.setmId(rs.getString(14));
 				
 				hList.add(h);
+				cList.add(c);
 			}
 			
-			
+			res.put("hList", hList);
+			res.put("cList", cList);
 			
 			
 		} finally {

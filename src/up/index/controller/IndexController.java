@@ -1,5 +1,8 @@
 package up.index.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import common.frontController.Controller;
@@ -48,7 +51,12 @@ public class IndexController implements Controller {
 	public ModelAndView simple(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		Member m = (Member) request.getSession().getAttribute("loginInfo");
-		mav.addObject("HabitList", is.selectHabitList(m.getUserId()));
+		Map<String, Object> res = is.selectHabitList(m.getUserId());
+		Map<String, Object> resMap = new HashMap<String, Object>();
+		
+		
+		mav.addObject("habitList", res.get("hList") );
+		mav.addObject("currentList", res.get("cList"));
 		mav.setView("index/simple");
 
 		return mav;

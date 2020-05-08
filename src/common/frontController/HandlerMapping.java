@@ -47,7 +47,7 @@ public class HandlerMapping {
 				methodName = "detail";
 				break;
 			case "calendar.do":
-				methodName = "detail";
+				methodName = "calendar";
 				break;
 			default:
 				throw new Status404("uri를 다시 확인 해주세요!");
