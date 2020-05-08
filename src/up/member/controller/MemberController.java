@@ -150,8 +150,21 @@ public class MemberController implements Controller {
 		return mav;
 	}
 	
+	/**
+	 *	@MethodName: sendMailCheck
+	 *	@ClassName: MemberController.java
+	 *	@변경이력: 완료
+	 *	@Comment: id찾기, 비밀번호 찾기 시 이메일 여부 확인
+	 *	@작성자: 박혜연
+	 *	@작성일: 2020. 5. 8.
+	*/
 	public ModelAndView sendMailCheck(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
+		
+		String userEmail = ms.mailCheck(request.getParameter("userEmail"));
+		
+		mav.setView("ajax");
+		mav.addObject("userEmail", userEmail);
 		
 		return mav;
 	}

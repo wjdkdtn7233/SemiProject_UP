@@ -40,6 +40,9 @@ public class HandlerMapping {
 			case "index.do":
 				methodName = "index";
 				break;
+			case "simple.do":
+				methodName = "simple";
+				break;
 			case "detail.do":
 				methodName = "detail";
 				break;
