@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -75,17 +75,52 @@
 						class="d-sm-flex align-items-center justify-content-between mb-4">
 						<h1 class="h3 mb-0 text-gray-800">오늘의 습관</h1>
 					</div>
-					
-						<c:forEach var="habitList" items="${data.habitList}" varStatus="status">					
-						<div class="row">
+					<div class="row">
+						<c:forEach var="habitList" items="${data.habitList}" varStatus="status">
 							<div class="col-xl-3 col-md-6 mb-4">
-								<div class="card border-left-info shadow h-100 py-2">
+								<div class="card border-left-
+								<c:choose>
+									<c:when test="${ status.current % 4 == 0}">
+									primary
+									</c:when>
+									<c:when test="${ status.current % 4 == 1}">
+									success
+									</c:when>
+									<c:when test="${ status.current % 4 == 2}">
+									info
+									</c:when>
+									<c:when test="${ status.current % 4 == 3}">
+									warning
+									</c:when>
+									<c:otherwise>
+									primary
+									</c:otherwise>
+								</c:choose>
+								 shadow h-100 py-2">
 									<div class="card-body">
 										<div class="row no-gutters align-items-center">
 											<div class="col mr-2">
 												<div
 													class="text-xs font-weight-bold text-info text-uppercase mb-1">
-													<span id="category">카테고리</span> / <span id="habit">습관1</span>
+													<span>
+													<c:choose>
+														<c:when test="${ habitList.cCode == 1}">
+														금연
+														</c:when>
+														<c:when test="${ habitList.cCode == 2}">
+														금주
+														</c:when>
+														<c:when test="${ habitList.cCode == 3}">
+														독서
+														</c:when>
+														<c:when test="${ habitList.cCode == 4}">
+														운동
+														</c:when>
+														<c:otherwise>
+														카테고리
+														</c:otherwise>
+													</c:choose>
+													</span> / <span>${ habitList.hSubcategory }</span>
 												</div>
 												<div class="row no-gutters align-items-center">
 													<div class="col-auto">
@@ -109,8 +144,9 @@
 									</div>
 								</div>
 							</div>
-						</div>
 						</c:forEach>
+					</div>
+
 				</div>
 				<!-- /.container-fluid -->
 

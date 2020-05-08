@@ -112,13 +112,13 @@
 					</div>
 					<br>
 					<div class="container">
-						<h1 class="h5 text-gray-700 text-center">당신의 발현되지 못한 잠재력을</h1>
+						<h1 class="h5 text-gray-700 font-weight-bold text-center">당신의 발현되지 못한 잠재력을</h1>
 					</div>
 					<div class="container">
-						<h1 class="h5 text-gray-700 text-center">이끌어 드립니다</h1>
+						<h1 class="h5 text-gray-700  font-weight-bold text-center">이끌어 드립니다</h1>
 					</div>
 					<div class="container">
-						<h1 class="h5 text-gray-700 text-center">- - - - - - - - - - - -
+						<h1 class="h5 text-gray-700 font-weight-bold text-center">- - - - - - - - - - - -
 							- - -</h1>
 					</div>
 					<br>
@@ -165,7 +165,7 @@
 					</div>
 					<br>
 					<div class="container">
-						<h1 class="h5 text-gray-700 text-center">- - - - - - - - - - - -
+						<h1 class="h5 text-gray-700 font-weight-bold text-center">- - - - - - - - - - - -
 							- - -</h1>
 					</div>
 					<br>
@@ -216,7 +216,7 @@
 
 					<br>
 					<div class="container">
-						<h1 class="h5 text-gray-700 text-center">- - - - - - - - - - - -
+						<h1 class="h5 text-gray-700 font-weight-bold text-center">- - - - - - - - - - - -
 							- - -</h1>
 					</div>
 					<br>

@@ -70,7 +70,7 @@
 	<hr class="sidebar-divider">
 	<li
 		class="nav-item  d-flex justify-content-center align-items-center mb-3">
-		
+
 		<span
 		class="btn  text-white text-center font-weight-bold font-italic h3"
 		id="check111"
@@ -103,27 +103,28 @@
 	<br>
 	<!-- Heading -->
 	<div class="sidebar-heading" id="mypage-font-size">
-		<i class="far fa-id-card"></i> Main Page
+		<i class="fas fa-desktop"></i> Main Page
 	</div>
 	<br>
-	
+
 	<!-- Nav Item - Pages Collapse Menu -->
 	<li class="nav-item"><a class="nav-link collapsed"
-		href="/up/index/simple.do"> <i class="fas fa-user-circle"></i> <span>Simple
-				view</span>
+		href="/up/index/simple.do"> <i class="fas fa-clipboard"></i> <span>습관
+				간편 확인</span>
 	</a></li>
-	
+
 	<hr class="sidebar-divider">
 	<!-- Nav Item - Utilities Collapse Menu -->
 	<li class="nav-item"><a class="nav-link collapsed"
-		href="/up/index/detail.do"> <i class="fas fa-key"></i> <span>Detail
-				view</span>
+		href="/up/index/detail.do"> <i class="fas fa-chart-bar"></i> <span>습관
+				상세 확인</span>
 	</a></li>
 	<hr class="sidebar-divider">
 	<!-- Nav Item - Utilities Collapse Menu -->
 	<li class="nav-item"><a class="nav-link collapsed"
-		href="/up/index/calendar.do"> <i class="fas fa-pencil-alt"></i> <span>Calender
-				view</span>
+		href="/up/index/calendar.do"> <i class="fas fa-calendar-alt"></i>
+			<span>습관 일정 확인</span>
+
 	</a></li>
 
 	<!-- Divider -->
@@ -141,7 +142,10 @@
 	integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
 	crossorigin="anonymous"></script>
 <script>
-	var titleCode = ${sessionScope.loginInfo.userTitleCode};
+	var titleCode = $
+	{
+		sessionScope.loginInfo.userTitleCode
+	};
 	if (titleCode == 0) {
 		$('#check111').hide();
 	}
