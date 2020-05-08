@@ -184,6 +184,36 @@ public class MemberDao {
 
 		return result;
 	}
+	
+	/**
+	 *	@MethodName: mailCheck
+	 *	@ClassName: MemberDao.java
+	 *	@변경이력: 완료
+	 *	@Comment: id찾기 비밀번호 찾기 시, 메일 체크
+	 *	@작성자: 박혜연
+	 *	@작성일: 2020. 5. 8.
+	*/
+	public String mailCheck(Connection con, String userEmail) throws SQLException {
+		String result = "";
+
+		Statement stmt = null;
+		ResultSet rs = null;
+
+		String sql = "select m_email from tb_member where m_email = '" + userEmail + "'";
+
+		try {
+			stmt = con.createStatement();
+			rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				result = rs.getString(1);
+			}
+		} finally {
+			jdt.close(rs);
+			jdt.close(stmt);
+		}
+
+		return result;
+	}
 
 	/**
 	 * @throws SQLException

@@ -24,11 +24,22 @@
 <!-- Custom styles for this template-->
 <link href="/up/resources/css/sb-admin-2.min.css" rel="stylesheet">
 
+<!-- popup -->
+<link rel="stylesheet"
+	href="/up/resources/vendor/sweetalert2/sweetalert2.min.css" />
+<link rel="stylesheet"
+	href="/up/resources/vendor/datepicker/datepicker.min.css" />
+
 <style>
 #logo>img {
 	width: 8%;
 	height: 8%;
 	padding-bottom: 5%;
+}
+
+#userEmail {
+	display: inline-block;
+	margin-right: -30%;
 }
 </style>
 </head>
@@ -63,6 +74,10 @@
 												type="email" class="form-control form-control-user"
 												id="userEmail" name="userEmail" aria-describedby="emailHelp"
 												placeholder="Enter your Email Address..."/>
+											<span id="check" class="col-sm-2"
+												style="line-height: 50px; font-size: 1vw;">
+												<i class="fas fa-search"></i> EMAIL CHECK
+											</span>
 										</div>
 										<button class="btn btn-primary btn-user btn-block">
 											메일 보내기
@@ -101,6 +116,48 @@
 	<!-- Custom scripts for all pages-->
 	<script src="/up/resources/js/sb-admin-2.min.js"></script>
 
+	<!-- 날짜와 팝업 js -->
+	<script src="/up/resources/vendor/sweetalert2/sweetalert2.all.min.js"></script>
+	<script src="/up/resources/vendor/sweetalert2/sweetalert2.all.js"></script>
+	<script src="/up/resources/vendor/sweetalert2/sweetalert2.js"></script>
+	<script src="/up/resources/vendor/sweetalert2/sweetalert2.min.js"></script>
+	<script src="/up/resources/vendor/datepicker/datepicker.min.js"></script>
+	<script src="/up/resources/vendor/datepicker/i18n/datepicker.ko-KR.js"></script>
+
+	<script>
+		$("#check").click(function() {
+
+			$.ajax({
+				url : '/up/member/sendmailcheck.do',
+				type : 'GET',
+				data : {
+					'userEmail' : $('#userEmail').val(),
+				},
+				// data 받아오는 것이 성공하면(success) 아래 함수 호출
+				success : function(data) {
+
+					if (data != '') {
+						swal({
+							title : '',
+							html : '존재하는 이메일 입니다. <br/> 해당 이메일로 ID를 발송하시겠습니까?',
+							type : 'question'
+						});
+					} else {
+						swal({
+							title : '', // 제목
+							html : '존재하지 않는 이메일 입니다.<br/>메일 주소를 확인해주세요.', // 내용
+							type : 'error', // 종류
+							showCloseButton : true, // 닫기 버튼 표시 여부
+							confirmButtonText : '확인', // 확인버튼 표시 문구
+							confirmButtonColor : '#a00' // 확인버튼 색상 - 레드
+						});
+					}
+
+				}
+			})
+
+		});
+	</script>
 
 </body>
 </html>
