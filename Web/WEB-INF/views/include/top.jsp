@@ -16,7 +16,7 @@
 
 	<!-- Topbar Navbar -->
 	<ul class="navbar-nav ml-auto">
-
+	
 		<!-- Nav Item - Search Dropdown (Visible Only XS) -->
 		<li class="nav-item dropdown no-arrow d-sm-none"><a
 			class="nav-link dropdown-toggle" href="#" id="searchDropdown"
@@ -69,7 +69,7 @@
 				aria-labelledby="userDropdown">
 				<a class="dropdown-item" href="/up/mypage/mypage.do"> <i
 					class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> My Page
-				</a> <a class="dropdown-item" href="/up/mypage/infopwdcheck.do"> <i
+				</a> <a class="dropdown-item" href="/up/habit/finishpopup.do"> <i
 					class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> My
 					Information Modify
 				</a> <a class="dropdown-item" href="/up/habit/habitpage.do"> <i
@@ -166,4 +166,9 @@
 		console.log("${sessionScope.loginInfo.userNickName}");
 		console.log('http://127.0.0.1:8787/up/resources/upload/${sessionScope.loginInfo.originFile}');
 		console.log('/up/resources/upload/IU.jpg'); */
+		
+	
+		
+		
+		
 	</script>

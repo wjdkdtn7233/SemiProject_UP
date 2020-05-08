@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 
@@ -24,17 +24,13 @@
 <!-- Custom styles for this template-->
 <link href="/up/resources/css/sb-admin-2.min.css" rel="stylesheet">
 
+
 <style>
-	#logo > img {
-		width:8%;
-		height:8%;
-		padding-bottom:5%;
-	}
-	
-	#userEmail {
-		display:inline-block;
-		margin-right:-30%;
-	}
+#logo>img {
+	width: 8%;
+	height: 8%;
+	padding-bottom: 5%;
+}
 </style>
 </head>
 <body class="bg-gradient-primary">
@@ -53,37 +49,42 @@
 								<div class="p-5">
 									<div class="text-center">
 										<h1 class="h4 text-gray-900 mb-2">이메일을 확인해주세요</h1>
-										<p class="mb-4">회원 가입을 위해 확인 메일이 발송되었습니다. </p>
-										<p class="mb-4">수신 메일의 링크를 클릭하면 회원가입이 완료됩니다. 메일이 도착하지 않았다면 이메일 주소를 확인하거나 다시 한 번 발송 버튼을 클릭해주세요. </p>
+										<p class="mb-4">회원 가입을 위해 확인 메일이 발송되었습니다.</p>
+										<p class="mb-4">수신 메일의 링크를 클릭하면 회원가입이 완료됩니다. 메일이 도착하지 않았다면
+											이메일 주소를 확인하거나 다시 한 번 발송 버튼을 클릭해주세요.</p>
 									</div>
-									<form class="user" action="<%=request.getContextPath()%>/member/emailcheck.do"
+									<form class="user"
+										action="<%=request.getContextPath()%>/member/emailcheck.do"
 										method="post">
 										<div class="form-group">
 											<input type="email" class="form-control form-control-user"
-												id="userEmail" name="userEmail" value="<%=request.getParameter("userEmail")%>" aria-describedby="emailHelp"
+												id="userEmail" name="userEmail"
+												value="<%=request.getParameter("userEmail")%>"
+												aria-describedby="emailHelp"
 												placeholder=<%=request.getParameter("userEmail")%>>
-											<span class="col-sm-2" style="line-height: 50px; font-size: 1vw;" onclick="mailCheck()">
-												<i class="fas fa-search"></i> EMAIL CHECK </span>
 										</div>
 										<div class="form-group">
 											<input type="hidden" class="form-control form-control-user"
-												id="userId" name="userId" value="<%=request.getParameter("userId")%>">
+												id="userId" name="userId"
+												value="<%=request.getParameter("userId")%>">
 										</div>
 										<div class="form-group">
 											<input type="hidden" class="form-control form-control-user"
-												id="userPwd" name="userPwd" value="<%=request.getParameter("userPwd")%>">
+												id="userPwd" name="userPwd"
+												value="<%=request.getParameter("userPwd")%>">
 										</div>
 										<div class="form-group">
 											<input type="hidden" class="form-control form-control-user"
-												id="userName" name="userName" value="<%=request.getParameter("userName")%>">
+												id="userName" name="userName"
+												value="<%=request.getParameter("userName")%>">
 										</div>
 										<div class="form-group">
 											<input type="hidden" class="form-control form-control-user"
-												id="userNickName" name="userNickName" value="<%=request.getParameter("userNickName")%>">
+												id="userNickName" name="userNickName"
+												value="<%=request.getParameter("userNickName")%>">
 										</div>
-										<button type="submit" class="btn btn-primary btn-user btn-block">
-											메일 보내기
-										</button>
+										<button type="submit"
+											class="btn btn-primary btn-user btn-block">메일 보내기</button>
 									</form>
 									<hr>
 									<div class="text-center">
@@ -104,7 +105,7 @@
 
 	</div>
 	<div class="text-center" id="logo">
-		<img src="/up/resources/img/upLogo.png"/>
+		<img src="/up/resources/img/upLogo.png" />
 	</div>
 	<%@include file="../include/footer.jsp"%>
 
@@ -118,13 +119,6 @@
 	<!-- Custom scripts for all pages-->
 	<script src="/up/resources/js/sb-admin-2.min.js"></script>
 
-	<script>
-	
-	function mailCheck() {
-		location.href="/up/member/sendmailcheck.do";
-	}
-	
-	</script>
 
 </body>
 </html>

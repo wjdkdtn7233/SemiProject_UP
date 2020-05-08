@@ -34,12 +34,11 @@ public class IndexService {
 	  */
 	public Map<String, Object> selectHabitList(String mId){
 		Map<String, Object> res = new HashMap<String, Object>();
-		List<Habit> habitList = new ArrayList<>();
 		
 		Connection conn = jdt.getConnection();
 		
 		try {
-			habitList = id.selectHabitList(conn, mId);
+			res = id.selectHabitList(conn, mId);
 			
 			
 //			jdt.commit(conn);

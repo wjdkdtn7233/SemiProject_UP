@@ -43,6 +43,8 @@ public class DispatcherServlet extends HttpServlet {
 				res = (String) mav.getData().get("userId");
 			} else if(mav.getData().containsKey("id")) {
 				res = (String) mav.getData().get("id");
+			} else if(mav.getData().containsKey("userEmail")) {
+				res = (String) mav.getData().get("userEmail");
 			}
 			
 			pw.write(res);
