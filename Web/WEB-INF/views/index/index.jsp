@@ -39,8 +39,8 @@
 }
 
 .indexlog {
-	height: 150px !important;
-	width: 170px !important;
+	height: 120px !important;
+	width: 140px !important;
 }
 
 .contentlog {
