@@ -187,7 +187,7 @@ public class MemberService {
 	public void regEmailCheck(Member m) {
 
 		// 구글 smtp 서버를 사용하기 위한 인증 정보
-		PasswordAuthentication pa = new PasswordAuthentication("ksungmin2015", "tjd951als");
+		PasswordAuthentication pa = new PasswordAuthentication("eternita9210", "!dnflahdcl1004");
 
 		//"ksungmin2015", "tjd951als"
 		

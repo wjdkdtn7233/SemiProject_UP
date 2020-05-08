@@ -33,27 +33,30 @@ DELETE FROM TB_TITLE;
 COMMIT;
 
 --타이틀 삽입
-INSERT INTO TB_TITLE VALUES (S_T_CODE.nextval, '습관뉴비', '습관의 첫 단계!', '습관 등록 1회 성공', '#FFFF00');
-INSERT INTO TB_TITLE VALUES (S_T_CODE.nextval, '뉴비탈출', '습관 바꾸기의 시작은 이제부터!', '습관 1회 성공', '#FF0000');
-INSERT INTO TB_TITLE VALUES (S_T_CODE.nextval, '시작이 반', '감 잡았어!', '습관 등록 3회 성공', '#FFFF33');
-INSERT INTO TB_TITLE VALUES (S_T_CODE.nextval, '프로습관러', '바뀔 나의 모습을 상상해봐', '하나의 습관 3회 성공', '#FF8000');
-INSERT INTO TB_TITLE VALUES (S_T_CODE.nextval, '습관계의 인싸', '포기하지 않는 당신에게 cheers!', '습관 3개 50% 달성', '#FF9933');
+INSERT INTO TB_TITLE VALUES (S_T_CODE.nextval, '습관뉴비', '습관의 첫 단계!', '습관 등록 1회 성공', '#FAE0D4');
+INSERT INTO TB_TITLE VALUES (S_T_CODE.nextval, '뉴비탈출', '습관 바꾸기의 시작은 이제부터!', '습관 1회 성공', '#FFC19E');
+INSERT INTO TB_TITLE VALUES (S_T_CODE.nextval, '시작이 반', '감 잡았어!', '습관 등록 3회 성공', '#F29661');
+INSERT INTO TB_TITLE VALUES (S_T_CODE.nextval, '프로습관러', '바뀔 나의 모습을 상상해봐', '하나의 습관 3회 성공', '#FF5E00');
+INSERT INTO TB_TITLE VALUES (S_T_CODE.nextval, '습관계의 인싸', '포기하지 않는 당신에게 cheers!', '습관 3개 50% 달성', '#FFBB00');
 INSERT INTO TB_TITLE VALUES (S_T_CODE.nextval, '연쇄건망증', '아직 괜찮아요!', '하나의 습관 누적 3회 실패', '#FF33FF');
 INSERT INTO TB_TITLE VALUES (S_T_CODE.nextval, '작심삼일의 대가', '당신이 바로 전설의 작심삼일러..?', '하나의 습관 누적 3회 성공 후 다음 회 실패', '#FF00FF');
 INSERT INTO TB_TITLE VALUES (S_T_CODE.nextval, '언제나 내일의 나에게 맡기는', '꾸준한 이용... 부탁드립니다.', '하나의 습관 첫 등록 후 다음 회 실패', '#CC00CC');
-INSERT INTO TB_TITLE VALUES (S_T_CODE.nextval, '저도 운동 좋아하는데요', '자 이제 시작이야!!', '운동 습관 등록 1회 성공', '#006600');
-INSERT INTO TB_TITLE VALUES (S_T_CODE.nextval, '내일의 몸짱', '내일이 기대되는 당신!', '운동 습관 1회 성공', '#00CC00');
-INSERT INTO TB_TITLE VALUES (S_T_CODE.nextval, '운동은 나의 삶', '내가 운동이고, 운동이 곧 나다.', '하나의 운동 습관 50% 달성', '#00FF00');
-INSERT INTO TB_TITLE VALUES (S_T_CODE.nextval, '하얗게 불태운', '국가대표급 운동량!', '하나의 운동 습관 100% 달성', '#33FF33');
-INSERT INTO TB_TITLE VALUES (S_T_CODE.nextval, '금연뉴비', '어서와 금연은 처음이지?', '금연 습관 등록 1회 성공', '#00994C');
-INSERT INTO TB_TITLE VALUES (S_T_CODE.nextval, '니코틴과의 이별', '건강의 청신호', '하나의 금연 습관 누적 3회 성공', '#00CC66');
-INSERT INTO TB_TITLE VALUES (S_T_CODE.nextval, '활짝 웃는 폐', '담배와의 악연은 여기까지!', '하나의 금연 1개 습관 50% 달성', '#00FF80');
-INSERT INTO TB_TITLE VALUES (S_T_CODE.nextval, '비흡연자', '드디어 비흡연자에 합류성공!', '하나의 금연 1개 습관 100% 달성', '#33FF99');
-INSERT INTO TB_TITLE VALUES (S_T_CODE.nextval, '첫 페이지', '독서습관 들이기 첫 번째 행동!', '독서 습관 등록 1회 성공', '#009999');
-INSERT INTO TB_TITLE VALUES (S_T_CODE.nextval, '독서습관러', '매일 책을 생각하는 자세 아주 좋아!', '하나의 독서 습관 누적 3회 성공', '#00CCCC');
-INSERT INTO TB_TITLE VALUES (S_T_CODE.nextval, '독서프로', '당신의 독서하는 모습 반할 것 같아..', '하나의 독서 습관 50% 달성', '#00FFFF');
-INSERT INTO TB_TITLE VALUES (S_T_CODE.nextval, '독서왕', '평생습관이 되어버린 독서생활', '하나의 독서 습관 100% 달성', '#33FFFF');
-
+INSERT INTO TB_TITLE VALUES (S_T_CODE.nextval, '저도 운동 좋아하는데요', '자 이제 시작이야!!', '운동 습관 등록 1회 성공', '#E4F7BA');
+INSERT INTO TB_TITLE VALUES (S_T_CODE.nextval, '내일의 몸짱', '내일이 기대되는 당신!', '운동 습관 1회 성공', '#CEF279');
+INSERT INTO TB_TITLE VALUES (S_T_CODE.nextval, '운동은 나의 삶', '내가 운동이고, 운동이 곧 나다.', '하나의 운동 습관 50% 달성', '#BCE55C');
+INSERT INTO TB_TITLE VALUES (S_T_CODE.nextval, '하얗게 불태운', '국가대표급 운동량!', '하나의 운동 습관 100% 달성', '#1DDB16');
+INSERT INTO TB_TITLE VALUES (S_T_CODE.nextval, '금연뉴비', '어서와 금연은 처음이지?', '금연 습관 등록 1회 성공', '#D9E5FF');
+INSERT INTO TB_TITLE VALUES (S_T_CODE.nextval, '니코틴과의 이별', '건강의 청신호', '하나의 금연 습관 누적 3회 성공', '#B2CCFF');
+INSERT INTO TB_TITLE VALUES (S_T_CODE.nextval, '활짝 웃는 폐', '담배와의 악연은 여기까지!', '하나의 금연 1개 습관 50% 달성', '#6799FF');
+INSERT INTO TB_TITLE VALUES (S_T_CODE.nextval, '비흡연자', '드디어 비흡연자에 합류성공!', '하나의 금연 1개 습관 100% 달성', '#0100FF');
+INSERT INTO TB_TITLE VALUES (S_T_CODE.nextval, '첫 페이지', '독서습관 들이기 첫 번째 행동!', '독서 습관 등록 1회 성공', '#FFD9EC');
+INSERT INTO TB_TITLE VALUES (S_T_CODE.nextval, '독서습관러', '매일 책을 생각하는 자세 아주 좋아!', '하나의 독서 습관 누적 3회 성공', '#FFB2D9');
+INSERT INTO TB_TITLE VALUES (S_T_CODE.nextval, '독서프로', '당신의 독서하는 모습 반할 것 같아..', '하나의 독서 습관 50% 달성', '#F361A6');
+INSERT INTO TB_TITLE VALUES (S_T_CODE.nextval, '독서왕', '평생습관이 되어버린 독서생활', '하나의 독서 습관 100% 달성', '#FF007F');
+INSERT INTO TB_TITLE VALUES (S_T_CODE.nextval, '볼빨간 금주 뉴비', '안녕? 금주 오늘이 처음이지?', '금주 습관 등록 1회 성공', '#FAF4C0');
+INSERT INTO TB_TITLE VALUES (S_T_CODE.nextval, '힘들수록 금주!', '어때 술 생각 좀 나?', '하나의 금주 습관 누적 3회 성공', '#FAED7D');
+INSERT INTO TB_TITLE VALUES (S_T_CODE.nextval, '프로금주러', '더 이상 간 때문이 아니야!', '하나의 금주 습관 50% 달성', '#E5D85C');
+INSERT INTO TB_TITLE VALUES (S_T_CODE.nextval, '상쾌한 아침', '항상 피로했던 당신의 아침은??', '하나의 금주 습관 100% 달성', '#FFE400');
 COMMIT;
 
 -- 명언 삭제 
