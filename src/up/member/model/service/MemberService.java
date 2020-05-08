@@ -131,6 +131,29 @@ public class MemberService {
 
 		return result;
 	}
+	
+	/**
+	 *	@MethodName: mailCheck
+	 *	@ClassName: MemberService.java
+	 *	@변경이력: 완료
+	 *	@Comment: id찾기, 비밀번호 찾기 시 메일 확인용
+	 *	@작성자: 박혜연
+	 *	@작성일: 2020. 5. 8.
+	*/
+	public String mailCheck(String userEmail) {
+		String result = "";
+		Connection con = jdt.getConnection();
+
+		try {
+			result = md.mailCheck(con, userEmail);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			jdt.close(con);
+		}
+		
+		return result;
+	}
 
 	/**
 	 * @MethodName: register
