@@ -44,6 +44,8 @@ public class MemberService {
 		try {
 			result = new Member();
 			result = md.loginImple(con, userId, userPwd);
+			// 로그인 시 로그인 횟수 +1
+			plusLoginCnt(result);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -67,14 +69,44 @@ public class MemberService {
 
 		try {
 			result = md.kakaoImple(con, userId);
+			// 로그인 시 로그인 횟수 +1
+			plusLoginCnt(result);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			jdt.close(con);
 		}
 
-		System.out.println(result);
 		return result;
+	}
+	
+	/**
+	 *	@MethodName: plusLoginCnt
+	 *	@ClassName: MemberService.java
+	 *	@변경이력: 
+	 *	@Comment: 로그인 시, 로그인 횟수 증가
+	 *	@작성자: 박혜연
+	 *	@작성일: 2020. 5. 7.
+	*/
+	public void plusLoginCnt(Member m) {
+		Connection con = jdt.getConnection();
+		
+		try {
+			int res = md.plusLoginCnt(con, m);
+			if(res >= 1) {
+				con.commit();
+			} else {
+				con.rollback();
+			}
+		} catch (SQLException e) {
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		}
+		
 	}
 
 	/**
@@ -134,6 +166,8 @@ public class MemberService {
 		// 구글 smtp 서버를 사용하기 위한 인증 정보
 		PasswordAuthentication pa = new PasswordAuthentication("ksungmin2015", "tjd951als");
 
+		//"ksungmin2015", "tjd951als"
+		
 		// 사용할 smtp 서버 설정
 		// smtp: send mail transfer protocol
 		// 설정하지 않으면 우리가 smtp서버여야 한다.
@@ -162,11 +196,15 @@ public class MemberService {
 			msg.setSubject(m.getUserId() + "님, 사이트 가입을 환영합니다.");
 
 			String htmlBody = "<form action='http://localhost:8787/up/member/insert.do'"
-					+ " method='post'><h3>회원 가입 완료를 원하시면 버튼을 클릭하세요</h3>" + "<input type='hidden' value='"
-					+ m.getUserId() + "' name='userId'>" + "<input type='hidden' value='" + m.getUserPwd()
-					+ "' name='userPwd'>" + "<input type='hidden' value='" + m.getUserEmail() + "' name='userEmail'>"
+					+ " method='post'><h3>회원 가입 완료를 원하시면 버튼을 클릭하세요</h3>"
+					+ "<input type='hidden' value='" + m.getUserId() + "' name='userId'>" 
+					+ "<input type='hidden' value='" + m.getUserPwd() + "' name='userPwd'>" 
+					+ "<input type='hidden' value='" + m.getUserEmail() + "' name='userEmail'>"
 					+ "<input type='hidden' value='" + m.getUserName() + "' name='userName'>"
 					+ "<input type='hidden' value='" + m.getUserNickName() + "' name='userNickName'>"
+					+ "<pre>안녕하세요, " + m.getUserId() + "님! 자기계발 사이트 UP에 오신 것을 환영합니다! \r\n"
+					+ "아래 '회원가입하기'를 클릭하시면, 회원가입이 완료됩니다. \r\n"
+					+ "(만약 잘못 수신된 메일이라면 무시하셔도 됩니다.)</pre>"
 					+ "<button type='submit'>회원가입하기</button></form>";
 			Multipart mp = new MimeMultipart();
 

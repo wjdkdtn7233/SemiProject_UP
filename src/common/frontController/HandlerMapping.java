@@ -70,8 +70,14 @@ public class HandlerMapping {
 			case "emailcheck.do":
 				methodName = "emailCheck";
 				break;
+			case "sendmailcheck.do":
+				methodName = "sendMailCheck";
+				break;
 			case "insert.do":
 				methodName = "insertMember";
+				break;
+			case "kakaoidcheck.do":
+				methodName = "kakaoIdCheck";
 				break;
 			case "kakaologin.do":
 				methodName = "kakaoLogin";
@@ -93,9 +99,6 @@ public class HandlerMapping {
 				break;
 			case "welcome.do":
 				methodName = "welcome";
-				break;
-			case "wise.do":
-				methodName = "sendWise";
 				break;
 			default:
 				throw new Status404("uri를 다시 확인 해주세요!");
@@ -124,6 +127,9 @@ public class HandlerMapping {
 			case "memberwithdrawal.do":
 				methodName = "memberWithdrawal";
 				break;
+			case "goodbye.do":
+				methodName = "goodBye";
+				break;	
 			case "deletemember.do":
 				methodName = "deleteMember";
 				break;	
@@ -152,7 +158,9 @@ public class HandlerMapping {
 			case "habitregistration.do":
 				methodName = "habitRegistration";
 				break;	
-			
+			case "habitregistrationimple.do":
+				methodName = "habitRegistrationImple";
+				break;
 			case "habitremove.do":
 				methodName = "habitRemove";
 				break;	

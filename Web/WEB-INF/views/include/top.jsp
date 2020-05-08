@@ -48,7 +48,10 @@
 			id="check111"
 			style="background:${sessionScope.representationTitle.TColor}; width:150px;">${sessionScope.representationTitle.TName}</span>
 		</li>
-
+		<%-- Kakao share btn --%>
+		<a id="kakao-link-btn" href="javascript:sendLink()"> <img
+		src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png" style="width: 40px; height: 41px; margin-top: 10px; margin-left: 10px"/>
+		</a>
 		<!-- Nav Item - Alerts -->
 		<li class="nav-item dropdown no-arrow mx-1"><a
 			class="nav-link dropdown-toggle" href="#" id="alertsDropdown"
@@ -162,17 +165,19 @@
 			aria-expanded="false"> <span
 				class="mr-2 d-none d-lg-inline text-gray-600 small">${sessionScope.loginInfo.userNickName}님
 					환영합니다.</span> <img class="img-profile rounded-circle"
-				src="/up/resources/upload/${sessionScope.loginInfo.renameFile}">
+				src="/up/resources/upload/${sessionScope.loginInfo.renameFile}" id="profile_img">
 		</a> <!-- Dropdown - User Information -->
 			<div
 				class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 				aria-labelledby="userDropdown">
 				<a class="dropdown-item" href="/up/mypage/mypage.do"> <i
-					class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> MyPage
+					class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> My Page
 				</a> <a class="dropdown-item" href="/up/mypage/infopwdcheck.do"> <i
-					class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Settings
-				</a> <a class="dropdown-item" href="#"> <i
-					class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> Habit
+					class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> My
+					Information Modify
+				</a> <a class="dropdown-item" href="/up/habit/habitpage.do"> <i
+					class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> My Habit
+					Page
 				</a>
 				<div class="dropdown-divider"></div>
 				<a class="dropdown-item" href="#" data-toggle="modal"
@@ -201,20 +206,25 @@
 				<div class="modal-footer">
 					<button class="btn btn-secondary" type="button"
 						data-dismiss="modal">Cancel</button>
-					<button class="btn btn-primary" data-dismiss="modal" onclick="logoutClick()">Logout</a>
+					<button class="btn btn-primary" data-dismiss="modal"
+						onclick="logoutClick()">
+						Logout</a>
 				</div>
 			</div>
 		</div>
 	</div>
 
 </nav>
+
 <script src="https://code.jquery.com/jquery-3.5.0.js"
 	integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
 	crossorigin="anonymous"></script>
+	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script>
 	
-<%request.getSession().setMaxInactiveInterval(60*20);%>
-	var loginInfo = '${sessionScope.loginInfo}'
+<%request.getSession().setMaxInactiveInterval(20 * 60);%>
+	var loginInfo = '${sessionScope.loginInfo.userId}';
+	console.log(loginInfo);
 
 	if (!loginInfo) {
 		alert('20분간 요청이 없어 로그아웃 되셨습니다.');
@@ -226,10 +236,40 @@
 		$('#ment').text("");
 		$('#check111').hide();
 	}
-	
-	function logoutClick(){
-		location.href="/up/member/login.do";
+
+	function logoutClick() {
+		location.href = "/up/member/login.do";
 	}
-		
-	
 </script>
+
+<script type="text/javascript">
+
+		// java script SDK key
+		Kakao.init('7d8d8fcde6cd667c5516e3c432c6981a')
+
+		function sendLink() {
+
+			Kakao.Link.sendCustom({
+				templateId: 24181,
+				templateArgs: {
+					// 나의 대표타이틀이름 불러와서 적용
+					title: '${sessionScope.representationTitle.TName}',
+					// 닉네임 불러와서 적용
+					userName: '${sessionScope.loginInfo.userNickName}',
+					// 이미지 url 불러와서 타이틀 획득 이미지 보여줌, 이미지가 서버상에 있어야 불러올 수 있기때문에,
+					//  resources/img 에 타이틀별 이미지를 캡쳐떠서 두고 타이틀 이름에 맞게 뿌려준다.
+
+					// 타이틀 이미지
+					imgTitle: 'https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png',
+
+					// 프로필 이미지
+					imgProfile: 'http://127.0.0.1:8787/up/resources/upload/${sessionScope.loginInfo.originFile}'
+				}
+			})
+		}
+		/* console.log("${sessionScope.loginInfo.originFile}");
+		console.log("${sessionScope.representationTitle.TName}");
+		console.log("${sessionScope.loginInfo.userNickName}");
+		console.log('http://127.0.0.1:8787/up/resources/upload/${sessionScope.loginInfo.originFile}');
+		console.log('/up/resources/upload/IU.jpg'); */
+	</script>

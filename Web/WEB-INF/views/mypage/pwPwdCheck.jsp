@@ -49,6 +49,10 @@
 	
 
 	<%@ include file="../include/jsRoot.jsp"%>
+	  <script src="/up/resources/vendor/sweetalert2/sweetalert2.all.min.js"></script>
+    <script src="/up/resources/vendor/sweetalert2/sweetalert2.all.js"></script>
+    <script src="/up/resources/vendor/sweetalert2/sweetalert2.js"></script>
+    <script src="/up/resources/vendor/sweetalert2/sweetalert2.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.5.0.js"
 		integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
 		crossorigin="anonymous"></script>
@@ -59,12 +63,28 @@
 			var  pw = $('.checkPwd');
 			
 			if ( pw.val() == "") {
-				alert('비밀번호를 입력해 주세요.');
+				swal({
+	                title: '비밀번호 확인!', // 제목
+	                html: "비밀번호를 입력해주세요.", // 내용
+	                type: 'warning', // 종류
+	                confirmButtonText: '확인',
+	                confirmButtonColor: '#4e73df' // 확인버튼 표시 문구
+	                
+	            });
+			
 				return false;
 			}
 
 			if ( pw.val() != userpwd) {
-				alert('비밀번호가 맞지 않습니다. 다시 입력해주세요.');
+				swal({
+	                title: '비밀번호 확인!', // 제목
+	                html: "비밀번호가 맞지 않습니다. 다시 입력해주세요.", // 내용
+	                type: 'warning', // 종류
+	                confirmButtonText: '확인',
+	                confirmButtonColor: '#4e73df' // 확인버튼 표시 문구
+	                
+	            });
+		
 				return false;
 			}
 
