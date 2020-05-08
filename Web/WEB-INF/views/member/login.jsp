@@ -151,14 +151,6 @@ i {
 												id="userPwd" name="userPwd"
 												placeholder="Enter your password...">
 										</div>
-										<div class="form-group">
-											<div class="custom-control custom-checkbox small">
-												<input type="checkbox" class="custom-control-input"
-													id="customCheck"> <label
-													class="custom-control-label" for="customCheck">Remember
-													Me</label>
-											</div>
-										</div>
 										<!-- login 성공 시 index(메인 페이지)로 -->
 										<button type="submit"
 											class="btn btn-primary btn-user btn-block">Login</button>
@@ -209,7 +201,7 @@ i {
 
 		function kakaoLogin() {
 			// 사용할 앱의 JavaScript 키를 설정
-			Kakao.init('cc9504f39ca30003c636d3126203e161');
+			Kakao.init('7d8d8fcde6cd667c5516e3c432c6981a');
 			// 카카오 로그인 버튼을 생성
 			Kakao.Auth.login({
 				success : function(v) {
