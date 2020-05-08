@@ -147,20 +147,15 @@
 					// 나의 대표타이틀이름 불러와서 적용
 					title: '${sessionScope.representationTitle.TName}',
 					// 닉네임 불러와서 적용
-					userName: '${sessionScope.loginInfo.userNickName}'
+					userName: '${sessionScope.loginInfo.userNickName}',
 					// 이미지 url 불러와서 타이틀 획득 이미지 보여줌, 이미지가 서버상에 있어야 불러올 수 있기때문에
-					//  resources/img 에 타이틀별 이미지를 캡쳐떠서 두고 타이틀 이름에 맞게 뿌려준다.
+					// 네이버블로그에 타이틀별 이미지를 캡쳐떠서 두고 타이틀 이름에 맞게 뿌려준다.
+					imgTitle: '${sessionScope.representationTitle.TUrl}'
 
-					/* // Profile 이미지
-					imgProfile: 'https://steemitimages.com/DQmR5BQHVvjvQTkezTfyZ126PGLReugcTLWZKFi6tWYFUHx/12.png' */
 				}
 			})
 		}
-		/* console.log("${sessionScope.loginInfo.originFile}");
-		console.log("${sessionScope.representationTitle.TName}");
-		console.log("${sessionScope.loginInfo.userNickName}");
-		console.log('http://127.0.0.1:8787/up/resources/upload/${sessionScope.loginInfo.originFile}');
-		console.log('/up/resources/upload/IU.jpg'); */
+		
 		
 	
 		

@@ -262,7 +262,7 @@ public class MemberService {
 		try {
 			result = md.findId(con, userEmail);
 
-			PasswordAuthentication pa = new PasswordAuthentication("ksungmin2015", "tjd951als");
+			PasswordAuthentication pa = new PasswordAuthentication("eternita9210", "!dnflahdcl1004");
 
 			Properties prop = System.getProperties();
 			prop.put("mail.smtp.starttls.enable", "true");
@@ -324,7 +324,7 @@ public class MemberService {
 		try {
 			result = md.findPwd(con, userId, userEmail);
 
-			PasswordAuthentication pa = new PasswordAuthentication("ksungmin2015", "tjd951als");
+			PasswordAuthentication pa = new PasswordAuthentication("eternita9210", "!dnflahdcl1004");
 
 			Properties prop = System.getProperties();
 			prop.put("mail.smtp.starttls.enable", "true");
