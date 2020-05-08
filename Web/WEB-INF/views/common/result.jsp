@@ -15,21 +15,38 @@
 	<script>
 	init = function(){
 		//print alert message
+	 
 	<c:if test="${data.alertMsg != null}">
 	swal({
-        title: '성공!',
-        html: '${data.alertMsg}',
+		
+        title: '알림',
+        <c:if test="${data.AcquisitionTitle != null}">
+        	html: '${data.alertMsg}<br><h3 style="color:#B0E095">타이틀을 획득하였습니다.<br>마이페이지->개인정보수정 에서 확인해주세요.</h3>',
+		</c:if>
+        <c:if test="${data.AcquisitionTitle == null}">
+        	html: '${data.alertMsg}',
+		</c:if>
         type: 'success'
     }).then(function (result) { // 버튼이 눌러졌을 경우의 콜백 연결
         if (result.value) { // 확인 버튼이 눌러진 경우
-        	<c:if test="${data.url != null}">
-    		
-        		location.href="<c:out value="${data.url}"/>";
-        	</c:if>
+        	
+    	
+    		<c:if test="${data.url != null}">
+				location.href="<c:out value="${data.url}"/>";
+			</c:if>
+            
         	<c:if test="${data.back != null}">
     		history.back();
     		</c:if>
-        	
+    		
+        }else{
+        	<c:if test="${data.url != null}">
+				location.href="<c:out value="${data.url}"/>";
+			</c:if>
+        
+    		<c:if test="${data.back != null}">
+				history.back();
+			</c:if>
         }
     });
 		
@@ -38,6 +55,7 @@
 	
 	
 	};
+
 	
 	init();
 </script>

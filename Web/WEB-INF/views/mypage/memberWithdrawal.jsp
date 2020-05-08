@@ -192,7 +192,11 @@
 
 	</div>
 
-
+<!-- alert 스크립트!  -->
+	 <script src="/up/resources/vendor/sweetalert2/sweetalert2.all.min.js"></script>
+    <script src="/up/resources/vendor/sweetalert2/sweetalert2.all.js"></script>
+    <script src="/up/resources/vendor/sweetalert2/sweetalert2.js"></script>
+    <script src="/up/resources/vendor/sweetalert2/sweetalert2.min.js"></script>
 	<%@ include file="../include/jsRoot.jsp"%>
 	<script src="https://code.jquery.com/jquery-3.5.0.js"
 		integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
@@ -200,12 +204,12 @@
 	<script type="text/javascript">
 		function checkTrue(){
 			$('#customCheck').prop('checked',true);
-			$('#info').html("");
+		
 		}
 		
 		function checkFalse(){
 			$('#customCheck').prop('checked',false);
-			$('#info').html("");
+			
 		}
 	
 	
@@ -214,38 +218,53 @@
 			var pwd1 = $('.inputPwd1');
 			var pwd2 = $('.inputPwd2');
 
-			pwd1.on('click', function() {
-				$('#info').html("");
-			});
-			pwd2.on('click', function() {
-				$('#info').html("");
-			});
 
 			if (pwd1.val() == '') {
-				$('#info').html(
-						"<i class='fas fa-exclamation-triangle'></i>"
-								+ " 비밀번호를 입력해주세요.");
+				swal({
+	                title: '비밀번호 확인!', // 제목
+	                text: "비밀번호를 입력해주세요.", // 내용
+	                type: 'warning', // 종류
+	                confirmButtonText: '확인',
+	                confirmButtonColor: '#4e73df' // 확인버튼 표시 문구
+	                
+	            });
 				return false;
 			}
 			if (pwd1.val() != pwd2.val()) {
-				$('#info').html(
-						"<i class='fas fa-exclamation-triangle'></i>"
-								+ " 입력한 비밀번호가 서로 일치하지 않습니다.");
+				swal({
+	                title: '비밀번호 확인!', // 제목
+	                text: "입력한 비밀번호가 서로 일치하지 않습니다.", // 내용
+	                type: 'warning', // 종류
+	                confirmButtonText: '확인',
+	                confirmButtonColor: '#4e73df' // 확인버튼 표시 문구
+	                
+	            });
 				return false;
 			}
 
 			//로그인 세션값 가져와서 입력된 패스워드와 비교
 			if (userpwd != pwd1.val()) {
-				$('#info').html(
-						"<i class='fas fa-exclamation-triangle'></i>"
-								+ " 입력한 비밀번호가 틀렸습니다. ");
+				swal({
+	                title: '비밀번호 확인!', // 제목
+	                text: "입력한 비밀번호가 틀렸습니다.", // 내용
+	                type: 'warning', // 종류
+	                confirmButtonText: '확인',
+	                confirmButtonColor: '#4e73df' // 확인버튼 표시 문구
+	                
+	            });
 				return false;
 			}
 
 			if (!$('#customCheck').is(':checked')) {
-				$('#info').html(
-						"<i class='fas fa-exclamation-triangle'></i>"
-								+ " 동의란에 체크가 되어있지 않습니다.");
+				
+				swal({
+	                title: '동의 확인!', // 제목
+	                text: "동의란에 체크가 되어있지 않습니다.", // 내용
+	                type: 'warning', // 종류
+	                confirmButtonText: '확인',
+	                confirmButtonColor: '#4e73df' // 확인버튼 표시 문구
+	                
+	            });
 				return false;
 			}
 

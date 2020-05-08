@@ -222,7 +222,7 @@
 												<span class="text">목표 시간</span>
 											</div>
 											<div class="col-3" id="goalTime2" style="display:none">
-												<input type="text" id="goalTime2Input" class="form-control form-control-user"  name="goalTime" placeholder="시 단위로 적어주세요." />
+												<input type="text" id="goalTime2Input" class="form-control form-control-user"  name="goalTime"  />
 											</div>
 											<div class="col-1 text-left" id="goalTime3"  style="display:none" >
 												<span class="text-gray-900">시간</span>
@@ -234,7 +234,7 @@
 												<span class="text">하루평균 절약 금액</span>
 											</div>
 											<div class="col-3" id="money2"  style="display:block">
-												<input type="text" id="money2Input" class="form-control form-control-user" name="goalMoney"  placeholder="원 단위로 금액을 입력해주세요." />
+												<input type="text" id="money2Input" class="form-control form-control-user" name="goalMoney"  />
 											</div>
 											<div class="col-1  text-left" id="money3" style="display:block">
 												<span class="text-gray-900">원</span>

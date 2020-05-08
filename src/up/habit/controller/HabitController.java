@@ -3,7 +3,9 @@ package up.habit.controller;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.swing.plaf.basic.BasicScrollPaneUI.HSBChangeListener;
@@ -120,7 +122,7 @@ public class HabitController implements Controller {
 	public ModelAndView habitRegistrationImple(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		Member m = (Member) request.getSession().getAttribute("loginInfo");
-
+		Map<String, Object> map = new HashMap<>();
 		int res = 0;
 
 		Habit h = new Habit();
@@ -150,11 +152,14 @@ public class HabitController implements Controller {
 		h.setcCode(categoryCode);
 		h.setmId(m.getUserId());
 
-		res = hs.insertNewHabit(h);
-		if (res >= 1) {
+		map = hs.insertNewHabit(h);
+		
+		
+		if ((int) map.get("proRes") >= 1) {
 			mav.setView("common/result");
 			mav.addObject("url", "/up/habit/habitpage.do");
 			mav.addObject("alertMsg", "습관등록을 완료하였습니다.");
+			mav.addObject("AcquisitionTitle", map.get("getTitle"));
 		} else {
 			mav.addObject("alertMsg", "습관등록에 실패하였습니다.");
 			mav.addObject("back", "back");
