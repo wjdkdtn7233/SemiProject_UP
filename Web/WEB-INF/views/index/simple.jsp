@@ -76,77 +76,140 @@
 						<h1 class="h3 mb-0 text-gray-800">오늘의 습관</h1>
 					</div>
 					<div class="row">
-						<c:forEach var="habitList" items="${data.habitList}" varStatus="status">
-							<div class="col-xl-3 col-md-6 mb-4">
-								<div class="card border-left-
-								<c:choose>
-									<c:when test="${ status.current % 4 == 0}">
-									primary
-									</c:when>
-									<c:when test="${ status.current % 4 == 1}">
-									success
-									</c:when>
-									<c:when test="${ status.current % 4 == 2}">
-									info
-									</c:when>
-									<c:when test="${ status.current % 4 == 3}">
-									warning
-									</c:when>
-									<c:otherwise>
-									primary
-									</c:otherwise>
-								</c:choose>
-								 shadow h-100 py-2">
-									<div class="card-body">
-										<div class="row no-gutters align-items-center">
-											<div class="col mr-2">
-												<div
-													class="text-xs font-weight-bold text-info text-uppercase mb-1">
-													<span>
-													<c:choose>
-														<c:when test="${ habitList.cCode == 1}">
+						<c:choose>
+							<c:when test="${ data.habitList != 0}">
+								<c:forEach var="habitList" items="${data.habitList}"
+									varStatus="status">
+									<div class="col-xl-3 col-md-6 mb-4">
+										<div class="card border-left-info shadow h-100 py-2">
+											<div class="card-body">
+												<div class="row no-gutters align-items-center">
+													<div class="col mr-2">
+														<div
+															class="text-xs font-weight-bold text-info text-uppercase mb-1">
+															<span> <c:choose>
+																	<c:when test="${ habitList.cCode == 1}">
 														금연
 														</c:when>
-														<c:when test="${ habitList.cCode == 2}">
+																	<c:when test="${ habitList.cCode == 2}">
 														금주
 														</c:when>
-														<c:when test="${ habitList.cCode == 3}">
+																	<c:when test="${ habitList.cCode == 3}">
 														독서
 														</c:when>
-														<c:when test="${ habitList.cCode == 4}">
+																	<c:when test="${ habitList.cCode == 4}">
 														운동
 														</c:when>
-														<c:otherwise>
+																	<c:otherwise>
 														카테고리
 														</c:otherwise>
-													</c:choose>
-													</span> / <span>${ habitList.hSubcategory }</span>
-												</div>
-												<div class="row no-gutters align-items-center">
-													<div class="col-auto">
-														<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-													</div>
-													<div class="col">
-														<div class="progress progress-sm mr-2">
-															<div class="progress-bar bg-info" role="progressbar"
-																style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-																aria-valuemax="100"></div>
+																</c:choose>
+															</span> / <span>${ habitList.hSubcategory }</span>
+														</div>
+														<div class="row no-gutters align-items-center">
+															<div class="col-auto">
+																<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">${habitList.cPercent}%</div>
+															</div>
+															<div class="col">
+																<div class="progress progress-sm mr-2">
+																	<div class="progress-bar bg-info" role="progressbar"
+																		style="width: ${habitList.cPercent}%"
+																		aria-valuenow="50" aria-valuemin="0"
+																		aria-valuemax="100"></div>
+																</div>
+															</div>
 														</div>
 													</div>
+													<div class="col-auto">
+														<a href="#" class="btn btn-success btn-circle"> <i
+															class="fas fa-check"></i>
+														</a>
+													</div>
 												</div>
-											</div>
-											<div class="col-auto">
-												<a href="#" class="btn btn-success btn-circle"> <i
-													class="fas fa-check"></i>
-												</a>
 											</div>
 										</div>
 									</div>
+								</c:forEach>
+							</c:when>
+							<c:otherwise>
+								<div class="container">
+									<h1 class="h3 mb-0 text-center text-gray-800">금일의 습관은
+										없습니다.</h1>
 								</div>
-							</div>
-						</c:forEach>
+							</c:otherwise>
+						</c:choose>
 					</div>
-
+					
+					<br><br>
+					<div
+						class="d-sm-flex align-items-center justify-content-between mb-4">
+						<h1 class="h3 mb-0 text-gray-800">검색결과</h1>
+					</div>
+					<div class="row">
+						<c:choose>
+							<c:when test="${ data.habitList != 0}">
+								<c:forEach var="habitList" items="${data.habitList}"
+									varStatus="status">
+									<div class="col-xl-3 col-md-6 mb-4">
+										<div class="card border-left-info shadow h-100 py-2">
+											<div class="card-body">
+												<div class="row no-gutters align-items-center">
+													<div class="col mr-2">
+														<div
+															class="text-xs font-weight-bold text-info text-uppercase mb-1">
+															<span> <c:choose>
+																	<c:when test="${ habitList.cCode == 1}">
+														금연
+														</c:when>
+																	<c:when test="${ habitList.cCode == 2}">
+														금주
+														</c:when>
+																	<c:when test="${ habitList.cCode == 3}">
+														독서
+														</c:when>
+																	<c:when test="${ habitList.cCode == 4}">
+														운동
+														</c:when>
+																	<c:otherwise>
+														카테고리
+														</c:otherwise>
+																</c:choose>
+															</span> / <span>${ habitList.hSubcategory }</span>
+														</div>
+														<div class="row no-gutters align-items-center">
+															<div class="col-auto">
+																<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">${habitList.cPercent}%</div>
+															</div>
+															<div class="col">
+																<div class="progress progress-sm mr-2">
+																	<div class="progress-bar bg-info" role="progressbar"
+																		style="width: ${habitList.cPercent}%"
+																		aria-valuenow="50" aria-valuemin="0"
+																		aria-valuemax="100"></div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="col-auto">
+														<a href="#" class="btn btn-success btn-circle"> <i
+															class="fas fa-check"></i>
+														</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</c:forEach>
+							</c:when>
+							<c:otherwise>
+								<div class="container">
+									<h1 class="h3 mb-0 text-center text-gray-800">금일의 습관은
+										없습니다.</h1>
+								</div>
+							</c:otherwise>
+						</c:choose>
+					</div>
+					
 				</div>
 				<!-- /.container-fluid -->
 

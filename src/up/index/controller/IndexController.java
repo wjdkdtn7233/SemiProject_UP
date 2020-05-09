@@ -1,15 +1,20 @@
 package up.index.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
 import common.frontController.Controller;
 import common.frontController.ModelAndView;
+import up.habit.model.vo.Habit;
 import up.index.model.service.IndexService;
+import up.index.model.vo.HabitState;
 import up.member.model.vo.Member;
-
 
 /**
  * @FileName : IndexController.java
@@ -20,8 +25,6 @@ import up.member.model.vo.Member;
  * @프로그램 설명 : main 페이지 controller
  */
 public class IndexController implements Controller {
-
-	IndexService is = new IndexService();
 
 	/**
 	 * @Method Name : index
@@ -49,16 +52,21 @@ public class IndexController implements Controller {
 	 * @return ModelAndView
 	 */
 	public ModelAndView simple(HttpServletRequest request) {
+
+		IndexService is = new IndexService();
 		ModelAndView mav = new ModelAndView();
 		Member m = (Member) request.getSession().getAttribute("loginInfo");
-		Map<String, Object> res = is.selectHabitList(m.getUserId());
-		Map<String, Object> resMap = new HashMap<String, Object>();
-		
-		
-		mav.addObject("habitList", res.get("hList") );
-		mav.addObject("currentList", res.get("cList"));
-		mav.setView("index/simple");
+		List<HabitState> mList = is.selectHabitList(m);
 
+		if (mList.size() != 0) {
+			mav.addObject("habitList", mList);
+			System.out.println("null아님");
+		} else {
+			mav.addObject("habitList", 0);
+			System.out.println("null임");
+		}
+
+		mav.setView("index/simple");
 		return mav;
 	}
 
@@ -89,7 +97,7 @@ public class IndexController implements Controller {
 	 */
 	public ModelAndView calendar(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
-		
+
 		mav.setView("index/calendar");
 
 		return mav;

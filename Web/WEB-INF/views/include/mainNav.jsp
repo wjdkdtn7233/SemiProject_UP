@@ -93,9 +93,11 @@
 			data-parent="#accordionSidebar">
 			<div class="bg-white py-2 collapse-inner rounded">
 				<h5 class="collapse-header text-gray-700">- U P - 에 오신것을 환영합니다.</h5>
-				<a class="collapse-item" href="/up/index/index.do"><i class="fas fa-desktop mr-3"></i>메인페이지</a> <a
-					class="collapse-item" href="/up/mypage/mypage.do"><i class="far fa-id-card mr-3"></i>마이페이지</a> <a
-					class="collapse-item" href="/up/habit/habitpage.do"><i class="fas fa-chart-pie mr-3"></i>습관페이지</a>
+				<a class="collapse-item" href="/up/index/index.do"><i
+					class="fas fa-desktop mr-3"></i>메인페이지</a> <a class="collapse-item"
+					href="/up/mypage/mypage.do"><i class="far fa-id-card mr-3"></i>마이페이지</a>
+				<a class="collapse-item" href="/up/habit/habitpage.do"><i
+					class="fas fa-chart-pie mr-3"></i>습관페이지</a>
 
 			</div>
 		</div></li>
@@ -142,12 +144,9 @@
 	integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
 	crossorigin="anonymous"></script>
 <script>
-	var titleCode = $
-	{
-		sessionScope.loginInfo.userTitleCode
-	};
-	if (titleCode == 0) {
-		$('#check111').hide();
-	}
+		var titleCode = ${sessionScope.loginInfo.userTitleCode};
+		if (titleCode == 0) {
+			$('#check111').hide();
+		}
 </script>
 <!-- End of Sidebar -->

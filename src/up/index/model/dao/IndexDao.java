@@ -10,8 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import common.JDBCTemplate;
-import up.habit.model.vo.CurrentState;
-import up.habit.model.vo.Habit;
+import up.index.model.vo.HabitState;
+import up.member.model.vo.Member;
 
 /**
   * @FileName : IndexDao.java
@@ -34,11 +34,9 @@ public class IndexDao {
 	  * @return Map<String, Object>
 	 * @throws SQLException 
 	  */
-	public Map<String, Object> selectHabitList(Connection con, String mId) throws SQLException{
-		Map<String, Object> res = new HashMap<String, Object>();
+	public List<HabitState> selectHabitList(Connection con, Member m) throws SQLException{
 		
-		List<Habit> hList = new ArrayList<Habit>();
-		List<CurrentState> cList = new ArrayList<CurrentState>(); 
+		List<HabitState> hsList = new ArrayList<HabitState>();
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -53,42 +51,32 @@ public class IndexDao {
 		
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, mId);
+			pstmt.setString(1, m.getUserId());
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				Habit h = new Habit();
-				CurrentState c = new CurrentState();
+				HabitState hs = new HabitState();
 				
-//				CurrentState 데이터 모델 생성.
-				h.sethNo(rs.getInt(1));
-				c.setcStateNo(rs.getInt(2));
-				c.setcCount(rs.getInt(3));
-				c.setcCountall(rs.getInt(4));
-				c.setcPercent(rs.getInt(5));
-				c.setmId(rs.getString(6));
-				c.sethNo(h.gethNo());
+//				HabitState 데이터 모델 생성.
+				hs.sethNo(rs.getInt(1));
+				hs.setcStateNo(rs.getInt(2));
+				hs.setcCount(rs.getInt(3));
+				hs.setcCountall(rs.getInt(4));
+				hs.setcPercent(rs.getInt(5));
+				hs.setmId(rs.getString(6));
+				hs.sethSubcategory(rs.getString(7));
+				hs.sethStartDate(rs.getDate(8));
+				hs.sethEndDate(rs.getDate(9));
+				hs.sethSelectday(rs.getString(10));
+				hs.sethMoney(rs.getInt(11));
+				hs.sethTime(rs.getInt(12));
+				hs.setcCode(rs.getInt(13));
+				hs.setmId(rs.getString(14));
 				
-//				habit 데이터 모델 생성.
-				h.sethSubcategory(rs.getString(7));
-				h.sethStartDate(rs.getDate(8));
-				h.sethEndDate(rs.getDate(9));
-				h.sethSelectday(rs.getString(10));
-				h.sethMoney(rs.getInt(11));
-				h.sethTime(rs.getInt(12));
-				h.setcCode(rs.getInt(13));
-				h.setmId(rs.getString(14));
-				
-				hList.add(h);
-				cList.add(c);
+				hsList.add(hs);
 			}
-			
-			res.put("hList", hList);
-			res.put("cList", cList);
-			
-			
 		} finally {
 			jdt.close(rs, pstmt);
 		}
-		return res;
+		return hsList;
 	}
 }

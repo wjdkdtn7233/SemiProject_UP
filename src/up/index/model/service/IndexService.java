@@ -10,6 +10,8 @@ import java.util.Map;
 import common.JDBCTemplate;
 import up.habit.model.vo.Habit;
 import up.index.model.dao.IndexDao;
+import up.index.model.vo.HabitState;
+import up.member.model.vo.Member;
 
 /**
   * @FileName : IndexService.java
@@ -32,13 +34,15 @@ public class IndexService {
 	  * @Method 설명 : 습관 정보를 Map형식으로 불러온다.
 	  * @return Map<String, Object>
 	  */
-	public Map<String, Object> selectHabitList(String mId){
-		Map<String, Object> res = new HashMap<String, Object>();
+	public List<HabitState> selectHabitList(Member m){
+		List<HabitState> res = new ArrayList<>();
 		
-		Connection conn = jdt.getConnection();
+		Connection conn = null;
+
+		conn = jdt.getConnection();
 		
 		try {
-			res = id.selectHabitList(conn, mId);
+			res = id.selectHabitList(conn, m);
 			
 			
 //			jdt.commit(conn);
