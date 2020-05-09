@@ -167,17 +167,18 @@
 			$('#check111').css('background','#EFF3FC');
 			$('#check111').text("NO TITLE");
 			$('#check111').removeClass('text-white');
+			$('#check111').on('click',function(){
+				swal({
+	                title: '타이틀 확인!', // 제목
+	                html: "개인정보수정에서 대표타이틀을 설정해주세요!", // 내용
+	                type: 'warning', // 종류
+	                confirmButtonText: '확인',
+	                confirmButtonColor: '#4e73df' // 확인버튼 표시 문구
+	                
+	            });
+			});
 		}
-		$('#check111').on('click',function(){
-			swal({
-                title: '타이틀 확인!', // 제목
-                html: "개인정보수정에서 대표타이틀을 설정해주세요!", // 내용
-                type: 'warning', // 종류
-                confirmButtonText: '확인',
-                confirmButtonColor: '#4e73df' // 확인버튼 표시 문구
-                
-            });
-		});
+		
 	</script>
 	<script type="text/javascript">
   WebFontConfig = {

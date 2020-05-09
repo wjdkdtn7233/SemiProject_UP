@@ -333,7 +333,8 @@ public class MemberController implements Controller {
 				session.setAttribute("loginInfo", m);
 				// 유저가 로그인 하는동안 타이틀 네임 / 컬러 띄워주는 메소드
 				MyPageController mc = new MyPageController();
-				mc.getTitle(request, m);
+
+				mc.getTitle(request,m);
 				mav.setView("index/index");
 			} else {
 				mav.setView("common/result");
