@@ -146,7 +146,9 @@ BEGIN
 END;
 /
 --P_INSERT_HABIT 프로시저 테스트
---EXEC P_INSERT_HABIT(S_H_NO.NEXTVAL,'서브카테고리',SYSDATE-2,SYSDATE-1,'월화수',3000,0,1,'smkim');
+--EXEC P_INSERT_HABIT(S_H_NO.NEXTVAL,'서브카테고리',SYSDATE,SYSDATE+30,'월화수',3000,0,1,'smkim');
+--EXEC P_INSERT_HABIT(S_H_NO.NEXTVAL,'서브카테고리',SYSDATE,SYSDATE+60,'월수금',4500,0,2,'smkim');
+--EXEC P_INSERT_HABIT(S_H_NO.NEXTVAL,'서브카테고리',SYSDATE,SYSDATE+60,'수목금',0,5,3,'smkim');
 
 
 -- 습관 업데이트 프로시저
@@ -196,10 +198,8 @@ END;
 /
 
 --P_UPDATE_HABIT 프로시저 테스트
-EXEC P_UPDATE_HABIT(1);
+--EXEC P_UPDATE_HABIT(1);
 
-
--- 습관 삭제 프로시저
 CREATE OR REPLACE PROCEDURE P_DELETE_HABIT (
     P_H_NO              TB_HABIT.H_NO%TYPE
 ) IS
