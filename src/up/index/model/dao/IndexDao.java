@@ -108,7 +108,6 @@ public class IndexDao {
 				hs.sethSelectday(rs.getString(11));
 				hs.sethMoney(rs.getInt(12));
 				hs.sethTime(rs.getInt(13));
-				System.out.println(hs.toString());
 				hsList.add(hs);
 			}
 		} finally {
@@ -116,5 +115,32 @@ public class IndexDao {
 		}
 		return hsList;
 	}
+	
+	public int checkhabit(Connection con, Member m, int hNo) throws SQLException{
+		int res = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+//		검색어 한 것 조회
+		String sql = "select * from tb_habit_check where m_id = ? and h_no = ? and TO_CHAR(H_CHECK_DATE, 'YYYY/MM/DD') = TO_CHAR(sysdate, 'YYYY/MM/DD')";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m.getUserId());
+			pstmt.setInt(2, hNo);
+			rs = pstmt.executeQuery();
+			
+			if(!rs.next()) {
+				res = 1;
+			}
+			
+			
+		} finally {
+			jdt.close(rs, pstmt);
+		}
+		return res;
+	}
+	
+	
 	
 }

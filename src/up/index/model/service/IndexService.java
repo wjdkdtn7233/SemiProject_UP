@@ -14,74 +14,92 @@ import up.index.model.vo.HabitState;
 import up.member.model.vo.Member;
 
 /**
-  * @FileName : IndexService.java
-  * @Project : semiproject
-  * @Date : 2020. 5. 7. 
-  * @작성자 : 김성민
-  * @변경이력 : 
-  * @프로그램 설명 : 메인페이지 service
-  */
+ * @FileName : IndexService.java
+ * @Project : semiproject
+ * @Date : 2020. 5. 7.
+ * @작성자 : 김성민
+ * @변경이력 :
+ * @프로그램 설명 : 메인페이지 service
+ */
 public class IndexService {
 
 	JDBCTemplate jdt = JDBCTemplate.getInstance();
-	IndexDao id = new IndexDao(); 
-	
+	IndexDao id = new IndexDao();
+
 	/**
-	  * @Method Name : selectHabitList
-	  * @작성일 : 2020. 5. 7.
-	  * @작성자 : 김성민
-	  * @변경이력 : 없음
-	  * @Method 설명 : 습관 정보를 List형식으로 불러온다.
-	  * @return List<HabitState>
-	  */
-	public List<HabitState> selectHabitList(Member m){
+	 * @Method Name : selectHabitList
+	 * @작성일 : 2020. 5. 7.
+	 * @작성자 : 김성민
+	 * @변경이력 : 없음
+	 * @Method 설명 : 습관 정보를 List형식으로 불러온다.
+	 * @return List<HabitState>
+	 */
+	public List<HabitState> selectHabitList(Member m) {
 		List<HabitState> res = new ArrayList<>();
-		
+
 		Connection conn = null;
 
 		conn = jdt.getConnection();
-		
+
 		try {
 			res = id.selectHabitList(conn, m);
-			
-			
+
 //			jdt.commit(conn);
 		} catch (SQLException e) {
 //			jdt.rollback(conn);
 		} finally {
 			jdt.close(conn);
 		}
-		
+
 		return res;
 	}
-	
+
 	/**
-	  * @Method Name : searchHabitList
-	  * @작성일 : 2020. 5. 9.
-	  * @작성자 : 김성민
-	  * @변경이력 : 없음
-	  * @Method 설명 : 검색한 습관 정보를 List형식으로 불러온다.
-	  * @param m
-	  * @return List<HabitState>
-	  */
-	public List<HabitState> searchHabitList(Member m, String select, String searchContent){
+	 * @Method Name : searchHabitList
+	 * @작성일 : 2020. 5. 9.
+	 * @작성자 : 김성민
+	 * @변경이력 : 없음
+	 * @Method 설명 : 검색한 습관 정보를 List형식으로 불러온다.
+	 * @param m
+	 * @return List<HabitState>
+	 */
+	public List<HabitState> searchHabitList(Member m, String select, String searchContent) {
 		List<HabitState> res = new ArrayList<>();
-		
+
 		Connection conn = null;
 
 		conn = jdt.getConnection();
-		
+
 		try {
 			res = id.searchHabitList(conn, m, select, searchContent);
-			
+
 //			jdt.commit(conn);
 		} catch (SQLException e) {
 //			jdt.rollback(conn);
 		} finally {
 			jdt.close(conn);
 		}
-		
+
 		return res;
 	}
-	
+
+	public int checkhabit(Member m, int hNo) {
+		int res = 0;
+
+		Connection conn = null;
+
+		conn = jdt.getConnection();
+
+		try {
+			res = id.checkhabit(conn, m, hNo);
+
+//			jdt.commit(conn);
+		} catch (SQLException e) {
+//			jdt.rollback(conn);
+		} finally {
+			jdt.close(conn);
+		}
+
+		return res;
+	}
 }

@@ -111,6 +111,7 @@
 												<form action="/up/index/updatehabit.do" method="post">
 												<div class="col-auto">
 													<input type="hidden" name="habitNo" value="${habitList.hNo}"/>
+													<input type="hidden" name="cCode" value="${habitList.cCode}"/>
 													<button class="btn btn-success btn-circle" type="submit"> <i
 														class="fas fa-check"></i>
 													</button>

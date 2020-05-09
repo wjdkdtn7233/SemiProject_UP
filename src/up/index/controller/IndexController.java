@@ -117,10 +117,20 @@ public class IndexController implements Controller {
 		ModelAndView mav = new ModelAndView();
 		Member m = (Member) request.getSession().getAttribute("loginInfo");
 		System.out.println(request.getParameter("habitNo"));
-//		int res = is.updateHabit(m, request.getParameter("habitNo"));
-//		if (res >= 1) {
-//			
-//		}
+		int res = is.checkhabit(m, Integer.parseInt(request.getParameter("habitNo")));
+		
+//		res가 1일경우 오늘 체크한 습관이 없다는 것이다.
+		if (res >= 1) {
+//			int result = is.updateHabit(Integer.parseInt(request.getParameter("cCode")));
+			
+			
+		}
+//		오늘 이미 습관 체크했다는 것이다.
+		else {
+			mav.addObject("alertMsg", "오늘은 이미 체크하셨습니다.");
+			mav.addObject("back", "back");
+			mav.setView("common/result");
+		}
 		
 		
 		return mav;
