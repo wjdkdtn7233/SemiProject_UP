@@ -70,7 +70,10 @@ public class MemberService {
 		try {
 			result = md.kakaoImple(con, userId);
 			// 로그인 시 로그인 횟수 +1
-			plusLoginCnt(result);
+			if ( result != null) {
+				plusLoginCnt(result);
+			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

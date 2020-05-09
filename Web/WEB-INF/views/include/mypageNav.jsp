@@ -30,8 +30,8 @@
 }
 
 .size2 {
-	height: 6rem;
-	width: 6rem;
+	height: 8rem;
+	width: 8rem;
 }
 </style>
 <!-- Sidebar -->
@@ -68,22 +68,32 @@
 
 	<!-- Divider -->
 	<hr class="sidebar-divider">
-	<li
-		class="nav-item  d-flex justify-content-center align-items-center mb-3">
-
-		<span
-		class="btn  text-white text-center font-weight-bold font-italic h3"
-		id="check111"
-		style="background:${sessionScope.representationTitle.TColor}; width:150px;">${sessionScope.representationTitle.TName}</span>
-	</li>
-	<li class="nav-item d-flex  justify-content-center mb-3"><img
+	<li  class="nav-item">
+	<div class="bg-white py-2  rounded mx-1 mb-2" id="check111">
+		<div class="row d-flex justify-content-center">
+			<div class="text-gray-900 text-center font-weight-bold h3" style="font-family:Nanum Gothic, sans-serif;" >MY TITLE</div>
+		</div>
+		<div class="row d-flex justify-content-center">
+			<div class="btn  text-white text-center font-weight-bold font-italic h3 shadow"
+		
+				style="background:${sessionScope.representationTitle.TColor}; width:200px;">${sessionScope.representationTitle.TName}</div>
+		</div>
+	</div>
+	
+	<div class="bg-white py-2  rounded mx-1 mb-2" id="check111">
+	<div class="row  d-flex  justify-content-center mb-3"><img
 		class="img-profile rounded-circle size2"
 		src="/up/resources/upload/${sessionScope.loginInfo.renameFile}">
+	</div>
+	<hr>
+	<div
+		class="row  d-flex  justify-content-center  h4 font-weight-bold text-gray-900" style="font-family:Nanum Gothic, sans-serif;" >${sessionScope.loginInfo.userNickName}님
+	</div>
+	<div
+		class="row  d-flex  justify-content-center  h6 text-gray-900 font-weight-bold " style="font-family:Nanum Gothic, sans-serif;" >환영합니다<i class="far fa-laugh ml-1"></i>
+	</div>
+	</div>
 	</li>
-	<li
-		class="nav-item d-flex  justify-content-center  h4 font-weight-bold"><span
-		class="text-center text-white ">${sessionScope.loginInfo.userNickName}님
-	</span></li>
 	<!-- Nav Item - Pages Collapse Menu -->
 	<li class="nav-item"><a class="nav-link collapsed" href="#"
 		data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
@@ -155,5 +165,22 @@
 			$('#check111').hide();
 		}
 	</script>
+	<script type="text/javascript">
+  WebFontConfig = {
+    custom: {
+        families: ['Nanum Gothic'],
+        urls: ['http://fonts.googleapis.com/earlyaccess/nanumgothic.css']
+    }
+  };
+  (function() {
+    var wf = document.createElement('script');
+    wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+      '://ajax.googleapis.com/ajax/libs/webfont/1.4.10/webfont.js';
+    wf.type = 'text/javascript';
+    wf.async = 'true';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(wf, s);
+  })(); 
+ </script>
 
 </ul>
