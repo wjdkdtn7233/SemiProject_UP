@@ -78,7 +78,7 @@
 					<div class="row">
 						<c:forEach var="habitList" items="${data.habitList}" varStatus="status">
 							<div class="col-xl-3 col-md-6 mb-4">
-								<div class="card border-left-
+								<div class="card border-left">
 								<c:choose>
 									<c:when test="${ status.current % 4 == 0}">
 									primary
