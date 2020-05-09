@@ -52,6 +52,10 @@ public class HandlerMapping {
 			case "searchhabit.do":
 				methodName = "searchHabit";
 				break;
+			case "updatehabit.do":
+				methodName = "updateHabit";
+				break;
+				
 			default:
 				throw new Status404("uri를 다시 확인 해주세요!");
 			}
