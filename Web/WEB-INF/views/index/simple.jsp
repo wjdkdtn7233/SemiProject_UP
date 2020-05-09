@@ -108,11 +108,14 @@
 														</div>
 													</div>
 												</div>
+												<form action="/up/index/updatehabit.do" method="post">
 												<div class="col-auto">
-													<a href="#" class="btn btn-success btn-circle"> <i
+													<input type="hidden" name="habitNo" value="${habitList.hNo}"/>
+													<button class="btn btn-success btn-circle" type="submit"> <i
 														class="fas fa-check"></i>
-													</a>
+													</button>
 												</div>
+												</form>
 											</div>
 										</div>
 									</div>

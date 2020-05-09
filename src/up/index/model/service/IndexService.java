@@ -56,7 +56,7 @@ public class IndexService {
 	}
 	
 	/**
-	  * @Method Name : selectHabitList
+	  * @Method Name : searchHabitList
 	  * @작성일 : 2020. 5. 9.
 	  * @작성자 : 김성민
 	  * @변경이력 : 없음

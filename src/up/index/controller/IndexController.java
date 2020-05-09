@@ -35,6 +35,9 @@ public class IndexController implements Controller {
 	 * @param request
 	 * @return ModelAndView
 	 */
+	
+	IndexService is = new IndexService();
+	
 	public ModelAndView index(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		mav.setView("index/index");
@@ -53,7 +56,6 @@ public class IndexController implements Controller {
 	 */
 	public ModelAndView simple(HttpServletRequest request) {
 
-		IndexService is = new IndexService();
 		ModelAndView mav = new ModelAndView();
 		Member m = (Member) request.getSession().getAttribute("loginInfo");
 		mav.addObject("habitList", is.selectHabitList(m));
@@ -95,7 +97,7 @@ public class IndexController implements Controller {
 	}
 	
 	public ModelAndView searchHabit(HttpServletRequest request) {
-		IndexService is = new IndexService();
+		
 		ModelAndView mav = new ModelAndView();
 		Member m = (Member) request.getSession().getAttribute("loginInfo");
 		
@@ -110,4 +112,18 @@ public class IndexController implements Controller {
 
 		return mav;
 	}
+	
+	public ModelAndView updateHabit(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		Member m = (Member) request.getSession().getAttribute("loginInfo");
+		System.out.println(request.getParameter("habitNo"));
+//		int res = is.updateHabit(m, request.getParameter("habitNo"));
+//		if (res >= 1) {
+//			
+//		}
+		
+		
+		return mav;
+	}
+	
 }

@@ -85,15 +85,17 @@ public class IndexDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 //		검색어 한 것 조회
-		String sql = "select * FROM tb_current_state cs inner join tb_habit h using (h_no) inner join tb_category h using (c_code) where h_no in (select h_no from tb_habit where m_id = ?) and c_name like '%'||'금연'||'%'";
+		String sql = "select * FROM tb_current_state cs inner join tb_habit h using (h_no) inner join tb_category c using (c_code) where h_no in (select h_no from tb_habit where m_id = ?) and "+ select +" like '%'|| ? ||'%'";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, m.getUserId());
+			pstmt.setString(2, searchContent);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				HabitState hs = new HabitState();
 //				HabitState 데이터 모델 생성.
+				hs.setcCode(rs.getInt(1));
 				hs.sethNo(rs.getInt(2));
 				hs.setcStateNo(rs.getInt(3));
 				hs.setcCount(rs.getInt(4));
@@ -106,8 +108,7 @@ public class IndexDao {
 				hs.sethSelectday(rs.getString(11));
 				hs.sethMoney(rs.getInt(12));
 				hs.sethTime(rs.getInt(13));
-				hs.setcCode(rs.getInt(14));
-				
+				System.out.println(hs.toString());
 				hsList.add(hs);
 			}
 		} finally {
