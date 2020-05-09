@@ -69,18 +69,16 @@
 	<!-- Divider -->
 	<hr class="sidebar-divider">
 	<li  class="nav-item">
-	<div class="bg-white py-2  rounded mx-1 mb-2" id="check111">
+	<div class="bg-white py-2  rounded mx-1 mb-2">
 		<div class="row d-flex justify-content-center">
 			<div class="text-gray-900 text-center font-weight-bold h3" style="font-family:Nanum Gothic, sans-serif;" >MY TITLE</div>
 		</div>
 		<div class="row d-flex justify-content-center">
-			<div class="btn  text-white text-center font-weight-bold font-italic h3 shadow"
-		
-				style="background:${sessionScope.representationTitle.TColor}; width:200px;">${sessionScope.representationTitle.TName}</div>
+			<div class="btn  text-white text-center font-weight-bold font-italic h3 shadow"  id="check111" style="background:${sessionScope.representationTitle.TColor}; width:200px;">${sessionScope.representationTitle.TName}</div>
 		</div>
 	</div>
 	
-	<div class="bg-white py-2  rounded mx-1 mb-2" id="check111">
+	<div class=" py-2  rounded mx-1 mb-2" style="background:#EFF3FC">
 	<div class="row  d-flex  justify-content-center mb-3"><img
 		class="img-profile rounded-circle size2"
 		src="/up/resources/upload/${sessionScope.loginInfo.renameFile}">
@@ -141,14 +139,30 @@
 
 
 </ul>
+  <script src="/up/resources/vendor/sweetalert2/sweetalert2.all.min.js"></script>
+    <script src="/up/resources/vendor/sweetalert2/sweetalert2.all.js"></script>
+    <script src="/up/resources/vendor/sweetalert2/sweetalert2.js"></script>
+    <script src="/up/resources/vendor/sweetalert2/sweetalert2.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.0.js"
 	integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
 	crossorigin="anonymous"></script>
 <script>
-	var titleCode = ${sessionScope.loginInfo.userTitleCode};
-	if (titleCode == 0) {
-		$('#check111').hide();
-	}
+var titleCode = ${sessionScope.loginInfo.userTitleCode};
+if (titleCode == 0) {
+	$('#check111').css('background','#EFF3FC');
+	$('#check111').text("NO TITLE");
+	$('#check111').removeClass('text-white');
+}
+$('#check111').on('click',function(){
+	swal({
+        title: '타이틀 확인!', // 제목
+        html: "개인정보수정에서 대표타이틀을 설정해주세요!", // 내용
+        type: 'warning', // 종류
+        confirmButtonText: '확인',
+        confirmButtonColor: '#4e73df' // 확인버튼 표시 문구
+        
+    });
+});
 </script>
 
 <script type="text/javascript">

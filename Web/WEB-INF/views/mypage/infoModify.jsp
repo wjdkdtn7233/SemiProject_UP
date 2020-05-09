@@ -100,7 +100,8 @@
 
 									</div>
 									<div class="col-2 ml-0 pl-0">
-										<select class="custom-select" name="title">
+										<select class="custom-select" name="title">4
+											<option class="text-gray-900">선택안함</option>
 											<c:forEach var="tList" items="${data.tList}"
 												varStatus="status">
 												<option class="text-white"

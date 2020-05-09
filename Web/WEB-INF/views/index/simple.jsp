@@ -226,6 +226,8 @@
 	<%@ include file="../include/jsRoot.jsp"%>
 
 	<script type="text/javascript">
+		var wow = '${data.searchList}';
+	
 		$("#frm").submit(function() {
 			var input = $("#searchContent").val();
 
