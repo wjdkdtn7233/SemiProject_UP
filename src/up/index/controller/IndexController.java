@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import common.frontController.Controller;
 import common.frontController.ModelAndView;
+import up.habit.model.service.HabitService;
 import up.habit.model.vo.Habit;
 import up.index.model.service.IndexService;
 import up.index.model.vo.HabitState;
@@ -83,14 +84,25 @@ public class IndexController implements Controller {
 	 * @Method Name : calendar
 	 * @작성일 : 2020. 5. 5.
 	 * @작성자 : 김성민
-	 * @변경이력 :
+	 * @변경이력 : 배상엽 - 데이터 추가
 	 * @Method 설명 : Calendar view 페이지로 연결시켜줍니다.
 	 * @param request
 	 * @return ModelAndView
 	 */
 	public ModelAndView calendar(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
+		HabitService hs = new HabitService();
+		Member m = (Member) request.getSession().getAttribute("loginInfo");
+		List<Habit> mList = hs.selectCalHabitList(m);
 
+		if (mList.size() != 0) {
+			mav.addObject("calHabitList", mList);
+			System.out.println("null아님");
+		} else {
+			mav.addObject("calHabitList", 0);
+			System.out.println("null임");
+		}
+		
 		mav.setView("index/calendar");
 
 		return mav;

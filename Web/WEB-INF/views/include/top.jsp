@@ -43,11 +43,11 @@
 
 			<span
 			class="btn  text-white text-center font-weight-bold font-italic h3"
-			id="check11"
+			id="check111"
 			style="background:${sessionScope.representationTitle.TColor}; width:200px;">${sessionScope.representationTitle.TName}</span>
 		</li>
 		<%-- Kakao share btn --%>
-		<a id="kakao-link-btn" href="javascript:sendLink()"> <img
+		<a id="kakao-link-btn" href="javascript:sendLink()" title="카카오톡으로 타이틀 공유하기"> <img
 		src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png" style="width: 40px; height: 41px; margin-top: 10px; margin-left: 10px"/>
 		</a>
 		
@@ -126,7 +126,7 @@
 	var titleCode = ${sessionScope.loginInfo.userTitleCode};
 	if (titleCode == 0) {
 		$('#ment').text("");
-		$('#check11').hide();
+		$('#check111').hide();
 	}
 
 	function logoutClick() {
@@ -147,9 +147,10 @@
 					// 나의 대표타이틀이름 불러와서 적용
 					title: '${sessionScope.representationTitle.TName}',
 					// 닉네임 불러와서 적용
-					userName: '${sessionScope.loginInfo.userNickName}'
+					userName: '${sessionScope.loginInfo.userNickName}',
 					// 이미지 url 불러와서 타이틀 획득 이미지 보여줌, 이미지가 서버상에 있어야 불러올 수 있기때문에
-					// 네이버블로그에 타이틀별 이미지를 캡쳐떠서 두고 타이틀 이름에 맞게 뿌려준다.
+					// 네이버블로그에 타이틀별 이미지를 캡쳐떠서 두고 타이틀 이름에 맞게 뿌려준다아~~
+					userTitleUrl: '${sessionScope.representationTitleURL.TURL}'
 				}
 			})
 		}

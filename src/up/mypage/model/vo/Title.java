@@ -20,25 +20,27 @@ public class Title implements Serializable {
 
 	// 타이틀 조건
 	private String tCondition;
-	
-	//타이틀 컬러
+
+	// 타이틀 컬러
 	private String tColor;
-	
+
+	// 타이틀 URL
+	private String tURL;
+
 	public Title() {
 		// TODO Auto-generated constructor stub
 	}
-	
 
-	public Title(int tCode, String tName, String tComment, String tCondition,String tColor) {
+	public Title(int tCode, String tName, String tComment, String tCondition, String tColor, String tURL) {
 		super();
 		this.tCode = tCode;
 		this.tName = tName;
 		this.tComment = tComment;
 		this.tCondition = tCondition;
 		this.tColor = tColor;
+		this.tURL = tURL;
 	}
 
-	
 	public int getTCode() {
 		return tCode;
 	}
@@ -71,26 +73,26 @@ public class Title implements Serializable {
 		this.tCondition = tCondition;
 	}
 
-	
-
 	public String getTColor() {
 		return tColor;
 	}
-
 
 	public void setTColor(String tColor) {
 		this.tColor = tColor;
 	}
 
+	public String getTURL() {
+		return tURL;
+	}
+
+	public void setTURL(String tURL) {
+		this.tURL = tURL;
+	}
 
 	@Override
 	public String toString() {
 		return "Title [tCode=" + tCode + ", tName=" + tName + ", tComment=" + tComment + ", tCondition=" + tCondition
-				+ ", tColor=" + tColor + "]";
+				+ ", tColor=" + tColor + ", tURL=" + tURL + "]";
 	}
 
-	
-
-	
-	
 }

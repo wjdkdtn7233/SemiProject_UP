@@ -189,7 +189,100 @@
 	<!-- this page js -->
 	<script src="/up/resources/js/calendar/app-style-switcher.js"></script>
 	<script src="/up/resources/js/calendar/feather.min.js"></script>
-	<script src="/up/resources/js/calendar/pages/calendar/cal-init.min.js"></script>
+	
+	    <script>
+
+	    var btnColor = colorList();
+	    var pre = '';
+	    var curr = '';
+        
+        jQuery(document).ready(function() {
+            jQuery("#calendar").fullCalendar({
+                  defaultDate : "2020-05-01"
+                , editable : false // 수정 기능 지원 (false가 편함)
+                , eventLimit : true // + more처럼 표현
+                // 데이터를 json 방식으로 넣어주기
+                , events: [
+
+            	    <c:forEach var='item' items='${data.calHabitList}' varStatus='vs'>
+            	    <c:choose>
+            	    <c:when test='${vs.first}' ><c:set var = 'pre' value= '${item.hNo}' /></c:when>
+            	    <c:otherwise><c:set var = 'curr' value= '${data.calHabitList[vs.index-1].hNo}' /></c:otherwise>
+            	    </c:choose>
+            	    
+					//if('${vs.first}' == ""){
+					//	pre = 0;
+					//}else{
+					//	pre = '${data.calHabitList[vs.index-1].hNo}';
+					//}
+            	    {
+                        id : '${item.hNo}' // 습관번호
+                      , title : '${item.hSubcategory}'
+                      
+                      , start : '${item.hStartDate}'
+                      , end : '${item.hEndDate}' // 종료일
+
+                      ,className : colorList()
+                    	  
+                      
+                  },
+            	    </c:forEach>
+                    
+
+                	
+
+                ]
+                /* // ,eventColor: '#378006'
+                ,eventClick: function(calEvent, jsEvent, view) {
+                    // 여기에 상세 페이지 보여주는 alert 창 보여주기
+                    var startDate = new Date(calEvent.start).toLocaleString();
+                    if(calEvent.start > calEvent.end){
+                        alert('이름: '  + calEvent.title + '\n id: '  + calEvent.id
+                    + '\n start: '  + startDate 
+                    );
+                    }else{
+                        var endDate = new Date(calEvent.end).toLocaleString();
+                        alert('이름: '  + calEvent.title + '\n id: '  + calEvent.id
+                        + '\n start: '  + startDate + '\n end: '  + endDate
+                        );
+                    }
+                } */
+
+            });
+            
+        });
+        
+        
+        function colorList(){
+        	var colorList = [
+        		'btn-blue'
+        		, 'btn-indigo'
+        		, 'btn-purple'
+        		, 'btn-pink'
+        		, 'btn-red'
+        		, 'btn-orange'
+        		, 'btn-yellow'
+        		, 'btn-green'
+        		, 'btn-teal'
+        		, 'btn-cyan'
+        		, 'btn-gray'
+        		, 'btn-gray-dark'
+        		, 'btn-primary'
+        		, 'btn-secondary'
+        		, 'btn-success'
+        		, 'btn-info'
+        		, 'btn-warning'
+        		, 'btn-danger'
+        		, 'btn-light'
+        		, 'btn-dark'];
+        	
+        	var idx = Math.floor(Math.random()* ( 20 - 1 + 1 )+1);
+        	
+        	return colorList[idx];
+        	
+        	
+        }
+    </script>
 </body>
 
 </html>

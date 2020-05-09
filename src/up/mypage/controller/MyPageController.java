@@ -242,6 +242,11 @@ public class MyPageController implements Controller {
 			m.setUserNickName(nick);
 			
 			// 대표타이틀도 바꿨으니 다시 초기화
+			
+			// 대표 타이틀 url 도 초기화
+			TitleUrlController uc = new TitleUrlController();
+			uc.getTitleURL(request);
+			
 			m.setUserTitleCode(getTitle(request,m).getTCode());
 			
 			request.getSession().setAttribute("loginInfo", m);

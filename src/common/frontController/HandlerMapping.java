@@ -7,6 +7,7 @@ import up.habit.controller.HabitController;
 import up.index.controller.IndexController;
 import up.member.controller.MemberController;
 import up.mypage.controller.MyPageController;
+import up.mypage.controller.TitleUrlController;
 
 public class HandlerMapping {
 
@@ -18,6 +19,7 @@ public class HandlerMapping {
 		list.put("member", new MemberController());
 		list.put("mypage", new MyPageController());
 		list.put("habit", new HabitController());
+		list.put("title", new TitleUrlController());
 	}
 
 	public Controller getController(String[] uriArr) throws Status404 {
@@ -180,6 +182,13 @@ public class HandlerMapping {
 				break;	
 			}
 			
+			break;
+		case "titleURL":
+			switch (uriArr[3]) {
+			case "titleurl.do":
+				methodName = "getTitleURL";
+				break;
+			}
 			break;
 		case "notice":
 			switch (uriArr[3]) {
