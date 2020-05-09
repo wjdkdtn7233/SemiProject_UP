@@ -70,7 +70,6 @@ public class IndexDao {
 				hs.sethMoney(rs.getInt(11));
 				hs.sethTime(rs.getInt(12));
 				hs.setcCode(rs.getInt(13));
-				hs.setmId(rs.getString(14));
 				
 				hsList.add(hs);
 			}
@@ -79,4 +78,42 @@ public class IndexDao {
 		}
 		return hsList;
 	}
+	
+	public List<HabitState> searchHabitList(Connection con, Member m, String select, String searchContent) throws SQLException{
+		List<HabitState> hsList = new ArrayList<HabitState>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+//		검색어 한 것 조회
+		String sql = "select * FROM tb_current_state cs inner join tb_habit h using (h_no) inner join tb_category h using (c_code) where h_no in (select h_no from tb_habit where m_id = ?) and c_name like '%'||'금연'||'%'";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m.getUserId());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				HabitState hs = new HabitState();
+//				HabitState 데이터 모델 생성.
+				hs.sethNo(rs.getInt(2));
+				hs.setcStateNo(rs.getInt(3));
+				hs.setcCount(rs.getInt(4));
+				hs.setcCountall(rs.getInt(5));
+				hs.setcPercent(rs.getInt(6));
+				hs.setmId(rs.getString(7));
+				hs.sethSubcategory(rs.getString(8));
+				hs.sethStartDate(rs.getDate(9));
+				hs.sethEndDate(rs.getDate(10));
+				hs.sethSelectday(rs.getString(11));
+				hs.sethMoney(rs.getInt(12));
+				hs.sethTime(rs.getInt(13));
+				hs.setcCode(rs.getInt(14));
+				
+				hsList.add(hs);
+			}
+		} finally {
+			jdt.close(rs, pstmt);
+		}
+		return hsList;
+	}
+	
 }

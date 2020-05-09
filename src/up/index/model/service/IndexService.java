@@ -31,8 +31,8 @@ public class IndexService {
 	  * @작성일 : 2020. 5. 7.
 	  * @작성자 : 김성민
 	  * @변경이력 : 없음
-	  * @Method 설명 : 습관 정보를 Map형식으로 불러온다.
-	  * @return Map<String, Object>
+	  * @Method 설명 : 습관 정보를 List형식으로 불러온다.
+	  * @return List<HabitState>
 	  */
 	public List<HabitState> selectHabitList(Member m){
 		List<HabitState> res = new ArrayList<>();
@@ -54,4 +54,34 @@ public class IndexService {
 		
 		return res;
 	}
+	
+	/**
+	  * @Method Name : selectHabitList
+	  * @작성일 : 2020. 5. 9.
+	  * @작성자 : 김성민
+	  * @변경이력 : 없음
+	  * @Method 설명 : 검색한 습관 정보를 List형식으로 불러온다.
+	  * @param m
+	  * @return List<HabitState>
+	  */
+	public List<HabitState> searchHabitList(Member m, String select, String searchContent){
+		List<HabitState> res = new ArrayList<>();
+		
+		Connection conn = null;
+
+		conn = jdt.getConnection();
+		
+		try {
+			res = id.searchHabitList(conn, m, select, searchContent);
+			
+//			jdt.commit(conn);
+		} catch (SQLException e) {
+//			jdt.rollback(conn);
+		} finally {
+			jdt.close(conn);
+		}
+		
+		return res;
+	}
+	
 }
