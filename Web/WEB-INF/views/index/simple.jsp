@@ -89,6 +89,7 @@
 															class="text-xs font-weight-bold text-info text-uppercase mb-1">
 															<span> <c:choose>
 																	<c:when test="${ habitList.cCode == 1}">
+
 														금연
 														</c:when>
 																	<c:when test="${ habitList.cCode == 2}">
@@ -139,8 +140,9 @@
 							</c:otherwise>
 						</c:choose>
 					</div>
-					
-					<br><br>
+
+					<br>
+					<br>
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
 						<h1 class="h3 mb-0 text-gray-800">검색결과</h1>
@@ -209,7 +211,7 @@
 							</c:otherwise>
 						</c:choose>
 					</div>
-					
+
 				</div>
 				<!-- /.container-fluid -->
 

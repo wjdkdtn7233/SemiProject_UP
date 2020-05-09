@@ -1,10 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 <meta charset="UTF-8">
+
+<link rel="stylesheet" href="/up/resources/css/calendar.min.css" />
+<link rel="stylesheet"
+	href="/up/resources/calendar/fullcalendar.min.css">
+
 <%@ include file="../include/header.jsp"%>
 
 <body id="page-top">
@@ -74,8 +81,9 @@
 						class="d-sm-flex align-items-center justify-content-between mb-4">
 						<h1 class="h3 mb-0 text-gray-800">오늘의 습관</h1>
 					</div>
-					
-						<c:forEach var="habitList" items="${data.habitList}" varStatus="status">					
+
+					<c:forEach var="habitList" items="${data.habitList}"
+						varStatus="status">
 						<div class="row">
 							<div class="col-xl-3 col-md-6 mb-4">
 								<div class="card border-left-info shadow h-100 py-2">
@@ -109,7 +117,25 @@
 								</div>
 							</div>
 						</div>
-						</c:forEach>
+					</c:forEach>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="card">
+								<div class="">
+									<div class="row">
+										<div class="col-lg-1"></div>
+										<div class="col-lg-10">
+											<div class="card-body b-l calender-sidebar">
+												<div id="calendar"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
 				</div>
 				<!-- /.container-fluid -->
 
@@ -155,6 +181,15 @@
 	</div>
 
 	<%@ include file="../include/jsRoot.jsp"%>
+    
+    <!--This page JavaScript -->
+    <script src="/up/resources/calendar/libs/moment/min/moment.min.js"></script>
+    <script src="/up/resources/calendar/libs/fullcalendar/dist/fullcalendar.min.js"></script>
+
+	<!-- this page js -->
+	<script src="/up/resources/js/calendar/app-style-switcher.js"></script>
+	<script src="/up/resources/js/calendar/feather.min.js"></script>
+	<script src="/up/resources/js/calendar/pages/calendar/cal-init.min.js"></script>
 </body>
 
 </html>
