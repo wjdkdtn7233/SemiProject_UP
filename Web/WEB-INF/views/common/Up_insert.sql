@@ -8,7 +8,6 @@ DROP SEQUENCE S_P_CODE;         -- 팝업 시퀀스
 DROP SEQUENCE S_T_CODE;         -- 타이틀 시퀀스
 DROP SEQUENCE S_W_CODE;         -- 명언 시퀀스
 
-
 --sequence
 CREATE SEQUENCE S_C_CODE
 INCREMENT BY 1 -- 다음 값에 대한 증가치, 생략하면 기본 1;
@@ -127,11 +126,3 @@ COMMIT;
 
 INSERT INTO TB_MEMBER VALUES('smkim','qwer1234!','김성민','smina2005@naver.com','성민1',0,0,sysdate,'N','unnamed.jpg','unnamed.jpg');
 COMMIT;
-
-insert into tb_m_title values ('smkim',1);
-insert into tb_m_title values ('smkim',2);
-insert into tb_m_title values ('smkim',3);
-insert into tb_m_title values ('smkim',4);
-insert into tb_m_title values ('smkim',5);
-insert into tb_m_title values ('smkim',6);
-commit;

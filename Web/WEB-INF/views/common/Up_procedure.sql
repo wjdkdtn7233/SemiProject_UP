@@ -1,5 +1,6 @@
 DROP PROCEDURE P_INSERT_HABIT;
-DROP PROCEDURE P_UPDATE_HABIT;
+DROP PROCEDURE P_ADD_HABIT_CHECK;
+DROP PROCEDURE P_DELETE_HABIT_CHECK;
 DROP PROCEDURE P_DELETE_HABIT;
 
 -- 습관 등록 프로시저
@@ -42,6 +43,7 @@ BEGIN
         P_H_C_CODE,
         P_M_ID
     );
+
     
 --날짜 계산
     VA_DAY := VA_TYPE('일','월','화','수','목','금','토');      
@@ -142,63 +144,26 @@ BEGIN
         P_M_ID,
         P_H_NO
     );
-         
+    
+--TB_HABIT_CHECK에 습관 체크 추가
+    INSERT INTO TB_HABIT_CHECK VALUES(
+        S_H_CHECK_NO.nextval,
+        'n',
+        sysdate,
+        P_M_ID,
+        P_H_NO
+    );
 END;
 /
 --P_INSERT_HABIT 프로시저 테스트
---EXEC P_INSERT_HABIT(S_H_NO.NEXTVAL,'서브카테고리',SYSDATE,SYSDATE+30,'월화수',3000,0,1,'smkim');
---EXEC P_INSERT_HABIT(S_H_NO.NEXTVAL,'서브카테고리',SYSDATE,SYSDATE+60,'월수금',4500,0,2,'smkim');
---EXEC P_INSERT_HABIT(S_H_NO.NEXTVAL,'서브카테고리',SYSDATE,SYSDATE+60,'수목금',0,5,3,'smkim');
+EXEC P_INSERT_HABIT(S_H_NO.NEXTVAL,'담배안핌',SYSDATE,SYSDATE+30,'일월화수목금토',3000,0,1,'smkim');
+EXEC P_INSERT_HABIT(S_H_NO.NEXTVAL,'담배필까?',SYSDATE,SYSDATE+30,'일월화수목금토',3000,0,1,'smkim');
+EXEC P_INSERT_HABIT(S_H_NO.NEXTVAL,'담배말고',SYSDATE,SYSDATE+30,'일월화수목금토',3000,0,1,'smkim');
+EXEC P_INSERT_HABIT(S_H_NO.NEXTVAL,'담배진짜그만',SYSDATE,SYSDATE+30,'일월화수목금토',3000,0,1,'smkim');
+EXEC P_INSERT_HABIT(S_H_NO.NEXTVAL,'술안마심',SYSDATE,SYSDATE+60,'일월화수목금토',4500,0,2,'smkim');
+EXEC P_INSERT_HABIT(S_H_NO.NEXTVAL,'메롱이다',SYSDATE,SYSDATE+60,'일월화수목금토',0,5,3,'smkim');
 
-
--- 습관 업데이트 프로시저
-CREATE OR REPLACE PROCEDURE P_UPDATE_HABIT (
-    P_C_STATE_NO        TB_CURRENT_STATE.C_STATE_NO%TYPE
-) IS
-    FIRST_CNT           NUMBER;
-    MIDLE_CNT           NUMBER;
-    MIDLE_CNT_MINUS     NUMBER;
-    P_C_COUNT           TB_CURRENT_STATE.C_COUNT%TYPE;
-    P_C_COUNTALL        TB_CURRENT_STATE.C_COUNTALL%TYPE;
-    P_H_NO              TB_HABIT.H_NO%TYPE;
-    P_M_ID              TB_MEMBER.M_ID%TYPE;
-    
-    
-BEGIN
--- 습관 현황 변수 매칭
-    SELECT H_NO, M_ID, C_COUNT, C_COUNTALL
-    INTO P_H_NO, P_M_ID, P_C_COUNT, P_C_COUNTALL
-    FROM TB_CURRENT_STATE
-    WHERE C_STATE_NO = P_C_STATE_NO;
-    
-    IF P_C_COUNT != P_C_COUNTALL
-    THEN
--- TB_CURRENT_STATE COUNT 갱신
-        UPDATE TB_CURRENT_STATE
-        SET
-            C_COUNT = C_COUNT + 1
-        WHERE C_STATE_NO = P_C_STATE_NO;
-
--- TB_CURRENT_STATE PERCENT 갱신
-        UPDATE TB_CURRENT_STATE
-        SET
-             C_PERCENT = C_COUNT/C_COUNTALL * 100
-        WHERE C_STATE_NO = P_C_STATE_NO;
-
--- TB_HABIT_CHECK 추가
-        INSERT INTO TB_HABIT_CHECK VALUES(
-            S_H_CHECK_NO.nextval,
-            'Y',
-            SYSDATE,
-            P_M_ID,
-            P_H_NO
-        ); 
-    END IF;
-END;
-/
-
---P_UPDATE_HABIT 프로시저 테스트
---EXEC P_UPDATE_HABIT(1);
+commit;
 
 CREATE OR REPLACE PROCEDURE P_DELETE_HABIT (
     P_H_NO              TB_HABIT.H_NO%TYPE
@@ -224,4 +189,131 @@ BEGIN
 END;
 /
 
---EXEC P_DELETE_HABIT(1);
+-- 습관 체크 추가 프로시저
+CREATE OR REPLACE PROCEDURE P_ADD_HABIT_CHECK (
+    P_C_STATE_NO        TB_CURRENT_STATE.C_STATE_NO%TYPE
+) IS
+    P_C_COUNT           TB_CURRENT_STATE.C_COUNT%TYPE;
+    P_C_COUNTALL        TB_CURRENT_STATE.C_COUNTALL%TYPE;
+    P_H_CHECK_YN        TB_HABIT_CHECK.H_CHECK_YN%TYPE;
+    P_H_NO              TB_HABIT.H_NO%TYPE;
+    P_M_ID              TB_MEMBER.M_ID%TYPE;
+    
+BEGIN
+-- 습관 현황 변수 매칭
+    SELECT H_NO, M_ID, C_COUNT, C_COUNTALL
+    INTO P_H_NO, P_M_ID, P_C_COUNT, P_C_COUNTALL
+    FROM TB_CURRENT_STATE
+    WHERE C_STATE_NO = P_C_STATE_NO;
+    
+    SELECT H_CHECK_YN
+    INTO P_H_CHECK_YN
+    FROM TB_HABIT_CHECK
+    WHERE M_ID = P_M_ID AND H_NO = P_H_NO AND TO_CHAR(H_CHECK_DATE, 'YYYY/MM/DD') = TO_CHAR(sysdate, 'YYYY/MM/DD');
+    
+    IF P_C_COUNT < P_C_COUNTALL
+    THEN
+        IF P_H_CHECK_YN = 'n'
+        THEN
+    -- TB_CURRENT_STATE COUNT 갱신
+            UPDATE TB_CURRENT_STATE
+            SET
+                C_COUNT = C_COUNT + 1
+            WHERE C_STATE_NO = P_C_STATE_NO;
+    
+    -- TB_CURRENT_STATE PERCENT 갱신
+            UPDATE TB_CURRENT_STATE
+            SET
+                 C_PERCENT = C_COUNT/C_COUNTALL * 100
+            WHERE C_STATE_NO = P_C_STATE_NO;
+    
+    -- TB_HABIT_CHECK 갱신
+            UPDATE TB_HABIT_CHECK
+            SET
+                H_CHECK_YN = 'y'
+            WHERE M_ID = P_M_ID AND H_NO = P_H_NO AND TO_CHAR(H_CHECK_DATE, 'YYYY/MM/DD') = TO_CHAR(sysdate, 'YYYY/MM/DD');
+        END IF;
+    END IF;
+END;
+/
+
+--P_UPDATE_HABIT 프로시저 테스트
+--EXEC P_ADD_HABIT_CHECK(1);
+
+
+-- 습관 체크 해제 프로시저
+CREATE OR REPLACE PROCEDURE P_DELETE_HABIT_CHECK (
+    P_C_STATE_NO        TB_CURRENT_STATE.C_STATE_NO%TYPE
+) IS
+    P_C_COUNT           TB_CURRENT_STATE.C_COUNT%TYPE;
+    P_C_COUNTALL        TB_CURRENT_STATE.C_COUNTALL%TYPE;
+    P_H_CHECK_YN        TB_HABIT_CHECK.H_CHECK_YN%TYPE;
+    P_H_NO              TB_HABIT.H_NO%TYPE;
+    P_M_ID              TB_MEMBER.M_ID%TYPE;
+    
+BEGIN
+-- 습관 현황 변수 매칭
+    SELECT H_NO, M_ID, C_COUNT, C_COUNTALL
+    INTO P_H_NO, P_M_ID, P_C_COUNT, P_C_COUNTALL
+    FROM TB_CURRENT_STATE
+    WHERE C_STATE_NO = P_C_STATE_NO;
+    
+    SELECT H_CHECK_YN
+    INTO P_H_CHECK_YN
+    FROM TB_HABIT_CHECK
+    WHERE M_ID = P_M_ID AND H_NO = P_H_NO AND TO_CHAR(H_CHECK_DATE, 'YYYY/MM/DD') = TO_CHAR(sysdate, 'YYYY/MM/DD');
+    
+    IF P_C_COUNT < P_C_COUNTALL
+    THEN
+        IF P_H_CHECK_YN = 'y'
+        THEN
+    -- TB_CURRENT_STATE COUNT 갱신
+            UPDATE TB_CURRENT_STATE
+            SET
+                C_COUNT = C_COUNT - 1
+            WHERE C_STATE_NO = P_C_STATE_NO;
+    
+    -- TB_CURRENT_STATE PERCENT 갱신
+            UPDATE TB_CURRENT_STATE
+            SET
+                 C_PERCENT = C_COUNT/C_COUNTALL * 100
+            WHERE C_STATE_NO = P_C_STATE_NO;
+    
+    -- TB_HABIT_CHECK 해제
+            UPDATE TB_HABIT_CHECK
+            SET
+                H_CHECK_YN = 'n'
+            WHERE M_ID = P_M_ID AND H_NO = P_H_NO AND TO_CHAR(H_CHECK_DATE, 'YYYY/MM/DD') = TO_CHAR(sysdate, 'YYYY/MM/DD');
+         END IF;
+    END IF;
+END;
+/
+
+--EXEC P_DELETE_HABIT_CHECK(1);
+--COMMIT;
+
+--CREATE OR REPLACE PROCEDURE P_INSERT_HISTORY (
+--    P_M_ID          TB_MEMBER.M_ID%TYPE
+--    
+--) IS
+--    P_H             TB_HABIT%ROWTYPE;
+--    P_C_S           TB_CURRENT_STATE%ROWTYPE;
+--BEGIN
+--    SELECT M_ID
+--    INTO P_M_ID
+--    FROM TB_HABIT
+--    WHERE H_NO = P_H_NO;
+--
+---- TB_HABIT_CHECK 삭제
+--    DELETE FROM TB_HABIT_CHECK
+--    WHERE H_NO = P_H_NO AND M_ID = P_M_ID;
+--
+---- TB_CURRENT_STATE 삭제
+--    DELETE FROM TB_CURRENT_STATE
+--    WHERE H_NO = P_H_NO AND M_ID = P_M_ID;
+--
+---- TB_HABIT 삭제
+--    DELETE FROM TB_HABIT
+--    WHERE H_NO = P_H_NO;
+--END;
+--/
