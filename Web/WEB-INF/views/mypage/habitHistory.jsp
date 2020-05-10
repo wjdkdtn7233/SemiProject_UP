@@ -31,14 +31,10 @@
 								<div class="col-3 ">
 									<h1 class="h3 text-gray-900 ">습관 히스토리</h1>
 								</div>
-
-
 							</div>
-
 						</div>
 						<div class="cardbody ">
 
-							
 							<div class="card  mb-4">
 
 								<div class="card-body">
@@ -71,7 +67,24 @@
 											<c:set var="no" value="${count}"/>
 												<tr>
 													<td>${no}</td>
-													<td>${historyList.cName}</td>
+													<td>
+														 <c:choose>
+                                             				<c:when test="${ historyList.cCode == 1}">
+                                                				금연
+                                            				</c:when>
+                                             				<c:when test="${ historyList.cCode == 2}">
+                                                				금주
+                                             				</c:when>
+                                             				<c:when test="${ historyList.cCode == 3}">
+                                                				독서
+                                             				</c:when>
+                                             				<c:when test="${ historyList.cCode == 4}">
+                                                				운동
+                                             				</c:when>
+                                             				<c:otherwise>
+                                                				카테고리
+                                             				</c:otherwise></c:choose>
+													</td>
 													<td>${historyList.hisSubcategory}</td>
 													<td>${historyList.hisStartdate}</td>
 													<td>${historyList.hisEndDate}</td>

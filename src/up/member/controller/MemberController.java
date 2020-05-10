@@ -73,6 +73,9 @@ public class MemberController implements Controller {
 				uc.getTitleURL(request);
 				//
 				mc.getTitle(request,m);
+				
+				//history 갱신
+				history(m.getUserId());
 				mav.setView("index/index");
 			} else {
 				mav.addObject("isSuccess", "false");
@@ -341,6 +344,9 @@ public class MemberController implements Controller {
 				MyPageController mc = new MyPageController();
 
 				mc.getTitle(request,m);
+				
+				//history 갱신
+				history(m.getUserId());
 				mav.setView("index/index");
 			} else {
 				mav.setView("common/result");
@@ -354,6 +360,10 @@ public class MemberController implements Controller {
 		}
 		
 		return mav;
+	}
+	
+	public void history(String userId) {
+		ms.history(userId);
 	}
 
 }

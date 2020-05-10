@@ -3,28 +3,18 @@ package up.mypage.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
-import java.security.interfaces.RSAKey;
-import java.sql.ResultSet;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Enumeration;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
-import org.eclipse.jdt.internal.compiler.ast.AND_AND_Expression;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import common.frontController.Controller;
 import common.frontController.ModelAndView;
-import common.util.FileUtil;
-import common.vo.UploadFile;
 import up.member.model.vo.Member;
 import up.mypage.model.service.MyPageService;
+import up.mypage.model.vo.History;
 import up.mypage.model.vo.Title;
 
 /**
@@ -73,6 +63,7 @@ public class MyPageController implements Controller {
 	public ModelAndView habitHistory(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		Member m = (Member) request.getSession().getAttribute("loginInfo");
+		
 		mav.addObject("historyList", ms.selectHabitHistory(m));
 		mav.setView("mypage/habitHistory");
 

@@ -1,5 +1,6 @@
 package up.member.model.dao;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -365,6 +366,25 @@ public class MemberDao {
 			jdt.close(rs, stmt);
 		}
 
+		return result;
+	}
+	
+	public int history(Connection con, String userId) throws SQLException {
+		int result = 0;
+		
+		CallableStatement cstm = null;
+		ResultSet rs = null;
+		
+		String sql = "{call P_INSERT_HISTORY(?)}";
+		
+
+		try {
+			cstm = con.prepareCall(sql);
+			cstm.setString(1, userId);
+			result = cstm.executeUpdate();
+		}finally {
+			jdt.close(cstm);
+		}
 		return result;
 	}
 

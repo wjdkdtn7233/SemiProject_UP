@@ -397,5 +397,23 @@ public class MemberService {
 		
 		return result;
 	}
+	
+	public void history(String userId) {
+		Connection con = jdt.getConnection();
+		
+		try {
+			md.history(con, userId);
+			con.commit();
+		} catch (SQLException e) {
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		}
+		
+	}
 
 }
