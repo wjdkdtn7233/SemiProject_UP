@@ -136,9 +136,22 @@ public class HabitController implements Controller {
 
 		h.sethStartDate(toDate);
 		h.sethEndDate(fromDate);
-
-		h.sethMoney(Integer.parseInt(request.getParameter("goalMoney")));
-		h.sethTime(Integer.parseInt(request.getParameter("goalTime")));
+		String money = request.getParameter("goalMoney");
+		String time = request.getParameter("goalTime");
+		
+		if(money != "" ) {
+			h.sethMoney(Integer.parseInt(money));
+		}else {
+			h.sethMoney(0);
+		}
+		
+		if(time != "") {
+			h.sethTime(Integer.parseInt(time));
+		}else {
+			h.sethTime(0);
+		}
+		
+		
 		if (request.getParameter("selectCategory").equals("금연")) {
 			categoryCode = 1;
 		} else if (request.getParameter("selectCategory").equals("금주")) {
