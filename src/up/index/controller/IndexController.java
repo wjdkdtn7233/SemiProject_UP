@@ -61,26 +61,15 @@ public class IndexController implements Controller {
 
 		ModelAndView mav = new ModelAndView();
 		Member m = (Member) request.getSession().getAttribute("loginInfo");
+		List<HabitState> hsList = is.getTodayHabit(m);
+//		값이 비어있지 않으면 아래문장실행
+		if(!hsList.isEmpty()) {
+			System.out.println(hsList.get(0).toString());
+			int result = is.checkhabit(m, hsList);
+		}
 		
 		mav.addObject("habitList", is.selectHabitList(m));
 		mav.setView("index/simple");
-		return mav;
-	}
-
-	/**
-	 * @Method Name : detail
-	 * @작성일 : 2020. 4. 28.
-	 * @작성자 : 김성민
-	 * @변경이력 :
-	 * @Method 설명 : Detail view 페이지로 연결시켜줍니다.
-	 * @param request
-	 * @return ModelAndView
-	 */
-	public ModelAndView detail(HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView();
-		Member m = (Member) request.getSession().getAttribute("loginInfo");
-		mav.addObject("habitList", is.selectHabitList(m));
-		mav.setView("index/detail");
 		return mav;
 	}
 
@@ -139,24 +128,6 @@ public class IndexController implements Controller {
 		return mav;
 	}
 
-	public ModelAndView searchDeatailHabit(HttpServletRequest request) {
-
-		ModelAndView mav = new ModelAndView();
-		Member m = (Member) request.getSession().getAttribute("loginInfo");
-
-		System.out.println(request.getParameter("select"));
-		System.out.println(request.getParameter("searchContent"));
-
-//		검색 키워드와 검색어 저장
-		String select = request.getParameter("select");
-		String searchContent = request.getParameter("searchContent");
-		mav.addObject("searchList", is.searchHabitList(m, select, searchContent));
-		mav.setView("index/detail");
-
-		return mav;
-	}
-	
-	
 	/**
 	  * @Method Name : updateHabit
 	  * @작성일 : 2020. 5. 10.
@@ -185,16 +156,8 @@ public class IndexController implements Controller {
 
 //		오늘 습관을 등록하지 않았다면 (습관을 등록할때 최초로 넣어주지만 다음날이되면 다음날 것을 다시넣어줘야함)
 //		tb_habit_check 테이블에 등록된 튜플이 없으므로 있는지 확인
-		int result = is.checkhabit(m, hNo);
+
 		int result2 = 0;
-		
-//		만약 결과값이 0이라면 오늘날짜로 된 tb_habit_check가 없으므로 'n'으로 생성해줌
-		if ( result == 0) {
-			result2 = is.insertTodayCheck(m, hNo);
-			if(result2 > 0) {
-				System.out.println("tb_habit_check 추가성공");
-			}
-		}
 		
 //		만약 체크가 되지 않은 상태라면
 		if (flag.equals("n")) {
@@ -208,6 +171,17 @@ public class IndexController implements Controller {
 				mav.setView("common/result");
 			}
 			
+		}//		만약 체크를 해제한다면
+		else if(flag.equals("y")) {
+			result2 = is.removeHabitChack(cStateNo);
+			if(result2 > 0) {
+				mav.addObject("habitList", is.selectHabitList(m));
+				mav.setView("index/simple");
+			} else {
+				mav.addObject("alertMsg", "습관 갱신에 실패하였습니다.");
+				mav.addObject("back", "back");
+				mav.setView("common/result");
+			}
 		}
 		//달성률이 100프로가 되면 종료축하 페이지로 넘겨준다.
 		if(cPercent == 100) {
@@ -222,18 +196,7 @@ public class IndexController implements Controller {
 			mav.setView("common/finishPopup");
 			return mav;
 		}
-//		만약 체크를 해제한다면
-		else if(flag.equals("y")) {
-			result2 = is.removeHabitChack(cStateNo);
-			if(result2 > 0) {
-				mav.addObject("habitList", is.selectHabitList(m));
-				mav.setView("index/simple");
-			} else {
-				mav.addObject("alertMsg", "습관 갱신에 실패하였습니다.");
-				mav.addObject("back", "back");
-				mav.setView("common/result");
-			}
-		}
+
 		
 		return mav;
 	}

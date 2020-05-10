@@ -2,6 +2,7 @@ DROP PROCEDURE P_INSERT_HABIT;
 DROP PROCEDURE P_ADD_HABIT_CHECK;
 DROP PROCEDURE P_DELETE_HABIT_CHECK;
 DROP PROCEDURE P_DELETE_HABIT;
+DROP PROCEDURE P_INSERT_TITLE;
 
 -- 습관 등록 프로시저
 CREATE OR REPLACE PROCEDURE P_INSERT_HABIT (
@@ -292,22 +293,296 @@ END;
 --EXEC P_DELETE_HABIT_CHECK(1);
 --COMMIT;
 
---CREATE OR REPLACE PROCEDURE P_INSERT_HISTORY (
---    P_M_ID          TB_MEMBER.M_ID%TYPE
---    
---) IS
---    P_H             TB_HABIT%ROWTYPE;
---    P_C_S           TB_CURRENT_STATE%ROWTYPE;
---BEGIN
---    SELECT *
---    INTO P_M
---    FROM TB_HABIT
---    WHERE M_ID = P_M_ID;
---
---    SELECT *
---    INTO P_C_S
---    FROM TB_CURRENT_STATE
---    WHERE 
---
---END;
---/
+
+CREATE OR REPLACE PROCEDURE P_INSERT_TITLE (
+    P_M_ID          TB_MEMBER.M_ID%TYPE
+) IS
+    MT_CNT          NUMBER;
+    HIS_CNT         NUMBER;
+BEGIN
+
+-- 프로습관러 타이틀
+--  하나의 습관 3회 성공(60퍼 이상이면 성공)
+    SELECT COUNT(*)
+    INTO HIS_CNT
+    FROM TB_HISTORY
+    WHERE M_ID = P_M_ID AND HIS_PERCENT >= 60;
+
+    IF HIS_CNT > 2
+    THEN
+        SELECT COUNT(*)
+        INTO MT_CNT
+        FROM TB_M_TITLE
+        WHERE M_ID = P_M_ID AND T_CODE = 4;
+        
+        IF MT_CNT = 0
+        THEN
+            INSERT INTO TB_M_TITLE
+            VALUES(P_M_ID,4);
+        END IF;
+    END IF;
+    
+-- 습관계인싸 타이틀
+-- 습관 3개 50% 달성
+    SELECT COUNT(*)
+    INTO HIS_CNT
+    FROM TB_HISTORY
+    WHERE M_ID = P_M_ID AND HIS_PERCENT >= 50;
+
+    IF HIS_CNT > 2
+    THEN
+        SELECT COUNT(*)
+        INTO MT_CNT
+        FROM TB_M_TITLE
+        WHERE M_ID = P_M_ID AND T_CODE = 5;
+        
+        IF MT_CNT = 0
+        THEN
+            INSERT INTO TB_M_TITLE
+            VALUES(P_M_ID,5);
+        END IF;
+    END IF;
+
+-- 하얗게 불태운 타이틀
+-- 하나의 운동 습관 100% 달성
+    SELECT COUNT(*)
+    INTO HIS_CNT
+    FROM TB_HISTORY
+    WHERE M_ID = P_M_ID AND HIS_PERCENT >= 100
+    AND C_CODE = 4;
+
+    IF HIS_CNT > 0
+    THEN
+        SELECT COUNT(*)
+        INTO MT_CNT
+        FROM TB_M_TITLE
+        WHERE M_ID = P_M_ID AND T_CODE = 11;
+        
+        IF MT_CNT = 0
+        THEN
+            INSERT INTO TB_M_TITLE
+            VALUES(P_M_ID,11);
+        END IF;
+    END IF;
+
+-- 운동은 나의삶 타이틀
+--  하나의 운동 습관 50% 달성
+    SELECT COUNT(*)
+    INTO HIS_CNT
+    FROM TB_HISTORY
+    WHERE M_ID = P_M_ID AND HIS_PERCENT >= 50
+    AND C_CODE = 4;
+
+    IF HIS_CNT > 0
+    THEN
+        SELECT COUNT(*)
+        INTO MT_CNT
+        FROM TB_M_TITLE
+        WHERE M_ID = P_M_ID AND T_CODE = 11;
+        
+        IF MT_CNT = 0
+        THEN
+            INSERT INTO TB_M_TITLE
+            VALUES(P_M_ID,11);
+        END IF;
+    END IF;
+    
+-- 비흡연자 타이틀
+--  하나의 금연 1개 습관 100% 달성
+    SELECT COUNT(*)
+    INTO HIS_CNT
+    FROM TB_HISTORY
+    WHERE M_ID = P_M_ID  AND HIS_PERCENT >= 100
+    AND C_CODE = 1;
+
+    IF HIS_CNT > 0
+    THEN
+        SELECT COUNT(*)
+        INTO MT_CNT
+        FROM TB_M_TITLE
+        WHERE M_ID = P_M_ID AND T_CODE = 16;
+        
+        IF MT_CNT = 0
+        THEN
+            INSERT INTO TB_M_TITLE
+            VALUES(P_M_ID,16);
+        END IF;
+    END IF;
+    
+-- 활짝 웃는 폐 타이틀
+-- 하나의 금연 1개 습관 50% 달성
+    SELECT COUNT(*)
+    INTO HIS_CNT
+    FROM TB_HISTORY
+    WHERE M_ID = P_M_ID  AND HIS_PERCENT >= 50
+    AND C_CODE = 1;
+
+    IF HIS_CNT > 0
+    THEN
+        SELECT COUNT(*)
+        INTO MT_CNT
+        FROM TB_M_TITLE
+        WHERE M_ID = P_M_ID AND T_CODE = 15;
+        
+        IF MT_CNT = 0
+        THEN
+            INSERT INTO TB_M_TITLE
+            VALUES(P_M_ID,15);
+        END IF;
+    END IF;
+
+-- 활짝 웃는 폐 타이틀
+-- 하나의 금연 습관 누적 3회 성공
+    SELECT COUNT(*)
+    INTO HIS_CNT
+    FROM TB_HISTORY
+    WHERE M_ID = P_M_ID AND HIS_PERCENT >= 60
+    AND C_CODE = 1;
+
+    IF HIS_CNT > 2
+    THEN
+        SELECT COUNT(*)
+        INTO MT_CNT
+        FROM TB_M_TITLE
+        WHERE M_ID = P_M_ID AND T_CODE = 14;
+        
+        IF MT_CNT = 0
+        THEN
+            INSERT INTO TB_M_TITLE
+            VALUES(P_M_ID,14);
+        END IF;
+    END IF;
+    
+-- 독서왕 타이틀
+-- 하나의 독서 습관 100% 달성
+    SELECT COUNT(*)
+    INTO HIS_CNT
+    FROM TB_HISTORY
+    WHERE M_ID = P_M_ID AND HIS_PERCENT >= 100
+    AND C_CODE = 3;
+
+    IF HIS_CNT > 0
+    THEN
+        SELECT COUNT(*)
+        INTO MT_CNT
+        FROM TB_M_TITLE
+        WHERE M_ID = P_M_ID AND T_CODE = 20;
+        
+        IF MT_CNT = 0
+        THEN
+            INSERT INTO TB_M_TITLE
+            VALUES(P_M_ID,20);
+        END IF;
+    END IF;
+    
+-- 독서프로 타이틀
+-- 하나의 독서 습관 50% 달성
+    SELECT COUNT(*)
+    INTO HIS_CNT
+    FROM TB_HISTORY
+    WHERE M_ID = P_M_ID AND HIS_PERCENT >= 50
+    AND C_CODE = 3;
+
+    IF HIS_CNT > 0
+    THEN
+        SELECT COUNT(*)
+        INTO MT_CNT
+        FROM TB_M_TITLE
+        WHERE M_ID = P_M_ID AND T_CODE = 19;
+        
+        IF MT_CNT = 0
+        THEN
+            INSERT INTO TB_M_TITLE
+            VALUES(P_M_ID,19);
+        END IF;
+    END IF;
+    
+-- 독서습관러 타이틀
+-- 하나의 독서 습관 누적 3회 성공
+    SELECT COUNT(*)
+    INTO HIS_CNT
+    FROM TB_HISTORY
+    WHERE M_ID = P_M_ID AND HIS_PERCENT >= 60
+    AND C_CODE = 3;
+
+    IF HIS_CNT > 2
+    THEN
+        SELECT COUNT(*)
+        INTO MT_CNT
+        FROM TB_M_TITLE
+        WHERE M_ID = P_M_ID AND T_CODE = 18;
+        
+        IF MT_CNT = 0
+        THEN
+            INSERT INTO TB_M_TITLE
+            VALUES(P_M_ID,18);
+        END IF;
+    END IF;
+    
+-- 상쾌한 아침 타이틀
+-- 하나의 금주 습관 100% 달성
+    SELECT COUNT(*)
+    INTO HIS_CNT
+    FROM TB_HISTORY
+    WHERE M_ID = P_M_ID AND HIS_PERCENT >= 100
+    AND C_CODE = 2;
+
+    IF HIS_CNT > 0
+    THEN
+        SELECT COUNT(*)
+        INTO MT_CNT
+        FROM TB_M_TITLE
+        WHERE M_ID = P_M_ID AND T_CODE = 24;
+        
+        IF MT_CNT = 0
+        THEN
+            INSERT INTO TB_M_TITLE
+            VALUES(P_M_ID,24);
+        END IF;
+    END IF;
+    
+-- 프로금주러 타이틀
+-- 하나의 금주 습관 50% 달성
+    SELECT COUNT(*)
+    INTO HIS_CNT
+    FROM TB_HISTORY
+    WHERE M_ID = P_M_ID AND HIS_PERCENT >= 50
+    AND C_CODE = 2;
+
+    IF HIS_CNT > 0
+    THEN
+        SELECT COUNT(*)
+        INTO MT_CNT
+        FROM TB_M_TITLE
+        WHERE M_ID = P_M_ID AND T_CODE = 23;
+        
+        IF MT_CNT = 0
+        THEN
+            INSERT INTO TB_M_TITLE
+            VALUES(P_M_ID,23);
+        END IF;
+    END IF;
+    
+-- 힘들수록 금주! 타이틀
+-- 하나의 금주 습관 누적 3회 성공
+    SELECT COUNT(*)
+    INTO HIS_CNT
+    FROM TB_HISTORY
+    WHERE M_ID = P_M_ID AND HIS_PERCENT >= 60
+    AND C_CODE = 2;
+
+    IF HIS_CNT > 2
+    THEN
+        SELECT COUNT(*)
+        INTO MT_CNT
+        FROM TB_M_TITLE
+        WHERE M_ID = P_M_ID AND T_CODE = 22;
+        
+        IF MT_CNT = 0
+        THEN
+            INSERT INTO TB_M_TITLE
+            VALUES(P_M_ID,22);
+        END IF;
+    END IF;
+END;
+/

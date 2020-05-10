@@ -47,6 +47,8 @@ public class MemberService {
 			// 로그인 시 로그인 횟수 +1
 			if(result != null) {
 				plusLoginCnt(result);
+//				히스토리 참고해서 타이틀 획득하는 메소드 추가 - 김성민
+				checkTitle(result);
 			}
 			
 		} catch (SQLException e) {
@@ -57,6 +59,37 @@ public class MemberService {
 
 		return result;
 	}
+	
+	
+	/**
+	  * @Method Name : checkTitle
+	  * @작성일 : 2020. 5. 11.
+	  * @작성자 : 김성민
+	  * @변경이력 : 
+	  * @Method 설명 : 히스토리를 참조해서 달성한 타이틀을 tb_m_title에 넣어줌
+	  * @param m 
+	  */
+	public void checkTitle(Member m) {
+		Connection con = jdt.getConnection();
+		
+		try {
+			int res = md.checkTitle(con, m);
+			if(res >= 1) {
+				con.commit();
+			} else {
+				con.rollback();
+			}
+		} catch (SQLException e) {
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		}
+		
+	}
+
 	
 	/**
 	 *	@MethodName: kakaoImple
