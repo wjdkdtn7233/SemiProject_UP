@@ -109,14 +109,8 @@
 	<script src="/up/resources/js/calendar/feather.min.js"></script>
 
 	    <script>
-
-	    var btnColor = colorList();
-	    var pre = '';
-	    var curr = '';
 	    
-        function colorList(vs){
-        	var colorArray = [
-        		'#e83e8c'
+       /*  var colorArray = ['#e83e8c'
         		, '#6610f2'
         		, '#6f42c1'
         		, '#20c9a6'
@@ -135,12 +129,9 @@
         		, '#f6c23e'
         		, '#e74a3b'
         		, '#f8f9fc'
-        		, '#5a5c69'];
-        	
-        	/* var idx = Math.floor(Math.random()* ( 20 - 1 + 1 )+1); */
-        	
-        	return colorArray[vs];
-        }
+        		, '#5a5c69']; */
+        
+
         jQuery(document).ready(function() {
             jQuery("#calendar").fullCalendar({
                   defaultDate : "2020-05-01"
@@ -149,20 +140,12 @@
                 // 데이터를 json 방식으로 넣어주기
                 , events: [
             	   
-            	 /*    <c:choose>
-            	    <c:when test='${vs.first}' ><c:set var = 'pre' value= '${item.hNo}' /></c:when>
-            	    <c:otherwise><c:set var = 'curr' value= '${data.calHabitList[vs.index-1].hNo}' /></c:otherwise>
-            	    </c:choose> */
-            	    
-					//if('${vs.first}' == ""){
-					//	pre = 0;
-					//}else{
-					//	pre = '${data.calHabitList[vs.index-1].hNo}';
-					//}
             	    <c:forEach var='item' items='${data.calHabitList}' varStatus="vs">
             	    {
                         id : '${item.hNo}' // 습관번호
-                      , title : '${item.hSubcategory}'                    
+                      , title : '${item.hSubcategory}'
+                      , textColor : '#eaecf4' 
+                      , backgroundColor : '#028c6a'
                       , start : '${item.hStartDate}'
                       , end : '${item.hEndDate}' // 종료일
 		                  	  
@@ -174,30 +157,8 @@
                     
               	    </c:forEach>
                 ]
-                /* // ,eventColor: '#378006'
-                ,eventClick: function(calEvent, jsEvent, view) {
-                    // 여기에 상세 페이지 보여주는 alert 창 보여주기
-                    var startDate = new Date(calEvent.start).toLocaleString();
-                    if(calEvent.start > calEvent.end){
-                        alert('이름: '  + calEvent.title + '\n id: '  + calEvent.id
-                    + '\n start: '  + startDate 
-                    );
-                    }else{
-                        var endDate = new Date(calEvent.end).toLocaleString();
-                        alert('이름: '  + calEvent.title + '\n id: '  + calEvent.id
-                        + '\n start: '  + startDate + '\n end: '  + endDate
-                        );
-                    }
-                } */
-
             });
-            
         });
-        
-        
-
-        	
-        	
       
     </script>
 </body>

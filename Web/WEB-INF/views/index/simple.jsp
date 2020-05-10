@@ -233,16 +233,12 @@
 			<div class="var">
 				<div class="card shadow mb-4">
 					<div class="card-header py-3">
-						<h6 class="m-0 font-weight-bold text-primary">Bar Chart</h6>
+						<h6 class="m-0 font-weight-bold text-primary">그래프</h6>
 					</div>
 					<div class="card-body">
 						<div class="chart-bar">
 							<canvas id="myBarChart"></canvas>
 						</div>
-						<hr>
-						Styling for the bar chart can be found in the
-						<code>/up/resources/js/demo/chart-bar-demo.js</code>
-						file.
 					</div>
 				</div>
 			</div>
@@ -308,13 +304,45 @@
 	var myBarChart = new Chart(ctx, {
 		type: 'bar',
 		data: {
-			labels: ["January", "February", "March", "April", "May", "June","히히", "호호"],
+			labels: [
+				<c:forEach var='habitList' items='${data.habitList}' varStatus="vs">
+				'${habitList.hSubcategory}'
+				<c:if test="${!vs.last}">,</c:if>
+        	    <c:if test="${vs.last}">
+      	    	<c:set var="maxlabels" value="${vs.index}" />
+        	    </c:if>
+          	    </c:forEach>
+          	  	<c:forEach var='searchList' items='${data.searchList}' varStatus="vs">
+				'${searchList.hSubcategory}'
+				<c:if test="${!vs.last}">,</c:if>
+      	    	<c:if test="${vs.last}">
+      	    	<c:set var="maxlabels" value="${vs.index}" />
+        	    </c:if>
+        	    </c:forEach>
+				
+			],
 			datasets: [{
 				label: "success",
 				backgroundColor: "#4e73df",
 				hoverBackgroundColor: "#2e59d9",
 				borderColor: "#4e73df",
-				data: [4215, 5312, 6251, 7841, 9821, 14984, 111, 111]
+				data: [
+					<c:forEach var='habitList' items='${data.habitList}' varStatus="vs">
+					${habitList.cCount}
+					<c:if test="${!vs.last}">,</c:if>
+	        	    <c:if test="${vs.last}">
+	        	    <c:set var="maxData" value="${vs.index}" />
+	        	    </c:if>
+	          	    </c:forEach>
+	          	  	<c:forEach var='searchList' items='${data.searchList}' varStatus="vs">
+					${searchList.cCount}
+					<c:if test="${!vs.last}">,</c:if>
+	        	    <c:if test="${vs.last}">
+	        	    <c:set var="maxData" value="${vs.index}" />
+	        	    </c:if>
+	        	    
+	          	    </c:forEach>
+				]
 			}/* ,{
 				label: "fail",
 				backgroundColor: "#F7464A",
@@ -345,15 +373,15 @@
 	        	drawBorder: true
 	        },
 	        ticks: {
-	        	maxTicksLimit: 8
+	        	maxTicksLimit: ${maxlabels}+1
 	        },
-	        	maxBarThickness: 25,
+	        	maxBarThickness: 10,
 	      }],
 	      yAxes: [{
 	        ticks: {
 	          min: 0,
-	          max: 15000,
-	          maxTicksLimit: 100,
+	          max: ${maxData}+1,
+	          maxTicksLimit: 10,
 	          padding: 10,
 	          // Include a dollar sign in the ticks
 	          callback: function(value, index, values) {
