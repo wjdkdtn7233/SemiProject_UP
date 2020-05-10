@@ -28,8 +28,8 @@ public class MyPageDao {
 
 		ResultSet rs = null;
 
-		String sql = " select c_name,h.* from tb_history h " + " inner join tb_category c on (h.c_code=c.c_code) "
-				+ " where  m_id=? order by h.his_no";
+		String sql = " select * from tb_history"
+				+ " where  m_id=? order by his_no";
 
 		try {
 			pstm = conn.prepareStatement(sql);
@@ -38,14 +38,14 @@ public class MyPageDao {
 			while (rs.next()) {
 
 				History his = new History();
-				his.setCName(rs.getString(1));
 				his.setHisNo(count++);
-				his.setHisSubcategory(rs.getString(3));
-				his.setHisStartdate(rs.getDate(4));
-				his.setHisEndDate(rs.getDate(5));
-				his.setHisPercent(rs.getInt(6));
-				his.setMId(rs.getString(8));
-				his.setHNo(rs.getInt(9));
+				his.setHisSubcategory(rs.getString(2));
+				his.setHisStartdate(rs.getDate(3));
+				his.setHisEndDate(rs.getDate(4));
+				his.setHisPercent(rs.getInt(5));
+				his.setcCode(rs.getInt(6));
+				his.setMId(rs.getString(7));
+				his.setHNo(rs.getInt(8));
 
 				historyList.add(his);
 			}

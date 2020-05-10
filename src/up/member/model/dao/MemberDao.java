@@ -398,4 +398,24 @@ public class MemberDao {
 	}
 	
 
+	public int history(Connection con, String userId) throws SQLException {
+		int result = 0;
+		
+		CallableStatement cstm = null;
+		ResultSet rs = null;
+		
+		String sql = "{call P_INSERT_HISTORY(?)}";
+		
+
+		try {
+			cstm = con.prepareCall(sql);
+			cstm.setString(1, userId);
+			result = cstm.executeUpdate();
+		}finally {
+			jdt.close(cstm);
+		}
+		return result;
+	}
+
+
 }

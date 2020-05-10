@@ -43,6 +43,10 @@ public class IndexController implements Controller {
 
 	public ModelAndView index(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
+		//request로 넘어온 member 내용 중 m_id 추출
+		
+		System.out.println(request.getParameter("userId"));
+		
 		mav.setView("index/index");
 
 		return mav;

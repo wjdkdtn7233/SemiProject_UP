@@ -27,7 +27,7 @@ public class History implements Serializable {
 	private int hisPercent;
 
 	// 습관 카테고리 이름
-	private String cName;
+	private int cCode;
 
 	// 유저 아이디
 	private String mId;
@@ -39,7 +39,7 @@ public class History implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public History(int hisNo, String hisSubcategory, Date hisStartdate, Date hisEndDate, int hisPercent, String cName,
+	public History(int hisNo, String hisSubcategory, Date hisStartdate, Date hisEndDate, int hisPercent, int cCode,
 			String mId, int hNo) {
 		super();
 		this.hisNo = hisNo;
@@ -47,7 +47,7 @@ public class History implements Serializable {
 		this.hisStartdate = hisStartdate;
 		this.hisEndDate = hisEndDate;
 		this.hisPercent = hisPercent;
-		this.cName = cName;
+		this.cCode = cCode;
 		this.mId = mId;
 		this.hNo = hNo;
 	}
@@ -92,12 +92,12 @@ public class History implements Serializable {
 		this.hisPercent = hisPercent;
 	}
 
-	public String getCName() {
-		return cName;
+	public int getcCode() {
+		return cCode;
 	}
 
-	public void setCName(String cName) {
-		this.cName = cName;
+	public void setcCode(int cCode) {
+		this.cCode = cCode;
 	}
 
 	public String getMId() {
@@ -119,7 +119,7 @@ public class History implements Serializable {
 	@Override
 	public String toString() {
 		return "History [hisNo=" + hisNo + ", hisSubcategory=" + hisSubcategory + ", hisStartdate=" + hisStartdate
-				+ ", hisEndDate=" + hisEndDate + ", hisPercent=" + hisPercent + ", cName=" + cName + ", mId=" + mId
+				+ ", hisEndDate=" + hisEndDate + ", hisPercent=" + hisPercent + ", cCode=" + cCode + ", mId=" + mId
 				+ ", hNo=" + hNo + "]";
 	}
 
