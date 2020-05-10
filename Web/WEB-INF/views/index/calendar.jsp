@@ -32,20 +32,7 @@
 				<div class="container-fluid">
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">Simple view</h1>
-						<div class="input-group-btn">
-							<button type="button" class="btn btn-primary dropdown-toggle"
-								data-toggle="dropdown" aria-expanded="false">
-								가나다 <span class="caret"></span>
-							</button>
-							<div
-								class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-								aria-labelledby="dropdownMenuLink">
-								<div class="dropdown-header">선택 :</div>
-								<a class="dropdown-item" href="#">가나다</a> <a
-									class="dropdown-item" href="#">달성도</a>
-							</div>
-						</div>
+						<h1 class="h3 mb-0 text-gray-800">Calendar view</h1>
 					</div>
 
 					<div class="card shadow mb-4">
@@ -77,47 +64,8 @@
 							</form>
 						</div>
 					</div>
-					<div
-						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">오늘의 습관</h1>
-					</div>
 
-					<c:forEach var="habitList" items="${data.habitList}"
-						varStatus="status">
-						<div class="row">
-							<div class="col-xl-3 col-md-6 mb-4">
-								<div class="card border-left-info shadow h-100 py-2">
-									<div class="card-body">
-										<div class="row no-gutters align-items-center">
-											<div class="col mr-2">
-												<div
-													class="text-xs font-weight-bold text-info text-uppercase mb-1">
-													<span id="category">카테고리</span> / <span id="habit">습관1</span>
-												</div>
-												<div class="row no-gutters align-items-center">
-													<div class="col-auto">
-														<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-													</div>
-													<div class="col">
-														<div class="progress progress-sm mr-2">
-															<div class="progress-bar bg-info" role="progressbar"
-																style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-																aria-valuemax="100"></div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="col-auto">
-												<a href="#" class="btn btn-success btn-circle"> <i
-													class="fas fa-check"></i>
-												</a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</c:forEach>
+
 					<div class="row">
 						<div class="col-md-12">
 							<div class="card">
@@ -190,7 +138,100 @@
 	<!-- this page js -->
 	<script src="/up/resources/js/calendar/app-style-switcher.js"></script>
 	<script src="/up/resources/js/calendar/feather.min.js"></script>
-	
+
+	    <script>
+
+	    var btnColor = colorList();
+	    var pre = '';
+	    var curr = '';
+        
+        jQuery(document).ready(function() {
+            jQuery("#calendar").fullCalendar({
+                  defaultDate : "2020-05-01"
+                , editable : false // 수정 기능 지원 (false가 편함)
+                , eventLimit : true // + more처럼 표현
+                // 데이터를 json 방식으로 넣어주기
+                , events: [
+
+            	    <c:forEach var='item' items='${data.calHabitList}' varStatus='vs'>
+            	    <c:choose>
+            	    <c:when test='${vs.first}' ><c:set var = 'pre' value= '${item.hNo}' /></c:when>
+            	    <c:otherwise><c:set var = 'curr' value= '${data.calHabitList[vs.index-1].hNo}' /></c:otherwise>
+            	    </c:choose>
+            	    
+					//if('${vs.first}' == ""){
+					//	pre = 0;
+					//}else{
+					//	pre = '${data.calHabitList[vs.index-1].hNo}';
+					//}
+            	    {
+                        id : '${item.hNo}' // 습관번호
+                      , title : '${item.hSubcategory}'
+                      
+                      , start : '${item.hStartDate}'
+                      , end : '${item.hEndDate}' // 종료일
+
+                      ,className : colorList()
+                    	  
+                      
+                  },
+            	    </c:forEach>
+                    
+
+                	
+
+                ]
+                /* // ,eventColor: '#378006'
+                ,eventClick: function(calEvent, jsEvent, view) {
+                    // 여기에 상세 페이지 보여주는 alert 창 보여주기
+                    var startDate = new Date(calEvent.start).toLocaleString();
+                    if(calEvent.start > calEvent.end){
+                        alert('이름: '  + calEvent.title + '\n id: '  + calEvent.id
+                    + '\n start: '  + startDate 
+                    );
+                    }else{
+                        var endDate = new Date(calEvent.end).toLocaleString();
+                        alert('이름: '  + calEvent.title + '\n id: '  + calEvent.id
+                        + '\n start: '  + startDate + '\n end: '  + endDate
+                        );
+                    }
+                } */
+
+            });
+            
+        });
+        
+        
+        function colorList(){
+        	var colorList = [
+        		'btn-blue'
+        		, 'btn-indigo'
+        		, 'btn-purple'
+        		, 'btn-pink'
+        		, 'btn-red'
+        		, 'btn-orange'
+        		, 'btn-yellow'
+        		, 'btn-green'
+        		, 'btn-teal'
+        		, 'btn-cyan'
+        		, 'btn-gray'
+        		, 'btn-gray-dark'
+        		, 'btn-primary'
+        		, 'btn-secondary'
+        		, 'btn-success'
+        		, 'btn-info'
+        		, 'btn-warning'
+        		, 'btn-danger'
+        		, 'btn-light'
+        		, 'btn-dark'];
+        	
+        	var idx = Math.floor(Math.random()* ( 20 - 1 + 1 )+1);
+        	
+        	return colorList[idx];
+        	
+        	
+        }
+    </script>
 </body>
 
 </html>

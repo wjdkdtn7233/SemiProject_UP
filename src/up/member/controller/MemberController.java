@@ -10,6 +10,7 @@ import common.frontController.ModelAndView;
 import up.member.model.service.MemberService;
 import up.member.model.vo.Member;
 import up.mypage.controller.MyPageController;
+import up.mypage.controller.TitleUrlController;
 
 /**
  * @FileName : MemberController.java
@@ -66,7 +67,12 @@ public class MemberController implements Controller {
 				session.setAttribute("loginInfo", m);
 				// 유저가 로그인 하는동안 타이틀 네임 / 컬러 띄워주는 메소드
 				MyPageController mc = new MyPageController();
-				mc.getTitle(request);
+				
+				// 타이틀 url 가져오기 
+				TitleUrlController uc = new TitleUrlController();
+				uc.getTitleURL(request);
+				//
+				mc.getTitle(request,m);
 				mav.setView("index/index");
 			} else {
 				mav.addObject("isSuccess", "false");
@@ -333,7 +339,8 @@ public class MemberController implements Controller {
 				session.setAttribute("loginInfo", m);
 				// 유저가 로그인 하는동안 타이틀 네임 / 컬러 띄워주는 메소드
 				MyPageController mc = new MyPageController();
-				mc.getTitle(request);
+
+				mc.getTitle(request,m);
 				mav.setView("index/index");
 			} else {
 				mav.setView("common/result");

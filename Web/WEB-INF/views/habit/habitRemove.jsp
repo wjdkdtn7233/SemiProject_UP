@@ -149,7 +149,7 @@
 						<span aria-hidden="true">×</span>
 					</button>
 				</div>
-				<div class="modal-body">삭제하시면 다시 복수할 수 없습니다.</div>
+				<div class="modal-body">삭제하시면 다시 복구할 수 없습니다.</div>
 				<div class="modal-footer">
 				<form action="/up/habit/deletehabit.do" method="post" id="frm">
 					<input type="hidden" name="hNumber" id="hNumber"/>

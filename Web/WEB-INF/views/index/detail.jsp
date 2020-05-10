@@ -26,19 +26,6 @@
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
 						<h1 class="h3 mb-0 text-gray-800">Detail view</h1>
-						<div class="input-group-btn">
-							<button type="button" class="btn btn-primary dropdown-toggle"
-								data-toggle="dropdown" aria-expanded="false">
-								가나다 <span class="caret"></span>
-							</button>
-							<div
-								class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-								aria-labelledby="dropdownMenuLink">
-								<div class="dropdown-header">선택 :</div>
-								<a class="dropdown-item" href="#">가나다</a> <a
-									class="dropdown-item" href="#">달성도</a>
-							</div>
-						</div>
 					</div>
 					<div class="card shadow mb-4">
 						<div class="card-body">

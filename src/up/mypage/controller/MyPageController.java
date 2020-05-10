@@ -240,10 +240,16 @@ public class MyPageController implements Controller {
 		if (res >= 1) {
 			// 유저가 바꾼 닉네임, 파일 이름 로그인 세션에 다시 바꿔서 저장한다.
 			m.setUserNickName(nick);
-
-			request.getSession().setAttribute("loginInfo", m);
+			
 			// 대표타이틀도 바꿨으니 다시 초기화
-			getTitle(request);
+			
+			// 대표 타이틀 url 도 초기화
+			TitleUrlController uc = new TitleUrlController();
+			uc.getTitleURL(request);
+			
+			m.setUserTitleCode(getTitle(request,m).getTCode());
+			
+			request.getSession().setAttribute("loginInfo", m);
 			mav.setView("common/result");
 			mav.addObject("url", "/up/mypage/mypage.do");
 			mav.addObject("alertMsg", "개인정보 수정에 성공하였습니다.");
@@ -369,10 +375,12 @@ public class MyPageController implements Controller {
 	 * @param request
 	 */
 
-	public void getTitle(HttpServletRequest request) {
-		Member m = (Member) request.getSession().getAttribute("loginInfo");
+	public Title getTitle(HttpServletRequest request,Member m) {
+		
 		Title title = ms.getTitle(m);
 		request.getSession().setAttribute("representationTitle", title);
+		
+		return title;
 
 	}
 

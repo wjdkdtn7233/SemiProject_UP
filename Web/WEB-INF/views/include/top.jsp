@@ -18,11 +18,11 @@
 	<ul class="navbar-nav ml-auto">
 	
 		<!-- Nav Item - Search Dropdown (Visible Only XS) -->
-		<li class="nav-item dropdown no-arrow d-sm-none"><a
+		<!-- <li class="nav-item dropdown no-arrow d-sm-none"><a
 			class="nav-link dropdown-toggle" href="#" id="searchDropdown"
 			role="button" data-toggle="dropdown" aria-haspopup="true"
 			aria-expanded="false"> <i class="fas fa-search fa-fw"></i>
-		</a> <!-- Dropdown - Messages -->
+		</a> Dropdown - Messages
 			<div
 				class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
 				aria-labelledby="searchDropdown">
@@ -38,16 +38,17 @@
 						</div>
 					</div>
 				</form>
-			</div></li>
+			</div></li>  -->
+			
 		<li class="nav-item dropdown no-arrow  d-flex align-items-center">
 
 			<span
 			class="btn  text-white text-center font-weight-bold font-italic h3"
-			id="check111"
+			id="check11"
 			style="background:${sessionScope.representationTitle.TColor}; width:200px;">${sessionScope.representationTitle.TName}</span>
 		</li>
 		<%-- Kakao share btn --%>
-		<a id="kakao-link-btn" href="javascript:sendLink()"> <img
+		<a id="kakao-link-btn" href="javascript:sendLink()" title="카카오톡으로 타이틀 공유하기"> <img
 		src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png" style="width: 40px; height: 41px; margin-top: 10px; margin-left: 10px"/>
 		</a>
 		
@@ -126,7 +127,7 @@
 	var titleCode = ${sessionScope.loginInfo.userTitleCode};
 	if (titleCode == 0) {
 		$('#ment').text("");
-		$('#check111').hide();
+		$('#check11').hide();
 	}
 
 	function logoutClick() {
@@ -147,9 +148,10 @@
 					// 나의 대표타이틀이름 불러와서 적용
 					title: '${sessionScope.representationTitle.TName}',
 					// 닉네임 불러와서 적용
-					userName: '${sessionScope.loginInfo.userNickName}'
+					userName: '${sessionScope.loginInfo.userNickName}',
 					// 이미지 url 불러와서 타이틀 획득 이미지 보여줌, 이미지가 서버상에 있어야 불러올 수 있기때문에
-					// 네이버블로그에 타이틀별 이미지를 캡쳐떠서 두고 타이틀 이름에 맞게 뿌려준다.
+					// 네이버블로그에 타이틀별 이미지를 캡쳐떠서 두고 타이틀 이름에 맞게 뿌려준다아~~
+					userTitleUrl: '${sessionScope.representationTitleURL.TURL}'
 				}
 			})
 		}

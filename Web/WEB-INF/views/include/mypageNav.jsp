@@ -68,22 +68,30 @@
 
 	<!-- Divider -->
 	<hr class="sidebar-divider">
-	<li
-		class="nav-item  d-flex justify-content-center align-items-center mb-3">
-
-		<span
-		class="btn  text-white text-center font-weight-bold font-italic h3"
-		id="check111"
-		style="background:${sessionScope.representationTitle.TColor}; width:150px;">${sessionScope.representationTitle.TName}</span>
-	</li>
-	<li class="nav-item d-flex  justify-content-center mb-3"><img
+	<li  class="nav-item">
+	<div class="bg-white py-2  rounded mx-1 mb-2" style="overflow:hidden">
+		<div class="row d-flex justify-content-center">
+			<div class="text-gray-900 text-center font-weight-bold h4" style="font-family:Nanum Gothic, sans-serif;" >MY TITLE</div>
+		</div>
+		<div class="row d-flex justify-content-center">
+			<div class="btn  text-white text-center font-weight-bold font-italic h3 shadow"  id="check111" style="background:${sessionScope.representationTitle.TColor}; width:200px;">${sessionScope.representationTitle.TName}</div>
+		</div>
+	</div>
+	
+	<div class=" py-2  rounded mx-1 mb-2" style="background:#EFF3FC; overflow:hidden;" >
+	<div class="row  d-flex  justify-content-center mb-3"><img
 		class="img-profile rounded-circle size2"
 		src="/up/resources/upload/${sessionScope.loginInfo.renameFile}">
+	</div>
+	<hr>
+	<div
+		class="row  d-flex  justify-content-center  h5 font-weight-bold text-gray-900" style="font-family:Nanum Gothic, sans-serif;" >${sessionScope.loginInfo.userNickName}님
+	</div>
+	<div
+		class="row  d-flex  justify-content-center  h6 text-gray-900 font-weight-bold " style="font-family:Nanum Gothic, sans-serif;" >환영합니다<i class="far fa-laugh ml-1"></i>
+	</div>
+	</div>
 	</li>
-	<li
-		class="nav-item d-flex  justify-content-center  h4 font-weight-bold"><span
-		class="text-center text-white ">${sessionScope.loginInfo.userNickName}님
-	</span></li>
 	<!-- Nav Item - Pages Collapse Menu -->
 	<li class="nav-item"><a class="nav-link collapsed" href="#"
 		data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
@@ -146,14 +154,48 @@
 	<div class="text-center d-none d-md-inline">
 		<button class="rounded-circle border-0" id="sidebarToggle"></button>
 	</div>
+	  <script src="/up/resources/vendor/sweetalert2/sweetalert2.all.min.js"></script>
+    <script src="/up/resources/vendor/sweetalert2/sweetalert2.all.js"></script>
+    <script src="/up/resources/vendor/sweetalert2/sweetalert2.js"></script>
+    <script src="/up/resources/vendor/sweetalert2/sweetalert2.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.5.0.js"
 		integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
 		crossorigin="anonymous"></script>
 	<script>
 		var titleCode = ${sessionScope.loginInfo.userTitleCode};
 		if (titleCode == 0) {
-			$('#check111').hide();
+			$('#check111').css('background','#EFF3FC');
+			$('#check111').text("NO TITLE");
+			$('#check111').removeClass('text-white');
+			$('#check111').on('click',function(){
+				swal({
+	                title: '타이틀 확인!', // 제목
+	                html: "개인정보수정에서 대표타이틀을 설정해주세요!", // 내용
+	                type: 'warning', // 종류
+	                confirmButtonText: '확인',
+	                confirmButtonColor: '#4e73df' // 확인버튼 표시 문구
+	                
+	            });
+			});
 		}
+		
 	</script>
+	<script type="text/javascript">
+  WebFontConfig = {
+    custom: {
+        families: ['Nanum Gothic'],
+        urls: ['http://fonts.googleapis.com/earlyaccess/nanumgothic.css']
+    }
+  };
+  (function() {
+    var wf = document.createElement('script');
+    wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+      '://ajax.googleapis.com/ajax/libs/webfont/1.4.10/webfont.js';
+    wf.type = 'text/javascript';
+    wf.async = 'true';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(wf, s);
+  })(); 
+ </script>
 
 </ul>

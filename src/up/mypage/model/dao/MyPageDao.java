@@ -91,11 +91,17 @@ public class MyPageDao {
 	public int updateInfomation(String title, String nick, Connection conn ,Member m ) throws SQLException {
 
 		int res = 0;
+		int titleCode;
 		PreparedStatement pstm = null;
 
 		String sql = "update tb_member set representation_title=?, m_nickname=? where m_id=?";
 		try {
-			int titleCode = selectTitleCode(title,conn,pstm);
+			if(title.equals("선택안함")) {
+				titleCode=0;
+			}else {
+				titleCode = selectTitleCode(title,conn,pstm);
+			}
+			
 			pstm = conn.prepareStatement(sql);
 			pstm.setInt(1, titleCode);
 			pstm.setString(2, nick);
@@ -222,16 +228,17 @@ public class MyPageDao {
 		PreparedStatement pstm = null;
 		ResultSet rs =null;
 		
-		String sql = "select t.t_name,t.t_color from tb_member  m inner join tb_title  t on(m.REPRESENTATION_TITLE = t.t_code) where m_id =?" ;
+		String sql = "select t.t_code,t.t_name,t.t_color,t.t_comment from tb_member  m inner join tb_title  t on(m.REPRESENTATION_TITLE = t.t_code) where m_id =?" ;
 		try {
 			pstm = conn.prepareStatement(sql);
 			pstm.setString(1, m.getUserId());
 			rs = pstm.executeQuery();
 
 			if (rs.next()) {
-				t.setTCode(m.getUserTitleCode());
-				t.setTName(rs.getString(1));
-				t.setTColor(rs.getString(2));
+				t.setTCode(rs.getInt(1));
+				t.setTName(rs.getString(2));
+				t.setTColor(rs.getString(3));
+				t.setTComment(rs.getString(4));
 			}
 		}finally {
 			jdt.close(rs,pstm);
