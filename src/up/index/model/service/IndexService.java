@@ -93,7 +93,7 @@ public class IndexService {
 	  * @param hNo
 	  * @return int
 	  */
-	public int checkhabit(Member m, int hNo) {
+	public int checkhabit(Member m, List<HabitState> hList) {
 		int res = 0;
 
 		Connection conn = null;
@@ -101,11 +101,13 @@ public class IndexService {
 		conn = jdt.getConnection();
 
 		try {
-			res = id.checkhabit(conn, m, hNo);
+			for(int i = 0; i < hList.size(); i++) {
+				res = id.checkhabit(conn, m, hList.get(i).gethNo());
+			}
 
-//			jdt.commit(conn);
+			jdt.commit(conn);
 		} catch (SQLException e) {
-//			jdt.rollback(conn);
+			jdt.rollback(conn);
 		} finally {
 			jdt.close(conn);
 		}
@@ -203,5 +205,24 @@ public class IndexService {
 		return res;
 		
 	}
-	
+	public List<HabitState> getTodayHabit(Member m) {
+		List<HabitState> hsList = new ArrayList<HabitState>();
+
+		Connection conn = null;
+
+		conn = jdt.getConnection();
+
+		try {
+			hsList = id.getTodayHabit(conn, m);
+
+//			jdt.commit(conn);
+		} catch (SQLException e) {
+//			jdt.rollback(conn);
+		} finally {
+			jdt.close(conn);
+		}
+
+		return hsList;
+		
+	}
 }

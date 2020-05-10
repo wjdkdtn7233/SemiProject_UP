@@ -148,8 +148,7 @@
                 , eventLimit : true // + more처럼 표현
                 // 데이터를 json 방식으로 넣어주기
                 , events: [
-
-            	    <c:forEach var='item' items='${data.calHabitList}' varStatus="vs">
+            	   
             	 /*    <c:choose>
             	    <c:when test='${vs.first}' ><c:set var = 'pre' value= '${item.hNo}' /></c:when>
             	    <c:otherwise><c:set var = 'curr' value= '${data.calHabitList[vs.index-1].hNo}' /></c:otherwise>
@@ -160,21 +159,20 @@
 					//}else{
 					//	pre = '${data.calHabitList[vs.index-1].hNo}';
 					//}
+            	    <c:forEach var='item' items='${data.calHabitList}' varStatus="vs">
             	    {
                         id : '${item.hNo}' // 습관번호
-                      , title : '${item.hSubcategory}'
-                      
+                      , title : '${item.hSubcategory}'                    
                       , start : '${item.hStartDate}'
                       , end : '${item.hEndDate}' // 종료일
-					
-                    ,className : colorList(${vs.index})
-                    	  
-                    },
-              	    </c:forEach>
+		                  	  
+                    }
+            	    <c:if test="${!vs.last}">
+            	    ,
+            	    </c:if>
+            	    
                     
-                 
-                	
-
+              	    </c:forEach>
                 ]
                 /* // ,eventColor: '#378006'
                 ,eventClick: function(calEvent, jsEvent, view) {

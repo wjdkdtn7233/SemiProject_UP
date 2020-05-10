@@ -26,6 +26,7 @@ public class IndexDao {
 
 	JDBCTemplate jdt = JDBCTemplate.getInstance();
 	
+	
 	/**
 	  * @Method Name : selectHabitList
 	  * @작성일 : 2020. 5. 7.
@@ -49,9 +50,9 @@ public class IndexDao {
 				"where " + 
 				"h_no in (select h_no " + 
 				"from tb_habit " + 
-				"where m_id = ? and INSTR(h_selectday, TO_CHAR(sysdate, 'dy')) != 0)"
-				+ "and TO_CHAR(H_CHECK_DATE, 'YYYY/MM/DD') = TO_CHAR(sysdate, 'YYYY/MM/DD')";
-		
+				"where m_id = ? and INSTR(h_selectday, TO_CHAR(sysdate, 'dy')) != 0) "
+				+ "and TO_CHAR(H_CHECK_DATE, 'YYYY/MM/DD') = TO_CHAR(sysdate, 'YYYY/MM/DD') "
+				+ "and TO_CHAR(H_END_DATE, 'YYYY/MM/DD') >= TO_CHAR(sysdate, 'YYYY/MM/DD')";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -152,28 +153,18 @@ public class IndexDao {
 	  */
 	public int checkhabit(Connection con, Member m, int hNo) throws SQLException{
 		int res = 0;
-		
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-//		오늘 날짜로 검색한 습관 중에 튜플이 생성되어있는지 확인
-		String sql = "select COUNT(*) from tb_habit_check where m_id = ? and h_no = ? and TO_CHAR(H_CHECK_DATE, 'YYYY/MM/DD') = TO_CHAR(sysdate, 'YYYY/MM/DD')";
+		CallableStatement cstm = null;
+		String sql = "{call P_INSERT_HABIT_CHECK(?,?)}";
 		
 		try {
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, m.getUserId());
-			pstmt.setInt(2, hNo);
-			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
-				if(rs.getInt(1) >= 1) {
-					res = 1;
-				}
-			}
-			
-			
-		} finally {
-			jdt.close(rs, pstmt);
+			cstm = con.prepareCall(sql);
+			cstm.setString(1, m.getUserId());
+			cstm.setInt(2, hNo);
+			res = cstm.executeUpdate();
+		}finally {
+			jdt.close(cstm);
 		}
+		
 		return res;
 	}
 	
@@ -262,4 +253,30 @@ public class IndexDao {
 		}
 		return res;
 	}
+	
+	public List<HabitState> getTodayHabit(Connection con, Member m) throws SQLException{
+		List<HabitState> hsList = new ArrayList<HabitState>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+//		오늘 날짜로 검색한 습관 중에 튜플이 생성되어있는지 확인
+		String sql = "select h_no FROM tb_habit_check where h_no in (select h_no from tb_habit where m_id = ? and TO_CHAR(H_END_DATE, 'YYYY/MM/DD') >= TO_CHAR(sysdate, 'YYYY/MM/DD')) and not TO_CHAR(H_CHECK_DATE, 'YYYY/MM/DD') = TO_CHAR(sysdate, 'YYYY/MM/DD')";
+	
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m.getUserId());
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				HabitState hs = new HabitState();
+				hs.sethNo(rs.getInt(1));
+				
+				hsList.add(hs);
+			}
+			
+		} finally {
+			jdt.close(pstmt);
+		}
+		return hsList;
+	}
+	
 }

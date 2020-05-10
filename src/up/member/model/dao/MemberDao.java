@@ -124,6 +124,34 @@ public class MemberDao {
 		return res;
 	}
 
+	
+	/**
+	  * @Method Name : checkTitle
+	  * @작성일 : 2020. 5. 11.
+	  * @작성자 : 김성민
+	  * @변경이력 : 
+	  * @Method 설명 : 히스토리를 참고하여 얻을 수 있는 타이틀이 있는지 확인
+	  * @param con
+	  * @param m
+	  * @return int
+	  * @throws SQLException 
+	  */
+	public int checkTitle(Connection con, Member m) throws SQLException {
+		int res = 0;
+		CallableStatement cstm = null;
+		String sql = "{call P_INSERT_TITLE(?)}";
+		
+		try {
+			cstm = con.prepareCall(sql);
+			cstm.setString(1, m.getUserId());
+			res = cstm.executeUpdate();
+		}finally {
+			jdt.close(cstm);
+		}
+		
+		return res;
+	}
+	
 	/**
 	 * @throws SQLException
 	 * @MethodName: insertMember
@@ -369,6 +397,7 @@ public class MemberDao {
 		return result;
 	}
 	
+
 	public int history(Connection con, String userId) throws SQLException {
 		int result = 0;
 		
@@ -387,5 +416,6 @@ public class MemberDao {
 		}
 		return result;
 	}
+
 
 }

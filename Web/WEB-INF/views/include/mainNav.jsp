@@ -120,15 +120,15 @@
 	<!-- Nav Item - Pages Collapse Menu -->
 	<li class="nav-item"><a class="nav-link collapsed"
 		href="/up/index/simple.do"> <i class="fas fa-clipboard"></i> <span>습관
-				간편 확인</span>
+				확인</span>
 	</a></li>
 
-	<hr class="sidebar-divider">
-	<!-- Nav Item - Utilities Collapse Menu -->
+	<!-- <hr class="sidebar-divider">
+	Nav Item - Utilities Collapse Menu
 	<li class="nav-item"><a class="nav-link collapsed"
 		href="/up/index/detail.do"> <i class="fas fa-chart-bar"></i> <span>습관
 				상세 확인</span>
-	</a></li>
+	</a></li> -->
 	<hr class="sidebar-divider">
 	<!-- Nav Item - Utilities Collapse Menu -->
 	<li class="nav-item"><a class="nav-link collapsed"
