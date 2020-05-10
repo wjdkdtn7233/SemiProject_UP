@@ -9,6 +9,8 @@ import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.w3c.dom.html.HTMLDOMImplementation;
+
 import common.frontController.Controller;
 import common.frontController.ModelAndView;
 import up.habit.model.service.HabitService;
@@ -171,7 +173,12 @@ public class IndexController implements Controller {
 		System.out.println(request.getParameter("habitNo"));
 		System.out.println(request.getParameter("cStateNo"));
 		System.out.println(request.getParameter("habitYN"));
-
+		System.out.println(request.getParameter("habitPercent"));
+		System.out.println(request.getParameter("habitMoney"));
+		System.out.println(request.getParameter("habitTime"));
+		int cPercent =Integer.parseInt((String) request.getParameter("habitPercent"));
+		int hMoney = Integer.parseInt((String) request.getParameter("habitMoney"));
+		int hTime = Integer.parseInt((String) request.getParameter("habitTime"));
 		int hNo = Integer.parseInt((String) request.getParameter("habitNo"));
 		int cStateNo = Integer.parseInt((String) request.getParameter("cStateNo"));
 		String flag = (String) request.getParameter("habitYN");
@@ -201,6 +208,19 @@ public class IndexController implements Controller {
 				mav.setView("common/result");
 			}
 			
+		}
+		//달성률이 100프로가 되면 종료축하 페이지로 넘겨준다.
+		if(cPercent == 100) {
+			if(hMoney != 0 ) {
+				mav.addObject("mt",hMoney);
+				mav.addObject("money", true);
+			}else {
+				mav.addObject("mt",(hTime*60));
+				mav.addObject("time", true);
+			}
+			
+			mav.setView("common/finishPopup");
+			return mav;
 		}
 //		만약 체크를 해제한다면
 		else if(flag.equals("y")) {

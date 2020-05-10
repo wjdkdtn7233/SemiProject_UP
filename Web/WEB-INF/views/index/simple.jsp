@@ -75,8 +75,9 @@
 										<div class="row no-gutters align-items-center">
 											<div class="col mr-2">
 												<div
-													class="text-xs font-weight-bold text-info text-uppercase mb-1">
-													<span> <c:choose>
+													class=" font-weight-bold text-gray-900 text-uppercase mb-1">
+													<span>카테고리 - </span>
+													<span  class="bg-warning"> <c:choose>
 															<c:when test="${ habitList.cCode == 1}">
 																금연
 															</c:when>
@@ -93,12 +94,21 @@
 																카테고리
 															</c:otherwise>
 														</c:choose>
-													</span> / <span>${ habitList.hSubcategory }</span>
+														<hr>
+													</span><span>습관 제목 - </span> <span class="bg-warning">${ habitList.hSubcategory }</span>
+													<hr>
+													<span>선택 요일 -</span><span class="bg-warning">${ habitList.hSelectday }</span>
+													<hr>
+													<span>시작 날짜 -</span><span class="bg-warning">${ habitList.hStartDate }</span>
+													<hr>
+													<span>종료 날짜 -</span><span class="bg-warning">${ habitList.hEndDate }</span>
+													<hr>
 												</div>
 												<div class="row no-gutters align-items-center">
 													<div class="col-auto">
+												
 														<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-															${habitList.cPercent}%</div>
+															달성률 ${habitList.cPercent}%</div>
 													</div>
 													<div class="col">
 														<div class="progress progress-sm mr-2">
@@ -115,6 +125,9 @@
 													<input type="hidden" name="habitNo" value="${habitList.hNo}" />
 														<input type="hidden" name="cStateNo" value="${habitList.cStateNo}" />
 														<input type="hidden" name="habitYN" id="habitYN" value="${habitList.hCheckYN}" />
+														<input type="hidden" name="habitMoney" id="habitMoney" value="${habitList.hMoney}" />
+														<input type="hidden" name="habitTime" id="habitTime" value="${habitList.hTime}" />
+														<input type="hidden" name="habitPercent" id="habitPercent" value="${habitList.cPercent}" />
 													<c:if test="${habitList.hCheckYN == 'n'}">
 														<button class="btn btn-circle habitButtonCheck" id="habitCheckBT" type="submit">
 															<i class="fas fa-check"></i>
@@ -152,8 +165,9 @@
 									<div class="row no-gutters align-items-center">
 										<div class="col mr-2">
 											<div
-												class="text-xs font-weight-bold text-info text-uppercase mb-1">
-												<span> <c:choose>
+												class="font-weight-bold text-gray-900  text-uppercase mb-1">
+												<span>카테고리 - </span>
+												<span  class="bg-warning"> <c:choose>
 														<c:when test="${ searchList.cCode == 1}">
 															금연
 														</c:when>
@@ -170,12 +184,21 @@
 															카테고리
 														</c:otherwise>
 													</c:choose>
-												</span> / <span>${ searchList.hSubcategory }</span>
+												</span>
+												<hr>
+												 <span>습관 제목 -</span> <span class="bg-warning">${ searchList.hSubcategory }</span>
+												<hr>
+													<span>선택 요일 -</span><span class="bg-warning">${ searchList.hSelectday }</span>
+													<hr>
+													<span>시작 날짜 -</span><span class="bg-warning">${ searchList.hStartDate }</span>
+													<hr>
+													<span>종료 날짜 -</span><span class="bg-warning">${ searchList.hEndDate }</span>
+													<hr>
 											</div>
 											<div class="row no-gutters align-items-center">
 												<div class="col-auto">
 													<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-														${searchList.cPercent}%</div>
+															달성률 ${searchList.cPercent}%</div>
 												</div>
 												<div class="col">
 													<div class="progress progress-sm mr-2">

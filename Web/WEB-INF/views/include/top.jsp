@@ -68,7 +68,7 @@
 				aria-labelledby="userDropdown">
 				<a class="dropdown-item" href="/up/mypage/mypage.do"> <i
 					class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 마이 페이지
-				</a> <a class="dropdown-item" href="/up/habit/finishpopup.do"> <i
+				</a> <a class="dropdown-item" href="/up/mypage/infopwdcheck.do"> <i
 					class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>개인 정보 수정
 				</a> <a class="dropdown-item" href="/up/habit/habitpage.do"> <i
 					class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> 습관 페이지
