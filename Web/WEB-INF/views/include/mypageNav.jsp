@@ -30,8 +30,8 @@
 }
 
 .size2 {
-	height: 8rem;
-	width: 8rem;
+	height: 6rem;
+	width: 6rem;
 }
 </style>
 <!-- Sidebar -->
@@ -69,23 +69,23 @@
 	<!-- Divider -->
 	<hr class="sidebar-divider">
 	<li  class="nav-item">
-	<div class="bg-white py-2  rounded mx-1 mb-2">
+	<div class="bg-white py-2  rounded mx-1 mb-2" style="overflow:hidden">
 		<div class="row d-flex justify-content-center">
-			<div class="text-gray-900 text-center font-weight-bold h3" style="font-family:Nanum Gothic, sans-serif;" >MY TITLE</div>
+			<div class="text-gray-900 text-center font-weight-bold h4" style="font-family:Nanum Gothic, sans-serif;" >MY TITLE</div>
 		</div>
 		<div class="row d-flex justify-content-center">
 			<div class="btn  text-white text-center font-weight-bold font-italic h3 shadow"  id="check111" style="background:${sessionScope.representationTitle.TColor}; width:200px;">${sessionScope.representationTitle.TName}</div>
 		</div>
 	</div>
 	
-	<div class=" py-2  rounded mx-1 mb-2" style="background:#EFF3FC">
+	<div class=" py-2  rounded mx-1 mb-2" style="background:#EFF3FC; overflow:hidden;" >
 	<div class="row  d-flex  justify-content-center mb-3"><img
 		class="img-profile rounded-circle size2"
 		src="/up/resources/upload/${sessionScope.loginInfo.renameFile}">
 	</div>
 	<hr>
 	<div
-		class="row  d-flex  justify-content-center  h4 font-weight-bold text-gray-900" style="font-family:Nanum Gothic, sans-serif;" >${sessionScope.loginInfo.userNickName}님
+		class="row  d-flex  justify-content-center  h5 font-weight-bold text-gray-900" style="font-family:Nanum Gothic, sans-serif;" >${sessionScope.loginInfo.userNickName}님
 	</div>
 	<div
 		class="row  d-flex  justify-content-center  h6 text-gray-900 font-weight-bold " style="font-family:Nanum Gothic, sans-serif;" >환영합니다<i class="far fa-laugh ml-1"></i>
