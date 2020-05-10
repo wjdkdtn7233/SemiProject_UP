@@ -21,13 +21,21 @@ public class HabitState implements Serializable{
     private int hMoney;
     private int hTime;
     private int cCode;
+    private int hCheckNo;
+    private String hCheckYN;
+    private Date hCheckDate;
     private String mId;
+    
 	public HabitState() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+	
+	
 	public HabitState(int cStateNo, int cCount, int cCountall, int cPercent, int hNo, String hSubcategory,
-			Date hStartDate, Date hEndDate, String hSelectday, int hMoney, int hTime, int cCode, String mId) {
+			Date hStartDate, Date hEndDate, String hSelectday, int hMoney, int hTime, int cCode, int hCheckNo,
+			String hCheckYN, Date hCheckDate, String mId) {
 		super();
 		this.cStateNo = cStateNo;
 		this.cCount = cCount;
@@ -41,93 +49,206 @@ public class HabitState implements Serializable{
 		this.hMoney = hMoney;
 		this.hTime = hTime;
 		this.cCode = cCode;
+		this.hCheckNo = hCheckNo;
+		this.hCheckYN = hCheckYN;
+		this.hCheckDate = hCheckDate;
 		this.mId = mId;
 	}
+
+
+
 	public int getcStateNo() {
 		return cStateNo;
 	}
+
+
+
 	public void setcStateNo(int cStateNo) {
 		this.cStateNo = cStateNo;
 	}
+
+
+
 	public int getcCount() {
 		return cCount;
 	}
+
+
+
 	public void setcCount(int cCount) {
 		this.cCount = cCount;
 	}
+
+
+
 	public int getcCountall() {
 		return cCountall;
 	}
+
+
+
 	public void setcCountall(int cCountall) {
 		this.cCountall = cCountall;
 	}
+
+
+
 	public int getcPercent() {
 		return cPercent;
 	}
+
+
+
 	public void setcPercent(int cPercent) {
 		this.cPercent = cPercent;
 	}
+
+
+
 	public int gethNo() {
 		return hNo;
 	}
+
+
+
 	public void sethNo(int hNo) {
 		this.hNo = hNo;
 	}
+
+
+
 	public String gethSubcategory() {
 		return hSubcategory;
 	}
+
+
+
 	public void sethSubcategory(String hSubcategory) {
 		this.hSubcategory = hSubcategory;
 	}
+
+
+
 	public Date gethStartDate() {
 		return hStartDate;
 	}
+
+
+
 	public void sethStartDate(Date hStartDate) {
 		this.hStartDate = hStartDate;
 	}
+
+
+
 	public Date gethEndDate() {
 		return hEndDate;
 	}
+
+
+
 	public void sethEndDate(Date hEndDate) {
 		this.hEndDate = hEndDate;
 	}
+
+
+
 	public String gethSelectday() {
 		return hSelectday;
 	}
+
+
+
 	public void sethSelectday(String hSelectday) {
 		this.hSelectday = hSelectday;
 	}
+
+
+
 	public int gethMoney() {
 		return hMoney;
 	}
+
+
+
 	public void sethMoney(int hMoney) {
 		this.hMoney = hMoney;
 	}
+
+
+
 	public int gethTime() {
 		return hTime;
 	}
+
+
+
 	public void sethTime(int hTime) {
 		this.hTime = hTime;
 	}
+
+
+
 	public int getcCode() {
 		return cCode;
 	}
+
+
+
 	public void setcCode(int cCode) {
 		this.cCode = cCode;
 	}
+
+
+
+	public int gethCheckNo() {
+		return hCheckNo;
+	}
+
+
+
+	public void sethCheckNo(int hCheckNo) {
+		this.hCheckNo = hCheckNo;
+	}
+
+
+
+	public String gethCheckYN() {
+		return hCheckYN;
+	}
+
+
+
+	public void sethCheckYN(String hCheckYN) {
+		this.hCheckYN = hCheckYN;
+	}
+
+
+
+	public Date gethCheckDate() {
+		return hCheckDate;
+	}
+
+
+
+	public void sethCheckDate(Date hCheckDate) {
+		this.hCheckDate = hCheckDate;
+	}
+
+
+
 	public String getmId() {
 		return mId;
 	}
+
+
+
 	public void setmId(String mId) {
 		this.mId = mId;
 	}
-	@Override
-	public String toString() {
-		return "HabitState [cStateNo=" + cStateNo + ", cCount=" + cCount + ", cCountall=" + cCountall + ", cPercent="
-				+ cPercent + ", hNo=" + hNo + ", hSubcategory=" + hSubcategory + ", hStartDate=" + hStartDate
-				+ ", hEndDate=" + hEndDate + ", hSelectday=" + hSelectday + ", hMoney=" + hMoney + ", hTime=" + hTime
-				+ ", cCode=" + cCode + ", mId=" + mId + "]";
-	}
+
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -137,6 +258,9 @@ public class HabitState implements Serializable{
 		result = prime * result + cCountall;
 		result = prime * result + cPercent;
 		result = prime * result + cStateNo;
+		result = prime * result + ((hCheckDate == null) ? 0 : hCheckDate.hashCode());
+		result = prime * result + hCheckNo;
+		result = prime * result + ((hCheckYN == null) ? 0 : hCheckYN.hashCode());
 		result = prime * result + ((hEndDate == null) ? 0 : hEndDate.hashCode());
 		result = prime * result + hMoney;
 		result = prime * result + hNo;
@@ -147,6 +271,9 @@ public class HabitState implements Serializable{
 		result = prime * result + ((mId == null) ? 0 : mId.hashCode());
 		return result;
 	}
+
+
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -165,6 +292,18 @@ public class HabitState implements Serializable{
 		if (cPercent != other.cPercent)
 			return false;
 		if (cStateNo != other.cStateNo)
+			return false;
+		if (hCheckDate == null) {
+			if (other.hCheckDate != null)
+				return false;
+		} else if (!hCheckDate.equals(other.hCheckDate))
+			return false;
+		if (hCheckNo != other.hCheckNo)
+			return false;
+		if (hCheckYN == null) {
+			if (other.hCheckYN != null)
+				return false;
+		} else if (!hCheckYN.equals(other.hCheckYN))
 			return false;
 		if (hEndDate == null) {
 			if (other.hEndDate != null)
@@ -199,6 +338,18 @@ public class HabitState implements Serializable{
 			return false;
 		return true;
 	}
+
+
+	@Override
+	public String toString() {
+		return "HabitState [cStateNo=" + cStateNo + ", cCount=" + cCount + ", cCountall=" + cCountall + ", cPercent="
+				+ cPercent + ", hNo=" + hNo + ", hSubcategory=" + hSubcategory + ", hStartDate=" + hStartDate
+				+ ", hEndDate=" + hEndDate + ", hSelectday=" + hSelectday + ", hMoney=" + hMoney + ", hTime=" + hTime
+				+ ", cCode=" + cCode + ", hCheckNo=" + hCheckNo + ", hCheckYN=" + hCheckYN + ", hCheckDate="
+				+ hCheckDate + ", mId=" + mId + "]";
+	}
+	
+	
     
     
 	

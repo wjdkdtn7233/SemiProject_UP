@@ -8,6 +8,7 @@ DROP SEQUENCE S_P_CODE;         -- 팝업 시퀀스
 DROP SEQUENCE S_T_CODE;         -- 타이틀 시퀀스
 DROP SEQUENCE S_W_CODE;         -- 명언 시퀀스
 
+
 --sequence
 CREATE SEQUENCE S_C_CODE
 INCREMENT BY 1 -- 다음 값에 대한 증가치, 생략하면 기본 1;

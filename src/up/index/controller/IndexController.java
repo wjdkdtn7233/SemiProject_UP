@@ -36,9 +36,9 @@ public class IndexController implements Controller {
 	 * @param request
 	 * @return ModelAndView
 	 */
-	
+
 	IndexService is = new IndexService();
-	
+
 	public ModelAndView index(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		mav.setView("index/index");
@@ -59,6 +59,7 @@ public class IndexController implements Controller {
 
 		ModelAndView mav = new ModelAndView();
 		Member m = (Member) request.getSession().getAttribute("loginInfo");
+		
 		mav.addObject("habitList", is.selectHabitList(m));
 		mav.setView("index/simple");
 		return mav;
@@ -93,6 +94,7 @@ public class IndexController implements Controller {
 		ModelAndView mav = new ModelAndView();
 		HabitService hs = new HabitService();
 		Member m = (Member) request.getSession().getAttribute("loginInfo");
+		
 		List<Habit> mList = hs.selectCalHabitList(m);
 
 		if (mList.size() != 0) {
@@ -102,20 +104,29 @@ public class IndexController implements Controller {
 			mav.addObject("calHabitList", 0);
 			System.out.println("null임");
 		}
-		
+
 		mav.setView("index/calendar");
 
 		return mav;
 	}
-	
+
+	/**
+	  * @Method Name : searchHabit
+	  * @작성일 : 2020. 5. 10.
+	  * @작성자 : 김성민
+	  * @변경이력 : 
+	  * @Method 설명 : 
+	  * @param request
+	  * @return 
+	  */
 	public ModelAndView searchHabit(HttpServletRequest request) {
-		
+
 		ModelAndView mav = new ModelAndView();
 		Member m = (Member) request.getSession().getAttribute("loginInfo");
-		
+
 		System.out.println(request.getParameter("select"));
 		System.out.println(request.getParameter("searchContent"));
-		
+
 //		검색 키워드와 검색어 저장
 		String select = request.getParameter("select");
 		String searchContent = request.getParameter("searchContent");
@@ -124,28 +135,68 @@ public class IndexController implements Controller {
 
 		return mav;
 	}
-	
+
+	/**
+	  * @Method Name : updateHabit
+	  * @작성일 : 2020. 5. 10.
+	  * @작성자 : 김성민
+	  * @변경이력 : 
+	  * @Method 설명 : 
+	  * @param request
+	  * @return 
+	  */
 	public ModelAndView updateHabit(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		Member m = (Member) request.getSession().getAttribute("loginInfo");
+		
 		System.out.println(request.getParameter("habitNo"));
-		int res = is.checkhabit(m, Integer.parseInt(request.getParameter("habitNo")));
+		System.out.println(request.getParameter("cStateNo"));
+		System.out.println(request.getParameter("habitYN"));
+
+		int hNo = Integer.parseInt((String) request.getParameter("habitNo"));
+		int cStateNo = Integer.parseInt((String) request.getParameter("cStateNo"));
+		String flag = (String) request.getParameter("habitYN");
+
+//		오늘 습관을 등록하지 않았다면 (습관을 등록할때 최초로 넣어주지만 다음날이되면 다음날 것을 다시넣어줘야함)
+//		tb_habit_check 테이블에 등록된 튜플이 없으므로 있는지 확인
+		int result = is.checkhabit(m, hNo);
+		int result2 = 0;
 		
-//		res가 1일경우 오늘 체크한 습관이 없다는 것이다.
-		if (res >= 1) {
-//			int result = is.updateHabit(Integer.parseInt(request.getParameter("cCode")));
-			
+//		만약 결과값이 0이라면 오늘날짜로 된 tb_habit_check가 없으므로 'n'으로 생성해줌
+		if ( result == 0) {
+			result2 = is.insertTodayCheck(m, hNo);
+			if(result2 > 0) {
+				System.out.println("tb_habit_check 추가성공");
+			}
+		}
+		
+//		만약 체크가 되지 않은 상태라면
+		if (flag.equals("n")) {
+			result2 = is.addHabitChack(cStateNo);
+			if(result2 > 0) {
+				mav.addObject("habitList", is.selectHabitList(m));
+				mav.setView("index/simple");
+			} else {
+				mav.addObject("alertMsg", "습관 갱신에 실패하였습니다.");
+				mav.addObject("back", "back");
+				mav.setView("common/result");
+			}
 			
 		}
-//		오늘 이미 습관 체크했다는 것이다.
-		else {
-			mav.addObject("alertMsg", "오늘은 이미 체크하셨습니다.");
-			mav.addObject("back", "back");
-			mav.setView("common/result");
+//		만약 체크를 해제한다면
+		else if(flag.equals("y")) {
+			result2 = is.removeHabitChack(cStateNo);
+			if(result2 > 0) {
+				mav.addObject("habitList", is.selectHabitList(m));
+				mav.setView("index/simple");
+			} else {
+				mav.addObject("alertMsg", "습관 갱신에 실패하였습니다.");
+				mav.addObject("back", "back");
+				mav.setView("common/result");
+			}
 		}
-		
 		
 		return mav;
 	}
-	
+
 }
