@@ -44,7 +44,7 @@
 
 			<span
 			class="btn  text-white text-center font-weight-bold font-italic h3"
-			id="check111"
+			id="check11"
 			style="background:${sessionScope.representationTitle.TColor}; width:200px;">${sessionScope.representationTitle.TName}</span>
 		</li>
 		<%-- Kakao share btn --%>
@@ -127,7 +127,7 @@
 	var titleCode = ${sessionScope.loginInfo.userTitleCode};
 	if (titleCode == 0) {
 		$('#ment').text("");
-		$('#check111').hide();
+		$('#check11').hide();
 	}
 
 	function logoutClick() {

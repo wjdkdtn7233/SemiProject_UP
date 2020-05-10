@@ -45,7 +45,10 @@ public class MemberService {
 			result = new Member();
 			result = md.loginImple(con, userId, userPwd);
 			// 로그인 시 로그인 횟수 +1
-			plusLoginCnt(result);
+			if(result != null) {
+				plusLoginCnt(result);
+			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
