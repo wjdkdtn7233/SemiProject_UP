@@ -76,7 +76,8 @@ public class IndexController implements Controller {
 	 */
 	public ModelAndView detail(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
-
+		Member m = (Member) request.getSession().getAttribute("loginInfo");
+		mav.addObject("habitList", is.selectHabitList(m));
 		mav.setView("index/detail");
 		return mav;
 	}
@@ -136,6 +137,24 @@ public class IndexController implements Controller {
 		return mav;
 	}
 
+	public ModelAndView searchDeatailHabit(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView();
+		Member m = (Member) request.getSession().getAttribute("loginInfo");
+
+		System.out.println(request.getParameter("select"));
+		System.out.println(request.getParameter("searchContent"));
+
+//		검색 키워드와 검색어 저장
+		String select = request.getParameter("select");
+		String searchContent = request.getParameter("searchContent");
+		mav.addObject("searchList", is.searchHabitList(m, select, searchContent));
+		mav.setView("index/detail");
+
+		return mav;
+	}
+	
+	
 	/**
 	  * @Method Name : updateHabit
 	  * @작성일 : 2020. 5. 10.

@@ -260,7 +260,7 @@
 				}
 			}
 
-			if (!chk(regExptitle, input, //닉네임 검사
+			if (!chk(regExptitle, input, //검색어 검사
 			"")) {
 				swal({
 					title : "검색어 확인!", // 제목
@@ -275,10 +275,6 @@
 
 			return true;
 		});
-		var m = document.querySelectorAll('.habitCheck');
-		m.forEach(function(v) {
-			console.log(v.children[0].children[3]);
-		})
 
 		document.querySelectorAll('.habitCheck').forEach(
 			function(v) {

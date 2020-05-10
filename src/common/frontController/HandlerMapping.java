@@ -54,6 +54,9 @@ public class HandlerMapping {
 			case "searchhabit.do":
 				methodName = "searchHabit";
 				break;
+			case "searchdeatailhabit.do":
+				methodName = "searchDeatailHabit";
+				break;
 			case "updatehabit.do":
 				methodName = "updateHabit";
 				break;
