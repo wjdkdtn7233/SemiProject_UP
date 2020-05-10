@@ -83,6 +83,16 @@ public class IndexService {
 		return res;
 	}
 
+	/**
+	  * @Method Name : checkhabit
+	  * @작성일 : 2020. 5. 10.
+	  * @작성자 : 김성민
+	  * @변경이력 : 
+	  * @Method 설명 : 생성된 habit check가 있는지 확인하는 service
+	  * @param m
+	  * @param hNo
+	  * @return int
+	  */
 	public int checkhabit(Member m, int hNo) {
 		int res = 0;
 
@@ -102,4 +112,96 @@ public class IndexService {
 
 		return res;
 	}
+	
+	/**
+	  * @Method Name : addHabitChack
+	  * @작성일 : 2020. 5. 10.
+	  * @작성자 : 김성민
+	  * @변경이력 : 
+	  * @Method 설명 : 사용자가 오늘 습관 버튼을 눌렀을경우 갱신시켜주는 service
+	  * @param cCode
+	  * @return 
+	  */
+	public int addHabitChack(int cCode) {
+		int res = 0;
+
+		Connection conn = null;
+
+		conn = jdt.getConnection();
+
+		try {
+			res = id.addHabitChack(conn, cCode);
+
+			jdt.commit(conn);
+		} catch (SQLException e) {
+			jdt.rollback(conn);
+		} finally {
+			jdt.close(conn);
+		}
+
+		return res;
+		
+	}
+	
+	/**
+	  * @Method Name : removeHabitChack
+	  * @작성일 : 2020. 5. 10.
+	  * @작성자 : 김성민
+	  * @변경이력 : 
+	  * @Method 설명 : 사용자가 오늘 습관 갱신 버튼을 다시 취소했을경우 취소시켜주는 service
+	  * @param cCode
+	  * @return int
+	  */
+	public int removeHabitChack(int cCode) {
+		int res = 0;
+
+		Connection conn = null;
+
+		conn = jdt.getConnection();
+
+		try {
+			res = id.removeHabitChack(conn, cCode);
+
+			jdt.commit(conn);
+		} catch (SQLException e) {
+			jdt.rollback(conn);
+		} finally {
+			jdt.close(conn);
+		}
+
+		return res;
+		
+	}
+
+	/**
+	  * @Method Name : insertTodayCheck
+	  * @작성일 : 2020. 5. 10.
+	  * @작성자 : 김성민
+	  * @변경이력 : 
+	  * @Method 설명 : tb_habit_check에 오늘의 습관체크 튜플이 없을 경우생성해줌
+	  * @param m
+	  * @param hNo
+	  * @return 
+	  */
+	public int insertTodayCheck(Member m, int hNo) {
+		int res = 0;
+
+		Connection conn = null;
+
+		conn = jdt.getConnection();
+
+		try {
+			res = id.insertTodayCheck(conn, m, hNo);
+
+			jdt.commit(conn);
+		} catch (SQLException e) {
+			jdt.rollback(conn);
+		} finally {
+			jdt.close(conn);
+		}
+
+		return res;
+		
+	}
+	
 }

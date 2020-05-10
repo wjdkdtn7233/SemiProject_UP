@@ -33,19 +33,6 @@
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
 						<h1 class="h3 mb-0 text-gray-800">Calendar view</h1>
-						<div class="input-group-btn">
-							<button type="button" class="btn btn-primary dropdown-toggle"
-								data-toggle="dropdown" aria-expanded="false">
-								가나다 <span class="caret"></span>
-							</button>
-							<div
-								class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-								aria-labelledby="dropdownMenuLink">
-								<div class="dropdown-header">선택 :</div>
-								<a class="dropdown-item" href="#">가나다</a> <a
-									class="dropdown-item" href="#">달성도</a>
-							</div>
-						</div>
 					</div>
 
 					<div class="card shadow mb-4">
@@ -77,47 +64,8 @@
 							</form>
 						</div>
 					</div>
-					<div
-						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">오늘의 습관</h1>
-					</div>
 
-					<c:forEach var="habitList" items="${data.habitList}"
-						varStatus="status">
-						<div class="row">
-							<div class="col-xl-3 col-md-6 mb-4">
-								<div class="card border-left-info shadow h-100 py-2">
-									<div class="card-body">
-										<div class="row no-gutters align-items-center">
-											<div class="col mr-2">
-												<div
-													class="text-xs font-weight-bold text-info text-uppercase mb-1">
-													<span id="category">카테고리</span> / <span id="habit">습관1</span>
-												</div>
-												<div class="row no-gutters align-items-center">
-													<div class="col-auto">
-														<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-													</div>
-													<div class="col">
-														<div class="progress progress-sm mr-2">
-															<div class="progress-bar bg-info" role="progressbar"
-																style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-																aria-valuemax="100"></div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="col-auto">
-												<a href="#" class="btn btn-success btn-circle"> <i
-													class="fas fa-check"></i>
-												</a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</c:forEach>
+
 					<div class="row">
 						<div class="col-md-12">
 							<div class="card">
