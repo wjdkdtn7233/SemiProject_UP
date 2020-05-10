@@ -182,14 +182,15 @@
 
 	<%@ include file="../include/jsRoot.jsp"%>
     
-    <!--This page JavaScript -->
+    <!--This page JavaScript(calendar) -->
     <script src="/up/resources/calendar/libs/moment/min/moment.min.js"></script>
     <script src="/up/resources/calendar/libs/fullcalendar/dist/fullcalendar.min.js"></script>
+    <script src="/up/resources/js/calendar/pages/calendar/cal-init.min.js"></script>
 
 	<!-- this page js -->
 	<script src="/up/resources/js/calendar/app-style-switcher.js"></script>
 	<script src="/up/resources/js/calendar/feather.min.js"></script>
-	<script src="/up/resources/js/calendar/pages/calendar/cal-init.min.js"></script>
+	
 </body>
 
 </html>
