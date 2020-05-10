@@ -35,37 +35,6 @@
 						<h1 class="h3 mb-0 text-gray-800">Calendar view</h1>
 					</div>
 
-					<div class="card shadow mb-4">
-						<div class="card-body">
-
-							<!-- /btn-group -->
-							<!-- Topbar Search -->
-							<form class="navbar-search">
-								<div class="input-group">
-									<div class="input-group-btn">
-										<div class="customize-input">
-											<select
-												class="custom-select form-control bg-white custom-radius custom-shadow border-1">
-												<option selected>전체</option>
-												<option value="1">습관</option>
-											</select>
-										</div>
-									</div>
-									&nbsp; <input type="text"
-										class="form-control bg-light border-0 small"
-										placeholder="내용을 입력해주세요." aria-label="Search"
-										aria-describedby="basic-addon2">
-									<div class="input-group-append">
-										<button class="btn btn-primary" type="button">
-											<i class="fas fa-search fa-sm"></i>
-										</button>
-									</div>
-								</div>
-							</form>
-						</div>
-					</div>
-
-
 					<div class="row">
 						<div class="col-md-12">
 							<div class="card">
@@ -144,7 +113,34 @@
 	    var btnColor = colorList();
 	    var pre = '';
 	    var curr = '';
-        
+	    
+        function colorList(vs){
+        	var colorArray = [
+        		'#e83e8c'
+        		, '#6610f2'
+        		, '#6f42c1'
+        		, '#20c9a6'
+        		, '#e74a3b'
+        		, '#orange'
+        		, '#yellow'
+        		, '#1cc88a'
+        		, '#4e73df'
+        		, '#36b9cc'
+        		, '#858796'
+        		, '#5a5c69'
+        		, '#4e73df'
+        		, '#858796'
+        		, '#1cc88a'
+        		, '#36b9cc'
+        		, '#f6c23e'
+        		, '#e74a3b'
+        		, '#f8f9fc'
+        		, '#5a5c69'];
+        	
+        	/* var idx = Math.floor(Math.random()* ( 20 - 1 + 1 )+1); */
+        	
+        	return colorArray[vs];
+        }
         jQuery(document).ready(function() {
             jQuery("#calendar").fullCalendar({
                   defaultDate : "2020-05-01"
@@ -153,11 +149,11 @@
                 // 데이터를 json 방식으로 넣어주기
                 , events: [
 
-            	    <c:forEach var='item' items='${data.calHabitList}' varStatus='vs'>
-            	    <c:choose>
+            	    <c:forEach var='item' items='${data.calHabitList}' varStatus="vs">
+            	 /*    <c:choose>
             	    <c:when test='${vs.first}' ><c:set var = 'pre' value= '${item.hNo}' /></c:when>
             	    <c:otherwise><c:set var = 'curr' value= '${data.calHabitList[vs.index-1].hNo}' /></c:otherwise>
-            	    </c:choose>
+            	    </c:choose> */
             	    
 					//if('${vs.first}' == ""){
 					//	pre = 0;
@@ -170,14 +166,13 @@
                       
                       , start : '${item.hStartDate}'
                       , end : '${item.hEndDate}' // 종료일
-
-                      ,className : colorList()
+					
+                    ,className : colorList(${vs.index})
                     	  
-                      
-                  },
-            	    </c:forEach>
+                    },
+              	    </c:forEach>
                     
-
+                 
                 	
 
                 ]
@@ -202,35 +197,10 @@
         });
         
         
-        function colorList(){
-        	var colorList = [
-        		'btn-blue'
-        		, 'btn-indigo'
-        		, 'btn-purple'
-        		, 'btn-pink'
-        		, 'btn-red'
-        		, 'btn-orange'
-        		, 'btn-yellow'
-        		, 'btn-green'
-        		, 'btn-teal'
-        		, 'btn-cyan'
-        		, 'btn-gray'
-        		, 'btn-gray-dark'
-        		, 'btn-primary'
-        		, 'btn-secondary'
-        		, 'btn-success'
-        		, 'btn-info'
-        		, 'btn-warning'
-        		, 'btn-danger'
-        		, 'btn-light'
-        		, 'btn-dark'];
-        	
-        	var idx = Math.floor(Math.random()* ( 20 - 1 + 1 )+1);
-        	
-        	return colorList[idx];
+
         	
         	
-        }
+      
     </script>
 </body>
 

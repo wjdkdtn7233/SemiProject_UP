@@ -9,6 +9,8 @@ import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.w3c.dom.html.HTMLDOMImplementation;
+
 import common.frontController.Controller;
 import common.frontController.ModelAndView;
 import up.habit.model.service.HabitService;
@@ -80,7 +82,8 @@ public class IndexController implements Controller {
 	 */
 	public ModelAndView detail(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
-
+		Member m = (Member) request.getSession().getAttribute("loginInfo");
+		mav.addObject("habitList", is.selectHabitList(m));
 		mav.setView("index/detail");
 		return mav;
 	}
@@ -140,6 +143,24 @@ public class IndexController implements Controller {
 		return mav;
 	}
 
+	public ModelAndView searchDeatailHabit(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView();
+		Member m = (Member) request.getSession().getAttribute("loginInfo");
+
+		System.out.println(request.getParameter("select"));
+		System.out.println(request.getParameter("searchContent"));
+
+//		검색 키워드와 검색어 저장
+		String select = request.getParameter("select");
+		String searchContent = request.getParameter("searchContent");
+		mav.addObject("searchList", is.searchHabitList(m, select, searchContent));
+		mav.setView("index/detail");
+
+		return mav;
+	}
+	
+	
 	/**
 	  * @Method Name : updateHabit
 	  * @작성일 : 2020. 5. 10.
@@ -156,7 +177,12 @@ public class IndexController implements Controller {
 		System.out.println(request.getParameter("habitNo"));
 		System.out.println(request.getParameter("cStateNo"));
 		System.out.println(request.getParameter("habitYN"));
-
+		System.out.println(request.getParameter("habitPercent"));
+		System.out.println(request.getParameter("habitMoney"));
+		System.out.println(request.getParameter("habitTime"));
+		int cPercent =Integer.parseInt((String) request.getParameter("habitPercent"));
+		int hMoney = Integer.parseInt((String) request.getParameter("habitMoney"));
+		int hTime = Integer.parseInt((String) request.getParameter("habitTime"));
 		int hNo = Integer.parseInt((String) request.getParameter("habitNo"));
 		int cStateNo = Integer.parseInt((String) request.getParameter("cStateNo"));
 		String flag = (String) request.getParameter("habitYN");
@@ -186,6 +212,19 @@ public class IndexController implements Controller {
 				mav.setView("common/result");
 			}
 			
+		}
+		//달성률이 100프로가 되면 종료축하 페이지로 넘겨준다.
+		if(cPercent == 100) {
+			if(hMoney != 0 ) {
+				mav.addObject("mt",hMoney);
+				mav.addObject("money", true);
+			}else {
+				mav.addObject("mt",(hTime*60));
+				mav.addObject("time", true);
+			}
+			
+			mav.setView("common/finishPopup");
+			return mav;
 		}
 //		만약 체크를 해제한다면
 		else if(flag.equals("y")) {
