@@ -19,6 +19,8 @@ import up.habit.model.service.HabitService;
 import up.habit.model.vo.Habit;
 import up.index.model.service.IndexService;
 import up.index.model.vo.HabitState;
+import up.member.controller.MemberController;
+import up.member.model.service.MemberService;
 import up.member.model.vo.Member;
 
 /**
@@ -170,18 +172,25 @@ public class IndexController implements Controller {
 //		tb_habit_check 테이블에 등록된 튜플이 없으므로 있는지 확인
 
 		int result2 = 0;
+		MemberService mc = new MemberService();
+		List<String> list = mc.wise();
+		int random = (int) (Math.random()*list.size());
+		
 		
 //		만약 체크가 되지 않은 상태라면
 		if (flag.equals("n")) {
 			result2 = is.addHabitChack(cStateNo);
 			if(hEnd.equals((String)sf.format(d))) {
 				if(hMoney == 0 ) {
+					mav.addObject("wise",list.get(random));	
 					mav.addObject("mt",(hTime*cCountall*60));
-					mav.addObject("time", true);
-					
+					mav.addObject("time", "1");
+					mav.addObject("money", "0");
 				}else if(hTime == 0){
+					mav.addObject("wise",list.get(random));	
 					mav.addObject("mt",hMoney*cCountall);
-					mav.addObject("money", true);
+					mav.addObject("time", "0");
+					mav.addObject("money", "1");
 				}
 				
 				mav.setView("habit/finishPopup");

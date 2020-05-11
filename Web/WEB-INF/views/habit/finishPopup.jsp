@@ -78,7 +78,7 @@
 		</div>
 		<br>
 		<br>
-		<c:if test="${data.time}"> 
+		<c:if test="${data.time == 1}"> 
 		<div class="container"  id="slideToggle">
 			<div class="row text-center">
 				<div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 " >
@@ -226,7 +226,7 @@
 		
 		
 		
-		<c:if test="${data.money}">
+		<c:if test="${data.money == 1}">
 		<div class="container"  id="slideToggle2">
 			<div class="row text-center">
 				<div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 "  id="clickTheBotton">
