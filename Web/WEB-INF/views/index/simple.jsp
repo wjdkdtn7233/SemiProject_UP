@@ -464,6 +464,46 @@
 			return true;
 		});
 
+		/* setTimeout(function() {
+		swal(
+				{
+				title : "확인", // 제목
+				html : "정말로 체크를 <br>해제하시겠습니까?", // 내용
+				type : "warning", // 종류
+				confirmButtonText : "확인",
+				confirmButtonColor : "#4e73df", // 확인버튼 표시 문구
+				showCancelButton : true, // 취소버튼 표시 여부
+				cancelButtonText : '취소',
+				cancelButtonColor : '#4e73df' // 취소버튼 표시 문구
+				}).then(function(result) { // 버튼이 눌러졌을 경우의 콜백 연결
+					if (result.value) { // 확인 버튼이 눌러진 경우
+						swal('체크해제',
+							'습관 체크를 해제하셨습니다.',
+							'success');
+						/* v.children[0].children[3].style.background = "#1cc88a";
+						v.children[0].children[3].onmouseover = function() {
+							v.children[0].children[3].style.boxShadow = "0 0 0 0.2rem rgba(62, 208, 156, 0.5)";
+						}
+						v.children[0].children[3].onmouseout = function() {
+							v.children[0].children[3].style.boxShadow = "none";
+						}
+
+						$("#habitCheckBT").csubmitss('backgroundColor', '#1cc88a');
+						$('#habitCheckBT').hover(function(){
+							$(this).css('box-shadow','0 0 0 0.2rem rgba(62, 208, 156, 0.5)');
+						}, function() {
+							$(this).css('box-shadow','none');
+						});
+						return true;
+					} else if (result.dismiss == 'cancel') { // 취소버튼이 눌러진 경우
+						swal('취소',
+							'이전화면으로 되돌아갑니다.',
+							'error');
+						event.preventDefault();
+					}
+				});
+	}, 3000); */
+	
 		document.querySelectorAll('.habitCheck').forEach(
 			function(v) {
 			v.addEventListener('submit',function(event) {
@@ -471,49 +511,10 @@
 					/* 습관이 n상태일경우 습관 체크를할수 있도록 해줌 */
 
 					if (check == 'y') {
-						/* setTimeout(function() {
-							swal(
-									{
-									title : "확인", // 제목
-									html : "정말로 체크를 <br>해제하시겠습니까?", // 내용
-									type : "warning", // 종류
-									confirmButtonText : "확인",
-									confirmButtonColor : "#4e73df", // 확인버튼 표시 문구
-									showCancelButton : true, // 취소버튼 표시 여부
-									cancelButtonText : '취소',
-									cancelButtonColor : '#4e73df' // 취소버튼 표시 문구
-									}).then(function(result) { // 버튼이 눌러졌을 경우의 콜백 연결
-										if (result.value) { // 확인 버튼이 눌러진 경우
-											swal('체크해제',
-												'습관 체크를 해제하셨습니다.',
-												'success');
-											/* v.children[0].children[3].style.background = "#1cc88a";
-											v.children[0].children[3].onmouseover = function() {
-												v.children[0].children[3].style.boxShadow = "0 0 0 0.2rem rgba(62, 208, 156, 0.5)";
-											}
-											v.children[0].children[3].onmouseout = function() {
-												v.children[0].children[3].style.boxShadow = "none";
-											} */
-			
-											/* $("#habitCheckBT").csubmitss('backgroundColor', '#1cc88a');
-											$('#habitCheckBT').hover(function(){
-												$(this).css('box-shadow','0 0 0 0.2rem rgba(62, 208, 156, 0.5)');
-											}, function() {
-												$(this).css('box-shadow','none');
-											}); */
-											return true;
-										} else if (result.dismiss == 'cancel') { // 취소버튼이 눌러진 경우
-											swal('취소',
-												'이전화면으로 되돌아갑니다.',
-												'error');
-											event.preventDefault();
-										}
-									});
-						}, 3000); */
 							return true;
-						} else {
+					} else {
 							return true;
-						}
+					}
 				});
 			});
 	</script>
