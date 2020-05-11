@@ -92,14 +92,7 @@
 												</tr>
 											<c:set var="count" value="${count+1}"/>	
 											</c:forEach>
-												<tr>
-													<td>1</td>
-													<td>운동</td>
-													<td>하루에 두시간만!!</td>
-													<td>20.02.01</td>
-													<td>20.04.01</td>
-													<td>78%</td>
-												</tr>
+												
 											</tbody>
 										</table>
 									</div>

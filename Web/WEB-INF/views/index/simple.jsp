@@ -133,6 +133,8 @@
 														<input type="hidden" name="habitMoney" id="habitMoney" value="${habitList.hMoney}" />
 														<input type="hidden" name="habitTime" id="habitTime" value="${habitList.hTime}" />
 														<input type="hidden" name="habitPercent" id="habitPercent" value="${habitList.cPercent}" />
+														<input type="hidden" name="habitEnd" id="habitEnd" value="${habitList.hEndDate}" />
+														<input type="hidden" name="habitCountall" id="habitCountall" value="${habitList.cCountall}" />
 													<c:if test="${habitList.hCheckYN == 'n'}">
 														<button class="btn btn-circle habitButtonCheck" id="habitCheckBT" type="submit">
 															<i class="fas fa-check"></i>
