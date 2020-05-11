@@ -14,6 +14,12 @@
 
 <%@ include file="../include/header.jsp"%>
 
+<!-- <style>
+.fc-event {
+border:none;
+}
+</style> -->
+
 <body id="page-top">
 
 	<!-- Page Wrapper -->
@@ -140,14 +146,16 @@
                 // 데이터를 json 방식으로 넣어주기
                 , events: [
             	   
-            	    <c:forEach var='item' items='${data.calHabitList}' varStatus="vs">
+              	    <c:forEach var='item' items='${data.calHabitList}' varStatus="vs">
             	    {
                         id : '${item.hNo}' // 습관번호
                       , title : '${item.hSubcategory}'
                       , textColor : '#eaecf4' 
-                      , backgroundColor : '#028c6a'
+                      , backgroundColor : '#e36e88'
                       , start : '${item.hStartDate}'
                       , end : '${item.hEndDate}' // 종료일
+                   	  , borderColor : "#FFF" // 보더 색상
+                    		  
 		                  	  
                     }
             	    <c:if test="${!vs.last}">
