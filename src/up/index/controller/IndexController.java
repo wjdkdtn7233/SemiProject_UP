@@ -1,6 +1,8 @@
 package up.index.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -156,8 +158,14 @@ public class IndexController implements Controller {
 		int hTime = Integer.parseInt((String) request.getParameter("habitTime"));
 		int hNo = Integer.parseInt((String) request.getParameter("habitNo"));
 		int cStateNo = Integer.parseInt((String) request.getParameter("cStateNo"));
+		int cCountall = Integer.parseInt((String) request.getParameter("habitCountall"));
 		String flag = (String) request.getParameter("habitYN");
-
+		String hEnd =(String) request.getParameter("habitEnd");
+		Date d = new Date();
+		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
+		System.out.println(hEnd);
+		System.out.println(sf.format(d));
+		System.out.println(cCountall);
 //		오늘 습관을 등록하지 않았다면 (습관을 등록할때 최초로 넣어주지만 다음날이되면 다음날 것을 다시넣어줘야함)
 //		tb_habit_check 테이블에 등록된 튜플이 없으므로 있는지 확인
 
@@ -166,6 +174,19 @@ public class IndexController implements Controller {
 //		만약 체크가 되지 않은 상태라면
 		if (flag.equals("n")) {
 			result2 = is.addHabitChack(cStateNo);
+			if(hEnd.equals((String)sf.format(d))) {
+				if(hMoney == 0 ) {
+					mav.addObject("mt",(hTime*cCountall*60));
+					mav.addObject("time", true);
+					
+				}else if(hTime == 0){
+					mav.addObject("mt",hMoney*cCountall);
+					mav.addObject("money", true);
+				}
+				
+				mav.setView("habit/finishPopup");
+				return mav;
+			}
 			if(result2 > 0) {
 				mav.addObject("habitList", is.selectHabitList(m));
 				mav.setView("index/simple");
@@ -188,18 +209,7 @@ public class IndexController implements Controller {
 			}
 		}
 		//달성률이 100프로가 되면 종료축하 페이지로 넘겨준다.
-		if(cPercent == 100) {
-			if(hMoney != 0 ) {
-				mav.addObject("mt",hMoney);
-				mav.addObject("money", true);
-			}else {
-				mav.addObject("mt",(hTime*60));
-				mav.addObject("time", true);
-			}
-			
-			mav.setView("common/finishPopup");
-			return mav;
-		}
+		
 
 		
 		return mav;
