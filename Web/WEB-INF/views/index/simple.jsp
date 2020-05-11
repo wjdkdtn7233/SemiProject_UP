@@ -25,7 +25,7 @@
 					<div>
 						<div
 							class="d-sm-flex align-items-center justify-content-between mb-4">
-							<h1 class="h3 mb-0 text-gray-800">Simple view</h1>
+							<h1 class="h3 mb-0 text-gray-800">Habit view</h1>
 						</div>
 
 						<div class="card shadow mb-4">
@@ -328,17 +328,24 @@
 				borderColor: "#4e73df",
 				data: [
 					<c:forEach var='habitList' items='${data.habitList}' varStatus="vs">
+					
+					<c:if test="${vs.first}">
+					<c:set var="maxData" value="${habitList.cCount}" />
+					</c:if>
 					${habitList.cCount}
-					<c:if test="${!vs.last}">,</c:if>
-	        	    <c:if test="${vs.last}">
-	        	    <c:set var="maxData" value="${vs.index}" />
+	        	    <c:if test="${habitList.cCount > maxData}">
+	        	    <c:set var="maxData" value="${habitList.cCount}" />
 	        	    </c:if>
+	        	    
 	          	    </c:forEach>
 	          	  	<c:forEach var='searchList' items='${data.searchList}' varStatus="vs">
+	          	  	
+	          	  	<c:if test="${vs.first}">
+					<c:set var="maxData" value="${searchList.cCount}" />
+					</c:if>
 					${searchList.cCount}
-					<c:if test="${!vs.last}">,</c:if>
-	        	    <c:if test="${vs.last}">
-	        	    <c:set var="maxData" value="${vs.index}" />
+	        	    <c:if test="${searchList.cCount > maxData}">
+	        	    <c:set var="maxData" value="${searchList.cCount}" />
 	        	    </c:if>
 	        	    
 	          	    </c:forEach>
@@ -494,7 +501,6 @@
 										$(this).css('box-shadow','none');
 									}); */
 
-									return true;
 								} else if (result.dismiss === 'cancel') { // 취소버튼이 눌러진 경우
 									swal('취소',
 										'이전화면으로 되돌아갑니다.',
@@ -506,7 +512,6 @@
 						} else {
 							return true;
 						}
-					return true;
 				});
 			});
 	</script>

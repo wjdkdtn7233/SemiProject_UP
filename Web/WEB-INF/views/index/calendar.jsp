@@ -140,7 +140,7 @@
                 // 데이터를 json 방식으로 넣어주기
                 , events: [
             	   
-            	    <c:forEach var='item' items='${data.calHabitList}' varStatus="vs">
+              	    <c:forEach var='item' items='${data.calHabitList}' varStatus="vs">
             	    {
                         id : '${item.hNo}' // 습관번호
                       , title : '${item.hSubcategory}'
