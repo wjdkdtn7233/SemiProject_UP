@@ -338,9 +338,11 @@
 	        	    <c:if test="${habitList.cCount > maxData}">
 	        	    <c:set var="maxData" value="${habitList.cCount}" />
 	        	    </c:if>
-	        	    
+	        	    <c:if test="${!vs.last}">,</c:if>
 	          	    </c:forEach>
 	          	  	<c:forEach var='searchList' items='${data.searchList}' varStatus="vs">
+	          	  	
+	          	  	<c:if test="${!vs.last}">,</c:if>
 	          	  	
 	          	  	<c:if test="${vs.first}">
 					<c:set var="maxData" value="${searchList.cCount}" />
@@ -349,7 +351,7 @@
 	        	    <c:if test="${searchList.cCount > maxData}">
 	        	    <c:set var="maxData" value="${searchList.cCount}" />
 	        	    </c:if>
-	        	    
+	        	   
 	          	    </c:forEach>
 				]
 			}/* ,{
