@@ -14,6 +14,12 @@
 
 <%@ include file="../include/header.jsp"%>
 
+<!-- <style>
+.fc-event {
+border:none;
+}
+</style> -->
+
 <body id="page-top">
 
 	<!-- Page Wrapper -->
@@ -145,9 +151,11 @@
                         id : '${item.hNo}' // 습관번호
                       , title : '${item.hSubcategory}'
                       , textColor : '#eaecf4' 
-                      , backgroundColor : '#028c6a'
+                      , backgroundColor : '#e36e88'
                       , start : '${item.hStartDate}'
                       , end : '${item.hEndDate}' // 종료일
+                   	  , borderColor : "#FFF" // 보더 색상
+                    		  
 		                  	  
                     }
             	    <c:if test="${!vs.last}">
