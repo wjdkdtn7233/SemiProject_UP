@@ -1,4 +1,4 @@
-# UP - Unfulfiled Potential<br>
+# UP - Unfulfiled Potential (발현되지 않은 잠재력)<br>
 ## 소개<br>
 KH정보교육원 팀별 중간(세미) 프로젝트 이며, 고치기 힘든 습관에 도움을 주기위해 개발한 사이트입니다.<br>
 ( 본인이 바꾸고자 하는 습관을 등록하고 하루하루 습관 체크  )
